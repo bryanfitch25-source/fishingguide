@@ -66,13 +66,18 @@ step 1 has been run.
 4. Paste the updated `app/supabase/seed.sql` into the Supabase SQL editor and run it (or
    use `psql -f` if you have direct DB access).
 
-## 5. Deploying
+## 5. Deploying — already live ✅
 
-The `app/` folder is a standard Next.js app — the easiest path is Vercel:
+The site is deployed on Vercel (account `bryanfitch25-9324`, scope `fitch2`):
 
-1. Import the GitHub repo into Vercel, set the **root directory** to `app`.
-2. Add the two environment variables from step 2 in the Vercel project settings.
-3. Deploy. Vercel builds with `next build` automatically.
+- **Live site: https://fishingguide-ebon.vercel.app**
+- Project dashboard: https://vercel.com/fitch2/fishingguide
+- Root directory is set to `app`, both Supabase env vars are configured for
+  Production and Preview, and the GitHub repo is connected — **every push to `main`
+  auto-deploys**.
+
+To use a custom domain later: buy the domain, then Vercel dashboard → fishingguide →
+Settings → Domains → add it and follow the DNS instructions.
 
 ## Known regulatory items that need a human double-check before you rely on this for legal compliance
 

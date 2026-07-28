@@ -17,6 +17,11 @@ Supabase
   Account email: bryanfitch25@gmail.com (assumed — confirm)
   Purpose: Postgres database + API backend (species guides, regulations, trip guides)
 
-Hosting (not set up yet)
-  Recommended: Vercel (import the GitHub repo, root directory = app/)
-  Account: — (fill in when created)
+Vercel (hosting)
+  URL: https://vercel.com/fitch2/fishingguide
+  Live site: https://fishingguide-ebon.vercel.app
+  Username: bryanfitch25-9324 (team/scope: fitch2)
+  Project ID: prj_Y0ODp1U5JFAnysOPt09WGk4B0VKZ
+  Root directory: app
+  Git: connected to github.com/bryanfitch25-source/fishingguide (auto-deploys on push to main)
+  Purpose: production hosting for the Next.js app
