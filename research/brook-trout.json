@@ -1,0 +1,77 @@
+{
+  "slug": "brook-trout",
+  "common_name": "Brook Trout",
+  "scientific_name": "Salvelinus fontinalis",
+  "category": "freshwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "The native \"speckled trout\" of Maritime streams, lakes, and rivers — small-stream fishing at its most classic, with sea-run populations adding a bonus estuary fishery each spring.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Brook trout (speckled trout) are the native river/stream trout of New Brunswick, Nova Scotia, and PEI. Identify them by light-coloured spots on their sides, red spots with a light-coloured edge, a marbled dark pattern on their upper body and back, dark bars/patches on the dorsal fin, white-edged lower fins, and a square or only slightly concave tail.\n\nIt's worth learning this well: young Atlantic salmon (parr) share the same small streams across the region and must be released immediately if caught — salmon parr have black spots and a plain forked tail with no white edging. Confusing the two is one of the most common identification mistakes in Maritime small-stream fishing.\n\nBrook trout tolerate cold, clean water and are less heat-tolerant than bass — this drives most of their seasonal behaviour (see When to Go).",
+      "sources": [
+        { "label": "GNB Fish Regulations Summary (Set Young Salmon Free identification page)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "The season opens April 15 for rivers, brooks, and streams in New Brunswick and runs through September 15 (lakes/ponds open May 1). Spring, right after opening, and again in fall as water cools, are generally the most active windows for brook trout in small streams — they're less tolerant of warm water than bass and can go quiet during the hottest stretches of summer. Early morning is a reliable window throughout the season.\n\n**Sea-run brook trout** (a bonus estuary fishery found in tidal rivers across all three provinces): best in late spring/early summer as fish push into estuaries to feed on baitfish and shrimp; by mid-summer the sea-run push has typically passed.",
+      "sources": [
+        { "label": "GNB Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Small, cold, clean streams throughout the region hold brook trout — they're the most widely distributed native gamefish in the Maritimes. A well-documented example area is the Petitcodiac watershed near Moncton, NB:\n\n- **Little River**, near Salisbury — cross on the Salisbury Road out of Riverview; multiple pull-offs to walk and fish.\n- **Prosser Brook** — in the windmill/Berry Mills Road area off Route 912 past the Turtle Creek dam. This brook is NOT within the Turtle Creek protected watershed, so it's legal to fish — unlike the Turtle Creek reservoir itself.\n- **Hillsborough area**, off Route 114 — small creeks near the Dawson Road intersection and throughout the surrounding back roads.\n- **Pollett River / North River**, near Salisbury — upstream of where they join the Petitcodiac.\n\n**A caution worth taking seriously anywhere near a municipal water supply**: Turtle Creek itself and its reservoir are the primary drinking water supply for Moncton, Riverview, and Dieppe, and fall under watershed protection restrictions — large parts are closed to fishing, and advisories have circulated about not eating fish from areas near the old landfill/waste facility. If unsure whether a stretch is inside a protected watershed anywhere in the region, check with the local municipality before fishing.\n\nBeyond NB, Nova Scotia's Cape Breton Highlands streams and PEI's Boughton, Morell, and other estuary-connected rivers are well-known brook trout (including sea-run) waters.",
+      "sources": [
+        { "label": "newbrunswickfishing.com forum threads (Moncton trout streams; Turtle Creek; Brook Trout Heaven)", "url": "https://www.newbrunswickfishing.com/" },
+        { "label": "Wikipedia, Turtle Creek (New Brunswick)", "url": "https://en.wikipedia.org/wiki/Turtle_Creek_(New_Brunswick)" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Light spinning rod, or a light fly rod if you prefer to fly fish — small-stream brook trout don't need heavy tackle. |\n| Line | 4-8 lb test monofilament is plenty for stream brookies and casts light lures better than heavier line. |\n| Terminal tackle | Small in-line spinners, small spoons, worms on a light rig, or small streamer flies — carry a mix. |",
+      "sources": []
+    },
+    {
+      "heading": "Baits, Lures & Retrieves",
+      "body_md": "- **Small in-line spinner** (e.g. Mepps-style, sizes 0-1) — cast upstream or up-and-across, retrieve just fast enough to keep the blade turning as it drifts back with the current — mimics a small baitfish caught in the flow.\n- **Small spoon** — cast across or upstream, retrieve steadily with occasional twitches; works well in slightly deeper pools where a spinner might spin too high in the water column.\n- **Worm on a light rig** — a small split shot 12-18 inches above a single hook baited with a worm, drifted naturally downstream through a pool with the current doing the work rather than an active retrieve — the traditional, highly effective small-stream approach.\n- **Small streamer fly** — cast up-and-across and swing it through pools and undercut banks with the current, or dead-drift it like a nymph in faster water.\n\n**General approach**: fish upstream where possible so you're approaching fish from behind (trout typically face into the current), stay low and move quietly since these are shallow, clear streams where fish spook easily, and focus on pools, undercut banks, and any current break rather than fast open riffles.",
+      "sources": [
+        { "label": "General small-stream brook trout technique, consistent across NB/NS/PEI angler forum reporting", "url": "https://www.newbrunswickfishing.com/" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "If keeping a fish, kill it quickly and humanely. If releasing: keep the fish wet, minimize air exposure (even 10-20 seconds can cause harm), use wet hands or a soft rubber net rather than a dry hand or towel, and avoid touching the eyes and gills. In moving water, hold the fish facing into the current while reviving it before release.",
+      "sources": [
+        { "label": "GNB Fish Regulations Summary 2026-27, Angling Ethics and Courtesy section", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "New Brunswick's mercury consumption guideline: brook trout under 25 cm — 8 servings per month for the general population, 1 serving per month for sensitive populations (pregnant/breastfeeding women, infants, children under 12). Brook trout over 25 cm — 4 servings per month general population; sensitive populations should avoid. This is separate from — and more permissive than — any local site-specific advisory (e.g. near old landfill sites), which should be taken seriously regardless of the general provincial guideline. Check Nova Scotia and PEI's own consumption advisories for waters in those provinces.",
+      "sources": [
+        { "label": "GNB Fish Consumption Guidelines (mercury)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Rivers, brooks, streams", "season": "Apr 15 - Sept 15", "bag_limit": "5 (max 2 brown trout)", "size_limit": "Brook trout 10 cm min; Arctic char/brown/rainbow trout 15 cm min", "notes": "NB angling licence required for anyone 16+ fishing inland waters ($23 CAD resident season licence, Class 9). No sport fishing 2 hrs after sunset to 2 hrs before sunrise.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NB", "water_type": "Lakes, ponds, reservoirs", "season": "May 1 - Sept 15", "bag_limit": "5 (max 2 brown trout)", "size_limit": "Brook trout 10 cm min; Arctic char/brown/rainbow trout 15 cm min", "notes": "Same licence requirement as river/stream water.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Inland waters (general)", "season": "Varies by district — check the current NS Anglers' Handbook", "bag_limit": "Per NS Anglers' Handbook — varies by district", "size_limit": "Per NS Anglers' Handbook — varies by district", "notes": "A Nova Scotia angling licence is required for freshwater fishing. Nova Scotia divides the province into angling districts with different season windows — always check the current handbook for your specific water.", "source_url": "https://novascotia.ca/fish/programs-and-services/recreational-fishing/", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Rivers, streams (incl. sea-run)", "season": "Apr 15 - Sept 15 (PEI inland waters, general window)", "bag_limit": "Per PEI Anglers' Guide — varies by water", "size_limit": "Per PEI Anglers' Guide — varies by water", "notes": "Requires a valid PEI angling licence for freshwater/sea-run brook trout fishing.", "source_url": "https://www.princeedwardisland.ca/en/topic/fishing-hunting-trapping-licences", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season (NB rivers)", "value": "Apr 15 - Sept 15" },
+    { "label": "Best Time", "value": "Spring and fall; early morning throughout" },
+    { "label": "ID tip", "value": "Watch for salmon parr in the same streams — release immediately" },
+    { "label": "Best Method", "value": "Worm drift or small spinner through pools and undercut banks" },
+    { "label": "Sea-run bonus", "value": "Estuaries, late spring/early summer" }
+  ],
+  "sources": [
+    { "label": "GNB Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "newbrunswickfishing.com forum threads", "url": "https://www.newbrunswickfishing.com/" },
+    { "label": "Nova Scotia Recreational Fishing", "url": "https://novascotia.ca/fish/programs-and-services/recreational-fishing/" },
+    { "label": "PEI Fishing, Hunting & Trapping Licences", "url": "https://www.princeedwardisland.ca/en/topic/fishing-hunting-trapping-licences" }
+  ]
+}

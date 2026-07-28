@@ -1,0 +1,78 @@
+{
+  "slug": "rainbow-smelt",
+  "common_name": "Rainbow Smelt",
+  "scientific_name": "Osmerus mordax",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Small, silvery, iridescent baitfish-sized species that floods estuary shallows and rivers each spring to spawn, fished by hook-and-line, dip net, and spear across NB/NS/PEI — a classic family and community fishery, not a trophy target.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Rainbow smelt (*Osmerus mordax*) are slender, silvery fish with an olive-green back and iridescent purple, blue, and pink sides shot through with a bright silvery lateral stripe — the source of the name. Look for the small adipose fin (a tiny fleshy fin between the dorsal and tail) and noticeably strong canine teeth for such a small fish, both good ID markers. Adults typically run 10-25 cm, occasionally to 33 cm, and live 8-10 years, maturing by age 2-3.\n\nSmelt can be either **anadromous** (sea-run) or landlocked in freshwater lakes; the sea-run form is what dominates the NB/NS/PEI shore and estuary fishery. In spring, adults migrate from coastal water up into small tributaries and river mouths to spawn at night over gravel bottom, arriving when water temperature is still cold (roughly 4-5°C). At spawning time, males develop small tubercles on their scales that feel like tiny buttons — a simple way to sex fish by hand.",
+      "sources": [
+        { "label": "USGS NAS, Rainbow Smelt (Osmerus mordax) Species Profile", "url": "https://nas.er.usgs.gov/queries/factsheet.aspx?SpeciesID=796" },
+        { "label": "identifyfish.blogspot.com, Fish Identification: Rainbow Smelt", "url": "http://identifyfish.blogspot.com/2010/09/rainbow-smelt-osmerus-mordax.html" },
+        { "label": "NJDEP, Rainbow Smelt (Osmerus mordax) Historical Presence, Abundance, Life History", "url": "https://dep.nj.gov/njfw/wp-content/uploads/njfw/Rainbow-Smelt.pdf" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "The **spring spawning run** is the main event and the reason smelt fishing is a big deal across the region: fish stack up at river mouths and push into small coastal streams for a short, intense window, generally through April into June depending on location and water temperature (see the regulations table for exact dip-net date ranges by province, which double as a rough guide to run timing). Spawning happens at night, so evening and after-dark fishing during the run is classically the most productive. Outside the run, smelt remain present in estuary shallows and near structure through the season and can still be caught, just in smaller numbers and less predictably.",
+      "sources": [
+        { "label": "NCBI, Environmental DNA detects Spawning Habitat of an ephemeral migrant fish (Anadromous Rainbow Smelt)", "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9594880/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Smelt run in small coastal streams and river mouths right across all three provinces, making this one of the most locally accessible fisheries in the region.\n\n- **NS:** The **Kennetcook, Meander, Herbert, St. Croix, and Avon Rivers** (Hants County) all have DFO-specified spring dip-net windows and are well-known smelt water; **Porters Lake** and the **Portapique River** are also popular, angler-reported spots, with fish typically showing by mid-May.\n- **NB:** The Cocagne and Shediac River mouths on the Northumberland Strait side are proven local spots; smelt are present through the season near structure, with the spring run being the peak.\n- **PEI:** The Boughton River mouth and other estuary systems island-wide hold smelt, again peaking during the spring run.\n\nWithin any of these, target the tide head of the main tributary (where salt water meets fresh) and any gravelly stretch just upstream of the estuary during the run.",
+      "sources": [
+        { "label": "novascotiafishing.com, Smelts thread", "url": "https://www.novascotiafishing.com/threads/smelts.4480/" },
+        { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Light spinning rod, ultralight if you have one — small fish and small hooks call for light tackle. |\n| Hooks/jig | Very small bucktail jigheads or a small streamer fly — smelt have tiny mouths, so undersized terminal tackle is essential. |\n| Dip net | A legal, popular alternative to hook-and-line during the spring run in all three provinces (check size/mesh rules and season dates). |\n| Extras | A bucket with some water/ice if keeping fish for the table — smelt are commonly kept and eaten fresh or smoked in this region. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "**Hook-and-line:**\n1. Locate a school at a river mouth or estuary shallow, especially during the spring run.\n2. Cast a tiny bucktail jighead or small streamer fly to the middle of the school.\n3. Retrieve steadily back toward you — takes typically happen as the lure is leaving the school, not while sitting inside it, so keep the retrieve moving rather than stalling in place.\n4. Because of their small, delicate mouths, use a gentle hookset — a hard hookset tears the hook right back out.\n\n**Dip netting (where legal — see regulations):**\n1. Work the tide head of a spawning tributary at night during the run, when fish concentrate most heavily.\n2. Net in slack-water eddies along the current edge rather than fighting the main flow.\n3. Respect posted weekly closures — many rivers in this region close to dip netting on specific days each week during the season to let some fish through to spawn.",
+      "sources": [
+        { "label": "novascotiafishing.com, Smelts thread", "url": "https://www.novascotiafishing.com/threads/smelts.4480/" }
+      ]
+    },
+    {
+      "heading": "Handling & Table Notes",
+      "body_md": "Smelt are widely kept and eaten across the region — a classic simple prep is whole, gutted, dredged in flour or cornmeal, and pan-fried crisp, small enough that the bones aren't an issue. Ice or keep fish cool promptly if you plan to keep a mess of them, since a bucket of any small oily fish left in the sun spoils quickly. If releasing fish caught outside your bag limit, handle briefly and gently — smelt are a fragile, easily stressed species compared to hardier bottom fish like cunner or tomcod.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation Notes",
+      "body_md": "No broad at-risk status turned up for rainbow smelt in this region in current research, but this is a genuinely important forage species: smelt are key prey for striped bass, mackerel, and other predators covered elsewhere in this guide, and their runs are locally monitored closely enough that some rivers carry weekly closed days and gear restrictions specifically to protect spawning access. Respect posted closures and avoid overharvesting a spawning run in one sitting even where the daily limit is generous.",
+      "sources": []
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal and inland", "season": "Inland angling: Apr 1–Sep 30 (when sport fish season open). Tidal angling: Aug 1–May 31. Dip nets (inland and tidal): Apr 1–May 31. Spears (tidal only): year-round.", "bag_limit": "60/day (angling, dip netting, spearing); 200/day in boundary waters with Maine, Jan–Mar", "size_limit": "None specified", "notes": "No licence required in tidal water. Provincial angling licence required for inland angling.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Tidal and inland", "season": "Inland angling: Apr 1–Sep 30 (when sport fish season open). Tidal angling: Aug 1–May 31. Dip nets: Apr 1–Jun 15 with additional weekly closures (e.g. Kennetcook, Meander, Herbert, St. Croix, Avon Rivers in Hants Co. closed Thu/Fri/Sat during that window; other areas closed Fri/Sat/Sun). Spears (tidal only): year-round.", "bag_limit": "60/day (angling/spearing); 30/day by dip net; 24/day in Grand Lake (Jan–Sep)", "size_limit": "None specified", "notes": "No licence required in tidal water. Provincial angling licence required for inland angling. Jigging for smelt prohibited Apr 1–Jun 15 in specified NS rivers.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring spawning run (roughly April–June, varies by river); present year-round in estuaries" },
+    { "label": "Best Time", "value": "Night, during the spring run" },
+    { "label": "Gear", "value": "Ultralight rod + tiny jighead/streamer, or legal dip net during the run" },
+    { "label": "Retrieve", "value": "Cast into school, steady retrieve back out — takes happen leaving the school" },
+    { "label": "Table Fare", "value": "Popular local eating fish — whole, floured, pan-fried" },
+    { "label": "Watch For", "value": "Weekly closed days on many spawning rivers — check before you go" }
+  ],
+  "sources": [
+    { "label": "USGS NAS, Rainbow Smelt (Osmerus mordax) Species Profile", "url": "https://nas.er.usgs.gov/queries/factsheet.aspx?SpeciesID=796" },
+    { "label": "identifyfish.blogspot.com, Fish Identification: Rainbow Smelt", "url": "http://identifyfish.blogspot.com/2010/09/rainbow-smelt-osmerus-mordax.html" },
+    { "label": "NJDEP, Rainbow Smelt (Osmerus mordax) Historical Presence, Abundance, Life History", "url": "https://dep.nj.gov/njfw/wp-content/uploads/njfw/Rainbow-Smelt.pdf" },
+    { "label": "NCBI, Environmental DNA detects Spawning Habitat of an ephemeral migrant fish (Anadromous Rainbow Smelt)", "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9594880/" },
+    { "label": "novascotiafishing.com, Smelts thread", "url": "https://www.novascotiafishing.com/threads/smelts.4480/" },
+    { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" }
+  ]
+}

@@ -1,0 +1,22 @@
+ACCOUNTS — FishingGuide (Maritime Angler)
+==========================================
+Passwords are NOT stored here — they live in the password manager.
+This file just tracks which services this project uses and under what account.
+
+GitHub
+  URL: https://github.com/bryanfitch25-source/fishingguide
+  Username: bryanfitch25-source
+  Purpose: source code repository
+
+Supabase
+  URL: https://supabase.com/dashboard/project/zrerxskliybzcqexudfo
+  Project name: fishingguide
+  Project ref: zrerxskliybzcqexudfo
+  Project URL: https://zrerxskliybzcqexudfo.supabase.co
+  Region: us-west-2
+  Account email: bryanfitch25@gmail.com (assumed — confirm)
+  Purpose: Postgres database + API backend (species guides, regulations, trip guides)
+
+Hosting (not set up yet)
+  Recommended: Vercel (import the GitHub repo, root directory = app/)
+  Account: — (fill in when created)

@@ -1,0 +1,84 @@
+{
+  "slug": "bluefin-tuna",
+  "common_name": "Atlantic Bluefin Tuna",
+  "scientific_name": "Thunnus thynnus",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "The giant of the Gulf of St. Lawrence — a federally quota-managed, charter-dominated fishery centred on North Lake, PEI (self-styled \"Tuna Capital of the World\"), plus Nova Scotia and New Brunswick grounds; realistically accessed by booking a licensed charter, not a DIY shore or small-boat target.",
+  "sections": [
+    {
+      "heading": "Know the Fish — and Know What This Fishery Actually Is",
+      "body_md": "Atlantic bluefin tuna (*Thunnus thynnus*) are the largest tuna species, capable of exceeding 1,000 lb, living up to roughly 40 years, and reaching curved fork lengths averaging around 2.7 m in fish tracked from the Gulf of St. Lawrence. They're built for speed and endurance: torpedo-shaped, warm-blooded (able to keep body temperature above surrounding water), with a deeply forked tail and retractable fins for reduced drag.\n\n**Read this before anything else in this guide:** unlike every other species covered here, bluefin tuna in this region is not a shore fishery, not a small-boat DIY fishery, and not something you can reasonably expect to self-outfit for with a rod bought at a local tackle shop. It is a **federally quota-managed fishery** built almost entirely around **licensed charter operations**, heaviest around North Lake and East Point, PEI, with additional grounds off Nova Scotia and New Brunswick in the southern Gulf of St. Lawrence. The honest framing for an average recreational angler: this is something you **book a trip for**, not something you rig up and go do on your own.",
+      "sources": [
+        { "label": "Nature.com/Scientific Reports, Annual migrations, vertical habitat use and fidelity of Atlantic bluefin tuna", "url": "https://www.nature.com/articles/s41598-024-80861-w" },
+        { "label": "North Lake Charters, Tuna Fishing", "url": "https://www.northlakecharters.ca/tuna-fishing/" }
+      ]
+    },
+    {
+      "heading": "Migration & Where They Are",
+      "body_md": "Bluefin push into the Gulf of St. Lawrence from roughly **May through September**, tracking Atlantic mackerel migrations — in recent years, mackerel has made up almost the entire diet of bluefin sampled in the southern Gulf, which is why the health of the mackerel stock (itself under a commercial moratorium — see the Atlantic Mackerel guide) has direct knock-on implications for this fishery.\n\n**North Lake, PEI**, on the island's eastern tip, is the historic epicentre and markets itself as the \"Tuna Capital of the World\" — giant bluefin have been caught within a few miles of shore there. The wider southern Gulf, including grounds off Nova Scotia's Northumberland Strait shore and New Brunswick's Gulf coast, also holds fish through the season, but PEI's North Lake/East Point corner remains the dominant hub for organized charter effort in this region.",
+      "sources": [
+        { "label": "ScienceDirect, Atlantic bluefin tuna diet variability in the southern Gulf of St. Lawrence, Canada", "url": "https://www.sciencedirect.com/science/article/pii/S0141113623000776" },
+        { "label": "North Lake Charters, Tuna Fishing", "url": "https://www.northlakecharters.ca/tuna-fishing/" }
+      ]
+    },
+    {
+      "heading": "How the Fishery Actually Works — Licences, Quota, and Tags",
+      "body_md": "This is one of the most tightly managed recreational/charter fisheries in Atlantic Canada:\n\n- DFO issues **bluefin tuna licences** (to charter operators/primary licence holders) with an allocated number of **tags** per licence — each tag comes with a temporary dart tag tracked against a formal registry. In PEI's Gulf Region program, initial allocation has run at roughly two tags per licence holder.\n- **Possessing a tag authorizes participation, but does not guarantee you'll land a fish** — the fishery closes once the season's total quota is harvested, regardless of whether individual licence holders have used their tags.\n- Licence holders can form **pooling groups** (2-3 licence holders sharing quota access), with landing deadlines (e.g., in 2026, pooling groups needed to land their group's fish by a September deadline) to qualify for bonus \"reallocation\" tags if quota remains.\n- Every landed fish must be **hailed out** (reported) to DFO by phone before or immediately after landing.\n- The season runs roughly **July through December 31** or until quota is exhausted, whichever comes first — in practice, the charter season concentrates around **mid-July through mid-October**.\n- Retained fish must meet minimum size/gear rules set out in the licence conditions; charter operators are also permitted a bait allowance (e.g., live mackerel per trip) under their licence conditions.\n\nThis structure means the fishery is fundamentally about **quota and licence access**, not open recreational effort — there is no path for an angler without a licence/tag to legally retain a bluefin tuna in this fishery.",
+      "sources": [
+        { "label": "DFO Gulf Region, 2026 Prince Edward Island Bluefin Tuna notice", "url": "https://www.glf.dfo-mpo.gc.ca/en/node/20604" },
+        { "label": "PEI Fishermen's Association, Bluefin Tuna Registration", "url": "https://peifa.org/members/registration-tuna" }
+      ]
+    },
+    {
+      "heading": "Catch-and-Release Charters — The Realistic Way In for a Visiting Angler",
+      "body_md": "For the vast majority of recreational anglers and visitors, the actual way to experience this fishery is a **licensed catch-and-release charter**, which is a completely different (and far more accessible) product than the licence-holder/quota/retention system above.\n\n- North Lake, PEI, hosts several established charter operations (e.g., North Lake Charters, Scott Bruce Tuna Charters, Tony's Tuna Fishing, Bruce Brothers Fishing Charters, Tide and Time Charters) running dedicated giant bluefin catch-and-release trips.\n- These charters operate under DFO-mandated **conservation gear rules**: barbless circle hooks and line/leader with a minimum breaking strength (charters commonly cite around 180 lb test) specifically so giant fish can be fought, boated or brought boatside, and released in good condition.\n- The charter supplies **all tackle, gear, and instruction** — this is marketed explicitly toward complete beginners as well as experienced anglers; no personal big-game gear is expected or generally useful, since standard rod-and-reel setups aren't rated for hour-plus fights with 500-1,000+ lb fish.\n- Season for these charter trips runs roughly **mid-July through mid-October**; booking ahead is strongly recommended, since North Lake's charter fleet fills up, especially in peak August/September weeks.\n- Realistic expectations: this is a full-day, boat-based, guided experience with a real chance of hooking (not necessarily landing, given fight lengths and fish size) a genuinely giant fish — it bears no resemblance to the wharf/shore fisheries covered elsewhere in this guide.",
+      "sources": [
+        { "label": "North Lake Charters, Tuna Fishing", "url": "https://www.northlakecharters.ca/tuna-fishing/" },
+        { "label": "CBC, Catch-and-release tuna charter industry nearly shut down by pandemic", "url": "https://www.cbc.ca/lite/story/1.5685329" }
+      ]
+    },
+    {
+      "heading": "Gear — Why This Isn't a DIY Setup", "body_md": "| Item | Reality |\n|---|---|\n| Rod/reel | Dedicated big-game trolling/stand-up outfits rated for extended fights with 300-1,000+ lb fish — not equipment most recreational anglers own, and not something a charter expects you to bring. Charters supply it. |\n| Line/leader | Minimum breaking strength around 180 lb under DFO conservation rules for the catch-and-release fishery — far beyond typical inshore tackle. |\n| Hooks | Barbless circle hooks are mandated for conservation-fishery trips, to minimize injury on released fish. |\n| Boat | A dedicated charter vessel with a fighting chair/harness setup and experienced crew — this is not small-boat or shore-accessible water for giant bluefin. |\n| Your role | Book the trip; the operator supplies everything else. Bring layered clothing, sun protection, and motion-sickness precautions if needed for a full day offshore. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique — What Actually Happens on a Trip",
+      "body_md": "1. The boat runs out to known summer/fall bluefin grounds (e.g., off North Lake/East Point) and sets baits — commonly live or fresh mackerel — to draw fish in, since mackerel is the dominant prey species drawing bluefin into the southern Gulf.\n2. Once a fish takes, the crew manages the initial hookset and hands the rod off to the angler.\n3. Fights with giant bluefin commonly run well over an hour given the fish's size and endurance — this is a full-body, sustained physical effort, not a quick fight.\n4. The crew brings the fish boatside for photos/measurement (in a catch-and-release trip) or gaffs/lands it under licence conditions (in a retention trip, only applicable to licensed quota holders).\n5. Barbless hooks allow relatively quick release with minimal handling for the catch-and-release product.\n\nThere is no meaningful shore-based or self-guided small-boat version of this technique section — the realistic \"how-to\" for almost every reader of this guide is simply: **book a reputable North Lake (or equivalent NS/NB) charter operator during the July-October season.**",
+      "sources": [
+        { "label": "North Lake Charters, Tuna Fishing", "url": "https://www.northlakecharters.ca/tuna-fishing/" }
+      ]
+    },
+    {
+      "heading": "Conservation & Management Notes",
+      "body_md": "Atlantic bluefin tuna is managed internationally through ICCAT (International Commission for the Conservation of Atlantic Tunas) quota allocations, which Canada then divides regionally (Gulf, Maritimes, Newfoundland, Scotia-Fundy, etc.) and further down to individual licence holders as described above. Canadian bluefin quotas saw their first increase in 24 years in the mid-2010s after a long period of conservative management, reflecting a stock considered to be rebuilding, though management remains deliberately conservative and quota-constrained. The catch-and-release charter sector — using barbless circle hooks and heavy tackle to minimize fight time and injury — is explicitly designed to let the broader public experience the fishery without adding retention pressure on the quota. Given the complexity and year-to-year variability of quota/tag rules, anyone considering the licensed/retention side of this fishery (rather than booking a catch-and-release charter) should confirm current-year specifics directly with DFO Gulf Region or the PEI Fishermen's Association before assuming any figure in this guide still applies.",
+      "sources": [
+        { "label": "CBC, Atlantic bluefin tuna quotas see first increase in 24 years", "url": "https://amp.cbc.ca/news/canada/prince-edward-island/atlantic-bluefin-tuna-quotas-see-first-increase-in-24-years-1.2839856" },
+        { "label": "DFO, Canadian Atlantic Bluefin Tuna Integrated Fisheries Management Plan", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/bluefin-tuna-thon-rouge/bluefin-tuna-thonrouge2017-eng.html" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "PEI", "water_type": "Offshore/Gulf of St. Lawrence, charter-based", "season": "Licensed fishery: season opens Jul 1, runs to Dec 31 or until quota harvested. Catch-and-release charter season: roughly mid-July through mid-October.", "bag_limit": "Retention limited entirely by individual licence/tag allocation and remaining quota — no open recreational bag limit exists; catch-and-release charters retain nothing.", "size_limit": "Set by licence conditions for retained fish; not applicable to catch-and-release trips.", "notes": "This is a federally licensed, quota- and tag-managed fishery (DFO Gulf Region) — there is no unlicensed recreational retention pathway. Visiting anglers access the fishery via a licensed catch-and-release charter, most concentrated at North Lake/East Point.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/node/20604", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Offshore/Gulf of St. Lawrence and Atlantic, charter-based", "season": "Follows the same DFO bluefin tuna licensing/quota framework as PEI, with Nova Scotia-based licence holders and charter operators fishing Gulf and Atlantic grounds.", "bag_limit": "Retention limited entirely by individual licence/tag allocation and remaining quota.", "size_limit": "Set by licence conditions for retained fish.", "notes": "Same licensed, charter-dominated structure as PEI — confirm current-year details with DFO Maritimes or Gulf Region depending on the specific grounds/licence area.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/bluefin-tuna-thon-rouge/bluefin-tuna-thonrouge2017-eng.html", "last_verified": "2026" },
+    { "province": "NB", "water_type": "Offshore/Gulf of St. Lawrence, charter-based", "season": "Follows the same DFO bluefin tuna licensing/quota framework as PEI and NS.", "bag_limit": "Retention limited entirely by individual licence/tag allocation and remaining quota.", "size_limit": "Set by licence conditions for retained fish.", "notes": "New Brunswick's Gulf coast sees far less dedicated charter effort than North Lake, PEI, but falls under the same overall Gulf Region management framework.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/node/20604", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Reality Check", "value": "Not a DIY shore/small-boat fishery — a licensed, quota-managed, charter-dominated fishery" },
+    { "label": "Season", "value": "Roughly May–September in the Gulf; charter season concentrated mid-July–mid-October" },
+    { "label": "Hub", "value": "North Lake / East Point, PEI — the \"Tuna Capital of the World\"" },
+    { "label": "How to Access It", "value": "Book a licensed catch-and-release charter well in advance" },
+    { "label": "Gear", "value": "Charter-supplied big-game tackle, barbless circle hooks, ~180 lb-class line" },
+    { "label": "Retention", "value": "Only licence/tag holders under DFO quota — most trips are catch-and-release" }
+  ],
+  "sources": [
+    { "label": "Nature.com/Scientific Reports, Annual migrations, vertical habitat use and fidelity of Atlantic bluefin tuna", "url": "https://www.nature.com/articles/s41598-024-80861-w" },
+    { "label": "ScienceDirect, Atlantic bluefin tuna diet variability in the southern Gulf of St. Lawrence, Canada", "url": "https://www.sciencedirect.com/science/article/pii/S0141113623000776" },
+    { "label": "North Lake Charters, Tuna Fishing", "url": "https://www.northlakecharters.ca/tuna-fishing/" },
+    { "label": "DFO Gulf Region, 2026 Prince Edward Island Bluefin Tuna notice", "url": "https://www.glf.dfo-mpo.gc.ca/en/node/20604" },
+    { "label": "PEI Fishermen's Association, Bluefin Tuna Registration", "url": "https://peifa.org/members/registration-tuna" },
+    { "label": "CBC, Catch-and-release tuna charter industry nearly shut down by pandemic", "url": "https://www.cbc.ca/lite/story/1.5685329" },
+    { "label": "CBC, Atlantic bluefin tuna quotas see first increase in 24 years", "url": "https://amp.cbc.ca/news/canada/prince-edward-island/atlantic-bluefin-tuna-quotas-see-first-increase-in-24-years-1.2839856" },
+    { "label": "DFO, Canadian Atlantic Bluefin Tuna Integrated Fisheries Management Plan", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/bluefin-tuna-thon-rouge/bluefin-tuna-thonrouge2017-eng.html" }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "atlantic-tomcod",
+  "common_name": "Atlantic Tomcod",
+  "scientific_name": "Microgadus tomcod",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Small, cold-loving estuary cod relative that turns into a genuine winter ice-fishing target in a few NB/NS estuaries — a real regional tradition worth knowing, alongside its usual role as a bonus catch on flounder gear the rest of the year.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Atlantic tomcod (*Microgadus tomcod*) are small, bottom-oriented members of the cod family, maxing out around 15 cm/6 in — a true dwarf relative of Atlantic cod, not a juvenile of that species (they're a distinct species entirely). Look for the classic small-cod body shape: three dorsal fins, two anal fins, and a small barbel under the chin, but scaled down to a fraction of Atlantic cod's size. In the Mi'kmaq language they're known as *punamu*; the common nickname \"frostfish\" across their range comes directly from their habit of running upriver to spawn in the dead of winter, in January, when almost nothing else is active.\n\nTomcod are an estuarine species tolerant of a wide range of salinity and temperature, and unlike most fish in this guide they're at their most active and most targeted during the coldest part of the year.",
+      "sources": [
+        { "label": "Friends of Merrymeeting Bay, Tomcod (Microgadus tomcod)", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/Microgadus_tomcod.htm" },
+        { "label": "Hakai Magazine, Tomcod Brings Everyone to the Table", "url": "https://hakaimagazine.com/features/tomcod-brings-everyone-to-the-table/" }
+      ]
+    },
+    {
+      "heading": "The Winter Ice-Fishing Tradition",
+      "body_md": "Tomcod support a genuine, longstanding **winter estuary fishery** in Nova Scotia that's distinct from anything else in this guide — most saltwater species here are summer/fall targets, but tomcod peak in January.\n\n- The **Shubenacadie River** estuary is the best-documented tomcod water in the region: fishers work the snow-covered banks and ice in winter, historically using **wire traps** set in the icy water to catch fish as they run upriver to spawn.\n- This lines up with the species' \"frostfish\" nickname and its January spawning run — tomcod are one of the only fish actively targeted through the ice in tidal/estuary settings in this region, as opposed to freshwater lake ice fishing for trout and other species.\n- The tradition has deep Indigenous roots (the Mi'kmaq name *punamu* reflects long-standing harvest of this species) and continues today; the Apoqnmatulti'k research project, which pairs Western science with Indigenous and local knowledge holders, currently monitors tomcod movements and habitat in Nova Scotia, underlining how significant the species still is culturally and ecologically.\n- Elsewhere in the wider Gulf of St. Lawrence region, tomcod are also taken through the ice in good numbers, reinforcing that this is a real, geographically broad winter tradition, not a one-river curiosity.",
+      "sources": [
+        { "label": "Hakai Magazine, Tomcod Brings Everyone to the Table", "url": "https://hakaimagazine.com/features/tomcod-brings-everyone-to-the-table/" },
+        { "label": "Friends of Merrymeeting Bay, Tomcod (Microgadus tomcod)", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/Microgadus_tomcod.htm" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Two distinct windows: **January**, during the spawning run, is peak season for the dedicated winter/ice fishery described above, especially in known estuaries like the Shubenacadie. Outside that window, tomcod are present in deeper estuary channels through the open-water season and are commonly caught **incidentally** while targeting winter flounder with the same bottom rigs — worth knowing so you don't mistake a bonus tomcod for something else on your flounder line.",
+      "sources": []
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "- **NS:** The **Shubenacadie River** estuary is the signature winter tomcod water in this region. Beyond that, tomcod are broadly present along Nova Scotia's estuaries wherever winter flounder are also found.\n- **NB:** Deeper estuary channels of the **Cocagne and Shediac River** systems hold tomcod, typically encountered as bycatch on flounder gear rather than targeted directly.\n- **PEI:** The Boughton Bay/Three Rivers estuary similarly holds tomcod alongside winter flounder, again mostly as an incidental catch on the same gear.\n\nIn any of these systems, deeper estuary channels and the same soft-bottom areas that hold winter flounder are the right water.",
+      "sources": [
+        { "label": "Fishbrain, Cocagne Cove listing", "url": "https://fishbrain.com" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Open-water rod | Same light spinning setup used for winter flounder — 6-6'6\" ML rod, light line. |\n| Rig | Hi-lo bottom rig baited with small strips of bait, fished on or near bottom. |\n| Ice fishing (traditional) | Historically, wire traps set through the ice at the river mouth during the January run — a distinct method from typical hook-and-line ice fishing gear used for freshwater species. |\n| Bait | Small strips of clam, worm, or other bottom bait. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "**Open-water/incidental (spring-fall):**\n1. Fish the same hi-lo bottom rig used for winter flounder in deeper estuary channels.\n2. Slow retrieve with frequent pauses on bottom — tomcod bite is subtle, similar to flounder.\n3. Treat any tomcod caught this way as a bonus, not a dedicated target.\n\n**Winter run (January, e.g. Shubenacadie):**\n1. Target the estuary/river mouth during the spawning push in January.\n2. Traditional method uses wire traps set in the ice; modern anglers can also still-fish with small baited hooks near bottom through a hole if ice conditions allow safe access.\n3. Always confirm ice safety and access locally before attempting any ice fishing — conditions vary year to year and estuary ice is less predictable than a closed freshwater lake.",
+      "sources": [
+        { "label": "Hakai Magazine, Tomcod Brings Everyone to the Table", "url": "https://hakaimagazine.com/features/tomcod-brings-everyone-to-the-table/" }
+      ]
+    },
+    {
+      "heading": "Handling & Table Notes",
+      "body_md": "Tomcod are a traditional food fish in this region, particularly tied to the winter run — hence the Hakai Magazine framing of tomcod as a fish that \"brings everyone to the table.\" Small size means they're typically cooked whole or lightly cleaned rather than filleted. Handle gently if releasing; being a small, delicate-mouthed fish, they don't tolerate rough handling well.",
+      "sources": [
+        { "label": "Hakai Magazine, Tomcod Brings Everyone to the Table", "url": "https://hakaimagazine.com/features/tomcod-brings-everyone-to-the-table/" }
+      ]
+    },
+    {
+      "heading": "Conservation Notes",
+      "body_md": "No specific at-risk status turned up for Atlantic tomcod in this region. DFO's Maritimes Region recreational fisheries materials list tomcod distinct from Atlantic cod (i.e., tomcod aren't subject to Atlantic cod's stricter conservation rules), and no dedicated bag limit turned up in current notices — fish conservatively regardless, particularly given the cultural and ecological significance of the winter spawning run described above.",
+      "sources": [
+        { "label": "DFO Maritimes Region Recreational Fisheries", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal/saltwater and estuary", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO Gulf Region notices — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. Listed by DFO as distinct from Atlantic cod, not subject to cod-specific closures.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Tidal/saltwater and estuary", "season": "No closed season for hook-and-line recreational take in tidal water; winter spawning run (e.g. Shubenacadie estuary) peaks in January", "bag_limit": "No specific bag limit found in DFO notices reviewed — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. Traditional winter/ice fishery on rivers like the Shubenacadie — confirm current local ice-safety conditions and any posted access rules before fishing through the ice.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "January spawning run (peak); year-round as bycatch on flounder gear" },
+    { "label": "Signature Fishery", "value": "Winter ice/estuary fishery on the Shubenacadie River, NS — a real regional tradition" },
+    { "label": "Size", "value": "Small — max around 15 cm/6 in" },
+    { "label": "Gear", "value": "Hi-lo bottom rig (open water); traditional wire traps through the ice (winter run)" },
+    { "label": "Nickname", "value": "\"Frostfish\" — named for its January spawning run" },
+    { "label": "Table Fare", "value": "Traditional local food fish, especially tied to the winter run" }
+  ],
+  "sources": [
+    { "label": "Friends of Merrymeeting Bay, Tomcod (Microgadus tomcod)", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/Microgadus_tomcod.htm" },
+    { "label": "Hakai Magazine, Tomcod Brings Everyone to the Table", "url": "https://hakaimagazine.com/features/tomcod-brings-everyone-to-the-table/" },
+    { "label": "DFO Maritimes Region Recreational Fisheries", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" }
+  ]
+}

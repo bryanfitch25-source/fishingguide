@@ -1,0 +1,75 @@
+{
+  "slug": "sculpin",
+  "common_name": "Sculpin (Grubby / Longhorn Sculpin)",
+  "scientific_name": "Myoxocephalus spp. / Acanthocottus spp.",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Spiny, big-headed, structure-loving bottom fish caught as a bonus around wharves and flounder grounds across NB/NS/PEI — several similar species covered under one common name, none of them a dedicated target but all good fun on light bait gear.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "\"Sculpin\" in this region covers a handful of related, similar-looking bottom fish, most commonly the **grubby** (*Myoxocephalus aenaeus*) and **longhorn sculpin** (*Myoxocephalus octodecimspinosus*), with shorthorn sculpin (*Myoxocephalus scorpius*) also present in some areas. All share the classic sculpin body plan: an oversized, heavily armored/spined head relative to a tapering body, large fan-like pectoral fins, and a mottled brown/olive camouflage pattern that blends into rock and mud bottom.\n\nThe easiest field mark to tell grubby and longhorn apart: longhorn sculpin have long cheek spines, while the grubby's are noticeably short (\"short-horned\" by comparison) — useful if you want to know exactly which sculpin you've caught, though for fishing purposes they're targeted and handled identically. Longhorn sculpin specifically are common on Banquereau and Sable Island Banks offshore and throughout the **Bay of Fundy and St. Mary's Bay** inshore.",
+      "sources": [
+        { "label": "Friends of Merrymeeting Bay, Longhorn sculpin", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/M_octodecimspinosus.htm" },
+        { "label": "Friends of Merrymeeting Bay, Shorthorn sculpin", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/Myoxocephalus_scorpius.htm" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Sculpin are present essentially year-round in their preferred structure and are not a run-timed or seasonal species the way gaspereau or smelt are. In practice, most anglers encounter them as an incidental catch while targeting winter flounder or fishing bottom bait near wharves, rather than fishing for them on purpose — so \"when to go\" is really just whenever you're already bottom-fishing.",
+      "sources": []
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Sculpin favour rocky, ledge-adjacent, or mixed mud/sand/pebble bottom in shoal water, plus the same shallow estuary flats that hold winter flounder.\n\n- **NS:** The **Bay of Fundy and St. Mary's Bay** are noted longhorn sculpin habitat — St. Mary's Bay even supported a small directed commercial longhorn sculpin fishery (a short spring season, limited to a handful of licence holders) in past years, a sign of how common they are there. Cape Breton wharves also produce sculpin as bycatch while jigging for flounder.\n- **NB:** Cocagne Cove specifically lists \"grubby sculpin\" among its notable catches; deeper channels of the Cocagne and Shediac estuaries are good bets generally.\n- **PEI:** Shares habitat with winter flounder across Boughton Bay and the Three Rivers estuary — shallow, clear estuary bottom.\n\nAny wharf, breakwater, or flounder ground across all three provinces is worth a look for sculpin as a bonus species.",
+      "sources": [
+        { "label": "DFO, Assessment of St. Mary's Bay Longhorn Sculpin", "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/40940494.pdf" },
+        { "label": "Fishbrain, Cocagne Cove listing", "url": "https://fishbrain.com" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Same light spinning setup used for flounder/bottom fishing — 6-6'6\" ML rod. |\n| Rig | Hi-lo bottom rig, or a small soft plastic on a jighead for sight-fishing in clear shallows. |\n| Bait | Small bait strips (clam, worm, cut fish) fished on or near bottom. |\n| Handling gear | A rag or gloves — sculpin have sharp spines on the head and gill covers that can prick bare hands. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Fish the same hi-lo bottom rig used for winter flounder, in and around rocky structure, ledges, or shallow estuary flats.\n2. Slow retrieve with pauses on bottom — expect sculpin as an incidental bite alongside flounder, tomcod, and cunner.\n3. In shallow, clear water, sculpin can also be **sight-fished**: spot a fish holding on bottom, drop a small bait-tipped jig close by, and let it settle — sculpin will lunge at a presentation placed right near them rather than chasing anything at distance.\n4. No special retrieve needed beyond getting the bait in front of the fish; sculpin are opportunistic ambush feeders, not active hunters.",
+      "sources": [
+        { "label": "Friends of Merrymeeting Bay, Longhorn sculpin", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/M_octodecimspinosus.htm" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "Sculpin have sharp spines on the head, gill covers, and dorsal fin that can jab an unwary hand — use a rag, glove, or grip behind the head/spines when unhooking. They also puff up and can flare their large pectoral fins and gill covers dramatically when handled, which is harmless but startling the first time you see it. Most anglers release sculpin given their small size and bony build; they handle release well and swim off strongly once returned to the water.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation Notes",
+      "body_md": "No at-risk status turned up for either grubby or longhorn sculpin in this research. A small directed commercial fishery for longhorn sculpin has existed in St. Mary's Bay, NS (a short spring season limited to a handful of licence holders), indicating a locally healthy population there. No recreational bag limit turned up in current DFO notices for either species across NB/NS/PEI — treat as an abundant bonus species.",
+      "sources": [
+        { "label": "DFO, Assessment of St. Mary's Bay Longhorn Sculpin", "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/40940494.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal/saltwater and estuary", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO Gulf Region notices — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Tidal/saltwater and estuary", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO notices reviewed — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. A small directed commercial longhorn sculpin fishery has operated seasonally in St. Mary's Bay — this is a commercial, licence-only activity, distinct from recreational hook-and-line rules.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Year-round — not a run-timed species" },
+    { "label": "Where", "value": "Rocky/ledge bottom, wharves, and flounder grounds" },
+    { "label": "Gear", "value": "Hi-lo bottom rig or small soft plastic jig for sight-fishing" },
+    { "label": "Handling", "value": "Sharp head/gill spines — use a rag or glove when unhooking" },
+    { "label": "Role", "value": "Bonus/incidental catch, not a dedicated target species" },
+    { "label": "ID Tip", "value": "Longhorn sculpin has long cheek spines; grubby's are short" }
+  ],
+  "sources": [
+    { "label": "Friends of Merrymeeting Bay, Longhorn sculpin", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/M_octodecimspinosus.htm" },
+    { "label": "Friends of Merrymeeting Bay, Shorthorn sculpin", "url": "https://cybrary.friendsofmerrymeetingbay.org/fgom/Myoxocephalus_scorpius.htm" },
+    { "label": "DFO, Assessment of St. Mary's Bay Longhorn Sculpin", "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/40940494.pdf" },
+    { "label": "DFO Maritimes Region Recreational Fisheries", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" }
+  ]
+}

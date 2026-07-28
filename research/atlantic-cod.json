@@ -1,0 +1,150 @@
+{
+  "slug": "atlantic-cod",
+  "common_name": "Atlantic Cod",
+  "scientific_name": "Gadus morhua",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Iconic bottom-dwelling groundfish targeted on a short, tightly controlled recreational season, with different windows and limits depending on whether you fish the Gulf side (NB, PEI, and the Northumberland Strait shore of NS) or the Atlantic/Bay of Fundy side of Nova Scotia.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Atlantic cod (*Gadus morhua*) are heavy-bodied bottom fish, brown to greenish-grey on the back and flanks fading to a pale belly, with small smooth scales. Identify them by the single chin barbel, three rounded dorsal fins, two anal fins, and a distinct pale, curved lateral line running the length of the body. They can live 25 years and reach over 2 m and 90+ kg in the open ocean, though recreationally caught fish in this region are almost always much smaller — commonly in the 40–70 cm range.\n\nCod are opportunistic bottom feeders, eating capelin, herring, sand eels, crab, shrimp, and other groundfish, which is why bottom rigs baited with cut bait or squid, and shiny diamond jigs worked near bottom, both work. They relate strongly to structure and bottom contour: reefs, drop-offs, wharves, and current edges over hard bottom in 30–300+ ft of water.\n\nThe stock picture matters here. Southern Gulf of St. Lawrence cod has been in the Critical Zone of DFO's Precautionary Approach framework for decades, with spawning stock biomass down from roughly 320,000 tonnes in the 1950s to about 12,000 tonnes by 2023 — a collapse largely tied to very high natural mortality (60–70% of gulf cod die before age 5, much of it attributed to grey seal predation) rather than fishing alone. This is why both DFO regions run the recreational fishery on short, tightly bounded windows rather than an open season.",
+      "sources": [
+        { "label": "Animal Diversity Web, Gadus morhua", "url": "https://animaldiversity.org/accounts/Gadus_morhua/" },
+        { "label": "CBC News, Downward spiral for Atlantic cod continues in Gulf of St. Lawrence", "url": "https://www.cbc.ca/news/canada/nova-scotia/atlantic-cod-downward-spiral-continues-gulf-of-st-lawrence-1.7216599" },
+        { "label": "DFO, Rebuilding plan: Atlantic cod (Gadus morhua) NAFO Divisions 4T and 4Vn", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/cod-morue/2024/cod-4TVn-morue-eng.html" }
+      ]
+    },
+    {
+      "heading": "Two Different Rulebooks — Which One Applies to You",
+      "body_md": "This is the single most important thing to understand before you go: **New Brunswick, PEI, and the Nova Scotia side of the Northumberland Strait / Gulf of St. Lawrence fall under DFO Gulf Region rules.** The Nova Scotia Atlantic coast (Halifax and points east/west), the Bay of Fundy shore, and the Scotian Shelf fall under **DFO Maritimes Region rules** — a separate management framework with its own season windows and bag limits.\n\nPractically: if you're fishing from a wharf in Shediac, Cocagne, or Miramichi Bay (NB), anywhere around PEI, or the NS shore facing the Northumberland Strait (e.g., Pictou, Antigonish, Cape Breton's Gulf side), you're under **Gulf Region** rules. If you're fishing Halifax Harbour, the South Shore, the Bay of Fundy (Saint John side included), or the NS Atlantic coast east to Cape North, you're under **Maritimes Region** rules. See the Regulations section below — the season dates and bag limits genuinely differ.",
+      "sources": [
+        { "label": "DFO Gulf Region — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+        { "label": "DFO Maritimes Region — Groundfish (Recreational Fisheries)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "### Gulf Region (NB, PEI, NS Northumberland Strait side)\nPer DFO Gulf Region's 2026 notice (issued April 14, 2026), the general recreational groundfish season within 50 m of the coastline runs **April 15 to October 1**. Cod and white hake specifically may only be *retained* during a shorter access window inside that season:\n- **New Brunswick:** sunrise to sunset, **July 16 – August 21, 2026**\n- **Nova Scotia (Gulf/Strait shore) and PEI:** sunrise to sunset, **August 1 – September 5, 2026**\n\nOutside those cod/white hake windows you can still fish for other groundfish under the general season, but cod must be released.\n\n### Maritimes Region (NS Atlantic coast, Bay of Fundy, Scotian Shelf)\nDFO Maritimes Region splits the coast into two zones with different windows (page last updated 2023-07-31 — confirm current-year dates against the Maritimes Orders Registry before you go, noted below):\n- **Halifax Harbour and west** (includes the Bay of Fundy shore): open Feb 1 – Dec 31 generally, but cod **retention** only permitted from the **3rd Saturday in June through Labour Day**.\n- **Hartlen Point eastward to Cape North** (including the Bras d'Or lakes): open **3rd Saturday in June through Labour Day**.\n\n### Time of Day / Conditions\nNo DFO-mandated time-of-day restriction beyond the sunrise-to-sunset retention window in the Gulf region. Locally, anglers report better action around tide changes and when bait (herring, mackerel, capelin) is thick in the area — fish where the bait and bottom structure are, not just where it's convenient.",
+      "sources": [
+        { "label": "DFO Gulf Region — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence (Notice, April 14, 2026)", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+        { "label": "DFO Maritimes Region — Groundfish (Recreational Fisheries)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Cod relate to hard bottom, drop-offs, and current — wharves and breakwaters over deep water, reefs, and offshore ledges all hold fish.\n\n**New Brunswick (Gulf side):** Grand Manan wharves are consistently reported to produce cod alongside pollock, mackerel, and sculpin — note Grand Manan itself sits in the Bay of Fundy so double check which regional rules apply to the exact spot you fish there. Wharf and pier fishing around Miramichi Bay and the Northumberland Strait shore is a common local pattern for groundfish generally.\n\n**PEI:** North Lake Harbour, on the eastern tip of the Island near East Point, is the hub for charter boats working deep water off East Point — trips there target bluefin tuna primarily but also fish for cod and mackerel along the way. Multiple charter operators (Ernie's Charter Fishing, PEI Tuna Charters, North Lake Charters) run out of this harbour.\n\n**Nova Scotia (Atlantic side):** Local forum reports point to the Atlantic side generally producing cod wherever anglers can reach deep water (50+ ft) from shore, fishing hard on bottom with bait such as sandworms, crab, or cut fish. Cape Sable Island's Westhead Wharf was historically a shore-fishing cod spot, though longtime locals note catches there are far lighter than decades ago. The Bras d'Or Lakes (Cape Breton) are also called out as holding steady cod action by local anglers.\n\nTreat all of the above as starting points, not guarantees — cod numbers in this region are a fraction of historical levels, and local, current information from wharf regulars or a charter captain beats any general guide.",
+      "sources": [
+        { "label": "New Brunswick Fishing Forum, wharf/pier fishing threads", "url": "https://www.newbrunswickfishing.com/forums/index.php/topic/1029-wharf-pier-fishing-late-july/" },
+        { "label": "Nova Scotia Fishing Forum, Best Place To Catch Cod In NS", "url": "https://www.novascotiafishing.com/threads/best-place-to-catch-cod-in-ns.2157/" },
+        { "label": "North Lake Charters, PEI Deep Sea Fishing & Tuna Charters", "url": "https://www.northlakecharters.ca/" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Medium-heavy to heavy conventional or spinning rod, 6.5–7 ft — cod fishing means muscling fish and heavy jigs/weight off deep bottom. |\n| Reel | Conventional or heavy spinning reel holding 200+ yards of 40–65 lb braid; braid's thin diameter and no-stretch feel matters a lot at depth. |\n| Diamond jigs | 4–16 oz chrome/hammered diamond jigs depending on depth and current — heavier in deeper water or stronger current to stay in contact with bottom. |\n| Bottom rig | Two-hook high-low rig or a single hook dropper loop above a bank/pyramid sinker sized to hold bottom (4–16 oz depending on depth/current). |\n| Bait | Fresh cut mackerel, herring, squid strips, clam, or sandworms — cut bait fished hard on bottom is a proven producer. |\n| Leader | 50–80 lb fluorocarbon or mono leader, 3–4 ft, tied to a barrel swivel above the jig or rig. |\n| Extras | Long-nose pliers or a hook-out tool, a sturdy net or gaff (where retention is legal), and a descending device if fishing water deeper than about 20 m and planning to release fish (see Handling section). |",
+      "sources": [
+        { "label": "CallOutdoors, How To Fish For Cod (Rig & Techniques)", "url": "https://www.calloutdoors.com/cod-fishing-rig-techniques/" }
+      ]
+    },
+    {
+      "heading": "Technique: Bottom Rig with Cut Bait",
+      "body_md": "The simplest, most consistent producer for shore and boat anglers alike, especially over structure or drop-offs.\n\n1. Rig a high-low (two-hook) rig or a single dropper-loop hook above enough weight (pyramid or bank sinker, 4–16 oz) to hold bottom in the current you're fishing.\n2. Bait hooks with fresh cut mackerel, herring, or squid strips — fresh bait outfishes stale bait for cod by a wide margin.\n3. Cast or drop the rig to bottom and let it sit; cod feed by scent and will find a stationary bait.\n4. Keep light contact with the line — a few soft taps followed by steady weight is a cod picking up and moving off with the bait, not just mouthing it.\n5. When you feel that steady pull, reel down to take up slack and set with a firm, steady lift — no need for a hard, fast hookset with circle-style bottom rigs.\n6. Retrieve steadily; cod don't fight erratically like a pelagic species, but they're heavy and will bulldog on the way up, especially from real depth.",
+      "sources": [
+        { "label": "CallOutdoors, How To Fish For Cod (Rig & Techniques)", "url": "https://www.calloutdoors.com/cod-fishing-rig-techniques/" }
+      ]
+    },
+    {
+      "heading": "Technique: Diamond Jig",
+      "body_md": "Better for covering water and working structure or marked fish from a boat.\n\n1. Drop a 4–16 oz chrome or hammered diamond jig straight to bottom, adjusting weight so the jig still reaches bottom and stays in reasonable contact with it given the current.\n2. On contact, reel up a foot or two to keep the jig just off bottom and avoid constant snags.\n3. Work it with sharp upward rod sweeps of 2–3 ft, letting it fall back on a controlled semi-slack line — the erratic fall is what triggers strikes, so don't rip it back down.\n4. Vary cadence and drop speed through the day — sometimes a slower, more deliberate jig outfishes an aggressive one, and vice versa.\n5. Adding a teaser fly or scented soft-plastic on a short dropper 2–3 ft above the jig can pick up extra fish, particularly when cod are keyed on smaller bait like sand eels.\n6. Jigging works best with good bait presence (herring/mackerel schools nearby) and manageable current — in heavy current the jig won't fish correctly and bottom rigs will out-produce it.",
+      "sources": [
+        { "label": "Hogy Lures, Offshore Jigging Cod | Haddock | Pollock", "url": "https://hogylures.com/collections/offshore-jigging-cod-haddock-pollock-with-hogy-jig-biki-rigs" },
+        { "label": "CallOutdoors, How To Fish For Cod (Rig & Techniques)", "url": "https://www.calloutdoors.com/cod-fishing-rig-techniques/" }
+      ]
+    },
+    {
+      "heading": "Handling & Release — Barotrauma Matters",
+      "body_md": "Cod caught from any real depth suffer barotrauma as gas in the swim bladder expands on the way up, and this is the single biggest factor in whether a released fish survives.\n\n- **Depth thresholds matter.** Research on Atlantic cod found a 50% probability of swim bladder rupture by about 13 m of capture depth, essentially 100% rupture by 19 m or deeper, and mortality rates over 40% for fish held at the surface after capture from 50 m or deeper.\n- **If you're keeping your legal bag limit, this is moot** — dispatch and ice the fish promptly.\n- **If you're releasing a fish** (because you're over your bag limit, it's outside the retention window, or it's simply not one you want): minimize fight time, minimize handling and surface exposure, and get the fish back down quickly. The same research found no mortality in cod that were caged and returned to capture depth for 72 hours afterward, versus much higher mortality when fish were simply released at the surface with an expanded, ruptured swim bladder and no way to resubmerge.\n- **Use a descending device** for any fish caught deeper than roughly 20 m that you intend to release — a weighted clip or inverted hook that carries the fish back down before releasing it. This is standard best practice recommended across recreational groundfish/rockfish fisheries and directly supported by the cod-specific barotrauma research above.\n- Avoid deep-hooking and gill damage where possible — a fish that's bleeding heavily is unlikely to survive release regardless of barotrauma treatment.",
+      "sources": [
+        { "label": "ICES Journal of Marine Science, Dive to survive: effects of capture depth on barotrauma and post-release survival of Atlantic cod in recreational fisheries", "url": "https://academic.oup.com/icesjms/article/72/8/2467/2458793" },
+        { "label": "NOAA Fisheries, Rockfish Barotrauma and Recompression", "url": "https://www.fisheries.noaa.gov/west-coast/recreational-fishing/rockfish-barotrauma-and-recompression" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Southern Gulf of St. Lawrence cod has sat in the Critical Zone of DFO's Precautionary Approach framework for decades, with spawning stock biomass around 12,000 tonnes as of 2023 — roughly 4% of its 1950s peak — and DFO's own assessments describe the longer-term outlook as dire with little prospect of recovery absent major ecosystem change, largely due to heavy natural mortality (grey seal predation on cod aged 5+) rather than fishing pressure alone. A formal rebuilding plan exists for cod in NAFO Divisions 4T and 4Vn.\n\nGiven that, the short, narrow retention windows and modest bag limits set by both DFO Gulf and Maritimes regions aren't arbitrary — they reflect a stock under real stress. Fish within your legal bag limit, handle any fish you release as carefully as described above, and treat a good day of cod fishing in this region as the exception, not the rule.\n\nNo consumption/mercury advisory specific to Atlantic cod was found for this region; cod is a standard, widely eaten whitefish with mild flavor and firm flakes — pan-fried, baked, or in chowder are all standard preparations.",
+      "sources": [
+        { "label": "CBC News, Downward spiral for Atlantic cod continues in Gulf of St. Lawrence", "url": "https://www.cbc.ca/news/canada/nova-scotia/atlantic-cod-downward-spiral-continues-gulf-of-st-lawrence-1.7216599" },
+        { "label": "DFO, Rebuilding plan: Atlantic cod (Gadus morhua) NAFO Divisions 4T and 4Vn", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/cod-morue/2024/cod-4TVn-morue-eng.html" }
+      ]
+    }
+  ],
+  "regulations": [
+    {
+      "province": "NB",
+      "water_type": "Tidal/saltwater — DFO Gulf Region",
+      "season": "General groundfish season April 15 – October 1, 2026 (within 50 m of coastline); cod/white hake retention only sunrise to sunset, July 16 – August 21, 2026",
+      "bag_limit": "15 groundfish of all species in aggregate, including not more than 5 cod and/or white hake in aggregate, during the cod/white hake access period; 0 retention of skate, Atlantic halibut, and wolffish species at all times",
+      "size_limit": "None specified in the DFO Gulf Region notice",
+      "notes": "No provincial angling licence required in tidal/salt water. This notice (dated April 14, 2026) is the most current found; confirm no updated in-season variation order before fishing, as DFO issues these annually and dates shift year to year.",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    },
+    {
+      "province": "PEI",
+      "water_type": "Tidal/saltwater — DFO Gulf Region",
+      "season": "General groundfish season April 15 – October 1, 2026 (within 50 m of coastline); cod/white hake retention only sunrise to sunset, August 1 – September 5, 2026",
+      "bag_limit": "General groundfish aggregate limit for PEI within 50 m of coastline is 5 (lower than NB/NS's 15); during the cod/white hake access window the bag limit rises to 15 groundfish of all species including not more than 5 cod and/or white hake in aggregate. 0 retention of skate, Atlantic halibut, and wolffish species at all times.",
+      "size_limit": "None specified in the DFO Gulf Region notice",
+      "notes": "No provincial angling licence required in tidal/salt water. PEI's general (non-cod-window) aggregate bag limit of 5 is notably lower than NB/NS's 15 per the same notice — worth double-checking against the live notice before fishing outside the cod window.",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    },
+    {
+      "province": "NS",
+      "water_type": "Tidal/saltwater — Gulf of St. Lawrence / Northumberland Strait shore (DFO Gulf Region)",
+      "season": "General groundfish season April 15 – October 1, 2026 (within 50 m of coastline); cod/white hake retention only sunrise to sunset, August 1 – September 5, 2026",
+      "bag_limit": "15 groundfish of all species in aggregate, including not more than 5 cod and/or white hake in aggregate, during the cod/white hake access period; 0 retention of skate, Atlantic halibut, and wolffish species at all times",
+      "size_limit": "None specified in the DFO Gulf Region notice",
+      "notes": "Applies only to NS waters draining into the Gulf of St. Lawrence / Northumberland Strait (e.g., Pictou, Antigonish, Cape Breton's Gulf-facing shore) — NOT the Atlantic coast or Bay of Fundy side, which fall under separate Maritimes Region rules (see below).",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    },
+    {
+      "province": "NS",
+      "water_type": "Tidal/saltwater — Atlantic coast, Bay of Fundy, Scotian Shelf (DFO Maritimes Region)",
+      "season": "Halifax Harbour and west (incl. Bay of Fundy): open year-round generally, but cod retention permitted only from the 3rd Saturday in June through Labour Day. Hartlen Point eastward to Cape North (incl. Bras d'Or lakes): open 3rd Saturday in June through Labour Day.",
+      "bag_limit": "Halifax Harbour and west: up to 5 cod as part of a daily 10-groundfish aggregate bag limit. Hartlen Point and east: 5 groundfish total (all species combined) daily.",
+      "size_limit": "None specified on the DFO Maritimes Region page",
+      "notes": "No provincial angling licence required in tidal/salt water; handline and angling are permitted gear. IMPORTANT: this Maritimes Region page was last updated 2023-07-31 per the page itself — season/limit details may not reflect the current 2026 season. Cross-check against the DFO Maritimes Orders Registry or a local DFO office before fishing; this is flagged as unverified-for-2026 and should be double-checked before publishing.",
+      "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html",
+      "last_verified": "2023 (page date) / checked July 2026"
+    }
+  ],
+  "quick_reference": [
+    { "label": "Gulf Region season (NB, PEI, NS Strait side)", "value": "General groundfish April 15–Oct 1, 2026; cod retention only in a shorter window within that" },
+    { "label": "Cod window — NB", "value": "July 16 – August 21, 2026, sunrise to sunset" },
+    { "label": "Cod window — PEI & NS (Gulf side)", "value": "August 1 – September 5, 2026, sunrise to sunset" },
+    { "label": "Gulf Region bag limit", "value": "15 groundfish aggregate incl. max 5 cod/white hake (NB/NS); PEI general limit is 5 outside the cod window" },
+    { "label": "Maritimes Region season (NS Atlantic/Fundy)", "value": "3rd Saturday in June through Labour Day (verify current year before fishing — source page dated 2023)" },
+    { "label": "Maritimes Region bag limit", "value": "Up to 5 cod within a 10-groundfish aggregate (Halifax Harbour & west) or 5 groundfish total (Hartlen Point & east)" },
+    { "label": "Licence", "value": "No provincial angling licence required — tidal/salt water" },
+    { "label": "Best depth/structure", "value": "Hard bottom, drop-offs, wharves/breakwaters in 30–300+ ft where bait is present" },
+    { "label": "Release note", "value": "Use a descending device on fish from >~20 m depth if releasing — barotrauma is a major survival factor" }
+  ],
+  "sources": [
+    { "label": "DFO Gulf Region — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence (Notice, April 14, 2026)", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO Maritimes Region — Groundfish (Recreational Fisheries)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" },
+    { "label": "DFO Maritimes Region — Recreational Fisheries index", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" },
+    { "label": "DFO, Rebuilding plan: Atlantic cod (Gadus morhua) NAFO Divisions 4T and 4Vn", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/cod-morue/2024/cod-4TVn-morue-eng.html" },
+    { "label": "CBC News, Downward spiral for Atlantic cod continues in Gulf of St. Lawrence", "url": "https://www.cbc.ca/news/canada/nova-scotia/atlantic-cod-downward-spiral-continues-gulf-of-st-lawrence-1.7216599" },
+    { "label": "Animal Diversity Web, Gadus morhua", "url": "https://animaldiversity.org/accounts/Gadus_morhua/" },
+    { "label": "ICES Journal of Marine Science, Dive to survive: effects of capture depth on barotrauma and post-release survival of Atlantic cod in recreational fisheries", "url": "https://academic.oup.com/icesjms/article/72/8/2467/2458793" },
+    { "label": "NOAA Fisheries, Rockfish Barotrauma and Recompression", "url": "https://www.fisheries.noaa.gov/west-coast/recreational-fishing/rockfish-barotrauma-and-recompression" },
+    { "label": "CallOutdoors, How To Fish For Cod (Rig & Techniques)", "url": "https://www.calloutdoors.com/cod-fishing-rig-techniques/" },
+    { "label": "Hogy Lures, Offshore Jigging Cod | Haddock | Pollock", "url": "https://hogylures.com/collections/offshore-jigging-cod-haddock-pollock-with-hogy-jig-biki-rigs" },
+    { "label": "New Brunswick Fishing Forum, wharf/pier fishing threads", "url": "https://www.newbrunswickfishing.com/forums/index.php/topic/1029-wharf-pier-fishing-late-july/" },
+    { "label": "Nova Scotia Fishing Forum, Best Place To Catch Cod In NS", "url": "https://www.novascotiafishing.com/threads/best-place-to-catch-cod-in-ns.2157/" },
+    { "label": "North Lake Charters, PEI Deep Sea Fishing & Tuna Charters", "url": "https://www.northlakecharters.ca/" }
+  ]
+}

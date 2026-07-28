@@ -1,0 +1,129 @@
+{
+  "slug": "acadian-redfish",
+  "common_name": "Acadian Redfish / Ocean Perch",
+  "scientific_name": "Sebastes fasciatus / Sebastes mentella",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "A deepwater rockfish (70-500m, mostly 150-300m) found off the Bay of Fundy, Scotian Shelf, and Gulf of St. Lawrence. A major commercial fishery reopened in 2024 after a 30-year moratorium, but this is essentially not a shore or inshore recreational species in NB/NS/PEI, and no province-specific recreational bag limit for redfish turns up in current DFO notices.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "\"Redfish\" and \"ocean perch\" in Atlantic Canada refer to two nearly identical species that are almost never told apart by anglers: **Acadian redfish** (*Sebastes fasciatus*) and **deepwater/beaked redfish** (*Sebastes mentella*). Both are orange-red, spiny-finned, big-eyed bottom/mid-water fish that DFO and commercial harvesters group together and manage jointly as \"Unit 1 redfish\" in the Gulf of St. Lawrence.\n\nThe two species are distinguished scientifically by anal fin ray counts — *S. fasciatus* typically has 7 soft rays, *S. mentella* typically 8 — a distinction made in fishery science labs, not on the water. *S. fasciatus* is concentrated on the western Atlantic shelf (Scotian Shelf, Gulf of St. Lawrence, Gulf of Maine); *S. mentella* is more transatlantic and tends to sit deeper on the continental slope. For a recreational angler, there is no practical way to tell them apart boat-side, and it doesn't matter for handling or regulations — both are lumped as \"redfish\" everywhere in this region.\n\nRedfish are slow-growing, long-lived (some populations to 75+ years), and late-maturing, which is why the stock collapsed so hard under 1970s-80s fishing pressure and took decades to show any recovery. They're ovoviviparous — females release live larvae rather than laying eggs.",
+      "sources": [
+        { "label": "Identifying two Redfish species (S. mentella and S. fasciatus) using anal fin ray count, Units 1 and 2", "url": "https://www.researchgate.net/publication/359830025_Identifying_two_Redfish_species_Sebastes_mentella_and_S_fasciatus_in_fishery_and_survey_catches_using_anal_fin_ray_count_in_Units_1_and_2" },
+        { "label": "Wikipedia, Acadian redfish", "url": "https://en.wikipedia.org/wiki/Acadian_redfish" }
+      ]
+    },
+    {
+      "heading": "Where They Live: This Is a Deepwater Fish",
+      "body_md": "Redfish live at 70-500m (230-1,640 ft), with the bulk of the population sitting at 150-300m — genuinely deep offshore water, not the depth range of a wharf, breakwater, or typical small-boat trip. They hold near the seabed over clay-silt or rocky bottom but also move up into open water on a daily cycle to feed, which is part of why they show up so heavily in bottom-trawl survey catches.\n\nIn this region they're found through the Bay of Fundy, the Scotian Shelf (including deepwater sponge/coral areas like Sambro Bank off Halifax), the Laurentian Channel, and throughout the Gulf of St. Lawrence — anywhere the shelf drops into several hundred metres of water. None of that is inshore water reachable from shore or a small runabout.",
+      "sources": [
+        { "label": "Wikipedia, Acadian redfish (depth range)", "url": "https://en.wikipedia.org/wiki/Acadian_redfish" },
+        { "label": "Frontiers in Marine Science, Occurrence and behavioral rhythms of the endangered Acadian redfish (Sambro Bank, Scotian Shelf)", "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2023.1158283/full" }
+      ]
+    },
+    {
+      "heading": "Is This Actually a Recreational Fishery? (Honest Answer: Barely)",
+      "body_md": "Be honest with yourself before planning a trip around this species: redfish is **not** a documented shore or inshore recreational target in NB, NS, or PEI. Searches of charter operator listings, tourism sites, and both major regional angling forums (novascotiafishing.com, newbrunswickfishing.com) for this guide turned up charter trips built around cod, haddock, pollock, mackerel, striped bass, and bluefin tuna — none advertising directed redfish trips. That tracks with the biology: redfish sit at 150-300m+ where the water is well beyond casting or standard bottom-fishing range from a beach, wharf, or typical 16-22 ft boat.\n\nThe realistic scenario where a recreational angler encounters a redfish here is **incidental bycatch** — a fish that grabs a jig or bait meant for cod, haddock, or halibut on a deep-water trip near the shelf edge, most plausibly out of ports on the Bay of Fundy or outer Scotian Shelf where deep water is reachable by charter boat. If you're specifically trying to target redfish recreationally with dedicated deep-drop gear, you're doing something genuinely uncommon for this region — treat any gear/technique advice below as \"if you find yourself out there,\" not an established local fishery.",
+      "sources": []
+    },
+    {
+      "heading": "The 2024-2026 Commercial Reopening (Not a Recreational Change)",
+      "body_md": "This is the part anglers are most likely to hear about and misread, so get the distinction straight.\n\nRedfish (Unit 1, Gulf of St. Lawrence) were under a **directed commercial fishing moratorium from 1995** after the stock collapsed roughly 98% from its late-1970s/early-1980s peak. An unexplained, massive recruitment event in 2011-2013 rebuilt the population dramatically — by 2019 redfish made up about 90% of the total biomass DFO caught in its annual bottom-trawl survey of the northern Gulf, with total biomass estimated around 3 million tonnes.\n\nOn the strength of that rebound, DFO reopened the **commercial** Unit 1 fishery in 2024:\n- 2024-25 season: Total Allowable Catch (TAC) of 60,000 tonnes, May 15, 2024 - May 14, 2025. Only 23 licence holders participated and landed about 3,219 t (5.4% of TAC) in that first season.\n- 2025-26 season: TAC held at 60,000 tonnes, running June 24, 2025 through the following spring, with the fishery closed April 1 - June 14 for spawning protection.\n- Commercial fishing is depth-restricted to protect juveniles and other stocks — no fishing shallower than 183m (100 fathoms) year-round, and no fishing shallower than 300m from mid-June through October in parts of the management area.\n\n**None of this is a recreational fishery.** Every DFO management-plan document reviewed for this guide (the 2024-25 and 2025-26 Unit 1 Redfish Management Plans, and the associated Conservation Harvesting Plans for each commercial fleet sector) addresses licensed commercial harvesters only and does not mention recreational angling at all. Do not read \"redfish season reopened\" news coverage as meaning anything changed for hook-and-line anglers — nothing in the recreational regulations changed alongside it, because redfish was never separately regulated for recreational fishing in the first place.",
+      "sources": [
+        { "label": "DFO, Unit 1 Redfish Management Plan 2025-26", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/decisions/fm-2025-gp/atl-22-eng.html" },
+        { "label": "DFO, Redfish Unit 1 (2024) management decision", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/decisions/fm-2024-gp/atl-25-eng.html" },
+        { "label": "CBC News, Commercial redfish fishery in Gulf of St. Lawrence expected to resume later this month", "url": "https://www.cbc.ca/news/canada/nova-scotia/commercial-redfish-quota-dfo-1.7221872" },
+        { "label": "CBC News, Redfish rebound in Gulf of St. Lawrence show no signs of slowdown", "url": "https://www.cbc.ca/news/canada/nova-scotia/redfish-gulf-of-st-lawrence-harvest-fishery-1.5131966" }
+      ]
+    },
+    {
+      "heading": "Regulations — What's Actually Documented (Read Carefully)",
+      "body_md": "This is the fastest-moving regulatory area of any species in this guide, and the honest state of the documentation is: **no DFO notice reviewed names redfish or ocean perch specifically for recreational bag limits, seasons, or size limits in any of the three provinces.** Below is exactly what each region's current recreational groundfish notice does say, so you can judge where redfish would fall if you did land one.\n\n### DFO Gulf Region (covers NB, and NS/PEI shorelines on the Gulf/Northumberland Strait side)\nThe 2026 Recreational Groundfish Fishing Rules notice (Gulf Variation Order 2026-011, published April 14, 2026) sets a general daily bag limit of **15 groundfish of all species** in NB and the Gulf-side portions of NS, and **5 groundfish of all species** in PEI, within 50m of the coastline, April 15 - October 1, 2026. Cod and White Hake retention opens only in specific windows (NB: July 16-Aug 21; NS/PEI: Aug 1-Sept 5, 2026) and Cod/White Hake together are capped at 5 within that 15-fish limit. Skate, Haddock, Pollock, Atlantic Halibut, and wolffish are **zero-retention** year-round. Redfish/ocean perch is not named anywhere in this notice — not in the zero-retention list, and not called out with its own limit. If retained, a redfish would presumably count toward the general \"groundfish of all species\" aggregate, but this is an inference, not a stated rule.\n\n### DFO Maritimes Region (Atlantic coast NS, Bay of Fundy NS side, south of the Gulf notice's reach)\nThe Maritimes Region recreational groundfish page (last modified July 31, 2023 — the oldest and least recently updated source in this guide, flag accordingly) explicitly lists the species it covers as **Cod, Haddock, Pollock, Flounder, Dogfish, Red hake, Silver hake, and White hake**. Redfish, ocean perch, and rockfish are not mentioned at all. Two zones apply: Halifax Harbour and west (including the NS side of the Bay of Fundy), Feb 1-Dec 31, 10 groundfish/day; Hartlen Point east to Cape North, 3rd Saturday in June through Labour Day, 5 groundfish/day. No licence is required in either zone.\n\n### Bottom line for all three provinces\nNo province-specific recreational bag limit, size limit, or season exists for redfish/ocean perch in any DFO notice found for this guide. Given the species' history of severe overfishing and the fact this is fundamentally a deepwater/offshore encounter, not an inshore fishery, the conservative approach is to release any redfish caught incidentally, using proper barotrauma care (see below), rather than assume it's covered under a general groundfish bag limit that was never written with this species in mind.\n\n**This is exactly the kind of fast-changing area where you should call DFO directly before a trip:** Gulf Region 1-800-563-9057 or Maritimes Region general recreational fisheries line, and check the current DFO Fishery Notices/Variation Orders for your specific area before you go.",
+      "sources": [
+        { "label": "DFO Gulf Region, Recreational Groundfish Fishing Rules — Southern Gulf of St. Lawrence (Gulf Variation Order 2026-011, published Apr 14, 2026)", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+        { "label": "DFO Maritimes Region, Recreational Fisheries — Groundfish (last modified Jul 31, 2023)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" }
+      ]
+    },
+    {
+      "heading": "Gear & Technique (If You Do Encounter Them)",
+      "body_md": "Because there's no established shore-based redfish fishery here, this section covers what applies if you're on a deep-water trip (cod/haddock jigging off the shelf edge, halibut charter, etc.) and hook one incidentally, rather than a dedicated redfish game plan.\n\n| Item | Notes |\n|---|---|\n| Rod/Reel | Standard deep bottom-jigging setup — conventional or heavy spinning reel loaded with 50-65 lb braid, capable of holding bottom in 150m+ of water and strong current. |\n| Jig | Heavy diamond or knife jigs (8-16 oz+) depending on depth and drift; the same jigs used for cod/haddock/pollock at depth will take redfish as bycatch. |\n| Terminal tackle | A dropper-loop or bait-rig setup with 2-3 hooks above a heavy sinker is standard for deep groundfish jigging and works the same for incidental redfish. |\n| Technique | Drop to bottom, jig in short lifts a few feet off bottom, and reel steadily — the standard deep bottom-jigging retrieve used for cod and haddock in this depth range. |\n\nThere is no NB/NS/PEI-specific \"how to target redfish\" guide from local charter operators or angler forums to draw on here — this reflects the fact it isn't a targeted recreational fishery in this region.",
+      "sources": []
+    },
+    {
+      "heading": "Handling & Release: Barotrauma Is the Whole Ballgame",
+      "body_md": "Any redfish brought up from real depth (100m+) will show classic barotrauma: a distended, sometimes protruding swim bladder pushing out of the mouth, bulging eyes, and a stomach forced outward — the fish essentially over-inflates as gas expands during the rapid pressure change on the way up. A barotrauma-affected fish cannot swim back down on its own and will usually float and die at the surface if just tossed back.\n\n**Use a descending device.** This is standard practice for Pacific rockfish (the same genus, *Sebastes*) on the US West Coast, and the same physics and remedy apply directly to Atlantic redfish:\n- A weighted clip, lip-clamp, or inverted barbless hook attached to a separate rod or hand line, sent down to the fish's approximate capture depth (or at least 60-100 ft), then released with a sharp tug — lets the fish re-pressurize and swim off under its own power.\n- Studies on Pacific rockfish found descending devices markedly improve post-release survival compared to surface release, with reported survival rates as high as 85% when used correctly versus very poor odds for surface-released, visibly barotraumatized fish.\n- No DFO-published guidance specific to Atlantic redfish/rockfish descending devices was found for this guide — the descending-device evidence above comes from NOAA and Pacific-coast rockfish research, not an Atlantic Canada source. Treat it as the best available practice transferred from a closely related fishery, not an official DFO recommendation, and flag this gap if you're relying on it for a guide claim.\n- If you have no descending device, venting (carefully deflating the swim bladder with a hollow needle before release) is a documented but riskier alternative used elsewhere for rockfish — it is not something to attempt without knowing the technique, as done wrong it causes more harm than it prevents.",
+      "sources": [
+        { "label": "NOAA Fisheries, Rockfish Barotrauma and Recompression", "url": "https://www.fisheries.noaa.gov/west-coast/recreational-fishing/rockfish-barotrauma-and-recompression" },
+        { "label": "Fisheries (Oxford/Wiley), Conserving Rockfishes: Barotrauma and Descending Devices in the Northeast Pacific", "url": "https://academic.oup.com/fisheries/article/47/9/406/7816660" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Redfish populations in Atlantic Canada collapsed by roughly 98% from their late-1970s/early-1980s peak due to heavy fishing pressure, which is why the directed commercial fishery sat under moratorium for nearly 30 years (1995-2024). COSEWIC assessed Canadian redfish populations back in 2010 — one Acadian population as Special Concern, others as Threatened or Endangered depending on the population and area — but **none of these populations were ever formally listed under Canada's Species at Risk Act (SARA)**, so there's no SARA-based recreational retention prohibition in place. The Gulf of St. Lawrence stock specifically has since rebounded dramatically on the back of an unusual 2011-2013 recruitment event, which is the basis for the 2024 commercial reopening described above — but that rebound doesn't erase the species' slow-growing, late-maturing life history, which makes any population vulnerable to being drawn back down quickly under sustained pressure.\n\nGiven that: this isn't a species built for catch-and-keep recreational fishing in this region to begin with (see above), and given the historical collapse, the conservative recreational approach is release with proper barotrauma handling rather than retention, regardless of the current absence of a stated bag limit. If you do want to eat one, redfish/ocean perch is a mild, flaky whitefish sold commercially throughout the Maritimes — no specific mercury or contaminant consumption advisory for this species was found for NB/NS/PEI waters in this research.",
+      "sources": [
+        { "label": "Oceana Canada, Redfish (Acadian & Deepwater)", "url": "https://oceana.ca/en/marine-life/redfish-acadian-deepwater/" },
+        { "label": "COSEWIC/SARA Public Registry, Deepwater Redfish/Acadian Redfish complex status report (2010)", "url": "https://sararegistry.gc.ca/virtual_sara/files/cosewic/sr_Deepwater%20and%20Acadian%20Redfish_0810_e.pdf" },
+        { "label": "CBC News, Biomass bonanza: Redfish making a big comeback in the Gulf of St. Lawrence", "url": "https://www.cbc.ca/news/canada/newfoundland-labrador/redfish-environment-fishing-newfoundland-processing-1.4917704" }
+      ]
+    }
+  ],
+  "regulations": [
+    {
+      "province": "NB",
+      "water_type": "Tidal/saltwater (deep offshore water — not a realistic shore fishery)",
+      "season": "No redfish-specific season found. General Gulf Region recreational groundfish season runs April 15 - October 1, 2026 (Gulf Variation Order 2026-011).",
+      "bag_limit": "Redfish/ocean perch not named in the DFO Gulf Region recreational notice. General bag limit for NB is 15 groundfish of all species/day (Cod & White Hake capped at 5 within that, only in-season; Skate/Haddock/Pollock/Atlantic Halibut/wolffish are zero-retention). Whether an incidental redfish counts toward this 15-fish limit is not explicitly stated anywhere found — treat as unresolved.",
+      "size_limit": "None specified for redfish.",
+      "notes": "No provincial angling licence needed in tidal/salt water. The 2024-2026 commercial Unit 1 redfish reopening (60,000t TAC, depth-restricted to >183m) is a licensed-commercial-only program and does not create or imply any recreational allowance — verify directly with DFO Gulf Region before assuming any rule for a retained fish.",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    },
+    {
+      "province": "NS",
+      "water_type": "Tidal/saltwater (deep offshore water — not a realistic shore fishery)",
+      "season": "No redfish-specific season found. NS is split between two DFO regimes depending on coastline: Gulf-side coasts follow the Gulf Region notice above (Apr 15-Oct 1, 2026); Atlantic-coast/Bay of Fundy waters follow the Maritimes Region groundfish page (Halifax Harbour & west: Feb 1-Dec 31; Hartlen Point east to Cape North: 3rd Sat June-Labour Day).",
+      "bag_limit": "Redfish/ocean perch is not named in either the Gulf Region or Maritimes Region recreational groundfish documents. Maritimes Region explicitly lists only Cod, Haddock, Pollock, Flounder, Dogfish, Red hake, Silver hake, and White hake as covered species — general bag limits there are 10/day (Halifax Harbour & west) or 5/day (Hartlen Point east to Cape North), but redfish's status under those limits is undocumented.",
+      "size_limit": "None specified for redfish.",
+      "notes": "No provincial angling licence needed in tidal/salt water. Maritimes Region groundfish page was last modified July 31, 2023 — the least recently updated source used in this guide; confirm current rules with DFO Maritimes Region directly before a trip. The 2024-2026 commercial Unit 1 reopening is commercial-only.",
+      "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html",
+      "last_verified": "2023 (Maritimes Region page) / 2026 (Gulf Region page, for Gulf-side NS coastline)"
+    },
+    {
+      "province": "PEI",
+      "water_type": "Tidal/saltwater (deep offshore water — not a realistic shore fishery)",
+      "season": "No redfish-specific season found. General Gulf Region recreational groundfish season runs April 15 - October 1, 2026 (Gulf Variation Order 2026-011).",
+      "bag_limit": "Redfish/ocean perch not named in the DFO Gulf Region recreational notice. General PEI bag limit is 5 groundfish of all species/day (same zero-retention list as NB: Cod, White Hake, Skate, Haddock, Pollock, Atlantic Halibut, wolffish). Whether an incidental redfish counts toward this 5-fish limit is not explicitly stated.",
+      "size_limit": "None specified for redfish.",
+      "notes": "No provincial angling licence needed in tidal/salt water. PEI sits entirely in deep Gulf/Laurentian Channel water for redfish purposes — this is an even less realistic recreational encounter than the NB/NS mainland coast. The 2024-2026 commercial Unit 1 reopening is commercial-only.",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    }
+  ],
+  "quick_reference": [
+    { "label": "Realistic recreational target?", "value": "Mostly no — deepwater bycatch only, not a documented shore/inshore fishery in NB/NS/PEI" },
+    { "label": "Depth", "value": "70-500m, mostly 150-300m" },
+    { "label": "Two species, one name", "value": "Sebastes fasciatus (shelf) and S. mentella (deeper/transatlantic) — both called \"redfish\"" },
+    { "label": "Recreational bag limit", "value": "Not specifically named in any DFO Gulf or Maritimes recreational notice reviewed — verify directly with DFO before a trip" },
+    { "label": "Licence", "value": "None required — all tidal/saltwater" },
+    { "label": "Commercial reopening", "value": "Unit 1 (Gulf) reopened 2024 after 30-yr moratorium, 60,000t TAC — commercial only, no recreational change" },
+    { "label": "If you catch one", "value": "Use a descending device for release — barotrauma from depth is severe and near-certain fatal without one" },
+    { "label": "Regulatory confidence", "value": "LOW — this is the fastest-changing, least-documented species in this guide; call DFO to confirm current rules" }
+  ],
+  "sources": [
+    { "label": "DFO Gulf Region, Recreational Groundfish Fishing Rules — Southern Gulf of St. Lawrence (Gulf Variation Order 2026-011, published Apr 14, 2026)", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO Maritimes Region, Recreational Fisheries — Groundfish (last modified Jul 31, 2023)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" },
+    { "label": "DFO, Unit 1 Redfish Management Plan 2025-26 (published Jun 16, 2025)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/decisions/fm-2025-gp/atl-22-eng.html" },
+    { "label": "DFO, Redfish Unit 1 (2024) management decision", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/decisions/fm-2024-gp/atl-25-eng.html" },
+    { "label": "CBC News, Commercial redfish fishery in Gulf of St. Lawrence expected to resume later this month (2024)", "url": "https://www.cbc.ca/news/canada/nova-scotia/commercial-redfish-quota-dfo-1.7221872" },
+    { "label": "CBC News, Redfish rebound in Gulf of St. Lawrence show no signs of slowdown", "url": "https://www.cbc.ca/news/canada/nova-scotia/redfish-gulf-of-st-lawrence-harvest-fishery-1.5131966" },
+    { "label": "CBC News, Biomass bonanza: Redfish making a big comeback in the Gulf of St. Lawrence", "url": "https://www.cbc.ca/news/canada/newfoundland-labrador/redfish-environment-fishing-newfoundland-processing-1.4917704" },
+    { "label": "Oceana Canada, Redfish (Acadian & Deepwater)", "url": "https://oceana.ca/en/marine-life/redfish-acadian-deepwater/" },
+    { "label": "COSEWIC/SARA Public Registry, Deepwater Redfish/Acadian Redfish complex status report (2010)", "url": "https://sararegistry.gc.ca/virtual_sara/files/cosewic/sr_Deepwater%20and%20Acadian%20Redfish_0810_e.pdf" },
+    { "label": "Wikipedia, Acadian redfish", "url": "https://en.wikipedia.org/wiki/Acadian_redfish" },
+    { "label": "Identifying two Redfish species (S. mentella and S. fasciatus) using anal fin ray count, Units 1 and 2", "url": "https://www.researchgate.net/publication/359830025_Identifying_two_Redfish_species_Sebastes_mentella_and_S_fasciatus_in_fishery_and_survey_catches_using_anal_fin_ray_count_in_Units_1_and_2" },
+    { "label": "Frontiers in Marine Science, Occurrence and behavioral rhythms of the endangered Acadian redfish (Sambro Bank, Scotian Shelf)", "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2023.1158283/full" },
+    { "label": "NOAA Fisheries, Rockfish Barotrauma and Recompression", "url": "https://www.fisheries.noaa.gov/west-coast/recreational-fishing/rockfish-barotrauma-and-recompression" },
+    { "label": "Fisheries (Oxford/Wiley), Conserving Rockfishes: Barotrauma and Descending Devices in the Northeast Pacific", "url": "https://academic.oup.com/fisheries/article/47/9/406/7816660" }
+  ]
+}

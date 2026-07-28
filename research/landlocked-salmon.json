@@ -1,0 +1,80 @@
+{
+  "slug": "landlocked-salmon",
+  "common_name": "Landlocked Salmon (Ouananiche)",
+  "scientific_name": "Salmo salar",
+  "category": "freshwater",
+  "provinces": ["NB", "NS"],
+  "summary": "A lake-locked form of Atlantic salmon known regionally as ouananiche, prized for acrobatic jumps and hard runs — a niche fishery limited to specific designated lakes in NB (e.g. Tetagouche, Loch Lomond, Grand, Oromocto) and NS (Grand Lake, Halifax County area), fished from spring open water into fall.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Landlocked salmon are genetically the same species as sea-run Atlantic salmon (*Salmo salar*) — there are no physical differences between the two forms. What differs is life history: instead of migrating to sea, landlocked populations complete their entire life cycle in freshwater, typically using a lake to feed and grow before returning to a connected river or stream to spawn. In Quebec and parts of Atlantic Canada, this form is traditionally known as **ouananiche**.\n\nLandlocked salmon are fall spawners, and adults prefer clear, cold lakes with summer surface temperatures topping out around 21-24°C (70-75°F); as lakes warm through summer, fish move from the relatively warm surface layer down into cooler deep water. They can grow to 50-85 cm where a lake's forage base includes smelt or similar baitfish, while populations relying mainly on insects tend to stay smaller (10-30 cm).\n\nOnce hooked, landlocked salmon are known for acrobatic jumps and strong, fast runs — the trait behind the old nickname 'leaping landlocked.'",
+      "sources": [
+        { "label": "Maine Dept. of Inland Fisheries & Wildlife — Landlocked Salmon Species Information", "url": "https://www.maine.gov/ifw/fish-wildlife/fisheries/species-information/landlocked-salmon.html" },
+        { "label": "Canadian Journal of Fisheries and Aquatic Sciences — Life-History Variability and Conservation Status of Landlocked Atlantic Salmon", "url": "https://cdnsciencepub.com/doi/10.1139/cjfas-2018-0413" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "- **Middle Tetagouche Lake and Upper Tetagouche Lake (Chaleur RFA, NB)** — named designated waters for landlocked salmon angling under NB's fish regulations.\n- **Loch Lomond, Grand Lake, and Oromocto Lake (Lower Saint John RFA, NB)** — a cluster of designated landlocked salmon lakes near Saint John.\n- **Grand Lake (Halifax County, NS)** — carries a landlocked salmon fishery under Nova Scotia's angling regulations, with extended-season / reduced-limit rules applying October through March.\n- Note: Nova Scotia's much larger **Lake Ainslie** (headwaters of the Margaree River, Cape Breton) is known primarily for brook trout, white perch, and gaspereau — it is not established as an ouananiche fishery in the sources checked for this guide, despite sometimes being mentioned alongside landlocked salmon waters. Confirm any specific lake against the current NB Fish Regulations Summary or NS Anglers' Handbook before planning a trip, since landlocked salmon are only legal to angle for in specifically designated waters.",
+      "sources": [
+        { "label": "Fish Nova Scotia — Lake Ainslie", "url": "https://www.fishnovascotia.ca/places/lake-ainslie" },
+        { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "### New Brunswick\nGeneral landlocked salmon season runs roughly **May 1 – September 30** in designated lakes, with most RFAs otherwise prohibiting landlocked salmon angling entirely outside the named waters.\n\n### Nova Scotia\nMost designated landlocked salmon lakes are open **April 1 – September 30**, with some waters (e.g. Goose Harbour Lake) open year-round. Grand Lake and similar extended-season waters typically drop to a reduced catch limit from October through March.\n\nIn spring, fish sit near the surface where water has warmed fastest; through summer they push down into cooler, deeper water as the surface heats up, so early and late season generally means shallower, more accessible fish.",
+      "sources": [
+        { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+        { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Fly rod | 6-7 wt, floating line for surface/near-surface fish in spring; sink-tip or full-sink line to reach deeper fish as the season warms. |\n| Spinning rod | Medium spinning rod capable of casting small-to-medium spoons and handling a fast-running, jumping fish. |\n| Flies/lures | Streamers imitating smelt or other baitfish, small spoons and inline spinners trolled or cast along drop-offs. |\n| Extras | Landing net (a jumping fish at boat-side is often lost without one), drag set appropriately loose for sudden runs. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "**Spring surface fishing:** work streamers or small spoons along shorelines and points where fish are holding in the warmer surface layer — early morning and evening are prime, similar to trout behaviour.\n\n**Summer depth fishing:** as lakes stratify, target the thermocline or deeper structure with a sink-tip line or by trolling a spoon/streamer at depth — fish follow cooler water down and won't be found shallow in the heat of the day.\n\n**Fighting the fish:** keep your rod tip up and be ready for immediate, often repeated jumps right after the hookset — a controlled drag and quick reactions land more fish than trying to muscle a leaping landlocked salmon back to the boat.\n\n**Surface feeding:** landlocked salmon will rise to take insects off the surface much like a trout, so a well-placed dry fly or small popper during a hatch can also produce, especially on calm evenings.",
+      "sources": [
+        { "label": "Orvis News — Fish Facts: Landlocked Salmon (Salmo salar sebago)", "url": "https://news.orvis.com/fly-fishing/fish-facts-landlocked-salmon-salmo-salar-sebago" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "- Land fish promptly — extended fights in warmer summer surface water raise release mortality risk, similar to sea-run salmon.\n- Use a net to control a jumping fish boat-side rather than trying to hand-land it, which often results in a lost hook or a dropped fish that's already exhausted.\n- Wet hands before handling, support horizontally, and minimize air exposure for any fish you plan to release, including those over the maximum retention size.\n- Nova Scotia enforces an upper release size on landlocked salmon (commonly a maximum around 63 cm, all larger fish released) in addition to a legal minimum — check the current Anglers' Handbook for the exact figures on your lake.",
+      "sources": [
+        { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Landlocked salmon populations are limited to specific lake systems and are managed more conservatively than typical stocked trout — this shows up as low daily bag limits (1-2 fish), minimum size limits, and in Nova Scotia's case a maximum release size designed to protect the largest, most fecund breeding fish. Fish only the specifically designated waters listed in the current provincial regulations; landlocked salmon angling is prohibited by default everywhere else. No region-specific mercury or consumption advisory for landlocked salmon turned up in current provincial sources for this guide.",
+      "sources": [
+        { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Designated freshwater lakes only", "season": "~May 1–Sep 30 in designated waters (varies by RFA)", "bag_limit": "Typically 1-2 fish/day depending on the specific lake", "size_limit": "Fork length minimum 35 cm, maximum 63 cm", "notes": "Legal only in specifically designated waters — e.g. Middle/Upper Tetagouche Lakes (Chaleur RFA); Loch Lomond, Grand, and Oromocto Lakes (Lower Saint John RFA). Prohibited elsewhere by default. Regular NB angling licence required.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Designated freshwater lakes only", "season": "Apr 1–Sep 30 in most designated lakes; some waters (e.g. Goose Harbour Lake) open year-round", "bag_limit": "2 fish/day", "size_limit": "Minimum 35 cm (13.8 in); all fish over 63 cm (24.8 in) must be released", "notes": "Grand Lake, Halifax County is a designated landlocked salmon water. Tagging requirements have been eliminated for fish between 48-63 cm per the current handbook. General Fishing Licence required.", "source_url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring through fall in designated lakes only (varies NB/NS)" },
+    { "label": "NB Bag Limit", "value": "1-2 fish/day, 35-63 cm, designated waters only" },
+    { "label": "NS Bag Limit", "value": "2 fish/day, min 35 cm, must release over 63 cm" },
+    { "label": "Best Time", "value": "Spring (shallow/surface) and fall; fish go deep as lakes warm in summer" },
+    { "label": "Best Gear", "value": "6-7 wt fly rod with streamers, or medium spinning rod with small spoons" },
+    { "label": "Key Waters", "value": "Tetagouche Lakes, Loch Lomond, Grand & Oromocto Lakes (NB); Grand Lake, Halifax County (NS)" }
+  ],
+  "sources": [
+    { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+    { "label": "Maine Dept. of Inland Fisheries & Wildlife — Landlocked Salmon Species Information", "url": "https://www.maine.gov/ifw/fish-wildlife/fisheries/species-information/landlocked-salmon.html" },
+    { "label": "Canadian Journal of Fisheries and Aquatic Sciences — Life-History Variability and Conservation Status of Landlocked Atlantic Salmon", "url": "https://cdnsciencepub.com/doi/10.1139/cjfas-2018-0413" },
+    { "label": "Orvis News — Fish Facts: Landlocked Salmon (Salmo salar sebago)", "url": "https://news.orvis.com/fly-fishing/fish-facts-landlocked-salmon-salmo-salar-sebago" },
+    { "label": "Fish Nova Scotia — Lake Ainslie", "url": "https://www.fishnovascotia.ca/places/lake-ainslie" }
+  ]
+}

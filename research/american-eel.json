@@ -1,0 +1,91 @@
+{
+  "slug": "american-eel",
+  "common_name": "American Eel",
+  "scientific_name": "Anguilla rostrata",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Snake-like, bottom-oriented estuary fish caught on stationary bait rather than lures, found in nearly every tidal river system in NB/NS/PEI; a species in long-term decline that's worth fishing conservatively despite no formal at-risk listing.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "American eel (*Anguilla rostrata*) are long, cylindrical, snake-shaped fish with a continuous fin running from mid-back around the tail to the vent, small pectoral fins, and no pelvic fins at all. Skin is smooth, slick with mucus, and scaleless-looking (they do have tiny embedded scales). Colour runs from olive-brown to greenish-yellow as adults (\"yellow eel\" stage), shifting to a silvery-bronze, white-bellied sheen once they mature into the emigrating \"silver eel\" stage.\n\nEels have one of the strangest life cycles of any fish in this region: they're **catadromous**, the reverse of species like gaspereau and smelt. All American eels are believed to spawn in the Sargasso Sea (western Atlantic, east of the Bahamas/south of Bermuda), and the transparent, leaf-shaped larvae (leptocephali) drift on ocean currents for 9-12 months before reaching the coast. They then transform into \"glass eels,\" pigment up into \"elvers,\" and swim into NB/NS/PEI estuaries and rivers, where they'll live for 10-30+ years before making one final downstream migration back to the Sargasso Sea to spawn and die. A single river system can hold eels of very different ages at once.\n\nThey hunt almost entirely by smell rather than sight, which is the single most important fact for anglers targeting them.",
+      "sources": [
+        { "label": "Maryland Sea Grant, American Eels: Life cycle and ecology", "url": "https://www.mdsg.umd.edu/onthebay-blog/american-eels-life-cycle-and-ecology" },
+        { "label": "U.S. Fish & Wildlife Service, American Eel (Anguilla rostrata)", "url": "https://www.fws.gov/species/american-eel-anguilla-rostrata" },
+        { "label": "Virginia Institute of Marine Science, American Eel Life History", "url": "https://www.vims.edu/research/units/programs/eel_survey/life_history/" }
+      ]
+    },
+    {
+      "heading": "Conservation Status — Read This Before You Fish",
+      "body_md": "American eel populations across their range, including the NB/NS/PEI region, have declined substantially over recent decades, and this species gets more conservation attention than almost anything else in this guide.\n\n- **COSEWIC** (Committee on the Status of Endangered Wildlife in Canada) assessed American eel as **Threatened** in 2012. That assessment has not been formally updated since (assessments are meant to run every 10 years).\n- In **December 2025**, the federal government made a formal decision **not to list** American eel under the Species at Risk Act (SARA) — meaning it does not carry the legal protections a SARA listing would trigger. Instead, DFO says it will manage threats to the species through an \"adaptive management approach\" under the general Fisheries Act.\n- Practically, this means: American eel remains **legal to fish recreationally** in all three provinces, but its underlying population trend is downward and it does not have the strongest possible legal protection. Treat that as a strong steer toward conservative harvest — keep only what you'll eat, and consider release for larger/older individual eels given how long they take to reach maturity.\n- Note this species is entirely separate from the **elver fishery** (glass eel/juvenile eel), which is a tightly regulated, licence-only commercial fishery in the Maritimes with no recreational component — recreational elver fishing is prohibited outright.",
+      "sources": [
+        { "label": "Government of Canada, Government of Canada advances adaptive management approach to conserve and protect American eel (Dec 2025)", "url": "https://www.canada.ca/en/fisheries-oceans/news/2025/12/government-of-canada-advances-adaptive-management-approach-to-conserve-and-protect-american-eel.html" },
+        { "label": "Canada Gazette, Decision Not to Add Certain Species (American Eel) Order", "url": "https://gazette.gc.ca/rp-pr/p2/2025/2025-12-17/html/si-tr110-eng.html" },
+        { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Eel are most active and most catchable from late spring through fall, in warm water — they slow down dramatically and effectively stop feeding as water temperatures drop, burying into mud/soft bottom over winter. Warm summer nights are consistently the best window: eels feed far more actively after dark. Daytime fishing in murky, current-carried water (rising tide, post-rain runoff) can also produce, since eels rely on scent, not light.",
+      "sources": [
+        { "label": "New To Fishing New Brunswick, American Eel", "url": "https://newtofishingnb.ca/new-to-fishing-american-eel/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Eel are found in essentially every tidal estuary and connected river system across NB, NS, and PEI — this is one of the most widespread species in the region.\n\n- **NB:** The **Saint John River** and its tributaries hold especially large, well-documented eel populations and are the classic NB eel water; the Cocagne and Shediac River estuaries (Northumberland Strait side) also hold resident eel.\n- **NS:** **Bras d'Or Lake** and its connected Mabou and Judique Rivers (Cape Breton) have a long-documented eel fishery; the Shubenacadie River system and Bay of Fundy tributaries are also productive.\n- **PEI:** Boughton Bay/the Three Rivers system (Brudenell, Cardigan, Montague) and other estuary systems island-wide hold eel.\n\nWithin any of these systems, focus on soft mud or silt bottom, undercut banks, weed edges, and structure (rocks, logs, dock pilings) close to deeper water — eel den up in cover during the day and move to feed at dusk/night.",
+      "sources": [
+        { "label": "New To Fishing New Brunswick, American Eel", "url": "https://newtofishingnb.ca/new-to-fishing-american-eel/" },
+        { "label": "DFO, A Survey of Eel Fishing in the Maritime Provinces (J.G. Eales)", "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/1161.pdf" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Medium spinning rod, 6-7 ft, 12-20 lb braid or mono — nothing specialized needed. |\n| Hooks | Size 4-1/0 bait hooks (eels have small, tooth-lined mouths; oversized hooks miss more bites than they land). |\n| Rig | Simple bottom rig: a small egg sinker or split shot above a swivel, 12-18 in leader to the hook. No need for finesse presentation — this is a bait-and-wait fishery. |\n| Extras | A rag, pliers, and a bucket/cooler with a secure lid — eels are extremely slick and will escape almost any open container. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "Eel fishing is fundamentally different from almost every other species in this guide: it's a **scent-based, stationary bait fishery**, not an active-retrieve one.\n\n1. Cast or lower bait to soft bottom near cover (undercut bank, rocks, weed edge, dock pilings) in an estuary or tidal river.\n2. Let it sit completely still. Lures and flies are essentially ineffective on eel — they hunt almost entirely by smell.\n3. **Best baits:** cut fish (mackerel, herring, gaspereau work well), whole or cut worms, and other oily/scented bait fished directly on bottom.\n4. Wait for a distinct, often steady pull rather than a sharp strike — eel tend to mouth and swallow bait rather than hit hard.\n5. Set the hook with a firm, steady lift once you feel solid weight, then reel in smoothly — eels fight by twisting and rolling, not running.\n6. Fish after dark in summer for the best results; this is a nocturnal-feeding species.",
+      "sources": [
+        { "label": "New To Fishing New Brunswick, American Eel", "url": "https://newtofishingnb.ca/new-to-fishing-american-eel/" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "Eels are famously slippery and strong for their size, and they'll wrap around your arm, the rod, or anything else within reach.\n\n- Use a wet rag or gloves to get a grip — bare hands slide right off.\n- Unhook over a bucket or cooler, not open ground — a dropped eel will find any nearby cover fast.\n- If keeping for the table, dispatch and bleed promptly; if releasing, minimize handling time and return to the water quickly given the species' slow growth and long maturation time.\n- Given the population decline discussed above, consider releasing larger eels in particular — these are likely older, and represent a disproportionate share of a river's total reproductive potential heading back to the Sargasso Sea.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "See the Conservation Status section above for the full regulatory/status picture. On the table: eel is a traditional, well-regarded food fish in this region (often smoked), but as with any bottom-feeding, long-lived fish, check for local mercury/contaminant advisories in specific rivers before eating regularly, particularly from industrial or urban-adjacent waterways. No region-wide consumption advisory specific to eel turned up in this research — check with your provincial health authority for any local advisories before eating eel from a specific water body.",
+      "sources": [
+        { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal/saltwater and estuary", "season": "Angling open year-round in tidal water; spearing (tidal only) open Nov 16–Aug 31", "bag_limit": "Daily bag and possession limit of 10 in the Maritimes Region (Bay of Fundy side); Gulf Region (Northumberland Strait side, e.g. Cocagne/Shediac) notices found no specific bag limit — fish conservatively", "size_limit": "Minimum retainable size 35 cm (Maritimes Region rule)", "notes": "No provincial licence needed in tidal water. NB has coastline in both DFO Maritimes Region (Bay of Fundy/Saint John River side) and DFO Gulf Region (Northumberland Strait side) — rules differ by coast; inland freshwater eel fishing requires a valid NB angling licence and is only open when salmon/trout/smallmouth bass seasons are open.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Tidal/saltwater and estuary", "season": "Angling open year-round in tidal water; spearing (tidal) open year-round; spearing closed year-round inland", "bag_limit": "Daily bag and possession limit of 10 generally; reduced to 5 in some areas by variation order (e.g. a 2019 Gulf Region notice cut the limit to 5 — confirm current status before fishing)", "size_limit": "Minimum retainable size 35 cm", "notes": "No provincial licence needed in tidal water. Allowed gear: angling, eel pot, eel trap, dip net, longline, set line, or spear (tidal only). Inland eel fishing requires a valid NS angling licence and is only open when the relevant sport fish season is open.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively given the species' declining population trend", "size_limit": "None specified in Gulf Region notices reviewed", "notes": "No provincial licence needed in tidal/salt water. PEI recreational elver (glass eel) fishing is prohibited — this applies only to adult yellow/silver eel.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Best late spring through fall; slows dramatically as water cools" },
+    { "label": "Best Time", "value": "After dark in summer; murky/rising water in daytime also works" },
+    { "label": "Technique", "value": "Stationary bait on bottom — lures/flies don't work, eels hunt by smell" },
+    { "label": "Best Bait", "value": "Cut fish, worms, other scented/oily bait" },
+    { "label": "Conservation", "value": "COSEWIC-assessed Threatened (2012); not SARA-listed as of Dec 2025 — fish conservatively" },
+    { "label": "Handling", "value": "Extremely slippery — use a rag/gloves and a lidded container" }
+  ],
+  "sources": [
+    { "label": "Maryland Sea Grant, American Eels: Life cycle and ecology", "url": "https://www.mdsg.umd.edu/onthebay-blog/american-eels-life-cycle-and-ecology" },
+    { "label": "U.S. Fish & Wildlife Service, American Eel (Anguilla rostrata)", "url": "https://www.fws.gov/species/american-eel-anguilla-rostrata" },
+    { "label": "Virginia Institute of Marine Science, American Eel Life History", "url": "https://www.vims.edu/research/units/programs/eel_survey/life_history/" },
+    { "label": "Government of Canada, Government of Canada advances adaptive management approach to conserve and protect American eel (Dec 2025)", "url": "https://www.canada.ca/en/fisheries-oceans/news/2025/12/government-of-canada-advances-adaptive-management-approach-to-conserve-and-protect-american-eel.html" },
+    { "label": "Canada Gazette, Decision Not to Add Certain Species (American Eel) Order", "url": "https://gazette.gc.ca/rp-pr/p2/2025/2025-12-17/html/si-tr110-eng.html" },
+    { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" },
+    { "label": "New To Fishing New Brunswick, American Eel", "url": "https://newtofishingnb.ca/new-to-fishing-american-eel/" },
+    { "label": "DFO, A Survey of Eel Fishing in the Maritime Provinces (J.G. Eales)", "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/1161.pdf" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" }
+  ]
+}

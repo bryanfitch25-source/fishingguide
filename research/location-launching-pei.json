@@ -1,0 +1,98 @@
+{
+  "slug": "launching-pei",
+  "title": "Shore Fishing Around Launching, PEI",
+  "province": "PEI",
+  "region_name": "Boughton Bay & The Three Rivers, Kings County",
+  "lat": 46.20,
+  "lng": -62.40,
+  "intro_md": "Launching is a small community on Boughton Bay / Launching Harbour in Kings County, Prince Edward Island, between Annandale and Georgetown. It sits at the edge of one of PEI's best-known fishing systems: The Three Rivers — the Brudenell, Cardigan, and Montague Rivers — which converge into Cardigan Bay right beside Georgetown, a few minutes from Launching. This whole area is tidal estuary and open coastline, meaning nearly everything in this guide is saltwater/tidal fishing that does not require a provincial licence.\n\nPanmure Island Provincial Park, about 15 km away, gives two very different types of water off the same causeway: the sheltered St. Mary's Bay side, and the open Gulf of St. Lawrence side. That contrast — calm estuary vs. open surf — is useful, because different species and techniques favour each.\n\n**Regulations overview**: PEI recreational saltwater fishing is managed by Fisheries and Oceans Canada (DFO), Gulf Region. No provincial licence is needed for tidal-water species (striped bass, mackerel, flounder, smelt, eel, etc.). A provincial PEI angling licence IS required for freshwater/inland species such as brook trout, rainbow trout, and Atlantic salmon. See each species' own guide for full current bag limits, seasons, and size limits — DFO issues variation orders that can change dates and limits with little notice.",
+  "sections": [
+    {
+      "heading": "Striped Bass",
+      "species_slug": "striped-bass",
+      "body_md": "**Where near Launching**: River mouths and current seams at the Three Rivers/Georgetown Harbour outlet, the Boughton River mouth into Boughton Bay, and the Panmure Island surf side on a moving tide.\n\n**Key pattern**: Follow the current and the baitfish (smelt, gaspereau, small eels are key forage). Find strong tidal current holding baitfish and you'll find bass. Low light (dawn, dusk, after dark within legal hours) is consistently the best window.\n\n**Best lures & retrieves**: bucktail jig (1/2-1 oz) cast across current and swum near bottom; soft plastic paddletail cast down-and-across and swung on a falling tide; topwater plug/popper low-light only; casting spoon (3/4 oz+) for long searching casts. **Best bait**: live or fresh-cut mackerel, gaspereau/alewife, and eels on a bottom or float rig.\n\n**Gear fit**: MH rod, 20 lb braid / 20 lb fluoro leader.",
+      "sources": [
+        { "label": "DFO 2026 Striped Bass Notice", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
+        { "label": "timberandfins.com, Chasing Striped Bass on PEI", "url": "https://timberandfins.com/blogs/fish-stories/chasing-striped-bass-on-pei" }
+      ]
+    },
+    {
+      "heading": "Atlantic Mackerel",
+      "species_slug": "atlantic-mackerel",
+      "body_md": "**Where near Launching**: Any wharf, breakwater, or beach with tidal current — the Georgetown wharf area and the Panmure Island causeway are both worth checking. Mackerel arrive close to shore mainly from August into fall. **Best lures**: sabiki/feather rig jigged slowly; small shiny casting spoon fast and steady; small metal jig at varied depths. **Gear fit**: ML rod, 20 lb braid / 12 lb mono.",
+      "sources": [
+        { "label": "thejighead.com, 19 Different Fish Species to Fish for on PEI", "url": "https://thejighead.com/2017/03/11/19-different-fish-species-to-fish-for-on-prince-edward-island/" }
+      ]
+    },
+    {
+      "heading": "Winter Flounder",
+      "species_slug": "winter-flounder",
+      "body_md": "**Where near Launching**: Sandy/muddy estuary bottom — Boughton Bay shallows and the Georgetown/Three Rivers estuary mouth are classic flounder water. **Rig**: hi-lo bottom rig tipped with clam strips, squid strips, sandworms, or scented soft plastics, cast out and retrieved slowly with frequent pauses — bites are subtle nibbles.",
+      "sources": [
+        { "label": "Salt Water Sportsman, Winter Flounder Fishing Tips", "url": "https://www.saltwatersportsman.com/" }
+      ]
+    },
+    {
+      "heading": "Rainbow Smelt",
+      "species_slug": "rainbow-smelt",
+      "body_md": "**Where near Launching**: Estuary shallows and river mouths, e.g. Boughton River — mainly a spring spawning-run fish, present through the season near structure in summer. **Method**: locate a school and target its edge with a tiny bucktail jighead or small streamer fly, retrieved steadily — takes usually happen as the lure leaves the school.",
+      "sources": []
+    },
+    {
+      "heading": "Gaspereau (Alewife)",
+      "species_slug": "gaspereau",
+      "body_md": "**Where near Launching**: River mouths and lower estuary stretches, especially the Boughton and Three Rivers system — they run upriver a few weeks after the smelt run (typically May), with stragglers into summer near estuary mouths. Strong fighters for their size, prone to jumping when hooked. **Method**: small white streamer fly (size 8-12) swung with a swift consistent pace. Not good table fare — plan to release.",
+      "sources": []
+    },
+    {
+      "heading": "White Perch",
+      "species_slug": "white-perch",
+      "body_md": "**Where near Launching**: Estuaries and any barrier-beach ponds in the area — not fussy about habitat. A consistent, high-action producer once located. **Method**: small spinner at a steady moderate pace, or a float/bobber rig with bait.",
+      "sources": []
+    },
+    {
+      "heading": "American Eel",
+      "species_slug": "american-eel",
+      "body_md": "**Where near Launching**: Estuaries throughout the area hold large eel populations — Boughton Bay and the Three Rivers system both qualify. Eels hunt almost entirely by smell — lures/flies are largely ineffective. **Method**: cut fish, worms, or other scented bait fished directly on the bottom, and wait.",
+      "sources": []
+    },
+    {
+      "heading": "Cunner (Bergall)",
+      "species_slug": "cunner",
+      "body_md": "**Where near Launching**: Around docks, wharves, and piers — Georgetown's waterfront is a good bet. Aggressive, opportunistic, and very good at stealing bait — reliably easy, fun species. **Method**: drop a small bait rig straight down beside pilings/rocks.",
+      "sources": []
+    },
+    {
+      "heading": "Tomcod & Sculpin",
+      "species_slug": "atlantic-tomcod",
+      "body_md": "**Where near Launching**: Deeper estuary water — often caught incidentally while targeting winter flounder in the Boughton Bay/Three Rivers estuary. Tomcod max around 6 in / 15 cm — treat as bonus catches on flounder gear. Sculpin share the same shallow estuary bottom and make a fun sight-fishing target in clear water.",
+      "sources": [
+        { "label": "DFO Maritimes Region recreational fisheries page", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" }
+      ]
+    },
+    {
+      "heading": "Sea-Run Brook Trout (freshwater bonus option)",
+      "species_slug": "brook-trout",
+      "body_md": "**Where near Launching**: Boughton River (the nearest system) and other estuary-connected rivers across PEI. Requires a valid PEI angling licence — an inland-water fishery, separate from the tidal saltwater species above. Best May-early July as sea-run fish gorge on estuary baitfish and shrimp; by August the push has typically passed.",
+      "sources": []
+    }
+  ],
+  "spots": [
+    { "name": "Launching Harbour / Boughton Bay shoreline", "description": "The water immediately in front of Launching; current-driven striper and flounder water, especially near the harbour mouth.", "map_url": "https://www.google.com/maps?q=46.20,-62.40" },
+    { "name": "Boughton River mouth", "description": "Estuary system flowing into Boughton Bay; good for striped bass, flounder, gaspereau, and smelt near the outflow.", "map_url": "https://www.google.com/maps/search/?api=1&query=Boughton+River+Prince+Edward+Island" },
+    { "name": "Georgetown Harbour / Three Rivers mouth", "description": "Where the Brudenell, Cardigan, and Montague Rivers converge into Cardigan Bay; one of PEI's best-known striper systems, plus good wharf fishing for mackerel and cunner.", "map_url": "https://www.google.com/maps?q=46.18459,-62.53362" },
+    { "name": "Panmure Island Provincial Park", "description": "Two distinct waters off one causeway: the sheltered St. Mary's Bay side (calmer, good for flounder/perch) and the open ocean/surf side (better for stripers and mackerel on a moving tide).", "map_url": "https://www.google.com/maps?q=46.14111,-62.48556" },
+    { "name": "Cardigan River estuary", "description": "A bit further out, but a known producer for mackerel and flounder.", "map_url": "https://www.google.com/maps/search/?api=1&query=Cardigan+River+Prince+Edward+Island" }
+  ],
+  "sources": [
+    { "label": "DFO — Striped Bass Recreational Fishery, Southern Gulf of St. Lawrence 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO — Maritimes Region Recreational Fisheries (species index)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" },
+    { "label": "PEI Fishing, Hunting & Trapping Licences", "url": "https://www.princeedwardisland.ca/en/topic/fishing-hunting-trapping-licences" },
+    { "label": "CHS Tide Station — Georgetown (01660)", "url": "https://www.tides.gc.ca/en/stations/01660" },
+    { "label": "thejighead.com — 19 Different Fish Species to Fish for on Prince Edward Island", "url": "https://thejighead.com/2017/03/11/19-different-fish-species-to-fish-for-on-prince-edward-island/" },
+    { "label": "Tourism PEI — Ask an Islander", "url": "https://www.tourismpei.com/askanislander/questions/what-beaches-would-be-suggested-for-shore-fly-or-lure-fishing-for-striped" },
+    { "label": "timberandfins.com — Chasing Striped Bass on PEI", "url": "https://timberandfins.com/blogs/fish-stories/chasing-striped-bass-on-pei" },
+    { "label": "Wikipedia — The Three Rivers (Prince Edward Island)", "url": "https://en.wikipedia.org/wiki/The_Three_Rivers_(Prince_Edward_Island)" }
+  ]
+}

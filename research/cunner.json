@@ -1,0 +1,79 @@
+{
+  "slug": "cunner",
+  "common_name": "Cunner (Bergall)",
+  "scientific_name": "Tautogolabrus adspersus",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Small, hardy, always-hungry wrasse found around nearly every wharf, breakwater, and rocky structure in NB/NS/PEI — the easiest, most reliable species in this guide and a great confidence-builder or between-bites distraction.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Cunner (*Tautogolabrus adspersus*), locally called bergall, conner, or chogset, are small members of the wrasse family (Labridae) — the same family as tautog/blackfish further south. They range from the Gulf of St. Lawrence and Newfoundland down to Chesapeake Bay, making the NB/NS/PEI coast core habitat, not the edge of their range. Juveniles show a black circular spot on the rear dorsal fin; larger adults develop gold flecks along the sides. Colour is variable and mottled, blending in well against rocks and pilings.\n\nCunner are non-migratory, structure-oriented fish, typically found from the shallows down to over 100 m, but around wharves and breakwaters they're usually right up near the pilings and rocks within easy casting range. One unusual trait: cunner survive winter by going into a dormant, torpid state, wedging into rock crevices and barely moving once water temperatures drop below roughly 5°C — which is why they disappear from the fishery in the cold months and reappear reliably every spring.",
+      "sources": [
+        { "label": "Wikipedia / Marine Life ID, Cunner (Tautogolabrus adspersus)", "url": "https://www.marinelifeid.com/identification/cunner-tautogolabrus-adspersus/" },
+        { "label": "Canadian Journal of Zoology, Winter habits of the cunner, Tautogolabrus adspersus, in Newfoundland", "url": "https://cdnsciencepub.com/doi/abs/10.1139/z71-218" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Cunner fish well through the open-water season, roughly spring through fall, once water has warmed past their winter torpor threshold. There's no tight seasonal window like a spawning run — this is a consistent, any-warm-day fishery, which is part of why it's a good option to fall back on when a target species (mackerel, striped bass) isn't cooperating. Any time of day works; they're not particularly tide- or light-dependent compared to species like mackerel or striped bass.",
+      "sources": [
+        { "label": "Canadian Journal of Zoology, Winter habits of the cunner, Tautogolabrus adspersus, in Newfoundland", "url": "https://cdnsciencepub.com/doi/abs/10.1139/z71-218" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Cunner relate to hard structure almost exclusively: wharf pilings, breakwaters, rock jetties, bridge abutments, and shipwrecks.\n\n- **NB:** Shediac Harbour is specifically noted as good cunner water; the Cocagne Cape Marina breakwater and any Northumberland Strait wharf with pilings will hold fish.\n- **NS:** **Halifax Harbour** and the Northwest Arm are well-documented cunner water right off the downtown waterfront docks; expect them anywhere along the Atlantic coast, Bay of Fundy, and Cape Breton with wharf or rock structure — this is one of the most evenly distributed species in the province.\n- **PEI:** Georgetown's waterfront and other Three Rivers-area wharves are a good bet, as is any structure around Boughton Bay/Panmure Island.\n\nBecause cunner relate so tightly to structure everywhere, virtually any public wharf or breakwater in all three provinces is worth a look.",
+      "sources": [
+        { "label": "Fishbrain, Halifax Harbour listing", "url": "https://fishbrain.com/fishing-waters/NdeaVe7U/halifax-harbour" },
+        { "label": "novascotiafishing.com, Halifax Harbour/Northwest Arm thread", "url": "https://www.novascotiafishing.com/threads/halifax-harbour-northwest-arm.2905/" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Light spinning rod, any you have on hand — no specialized gear needed. |\n| Hooks | Small bait hooks (size 6-10) — cunner have small mouths and are notorious bait-stealers on oversized hooks. |\n| Bait | Clam strips or worms are the standard, most-recommended baits. |\n| Rig | Simple small bait rig or a plain hook with a split shot — no finesse required. |",
+      "sources": [
+        { "label": "NorEast Fishing Forum, Tips on Bergall (cunner) fishing", "url": "https://www.noreast.com/threads/tips-on-bergall-cunner-fishing.63959/" }
+      ]
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Find any wharf, breakwater, or rocky jetty with visible pilings, rockpiles, or bridge abutments.\n2. Drop a small baited hook straight down beside the structure — no need to cast far or work a retrieve.\n3. Cunner will take almost any small bait or lure presented near their cover, so this is a genuinely no-technique fishery — perfect for kids or beginners.\n4. Expect fast, aggressive bites and a fair number of stolen baits; re-bait often rather than waiting out slow bites, since cunner are opportunistic and quick.\n5. If bigger-fish tactics (striped bass, mackerel) are slow, dropping a small rig for cunner nearby is a reliable way to keep rods bent while you wait.",
+      "sources": [
+        { "label": "NorEast Fishing Forum, Tips on Bergall (cunner) fishing", "url": "https://www.noreast.com/threads/tips-on-bergall-cunner-fishing.63959/" }
+      ]
+    },
+    {
+      "heading": "Handling & Table Notes",
+      "body_md": "Cunner are hardy and easy to handle — a light grip and standard hook removal is all that's needed. They're an underrated eating fish: firm, mild white flesh, though small size means more cleaning effort per meal than a larger species. Most anglers targeting bigger species treat cunner as an incidental catch-and-release bonus rather than table fare, but there's nothing wrong with keeping a few for a fish fry if you're catching them anyway.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation Notes",
+      "body_md": "No at-risk status or specific conservation concern turned up for cunner in this research — they're an abundant, resilient, non-migratory species. No dedicated recreational bag limit turned up in current DFO Gulf Region or Maritimes Region notices; fish them as a light, sustainable, any-size fishery.",
+      "sources": []
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO Gulf Region notices — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO notices reviewed — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. NS has coastline in both DFO Maritimes Region and DFO Gulf Region — no cunner-specific limit found in either.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring through fall — dormant/torpid in cold winter water" },
+    { "label": "Best Time", "value": "Any time — not especially tide- or light-dependent" },
+    { "label": "Where", "value": "Any wharf, breakwater, or rocky structure with pilings" },
+    { "label": "Bait", "value": "Clam strips or worms on a small hook" },
+    { "label": "Difficulty", "value": "Very easy — great for kids/beginners or between bigger-fish bites" },
+    { "label": "Table Fare", "value": "Firm, mild white flesh; small size makes cleaning effort higher per meal" }
+  ],
+  "sources": [
+    { "label": "Wikipedia / Marine Life ID, Cunner (Tautogolabrus adspersus)", "url": "https://www.marinelifeid.com/identification/cunner-tautogolabrus-adspersus/" },
+    { "label": "Canadian Journal of Zoology, Winter habits of the cunner, Tautogolabrus adspersus, in Newfoundland", "url": "https://cdnsciencepub.com/doi/abs/10.1139/z71-218" },
+    { "label": "Fishbrain, Halifax Harbour listing", "url": "https://fishbrain.com/fishing-waters/NdeaVe7U/halifax-harbour" },
+    { "label": "novascotiafishing.com, Halifax Harbour/Northwest Arm thread", "url": "https://www.novascotiafishing.com/threads/halifax-harbour-northwest-arm.2905/" },
+    { "label": "NorEast Fishing Forum, Tips on Bergall (cunner) fishing", "url": "https://www.noreast.com/threads/tips-on-bergall-cunner-fishing.63959/" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO Maritimes Region Recreational Fisheries", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" }
+  ]
+}

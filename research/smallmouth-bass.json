@@ -1,0 +1,81 @@
+{
+  "slug": "smallmouth-bass",
+  "common_name": "Smallmouth Bass",
+  "scientific_name": "Micropterus dolomieu",
+  "category": "freshwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "A hard-fighting, introduced river and lake gamefish, mostly a catch-and-release fishery across the region — the Saint John River system in NB is the region's premier smallmouth water.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Smallmouth bass are not native to the Maritimes — they were introduced into the St. Croix River system and nearby lakes, then spread through the Saint John River watershed and beyond, including waterways feeding the Petitcodiac. They've since been introduced to parts of Nova Scotia and are more locally present in PEI. They spawn in May and June: the male clears and guards a nest about a metre wide, and continues guarding the young after they hatch, sometimes returning to the same nest site year after year. They feed on insects, frogs, and small fish, and slow down and eat less as winter approaches — which is also why fall fish feed aggressively beforehand.\n\nThey're known as hard-fighting, aggressive fish on light tackle, and Maritime anglers generally practice more catch-and-release than harvest with this species — by reputation, most Maritimers haven't developed a strong taste for eating them, which keeps regulators comfortable setting long seasons in most zones.",
+      "sources": [
+        { "label": "GNB, Smallmouth Bass species fact sheet", "url": "https://www2.gnb.ca/" },
+        { "label": "Outdoor Canada, 10 East Coast hot spots with spectacular smallmouth bass fishing", "url": "https://www.outdoorcanada.ca/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "The **Saint John River system and its many lakes** remain the region's premier smallmouth fishery. Closer to Moncton, the Petitcodiac watershed gives a legitimate closer option:\n\n- **Little River**, near Salisbury — cross the river on the Salisbury Road heading out of Riverview; multiple pull-off spots to walk the river.\n- **Pollett River / North River confluence** with the Petitcodiac, near Salisbury.\n- **Anagance River** — a Petitcodiac tributary further out toward Petitcodiac village.\n- Rivers and brooks along Mollins Road and Salisbury Back Road.\n\nIn Nova Scotia, smallmouth are established in a number of lake systems (check the current NS Anglers' Handbook for open waters); in PEI, smallmouth populations are more limited and localized.",
+      "sources": [
+        { "label": "newbrunswickfishing.com forum threads (Fishing around Moncton)", "url": "https://www.newbrunswickfishing.com/" },
+        { "label": "Wikipedia, Petitcodiac River", "url": "https://en.wikipedia.org/wiki/Petitcodiac_River" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "- **Pre-spawn** (late April into May): bass move from deeper water into rivers and shallow staging areas ahead of the May-June spawn — aggressive and catchable on moderate tackle.\n- **Spawn** (May-June): males guard nests in shallow water; sight-fishing to bedding fish is possible but consider the impact of pressuring guarding males on nest success.\n- **Summer**: classic topwater and structure fishing once fish settle into summer patterns.\n- **Fall**: bass feed heavily ahead of winter — a reliably aggressive window before most seasons close in mid-September.",
+      "sources": [
+        { "label": "Outdoor Canada, 10 East Coast hot spots", "url": "https://www.outdoorcanada.ca/" },
+        { "label": "Fish'n Canada, Shore Fishing in New Brunswick", "url": "https://fishncanada.com/" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Medium-action spinning rod — matches what local anglers commonly recommend for river smallmouth. |\n| Line | 10 lb test is a commonly cited standard for aggressive river smallmouth on moving water. |\n| Terminal tackle | In-line spinners, small crankbaits, soft plastic tubes, topwater poppers/walkers — carry a mix and let the fish tell you what they want that day. |",
+      "sources": []
+    },
+    {
+      "heading": "Lures & Retrieves",
+      "body_md": "- **In-line spinner** (e.g. green-and-chartreuse blade) — cast up-and-across current and retrieve steadily back with the flow; a proven producer on pre-spawn river fish moving up from deeper holding water.\n- **Topwater popper or walking bait** — best early morning and evening; work with a walk-the-dog side-to-side action or a chugging pop-pause-pop retrieve over calm pools and current edges.\n- **Crankbait** — steady retrieve, letting the bill bounce off submerged rock and structure; a good searching bait to cover water and find where fish are holding.\n- **Soft plastic tube jig** — hop it along bottom with a lift-and-drop retrieve, imitating a crayfish — a staple smallmouth bait wherever they're found.\n- **Soft plastic craw/creature bait** on a jighead — slow drag or hop along bottom, especially around rock and current breaks.\n\nRead the water the same way anywhere smallmouth are found: current seams, rock structure, drop-offs at the edge of pools, and any current break where a fish can hold with minimal effort while ambushing food drifting past.",
+      "sources": [
+        { "label": "Fish'n Canada, Shore Fishing in New Brunswick", "url": "https://fishncanada.com/" },
+        { "label": "Outdoor Canada, 10 East Coast hot spots", "url": "https://www.outdoorcanada.ca/" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "Smallmouth bass are aggressive fighters and will thrash hard boatside or streamside — use tackle heavy enough to land them reasonably quickly, and a rubber-meshed net if netting fish, which is gentler on their protective slime coat than knotted nylon. Keep handling brief, keep the fish wet as much as possible, and support it horizontally rather than lifting by the jaw alone on larger fish.",
+      "sources": [
+        { "label": "Nova Scotia Anglers' Handbook, general handling guidance", "url": "https://novascotia.ca/fish/programs-and-services/recreational-fishing/" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Smallmouth bass is on New Brunswick's mercury consumption advisory list: any size, the guideline is 2 servings per month for the general population over 12, and sensitive populations (pregnant/breastfeeding women, infants, children under 12) should avoid eating them.\n\n**Invasive-species note**: as of April 1, 2026, smallmouth bass became a mandatory-retention invasive species in the Restigouche, Chaleur, Miramichi, and Southeast Fishery Areas of New Brunswick (any caught there must be kept, not released) — this does NOT apply province-wide, so check which Recreational Fishery Area (RFA) you're fishing before deciding whether to release a fish.",
+      "sources": [
+        { "label": "GNB Fish Consumption Guidelines (mercury)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+        { "label": "GNB Fish 2026-27 Regulations Summary", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Rivers, brooks, streams", "season": "Apr 15 - Sept 15", "bag_limit": "5", "size_limit": "Min 10 cm, Max 60 cm", "notes": "Mandatory retention (invasive species rule) in Restigouche, Chaleur, Miramichi, and Southeast RFAs as of Apr 1 2026 — normal catch-and-release applies elsewhere, e.g. Inner Bay of Fundy RFA. NB angling licence required ($23 CAD resident season, Class 9).", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NB", "water_type": "Lakes, ponds, reservoirs", "season": "May 1 - Sept 15", "bag_limit": "5", "size_limit": "Min 10 cm, Max 60 cm", "notes": "Same RFA-specific mandatory retention rule applies where relevant.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Inland waters (general)", "season": "Per current NS Anglers' Handbook — varies by district", "bag_limit": "Per NS Anglers' Handbook", "size_limit": "Per NS Anglers' Handbook", "notes": "NS angling licence required. Check current handbook for districts where smallmouth are established/legal to target.", "source_url": "https://novascotia.ca/fish/programs-and-services/recreational-fishing/", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Inland waters (limited distribution)", "season": "Per PEI Anglers' Guide", "bag_limit": "Per PEI Anglers' Guide", "size_limit": "Per PEI Anglers' Guide", "notes": "Smallmouth bass populations are more localized in PEI than NB/NS — confirm current status/access with PEI Fish & Wildlife before planning a trip specifically for this species.", "source_url": "https://www.princeedwardisland.ca/en/topic/fishing-hunting-trapping-licences", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season (NB rivers)", "value": "Apr 15 - Sept 15" },
+    { "label": "Best Time", "value": "Fall feeding window and early morning/evening topwater" },
+    { "label": "Best Method", "value": "In-line spinner, topwater popper, or tube jig on structure" },
+    { "label": "Watch for", "value": "Mandatory-retention invasive rule in some NB RFAs (Restigouche, Chaleur, Miramichi, Southeast)" }
+  ],
+  "sources": [
+    { "label": "GNB Fish 2026-27 Regulations Summary", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "NB Fish & Wildlife Licensing", "url": "https://www2.gnb.ca/content/gnb/en/departments/erd/fish-and-wildlife/content/go-fishing.html" },
+    { "label": "Outdoor Canada, 10 East Coast hot spots", "url": "https://www.outdoorcanada.ca/" },
+    { "label": "Fish'n Canada, Shore Fishing in New Brunswick", "url": "https://fishncanada.com/shore-fishing-in-new-brunswick/" },
+    { "label": "Nova Scotia Recreational Fishing", "url": "https://novascotia.ca/fish/programs-and-services/recreational-fishing/" }
+  ]
+}

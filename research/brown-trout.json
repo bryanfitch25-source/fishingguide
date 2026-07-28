@@ -1,0 +1,80 @@
+{
+  "slug": "brown-trout",
+  "common_name": "Brown Trout",
+  "scientific_name": "Salmo trutta",
+  "category": "freshwater",
+  "provinces": ["NB", "NS"],
+  "summary": "Introduced, wary, dusk-active trout found in select NB and NS rivers and lakes — a smaller, more localized fishery than rainbow or brook trout, best worked at night or low light with streamers, spinners, or large dry flies.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Brown trout (*Salmo trutta*) are native to Europe and western Asia and were introduced to eastern Canada for sport fishing; like rainbow trout, they aren't native to the Maritimes but are established in specific waters through historical stocking.\n\nIdentify them by large black spots ringed with a lighter halo along the sides — often mixed with red spots — on a body that shades from dark olive-brown on the back to yellow on the flanks and white or yellow on the belly. Compared to rainbow trout, browns are generally more wary and more nocturnal, becoming most active at dusk and after dark, which shapes how and when anglers target them.\n\nBrown trout distribution in NB and NS is patchier and more localized than rainbow or brook trout — they're present in specific rivers and stocked lakes rather than broadly province-wide.",
+      "sources": [
+        { "label": "Cast & Fly — Rainbow vs Brown Trout: ID, Habits & Fly Fishing Tips", "url": "https://castandfly.com/rainbow-vs-brown-trout/" },
+        { "label": "California Dept. of Fish & Wildlife — Brown Trout", "url": "https://wildlife.ca.gov/Fishing/Inland/Brown-Trout" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "- **Saint John River system (NB)** — holds brown trout alongside rainbow trout, smallmouth bass, and other species; the Lower Saint John Regional Fishery Area has a specific reduced brown trout limit reflecting a more limited local population.\n- **Mersey River (NS)** — locally known for night fishing for brown trout starting in April, per Nova Scotia angler forum reports.\n- **MacPhersons Lake and Garden of Eden Lake, Pictou County (NS)** — both hold stocked brown trout, per Nova Scotia angler forum reports.\n- Beyond these specific waters, brown trout in NB/NS are best confirmed against the current Anglers' Handbook / NB Fish Regulations stocked-water lists before making a special trip — populations are localized enough that 'brown trout lake' questions are a recurring topic on regional angling forums rather than common knowledge.",
+      "sources": [
+        { "label": "novascotiafishing.com forum — Looking for a Brown Trout Lake", "url": "https://www.novascotiafishing.com/threads/looking-for-a-brown-trout-lake.2120/" },
+        { "label": "Angler's Atlas — St. John River", "url": "https://www.anglersatlas.com/place/724844/st-john-river" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "### New Brunswick\nGeneral trout season follows the same structure as rainbow/brook trout in most RFAs — rivers/streams roughly **May 1 – September 15**, lakes **May 15 – September 15** — but the Lower Saint John RFA caps brown trout retention at just **2 fish/day** even though the general combined trout limit elsewhere is 5, reflecting a smaller local population there.\n\n### Nova Scotia\nGeneral inland season **April 1 – September 30**, with natural bait banned province-wide every September (artificial fly/unbaited lure only). Locally, anglers report the best brown trout action on waters like the Mersey River is after dark starting in April, consistent with the species' known dusk/nocturnal feeding pattern.\n\nBrown trout are not established as a distinct PEI fishery in the sources checked for this guide — PEI's trout fishery is built around brook trout and rainbow trout, so this guide covers NB and NS only for browns.",
+      "sources": [
+        { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+        { "label": "novascotiafishing.com forum — Looking for a Brown Trout Lake", "url": "https://www.novascotiafishing.com/threads/looking-for-a-brown-trout-lake.2120/" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Fly rod | 5-6 wt, 9 ft; large dry flies (hoppers, big attractors) at dusk, streamers for after-dark and low-light. |\n| Spinning rod | Light-medium 6-7 ft spinning rod, 6-8 lb line. |\n| Lures | Inline spinners are close to all you need for stream browns — flash and vibration draw strikes even in low light. |\n| Extras | Headlamp (red-light mode preferred) for evening/night sessions, since browns feed hardest as light fades. |",
+      "sources": [
+        { "label": "KastKing — How to Find the Difference Between Trout Species", "url": "https://kastking.com/blogs/how-to/how-to-find-the-difference-between-trout-species" }
+      ]
+    },
+    {
+      "heading": "Technique",
+      "body_md": "**Time your trip around dusk.** Brown trout are consistently most active at dusk and into full darkness — plan to be on the water in the last hour of daylight and stay through dark where it's safe and legal to do so.\n\n**Dry fly at last light:** a large attractor pattern or hopper drifted through likely holding water (undercut banks, deep runs, current seams below riffles) can draw a strong, deliberate rise from browns that ignored smaller flies all afternoon.\n\n**Streamers after dark:** swing or strip a streamer through deep pools and undercuts; browns key on sound and vibration more than sight once light is gone, so slower, pulsing retrieves often out-produce fast ones.\n\n**Spinning:** cast small inline spinners upstream into runs and pools, retrieving just fast enough to keep the blade spinning — work the same low-light windows for best results.",
+      "sources": [
+        { "label": "FishTalk Magazine — How to Catch Brown Trout on Spinning Gear", "url": "https://www.fishtalkmag.com/blog/how-catch-brown-trout-spinning-gear" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "- Wet hands before touching any fish you intend to release.\n- Brown trout can be leader/tippet-shy — once hooked, land them promptly rather than playing a wary fish to exhaustion in low light where you can't see it well.\n- Support horizontally in the water, minimize air exposure, and use barbless hooks where local rules require it (September fly/unbaited-lure restriction in NS effectively pushes anglers toward single-hook presentations anyway).\n- If keeping fish within legal limits, bleed and cool promptly.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Brown trout are an introduced species maintained in NB/NS through historical stocking rather than broad ongoing programs, and their more limited, localized distribution compared to rainbow and brook trout is reflected in tighter local bag limits in some Regional Fishery Areas (e.g., the Lower Saint John's 2-fish cap). No mercury or consumption advisory specific to brown trout turned up in current provincial notices for this guide; check your province's general fish consumption advisory list for the specific water you're fishing.",
+      "sources": [
+        { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Freshwater rivers, streams, lakes", "season": "Most RFAs: rivers/streams May 1–Sep 15; lakes May 15–Sep 15 (varies by RFA)", "bag_limit": "5 fish combined daily limit across trout species in most RFAs; Lower Saint John RFA caps brown trout specifically at 2/day", "size_limit": "Minimum 15 cm total length", "notes": "Regular angling licence covers brown trout. Confirm local RFA limits against the current NB Fish Regulations Summary — brown trout limits vary more by location than rainbow/brook trout.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Freshwater rivers, streams, lakes", "season": "Apr 1–Sep 30 inland; Sep 1–30 fly/unbaited-lure only province-wide", "bag_limit": "Combined limit of 5 fish/day across rainbow, brown, and brook trout", "size_limit": "Generally no minimum size outside Special Management Areas", "notes": "General Fishing Licence required. Natural bait prohibited every September province-wide. Brown trout distribution is localized — confirm specific water in the current Anglers' Handbook.", "source_url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring through fall; NB/NS general trout season, dates vary by RFA/region" },
+    { "label": "NB Bag Limit", "value": "5 combined trout species/day (2/day specifically in Lower Saint John RFA)" },
+    { "label": "NS Bag Limit", "value": "5 combined trout species/day; Sept fly/lure only" },
+    { "label": "Best Time", "value": "Dusk into full dark — browns are the most nocturnal of the region's trout" },
+    { "label": "Best Gear", "value": "Large dry flies/streamers at low light, or inline spinners on light spinning gear" },
+    { "label": "Known Waters", "value": "Saint John River system (NB); Mersey River, MacPhersons Lake, Garden of Eden Lake (NS)" }
+  ],
+  "sources": [
+    { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+    { "label": "Cast & Fly — Rainbow vs Brown Trout: ID, Habits & Fly Fishing Tips", "url": "https://castandfly.com/rainbow-vs-brown-trout/" },
+    { "label": "novascotiafishing.com forum — Looking for a Brown Trout Lake", "url": "https://www.novascotiafishing.com/threads/looking-for-a-brown-trout-lake.2120/" },
+    { "label": "FishTalk Magazine — How to Catch Brown Trout on Spinning Gear", "url": "https://www.fishtalkmag.com/blog/how-catch-brown-trout-spinning-gear" },
+    { "label": "Angler's Atlas — St. John River", "url": "https://www.anglersatlas.com/place/724844/st-john-river" }
+  ]
+}

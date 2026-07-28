@@ -1,0 +1,86 @@
+{
+  "slug": "gaspereau",
+  "common_name": "Gaspereau (Alewife)",
+  "scientific_name": "Alosa pseudoharengus",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Small, silvery, hard-fighting river-herring that surge into NB/NS/PEI estuaries and rivers each spring to spawn, supporting both a family-friendly hook-and-line/dip-net fishery and, in Nova Scotia, a long-running commercial river fishery.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Gaspereau (*Alosa pseudoharengus*), known in most of the U.S. as alewife, are small, deep-bodied, silvery members of the herring family, typically 25-30 cm as adults. They're often lumped together with the closely related blueback herring (*Alosa aestivalis*) under the same catch-all name \"gaspereau\" or \"river herring\" — the two run at the same time in the same rivers and are managed together. You can tell them apart: alewife have larger eyes, a paler/silvery body, and a pale belly, while blueback herring have smaller eyes, a darker bluish back, and a darker belly.\n\nGaspereau are **anadromous**: adults live at sea and run up rivers each spring to spawn in lakes and slow river sections, then head back to salt water (some die after spawning, but not all — unlike Pacific salmon, gaspereau can spawn more than once in a lifetime). They're prone to jumping and are surprisingly strong fighters on light tackle for their size, but have small mouths that require correspondingly small hooks and flies.",
+      "sources": [
+        { "label": "Maine Sea Grant, Maine Seafood Guide — Alewife", "url": "https://seagrant.umaine.edu/maine-seafood-guide/alewife/" },
+        { "label": "DFO, Gaspereau Assessment for the Gulf Region to 2019", "url": "https://publications.gc.ca/collections/collection_2024/mpo-dfo/fs70-5/Fs70-5-2024-041-eng.pdf" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "The spring spawning run is the main event: gaspereau typically push upriver a few weeks after the rainbow smelt run, commonly **May** across most of NB/NS/PEI, though exact timing shifts year to year with water temperature. During the run, fish concentrate heavily at river mouths, fishways, and current seams, making for fast, easy action. Outside the main run, stragglers and school activity can still be found near estuary mouths into summer, but the spring window is by far the most productive and most consistent.",
+      "sources": [
+        { "label": "Halifax Bloggers, Gaspereau in the Gaspereau | Noticed in Nova Scotia", "url": "https://halifaxbloggers.ca/noticedinnovascotia/2017/05/gaspereau-in-the-gaspereau/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Gaspereau run essentially every major river system with ocean access across all three provinces.\n\n- **NS:** The **Gaspereau River** (Kings County, feeding the Annapolis system) is the namesake water and has a long commercial fishing tradition — some operations there represent the sixth generation of the same families fishing it. The wider **Annapolis River** system, the Shubenacadie, and rivers around the Bay of Fundy and Northumberland Strait all see runs.\n- **NB:** The **Miramichi River** system (Southwest and Northwest Miramichi) has DFO-monitored gaspereau/blueback populations; the Cocagne and Shediac River mouths on the Northumberland Strait side are accessible, angler-tested spots for the run and for summer stragglers.\n- **PEI:** The Boughton River and the Three Rivers system (Brudenell, Cardigan, Montague) near Georgetown are known producers, along with river mouths island-wide.\n\nWithin any of these, focus on the lower estuary and river-mouth current seams during the spring push, and any fishway or natural pinch point where fish stack up waiting to move upstream.",
+      "sources": [
+        { "label": "Halifax Bloggers, Gaspereau in the Gaspereau | Noticed in Nova Scotia", "url": "https://halifaxbloggers.ca/noticedinnovascotia/2017/05/gaspereau-in-the-gaspereau/" },
+        { "label": "DFO, Gaspereau Assessment for the Gulf Region to 2019", "url": "https://publications.gc.ca/collections/collection_2024/mpo-dfo/fs70-5/Fs70-5-2024-041-eng.pdf" }
+      ]
+    },
+    {
+      "heading": "Nova Scotia's Commercial Gaspereau Fishery",
+      "body_md": "Unlike most species in this guide, gaspereau supports a real, longstanding **commercial** fishery in Nova Scotia alongside the recreational one, and it's worth understanding as local context even if you're only fishing recreationally.\n\n- Commercial harvest targets adult gaspereau during the May-June upstream spawning migration, using **gillnets** in tidal water and a traditional **weir-and-dip-net** setup (locally called a \"square net\") in non-tidal inland water.\n- The **Gaspereau River** (Annapolis system) is the best-known commercial river, with some family operations having fished it for six generations.\n- Regulations require square nets to be pulled from the water during weekly close times, and prohibit fishing certain sections of rivers like the Gaspereau outright.\n- Stock status across the region is a concern: the majority of alewife populations assessed have been reported as **in decline**, which is part of why weekly closures and, in some cases, outright recreational quota reductions (e.g., Yarmouth County's recreational quota was reduced to zero through the end of 2025 by variation order) are in place. Confirm current status before fishing a specific river.",
+      "sources": [
+        { "label": "DFO, Assessment of Gaspereau River Alewife", "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/329174.pdf" },
+        { "label": "DFO, 2021 Gaspereau Integrated Fishery Management Plan, Maritimes Region", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/gaspereau-gaspareau/index-eng.html" },
+        { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Light spinning rod or fly rod — gaspereau are small and light tackle makes them fun; also matches their small-mouth requirement for small hooks/flies. |\n| Line | 6-10 lb line is plenty. |\n| Terminal tackle | Small white/light streamer flies (size 8-12) or an equivalently small light jighead. |\n| Dip net | Legal alternative gear in tidal water in both NB and NS during the run (see regulations) — a common family/traditional method alongside hook-and-line. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Locate the run at a river mouth, fishway, or current seam during the spring spawning migration (commonly May).\n2. Cast a small white streamer fly or small light jighead across or slightly downstream of the current.\n3. **Swing and retrieve at a swift, consistent pace** — similar to swinging a streamer for trout. Gaspereau are aggressive, active feeders during the run and respond well to a steady retrieve rather than a slow finesse presentation.\n4. Expect strong fights and jumping for the fish's size — light tackle makes this genuinely fun, not just easy.\n5. If dip netting where legal, work the current edges and eddies where fish stack up against the flow rather than the main current itself.",
+      "sources": []
+    },
+    {
+      "heading": "Handling & Table Notes",
+      "body_md": "Gaspereau are not well regarded as table fare by most local anglers — they're bony and have a strong, oily smell, and the common local practice is catch-and-release for hook-and-line anglers, while commercial harvest goes mostly to bait, fishmeal, and smoked/salted product rather than fresh fillets. If keeping fish, ice them promptly given how oily and quick-to-spoil the flesh is (similar to mackerel). Handle released fish quickly and gently — they're a key forage base for striped bass, so a healthy run benefits the whole estuary food chain.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation Notes",
+      "body_md": "Gaspereau/alewife populations are broadly reported as declining across much of the region, which is why weekly closures, harvest restrictions on specific rivers, and occasional zero-quota variation orders (as seen in Yarmouth County, NS) exist. Fish this species conservatively, respect posted river-specific closures, and expect rules to vary meaningfully by individual river — check the current DFO notice for the specific water you're fishing before you go.",
+      "sources": [
+        { "label": "DFO, Assessment of Gaspereau River Alewife", "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/329174.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal and inland (river-run)", "season": "Tidal: no closed season for angling. Inland: open when a sport fish season is open. Dip nets: Jan 1–Jun 30 with weekly closure Fri 12:00pm–Sun 8:00am.", "bag_limit": "Daily bag and possession limit of 20 (angling and dip netting)", "size_limit": "None specified", "notes": "No licence for dip netting (except Saint John River inland waters). Provincial angling licence required for inland angling. Jigging for gaspereau is prohibited in inland waters.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Tidal and inland (river-run)", "season": "Tidal: no closed season for angling. Inland: coincides with sport fish season openings. Dip nets vary by county, generally Mar 15–Jul with extensive weekly closures; some rivers (e.g. Gaspereau) restrict net size and closed sections.", "bag_limit": "Daily bag and possession limit of 20 (angling and dip netting); some areas reduced further by variation order (e.g. Yarmouth County recreational quota cut to zero through Dec 31 2025) — confirm current status", "size_limit": "None specified", "notes": "No licence for dip netting. Provincial angling licence required for inland angling. Commercial gillnet/square-net fishery operates in parallel on rivers like the Gaspereau (Annapolis system) — see the dedicated section above.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Main spawning run typically May; stragglers into summer" },
+    { "label": "Best Time", "value": "During the upstream spring migration at river mouths/fishways" },
+    { "label": "Gear", "value": "Light rod, small white streamer fly or small jighead" },
+    { "label": "Retrieve", "value": "Swing and retrieve at a swift, steady pace" },
+    { "label": "Table Fare", "value": "Bony, oily, strong smell — most anglers release; ice promptly if keeping" },
+    { "label": "NS Note", "value": "Also a real commercial gillnet/weir fishery, especially on the Gaspereau River (Annapolis system)" }
+  ],
+  "sources": [
+    { "label": "Maine Sea Grant, Maine Seafood Guide — Alewife", "url": "https://seagrant.umaine.edu/maine-seafood-guide/alewife/" },
+    { "label": "DFO, Gaspereau Assessment for the Gulf Region to 2019", "url": "https://publications.gc.ca/collections/collection_2024/mpo-dfo/fs70-5/Fs70-5-2024-041-eng.pdf" },
+    { "label": "Halifax Bloggers, Gaspereau in the Gaspereau | Noticed in Nova Scotia", "url": "https://halifaxbloggers.ca/noticedinnovascotia/2017/05/gaspereau-in-the-gaspereau/" },
+    { "label": "DFO, Assessment of Gaspereau River Alewife", "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/329174.pdf" },
+    { "label": "DFO, 2021 Gaspereau Integrated Fishery Management Plan, Maritimes Region", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/gaspereau-gaspareau/index-eng.html" },
+    { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational regulations", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" }
+  ]
+}

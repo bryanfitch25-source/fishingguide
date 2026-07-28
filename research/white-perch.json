@@ -1,0 +1,67 @@
+{
+  "slug": "white-perch",
+  "common_name": "White Perch",
+  "scientific_name": "Morone americana",
+  "category": "freshwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "A schooling, brackish-water-loving panfish common in estuaries, tidal headponds, and barrier-beach ponds across NB, NS, and PEI. Bag limits have recently been tightened in both NS and PEI, so check current numbers before keeping a big cooler-full.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "White perch (*Morone americana*) are a small, silvery, deep-bodied member of the temperate bass family (related to striped bass, not to yellow perch despite the name) — no stripes, no dark bars, just a uniform silver-to-olive body and two connected dorsal fins. Most run 7-11 inches. They're a schooling species that tolerates a wide salinity range, which is why they thrive in estuaries, river mouths, and the brackish barrier-beach ponds common along the PEI and NB coastlines, as well as in freshwater headponds well upriver.",
+      "sources": [
+        { "label": "Nova Scotia Invasive Species Council, Chain Pickerel (native-alternative species reference)", "url": "https://nsinvasives.ca/chain-pickerel/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "**New Brunswick:** anglers report good white perch fishing at the **Hampton Lighthouse River Centre** area on the Kennebecasis, the **Mactaquac headpond** on the Saint John River, **Maquapit Lake**, and **Wauklehegan Lake**.\n\n**PEI:** white perch are common in the island's estuaries and brackish **barrier-beach ponds**, including documented catches in the **Johnstons River** and **Desroches Pond** systems, and in the Morell River system alongside brook trout.\n\n**Nova Scotia:** found in tidal rivers and estuaries province-wide wherever brackish, slow-current water exists — check local river mouths and headponds.",
+      "sources": [
+        { "label": "New Brunswick Fishing Forum, White Perch Fishing", "url": "https://www.newbrunswickfishing.com/threads/white-perch-fishing.868/" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "White perch move into shallower, warmer water to spawn in spring, which is when they're easiest to find and catch in numbers close to shore. They remain a solid summer-through-fall target in estuaries and headponds, and in PEI in particular, ice fishing for perch through the winter has grown into its own dedicated fishery on brackish ponds where ice forms reliably.",
+      "sources": [
+        { "label": "CBC News, Ice fishing for perch could be a thing on P.E.I.", "url": "https://www.cbc.ca/news/canada/prince-edward-island/pei-white-perch-fishery-1.5452838" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Light spinning rod, 6-7 ft, 4-8 lb line — white perch fight modestly and light gear makes it fun. |\n| Terminal tackle | Small jigs, spinners, or a simple bobber-and-worm/minnow rig. |\n| Bait | Worms, small minnows, or small strips of cut bait work well in brackish water. |\n| Ice gear | Same small jigs/teardrops used for yellow perch, tipped with a waxworm or minnow head. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Fish river mouths, headpond current seams, and pond inlets where fresh and brackish water mix — perch stack up at these transition zones.\n2. Once you find a school, stay on it — white perch bite fast and often in numbers, similar to yellow perch.\n3. A simple bobber rig with a small piece of worm or a small jig worked slowly near bottom will out-produce more complicated presentations for this species.\n4. In headponds like Mactaquac, fish the slower, deeper water along the margins of the main current rather than in the fastest flow.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "White perch are good, mild table fish, but bag limits have been trending down across the region as fisheries managers keep an eye on local population pressure — Nova Scotia's current Anglers' Handbook lists the white perch bag limit reduced to **10 fish**, and PEI's daily limit was cut from a historical 100 fish down to **25 fish** in recent regulation summaries. Fish conservatively even where an older, higher number might still be floating around online — always check the current-year regulations summary for your province before keeping a full cooler.",
+      "sources": [
+        { "label": "Nova Scotia Anglers' Handbook and Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Freshwater/estuarine", "season": "Season varies by water body — check the current GNB Fish Regulations Summary", "bag_limit": "Varies by water body — check current regulations summary; no single province-wide figure independently confirmed for this guide", "size_limit": "Varies by water body — see current regulations summary", "notes": "A valid NB angling licence is required in freshwater; tidal/estuarine water where no provincial licence is needed may still fall under DFO rules — confirm which applies for your specific location.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Freshwater/estuarine", "season": "See current Nova Scotia Anglers' Handbook for season dates by Recreational Fishing Area", "bag_limit": "10 fish per day (recently reduced) — confirm in the current-year Anglers' Handbook, as this can vary further by Recreational Fishing Area", "size_limit": "Not independently confirmed for this guide — see current handbook", "notes": "A valid NS angling licence is required for freshwater fishing.", "source_url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Freshwater/estuarine", "season": "Open season per current PEI Angling Summary; a growing winter ice-fishery for perch exists on select brackish ponds", "bag_limit": "25 fish per day, minimum length 10 cm (3.9\") per the 2025-2026 season referenced in current sources — confirm against the current-year PEI Angling Summary", "size_limit": "10 cm (3.9\") minimum", "notes": "A valid PEI angling licence is required for freshwater/estuarine angling; anglers under 16 fish free. The daily limit was reduced from a historical 100 fish to 25 in recent years.", "source_url": "https://www.princeedwardisland.ca/en/publication/2025-angling-summary", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Habitat", "value": "Estuaries, tidal headponds, and brackish barrier-beach ponds" },
+    { "label": "Best Time", "value": "Spring spawn through fall; growing winter ice fishery in PEI" },
+    { "label": "Where (NB)", "value": "Hampton (Kennebecasis), Mactaquac headpond, Maquapit Lake, Wauklehegan Lake" },
+    { "label": "Where (PEI)", "value": "Johnstons River, Desroches Pond, Morell River system" },
+    { "label": "Bag Limit Trend", "value": "Reduced recently in both NS (to 10) and PEI (to 25) — check current-year regs" }
+  ],
+  "sources": [
+    { "label": "New Brunswick Fishing Forum, White Perch Fishing", "url": "https://www.newbrunswickfishing.com/threads/white-perch-fishing.868/" },
+    { "label": "Government of New Brunswick, Fish NB Angling Regulations (regulations summary)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "Nova Scotia Anglers' Handbook and Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+    { "label": "PEI 2025 Angling Summary", "url": "https://www.princeedwardisland.ca/en/publication/2025-angling-summary" },
+    { "label": "CBC News, Ice fishing for perch could be a thing on P.E.I.", "url": "https://www.cbc.ca/news/canada/prince-edward-island/pei-white-perch-fishery-1.5452838" }
+  ]
+}

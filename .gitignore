@@ -1,0 +1,18 @@
+# Next.js app
+app/node_modules/
+app/.next/
+app/out/
+app/.env*
+!app/.env.local.example
+app/next-env.d.ts
+app/*.tsbuildinfo
+
+# Supabase local dev
+app/supabase/.temp/
+
+# Original docx source material (not needed to run the app)
+source/
+
+# OS
+.DS_Store
+Thumbs.db

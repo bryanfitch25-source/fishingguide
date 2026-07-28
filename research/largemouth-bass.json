@@ -1,0 +1,78 @@
+{
+  "slug": "largemouth-bass",
+  "common_name": "Largemouth Bass",
+  "scientific_name": "Micropterus salmoides",
+  "category": "freshwater",
+  "provinces": ["NB"],
+  "summary": "Introduced, invasive bass species now established in several lakes and river arms of the Saint John River system and the St. Croix River in New Brunswick. As of 2026, NB requires anglers to keep — not release — any largemouth bass caught in the affected Recreational Fishery Areas. DFO does not currently report an established population in Nova Scotia or PEI.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Largemouth bass (*Micropterus salmoides*) are a deep-bodied, olive-green freshwater gamefish with a dark, blotchy horizontal band along the flank and a jaw hinge that extends back past the eye — the classic feature separating them from smallmouth bass. They're an ambush/structure-oriented predator, relating heavily to weed beds, docks, fallen timber, and other cover, and feed on baitfish, crayfish, frogs, and large insects.\n\nLargemouth bass are not native to New Brunswick or anywhere in Atlantic Canada. DFO's species profile places their introduced NB range specifically in the **St. Croix River** and the **Saint John River system**, including the Meduxnekeag River and the Mactaquac Arm/headpond, with further reports from Grand Lake, Washademoak Lake, Oromocto Lake, and an illegal introduction into Spednic Lake. DFO's profile states the species is **not currently reported in Nova Scotia, Prince Edward Island, or Newfoundland and Labrador** — so despite occasional angler chatter, there's no confirmed established NS or PEI population at this time.",
+      "sources": [
+        { "label": "DFO, Largemouth Bass species profile", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/largemouthbass-achigangrandebouche-eng.html" },
+        { "label": "New Brunswick Invasive Species Council, Invasive Gamefish", "url": "https://www.nbinvasives.ca/invasive-gamefish" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "All confirmed NB largemouth bass water sits in the lower/central Saint John River drainage and the St. Croix River on the Maine border:\n\n- **Grand Lake, Washademoak Lake, and Oromocto Lake** — all warm, weedy, connected to the Saint John River system.\n- **Mactaquac Arm / Mactaquac headpond**, and the **Meduxnekeag River**, both tied directly to the Saint John River.\n- **Spednic Lake** on the St. Croix system, from an illegal introduction.\n\nLook for the same cover largemouth relate to everywhere: lily pads, flooded timber, docks, and soft-bottom weedy bays — largemouth prefer noticeably slower, warmer, weedier water than the smallmouth bass NB anglers are more used to targeting.",
+      "sources": [
+        { "label": "DFO, Largemouth Bass species profile", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/largemouthbass-achigangrandebouche-eng.html" },
+        { "label": "Fish'n Canada, The First-Ever \"Official\" Atlantic Canada Largemouth Bass", "url": "https://fishncanada.com/the-first-ever-official-atlantic-canada-largemouth-bass/" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Largemouth bass in this region follow the same general pattern as elsewhere in their range: they spawn in shallow water in late spring once temperatures climb into the mid-60s°F, then hold tight to cover through summer, feeding most actively in low light around dawn and dusk. Fall sees another feeding push as fish bulk up before winter. Given the short, cool Maritime season, expect the whole cycle to run later and compress compared to bass fisheries further south.",
+      "sources": [
+        { "label": "DFO, Biological Synopsis of Largemouth Bass (Micropterus salmoides)", "url": "https://publications.gc.ca/collections/collection_2010/mpo-dfo/Fs97-4-2884-eng.pdf" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | 6.5–7 ft medium to medium-heavy spinning or baitcasting rod. |\n| Line | 10–17 lb monofilament or fluorocarbon; braid with a fluoro leader around heavy cover. |\n| Lures | Soft plastic worms/creature baits rigged weedless, spinnerbaits, topwater frogs and poppers, crankbaits along deeper drop-offs. |\n| Extras | Needle-nose pliers, a scale/measuring board if you plan to report or photograph a mandatory-retention catch. |",
+      "sources": []
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Fish the edges of visible cover — lily pad points, dock pilings, laydown logs — rather than open water; largemouth ambush from cover rather than roam.\n2. Work a weedless soft-plastic (Texas-rigged worm or creature bait) slowly through pads and timber, letting it fall on slack line into every pocket.\n3. Throw topwater (poppers, walking baits, frogs) at first and last light when bass are shallow and feeding aggressively.\n4. In the heat of summer, switch to deeper cover or drop-offs adjacent to the shallow spawning/feeding areas, working crankbaits or Carolina-rigged plastics.\n5. Set the hook with a firm sweep rather than a trout-style lift — largemouth have a hard, bony mouth plate.",
+      "sources": []
+    },
+    {
+      "heading": "Handling & Release — Read This Before You Let One Go",
+      "body_md": "This is the key regulatory fact for this species in New Brunswick: **effective April 1, 2026, largemouth bass must be retained (killed), not released, if caught in the Restigouche, Chaleur, Miramichi, Southeast, Inner Bay of Fundy, or Upper Saint John Recreational Fishery Areas.** This is one of five species (with black crappie, chain pickerel, muskellunge, and smallmouth bass) covered by NB's new invasive-species mandatory-retention condition of licence. Releasing a largemouth bass caught in one of those RFAs can draw a fine of $100–$500 under the Fish and Wildlife Act.\n\nFish must be humanely euthanized immediately (a swift blow to the head) and can be kept for food or delivered frozen to a local Department of Natural Resources office; report the catch (date, location, photo) to DNR. Given that essentially all known NB largemouth water sits within the Saint John River system, most anglers targeting this species should assume the retention rule applies — confirm your exact RFA with GNB's Fishing Regulations Web/Mobile Map before you go.",
+      "sources": [
+        { "label": "Government of New Brunswick, New recreational fishing rules to take effect", "url": "https://www.gnb.ca/en/news/n-b.2026.03.new-recreational-fishing-rules-take-effect.html" },
+        { "label": "Government of New Brunswick, Mandatory retention of invasive species", "url": "https://www.gnb.ca/en/topic/environment-resources/biodiversity-conservation/invasive-species/invasive-fish.html" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Largemouth bass compete directly with native species and, alongside chain pickerel and smallmouth bass, are flagged by NB's Invasive Species Council as a threat to native fish communities through predation and competition for food and habitat. There is no conservation reason to protect or release this species in NB waters — quite the opposite, which is the basis for the 2026 mandatory-retention rule. Never move live largemouth bass (or bait bucket water) between lakes; that's the most likely way any remaining unaffected NB lakes could get seeded next.",
+      "sources": [
+        { "label": "New Brunswick Invasive Species Council, Invasive Gamefish", "url": "https://www.nbinvasives.ca/invasive-gamefish" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Freshwater", "season": "See current GNB Fish Regulations Summary for open season dates by water — a valid NB angling licence is required", "bag_limit": "No release permitted in Restigouche, Chaleur, Miramichi, Southeast, Inner Bay of Fundy, and Upper Saint John RFAs — mandatory retention condition of licence applies", "size_limit": "None specified — retention required regardless of size", "notes": "Effective April 1, 2026: largemouth bass must be retained, not released, if caught in the RFAs listed above. Fines of $100–$500 apply for releasing one. Fish must be humanely euthanized; keep for consumption or deliver frozen to a local DNR office, and report the catch to DNR. Confirm your RFA using the GNB Fishing Regulations Web/Mobile Map.", "source_url": "https://www.gnb.ca/en/topic/environment-resources/biodiversity-conservation/invasive-species/invasive-fish.html", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Freshwater", "season": "Not applicable", "bag_limit": "Not applicable", "size_limit": "Not applicable", "notes": "DFO's species profile states largemouth bass is not currently reported as established in Nova Scotia. No NS regulation entry exists for this species; if you believe you've caught one in NS, treat it as a reportable potential new introduction rather than a normal catch.", "source_url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/largemouthbass-achigangrandebouche-eng.html", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Freshwater", "season": "Not applicable", "bag_limit": "Not applicable", "size_limit": "Not applicable", "notes": "DFO's species profile states largemouth bass is not currently reported as established in Prince Edward Island.", "source_url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/largemouthbass-achigangrandebouche-eng.html", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Status", "value": "Introduced/invasive in NB only — not established in NS or PEI per DFO" },
+    { "label": "Key Rule", "value": "MUST-KEEP in NB's Restigouche/Chaleur/Miramichi/Southeast/Inner Bay of Fundy/Upper Saint John RFAs — no release" },
+    { "label": "Where", "value": "Grand Lake, Washademoak Lake, Oromocto Lake, Mactaquac Arm, Meduxnekeag River, Spednic Lake (St. Croix)" },
+    { "label": "Best Time", "value": "Late spring spawn through summer; dawn/dusk for topwater" },
+    { "label": "Gear", "value": "Medium-heavy spinning/baitcasting rod, 10-17 lb line, weedless soft plastics and topwater" }
+  ],
+  "sources": [
+    { "label": "DFO, Largemouth Bass species profile", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/largemouthbass-achigangrandebouche-eng.html" },
+    { "label": "New Brunswick Invasive Species Council, Invasive Gamefish", "url": "https://www.nbinvasives.ca/invasive-gamefish" },
+    { "label": "Government of New Brunswick, New recreational fishing rules to take effect", "url": "https://www.gnb.ca/en/news/n-b.2026.03.new-recreational-fishing-rules-take-effect.html" },
+    { "label": "Government of New Brunswick, Mandatory retention of invasive species", "url": "https://www.gnb.ca/en/topic/environment-resources/biodiversity-conservation/invasive-species/invasive-fish.html" },
+    { "label": "Fish'n Canada, The First-Ever \"Official\" Atlantic Canada Largemouth Bass", "url": "https://fishncanada.com/the-first-ever-official-atlantic-canada-largemouth-bass/" },
+    { "label": "DFO, Biological Synopsis of Largemouth Bass (Micropterus salmoides)", "url": "https://publications.gc.ca/collections/collection_2010/mpo-dfo/Fs97-4-2884-eng.pdf" }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "shediac-cocagne-nb",
+  "title": "Shore Fishing Around Shediac & Cocagne, NB",
+  "province": "NB",
+  "region_name": "Northumberland Strait, Kent & Westmorland Counties",
+  "lat": 46.2233,
+  "lng": -64.5386,
+  "intro_md": "Cocagne and Shediac sit on the Northumberland Strait coast of Kent and Westmorland Counties, New Brunswick, about 30-45 minutes northeast of Moncton. Cocagne is built around the mouth of the Cocagne River and Cocagne Bay, with the Cocagne Cape Marina and its breakwater a well-known local fishing spot. Shediac — the self-styled \"Lobster Capital of the World\" — sits on Shediac Bay, a large tidal embayment fed by the Shediac River, Scoudouc River, and Bateman Brook, with Pointe-du-Chêne Wharf and Parlee Beach as its best-known shore access points.\n\nThis whole stretch is tidal estuary and open Northumberland Strait coastline, meaning nearly everything in this guide is saltwater/tidal fishing that does not require a provincial licence. Local anglers note that fishing pressure around Moncton itself is heavy, so the Cocagne-Shediac shoreline and the drive further northeast toward Bouctouche and Kouchibouguac tends to fish better than in-town spots.\n\n**Regulations overview**: New Brunswick recreational saltwater fishing is managed by Fisheries and Oceans Canada (DFO), Gulf Region — the same regional office and rules that apply across the southern Gulf of St. Lawrence (PEI, NS, and NB). No provincial licence is needed for tidal-water species (striped bass, mackerel, flounder, smelt, eel, etc.). A New Brunswick angling licence IS required for freshwater/inland species such as brook trout and Atlantic salmon. See each species' own guide for full current bag limits, seasons, and size limits — DFO issues variation orders that can change dates and limits with little notice.",
+  "sections": [
+    {
+      "heading": "Striped Bass",
+      "species_slug": "striped-bass",
+      "body_md": "**Where near Cocagne/Shediac**: The Cocagne River mouth and marina breakwater; the Shediac River and Scoudouc River mouths into Shediac Bay; Pointe-du-Chêne Wharf on a moving tide. Bass here are believed to be transient fish out of the Miramichi system spreading along the Gulf coast, not a local spawning population.\n\n**Key pattern**: Follow the current and the baitfish (smelt, gaspereau, small eels are key forage). Fish get more spread out — and often more catchable in the surf/open coast — later in the season as they disperse from the Miramichi. Low light (dawn, dusk, after dark within legal hours) and a bit of wave action/current disturbance both tend to outfish dead-calm, crowded daytime conditions.\n\n**Best lures & retrieves**: bucktail jig (1/2-1 oz) cast across current and swum near bottom; soft plastic swimbait/jerk shad cast down-and-across and swung on a falling tide; topwater plug worked low-light only; marabou jig with a slow pulsing lift-and-drop. **Best bait**: a chunk of cut mackerel fished on the bottom on a single barbless hook.\n\n**Gear fit**: MH rod, 20 lb braid / 20 lb fluoro leader.",
+      "sources": [
+        { "label": "DFO 2026 Striped Bass Notice", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
+        { "label": "Outdoor Canada, New Brunswick's Striped Bass Bonanza", "url": "https://www.outdoorcanada.ca/why-new-brunswicks-striped-bass-bonanza-is-the-east-coasts-hottest-ticket/" }
+      ]
+    },
+    {
+      "heading": "Atlantic Mackerel",
+      "species_slug": "atlantic-mackerel",
+      "body_md": "**Where near Cocagne/Shediac**: Pointe-du-Chêne Wharf is a well-known, easy mackerel spot right off the dock; the Cocagne breakwater and any wharf with tidal current in Shediac Bay are also worth checking. Mackerel push close to shore mainly from August into the fall.\n\n**Key pattern**: They travel in schools — watch for diving gulls/terns and jumping baitfish (silversides). Best around high tidal current.\n\n**Best lures**: sabiki/feather rig jigged slowly; small shiny casting spoon retrieved fast and steady; small metal jig worked at different depths.\n\n**Gear fit**: ML rod, 20 lb braid / 12 lb mono.",
+      "sources": [
+        { "label": "Fishbrain, Pointe-du-Chêne/Shediac Bay listings", "url": "https://fishbrain.com/fishing-waters/A3GEQLEN/shediac-bay" }
+      ]
+    },
+    {
+      "heading": "Winter Flounder",
+      "species_slug": "winter-flounder",
+      "body_md": "**Where near Cocagne/Shediac**: Sandy/muddy estuary bottom — the Cocagne River mouth and Shediac Bay's shallower stretches near the Shediac and Scoudouc river mouths are classic flounder water.\n\n**Key pattern**: Bottom-dwelling; fish directly on bottom with light, subtle presentations. **Rig**: hi-lo bottom rig tipped with clam strips, squid strips, sandworms, or scented soft plastics, cast out and retrieved slowly with frequent multi-second pauses — bites are subtle nibbles, not hard strikes.",
+      "sources": [
+        { "label": "Salt Water Sportsman, Winter Flounder Fishing Tips", "url": "https://www.saltwatersportsman.com/" }
+      ]
+    },
+    {
+      "heading": "Rainbow Smelt",
+      "species_slug": "rainbow-smelt",
+      "body_md": "**Where near Cocagne/Shediac**: Estuary shallows and river mouths, e.g. the Cocagne and Shediac River mouths — mainly a spring spawning-run fish, but present through the season near structure in summer. **Method**: locate a school and target its edge with a tiny bucktail jighead or small streamer fly, retrieved steadily toward you — takes usually happen as the lure leaves the school.",
+      "sources": []
+    },
+    {
+      "heading": "Gaspereau (Alewife)",
+      "species_slug": "gaspereau",
+      "body_md": "**Where near Cocagne/Shediac**: River mouths and lower estuary stretches of the Cocagne and Shediac Rivers — they run upriver a few weeks after the smelt run (typically May), with stragglers findable near estuary mouths into summer. Strong fighters for their size and prone to jumping when hooked. **Method**: small white streamer fly (size 8-12) or similarly small light jighead, swung with a swift consistent pace. Not good table fare — plan to release.",
+      "sources": []
+    },
+    {
+      "heading": "White Perch",
+      "species_slug": "white-perch",
+      "body_md": "**Where near Cocagne/Shediac**: Estuaries and any barrier-beach ponds in the area — reported as present around Cap-Lumière and Cocagne on this same stretch of coast. Much less selective than most species here — a consistent, high-action producer once located. **Method**: small spinner retrieved at a steady moderate pace, or a float/bobber rig with bait.",
+      "sources": [
+        { "label": "fishingreminder.com, New Brunswick fishing spots overview", "url": "https://fishingreminder.com/" }
+      ]
+    },
+    {
+      "heading": "American Eel",
+      "species_slug": "american-eel",
+      "body_md": "**Where near Cocagne/Shediac**: Estuaries throughout the area hold eel populations — the Cocagne and Shediac River systems both qualify. Eels hunt almost entirely by smell, not sight — one of the few species here where lures/flies are largely ineffective. **Method**: cut fish, worms, or other scented bait fished directly on the bottom, and wait.",
+      "sources": []
+    },
+    {
+      "heading": "Cunner (Bergall)",
+      "species_slug": "cunner",
+      "body_md": "**Where near Cocagne/Shediac**: Around docks, wharves, and piers — Shediac Harbour is specifically noted as good cunner water. Aggressive, opportunistic, and very good at stealing bait — a reliably easy, fun species. **Method**: drop a small bait rig straight down beside pilings/rocks; no special retrieve needed.",
+      "sources": [
+        { "label": "Fishbrain, Shediac Harbour listing", "url": "https://fishbrain.com/" }
+      ]
+    },
+    {
+      "heading": "Tomcod & Sculpin",
+      "species_slug": "atlantic-tomcod",
+      "body_md": "**Where near Cocagne/Shediac**: Deeper estuary water in the Cocagne and Shediac systems — both are commonly caught incidentally while targeting winter flounder. Cocagne Cove specifically lists 'Grubby sculpin' among its notable catches. Small fish — treat as bonus catches on flounder gear rather than dedicated targets.",
+      "sources": [
+        { "label": "Fishbrain, Cocagne Cove listing", "url": "https://fishbrain.com/" }
+      ]
+    },
+    {
+      "heading": "Brook Trout / Sea-Run Brook Trout (freshwater bonus option)",
+      "species_slug": "brook-trout",
+      "body_md": "**Where near Cocagne/Shediac**: The Cocagne River and Shediac River both hold brook trout, including sea-run fish in their tidal/estuary reaches. Requires a valid NB angling licence — an inland-water fishery, separate from the tidal saltwater species above. Sea-run fish are best targeted late spring/early summer as they push into estuaries to feed; by mid-summer the push has typically passed.",
+      "sources": []
+    }
+  ],
+  "spots": [
+    { "name": "Cocagne Cape Marina & breakwater", "description": "The classic local spot at the mouth of the Cocagne River; striped bass have been fished off the breakwater, plus general estuary species.", "map_url": "https://www.google.com/maps?q=46.34056,-64.62000" },
+    { "name": "Cocagne River mouth / Cocagne Cove", "description": "Estuary water noted for striped bass, mackerel, and sculpin.", "map_url": "https://www.google.com/maps/search/?api=1&query=Cocagne+River+mouth+New+Brunswick" },
+    { "name": "Pointe-du-Chêne Wharf", "description": "Iconic, easy-access wharf fishing on Shediac Bay; visiting anglers regularly report catching mackerel right off the dock. Small daily parking fee.", "map_url": "https://www.google.com/maps/search/?api=1&query=Pointe-du-Chene+Wharf+New+Brunswick" },
+    { "name": "Parlee Beach Provincial Park", "description": "Open Shediac Bay beach frontage next to Pointe-du-Chêne; good surf/beach casting water and some of the warmest ocean water north of the Carolinas.", "map_url": "https://www.google.com/maps/search/?api=1&query=Parlee+Beach+Provincial+Park+New+Brunswick" },
+    { "name": "Shediac River mouth / Shediac Bridge", "description": "River-mouth current into Shediac Bay; holds striped bass and brook trout.", "map_url": "https://www.google.com/maps/search/?api=1&query=Shediac+River+mouth+New+Brunswick" },
+    { "name": "Shediac Harbour", "description": "Good wharf fishing for striped bass, mackerel, and cunner.", "map_url": "https://www.google.com/maps/search/?api=1&query=Shediac+Harbour+New+Brunswick" },
+    { "name": "Miramichi system (worth the drive)", "description": "Roughly 1.5 hours north; the source river system for most Gulf-coast striped bass and New Brunswick's premier Atlantic salmon water.", "map_url": "https://www.google.com/maps/search/?api=1&query=Miramichi+River+New+Brunswick" }
+  ],
+  "sources": [
+    { "label": "DFO — Striped Bass Recreational Fishery, Southern Gulf of St. Lawrence 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
+    { "label": "DFO — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO — Atlantic Salmon Recreational Fishing, Gulf Region 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" },
+    { "label": "New Brunswick Fish & Wildlife Licensing", "url": "https://www2.gnb.ca/content/gnb/en/departments/erd/fish-and-wildlife/content/go-fishing.html" },
+    { "label": "CHS Tide Station — Pointe-du-Chêne (01804)", "url": "https://www.tides.gc.ca/en/stations/01804" },
+    { "label": "CHS Tide Station — Cocagne (01812)", "url": "https://www.tides.gc.ca/en/stations/01812" },
+    { "label": "Wikipedia — Shediac Bay", "url": "https://en.wikipedia.org/wiki/Shediac_Bay" },
+    { "label": "Cocagne Cape Marina", "url": "https://www.cocagnecapemarina.com/" },
+    { "label": "Outdoor Canada — Why New Brunswick's Striped Bass Bonanza Is the East Coast's Hottest Ticket", "url": "https://www.outdoorcanada.ca/why-new-brunswicks-striped-bass-bonanza-is-the-east-coasts-hottest-ticket/" },
+    { "label": "newbrunswickfishing.com — Surf Fishing forum thread", "url": "https://www.newbrunswickfishing.com/threads/surf-fishing.2821/" },
+    { "label": "Fish'n Canada — Shore Fishing in New Brunswick", "url": "https://fishncanada.com/shore-fishing-in-new-brunswick/" }
+  ]
+}

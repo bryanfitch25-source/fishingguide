@@ -1,0 +1,95 @@
+{
+  "slug": "atlantic-salmon",
+  "common_name": "Atlantic Salmon",
+  "scientific_name": "Salmo salar",
+  "category": "anadromous",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Iconic anadromous gamefish of the Miramichi (NB) and Margaree (NS) systems, fished almost entirely catch-and-release with barbless flies under some of the strictest recreational rules in Canada.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Atlantic salmon (*Salmo salar*) begin life as eggs laid in gravel nests (redds), hatching into fry that mature into stream-dwelling parr for one to eight years depending on the river. Parr then undergo smoltification, turning silver with dark fins, and migrate to sea in late spring (May/June).\n\nAfter one to three years at sea, salmon return to the river where they were born to spawn. Fish that spend only one winter at sea are called **grilse** (generally under 63 cm, roughly 5-6 lbs), while fish that spend two or more winters at sea are **multi-sea-winter (MSW) salmon** or 'large salmon' (generally over 63 cm). Unlike Pacific salmon, Atlantic salmon don't always die after spawning — a portion survive as 'kelts' and can spawn multiple times over their life.\n\nThe Miramichi system (NB) is the largest and most important Atlantic salmon river in North America; the Margaree (Cape Breton, NS) is Nova Scotia's premier salmon river. Both are managed as distinct Salmon Fishing Areas (SFAs) by DFO.",
+      "sources": [
+        { "label": "DFO — Atlantic Salmon, a Remarkable Life Cycle", "url": "https://www.dfo-mpo.gc.ca/species-especes/publications/salmon-saumon/lifecycle-cyclevital/index-eng.html" },
+        { "label": "Miramichi Salmon Association — About the Atlantic Salmon", "url": "https://miramichisalmon.ca/education/atlantic-salmon/" }
+      ]
+    },
+    {
+      "heading": "The Regulatory Reality: Catch-and-Release Only",
+      "body_md": "This is the single most important thing to understand before wetting a line for Atlantic salmon in NB, NS, or PEI: **recreational retention of Atlantic salmon has been suspended across the Gulf Region for years and remains suspended for 2026.** DFO's own 2026 notice states plainly: \"Catch and release for the recreational Atlantic salmon fishery will continue. As such, anglers are required to release all Atlantic salmon during the angling season.\"\n\nThat means every salmon and grilse you hook must go back in the water, on every open river in NB, NS, and PEI, for the entire 2026 season. There is no keep-a-fish recreational fishery for wild Atlantic salmon in this region right now.\n\nWhat you're managing instead is a **daily hook-up limit** (how many fish you're allowed to play and release per day, which varies by province/river) — not a bag limit in the traditional sense.",
+      "sources": [
+        { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" }
+      ]
+    },
+    {
+      "heading": "Season & Hook-Up Limits by Province",
+      "body_md": "### New Brunswick (SFA 15 & 16 — Miramichi, Restigouche, Nepisiguit and others)\n- Spring fishery (roughly April 15 – May 15, kelts/black salmon): catch-and-release limit of **5 salmon per day**.\n- Miramichi and Restigouche rivers, remainder of season: **2 salmon per day**.\n- Other open New Brunswick rivers: **4 salmon per day**.\n- Exact opening/closing dates vary river by river — always cross-check the current-year NB Fish Regulations Summary before you go.\n\n### Nova Scotia (SFA 18 — Margaree and other rivers)\n- Catch-and-release limit of **4 salmon per day** on Nova Scotia's open rivers generally.\n- Margaree River specifically: season runs **June 1 – October 15**, catch-and-release only, daily limit of **4 fish** (any combination of grilse/salmon). From April 15–May 14 (kelt period) single hook lure or artificial fly is allowed (no bait); from May 15 to season end, **artificial fly only**.\n\n### Prince Edward Island (SFA 17)\n- Catch-and-release limit of **2 salmon per day** during the open season. PEI also runs a separate **extended angling season (roughly September 16 – October 31)** on the Morell River and Mill River, fly-only, barbless.\n\nAcross all three provinces, a **barbless artificial fly is mandatory** for Atlantic salmon — no bait, no lures, no barbed hooks, no exceptions on salmon water.",
+      "sources": [
+        { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" },
+        { "label": "Government of Prince Edward Island — Extended Angling Season", "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/2024-extended-angling-season" }
+      ]
+    },
+    {
+      "heading": "Warm Water Protocol",
+      "body_md": "Atlantic salmon are highly sensitive to heat stress, and catch-and-release fishing on an overheated fish is often fatal even when it swims away. DFO runs a **Warm Water Protocol** on four rivers: the Miramichi, Restigouche, and Nepisiguit in New Brunswick, and the Margaree in Nova Scotia.\n\nWhen water temperature climbs into the danger zone (thresholds vary by river, generally in the low-to-mid 20s°C), DFO issues a closure notice — anything from a shortened fishing day (morning-only) to a full closure of the river until temperatures drop. These notices are posted on the DFO Gulf Region recreational fisheries page in-season, sometimes with only a day or two of notice. Check before every trip in July/August.",
+      "sources": [
+        { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" }
+      ]
+    },
+    {
+      "heading": "Licensing",
+      "body_md": "A **salmon licence is required in addition to (or instead of) a regular angling licence** in all three provinces — Atlantic salmon is not covered by a general trout/bass licence.\n\n- **New Brunswick:** requires a free Outdoors Card plus a salmon licence. Resident youth (10-15, salmon only) $20; resident angling covers most other species separately. Non-resident salmon licences: Class 1 season ($173 + HST), Class 2 seven-day ($100 + HST), Class 3 three-day ($53 + HST). Non-residents are legally required to fish with a licensed guide or be accompanied by a resident when salmon fishing.\n- **Nova Scotia:** a General Fishing Licence or a specific Salmon licence is required for inland salmon waters; residents 16-17 get a free licence, and DFO (not the province) manages the actual salmon fishery rules even though NS issues the licence.\n- **PEI:** a base angling licence (around $10 resident + mandatory Wildlife Conservation Fund contribution, roughly $34.50 all-in with HST) plus a separate salmon licence for designated salmon rivers.",
+      "sources": [
+        { "label": "Canada Fishing Licence — New Brunswick Fishing Licence Guide 2026", "url": "https://canadafishinglicence.com/provinces/new-brunswick/" },
+        { "label": "Canada Fishing Licence — PEI Fishing Licence Guide 2026", "url": "https://canadafishinglicence.com/provinces/pei/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "- **Miramichi River system (NB)** — the Northwest and Southwest Miramichi and their tributaries hold the largest salmon run in eastern North America; famous beats and pool systems throughout the watershed, widely guided.\n- **Restigouche River (NB)** — border river with Quebec, known for large multi-sea-winter salmon.\n- **Margaree River (NS)** — Cape Breton's signature fly-fishing river, headwaters at Lake Ainslie, a designated Canadian Heritage River.\n- **Morell River and Mill River (PEI)** — PEI's main salmon rivers, both covered under the fall extended fly-fishing season.\n\nMost pools on these rivers are either Crown Reserve water (day-permit or lottery-access) or private/club water — check access rules for the specific stretch before you show up.",
+      "sources": [
+        { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | 8-9 wt double-handed spey/switch rod for big rivers like the Miramichi/Restigouche; single-handed 7-8 wt for smaller water like the Margaree or Morell. |\n| Reel | Large-arbor reel with a reliable disc drag and 100+ yards of backing — salmon make long, fast runs. |\n| Line | Floating line for summer low water; sink-tip for early season/high water and deeper pools. |\n| Flies | Barbless only, by law. Classic patterns: Bombers and dry flies for low summer water; wet flies like Green Machine, Butterfly, and Undertaker for higher/cooler water. |\n| Extras | Rubber landing net (barbless-legal, fish-safe), forceps for quick unhooking, thermometer to self-check water temperature against Warm Water Protocol thresholds. |",
+      "sources": []
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "Since every fish must be released, how you handle it matters more here than in almost any other regional fishery:\n\n1. **Play fish efficiently, not to exhaustion** — use rod angle and side pressure to land it as quickly as the tackle allows.\n2. **Keep the fish in the water.** Use a rubber-mesh net or tail the fish in the current; avoid lifting it out for photos.\n3. **Never touch the gills**, and minimize handling time to seconds, not minutes.\n4. **Revive facing into current** until it swims off under its own power — this can take several minutes in warm water.\n5. **Check the thermometer.** If river temperature is pushing 20°C+, consider not fishing at all — catch-and-release mortality climbs sharply as water warms, which is exactly why the Warm Water Protocol exists.",
+      "sources": [
+        { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Wild Atlantic salmon in the southern Gulf of St. Lawrence and Bay of Fundy have been in long-term decline, driven by marine survival issues, habitat pressure, and historical overfishing — which is why the entire recreational fishery has been catch-and-release for years running, with no indication that changes for 2026. There is **no legal recreational harvest of wild Atlantic salmon** in NB, NS, or PEI at this time; retaining a wild salmon is a serious offence. Farmed Atlantic salmon sold in stores is a completely separate supply and not connected to this recreational fishery.",
+      "sources": [
+        { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "River/freshwater (SFA 15 & 16)", "season": "Spring kelt fishery ~Apr 15–May 15; main season varies by river through fall", "bag_limit": "Catch-and-release only — no retention. Daily hook-up limit: 5/day spring; 2/day Miramichi & Restigouche remainder of season; 4/day other open rivers", "size_limit": "Not applicable — all fish released", "notes": "Barbless artificial fly only. Salmon licence required in addition to Outdoors Card. Non-residents must fish with a licensed guide or resident companion. Warm Water Protocol applies on Miramichi, Restigouche, Nepisiguit.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026", "last_verified": "2026" },
+    { "province": "NS", "water_type": "River/freshwater (SFA 18)", "season": "Margaree: June 1–Oct 15 (fly-only from May 15); other NS rivers vary", "bag_limit": "Catch-and-release only — no retention. Daily hook-up limit: 4/day", "size_limit": "Not applicable — all fish released", "notes": "Apr 15–May 14 single hook lure/fly permitted (no bait); May 15 onward artificial fly only. Barbless required. Salmon or general fishing licence required; DFO manages the fishery, province issues licences. Warm Water Protocol applies on the Margaree.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "River/freshwater (SFA 17)", "season": "Main season varies by river; extended fall season ~Sep 16–Oct 31 on Morell & Mill rivers", "bag_limit": "Catch-and-release only — no retention. Daily hook-up limit: 2/day", "size_limit": "Not applicable — all fish released", "notes": "Barbless fly only, and single barbless fly/lure specifically during the fall extended season. Separate salmon licence required on top of base angling licence.", "source_url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/2024-extended-angling-season", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Retention", "value": "None — 100% catch-and-release across NB/NS/PEI in 2026" },
+    { "label": "Hook-up Limit", "value": "2-5 fish/day depending on province and time of season" },
+    { "label": "Gear Rule", "value": "Barbless artificial fly only, no bait, no treble hooks" },
+    { "label": "Licence", "value": "Separate salmon licence required beyond general angling licence, all 3 provinces" },
+    { "label": "Watch For", "value": "Warm Water Protocol closures on Miramichi, Restigouche, Nepisiguit, Margaree in hot weather" },
+    { "label": "Top Rivers", "value": "Miramichi & Restigouche (NB), Margaree (NS), Morell & Mill (PEI)" }
+  ],
+  "sources": [
+    { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" },
+    { "label": "DFO — Atlantic Salmon, a Remarkable Life Cycle", "url": "https://www.dfo-mpo.gc.ca/species-especes/publications/salmon-saumon/lifecycle-cyclevital/index-eng.html" },
+    { "label": "Miramichi Salmon Association — About the Atlantic Salmon", "url": "https://miramichisalmon.ca/education/atlantic-salmon/" },
+    { "label": "Government of Prince Edward Island — Extended Angling Season", "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/2024-extended-angling-season" },
+    { "label": "Canada Fishing Licence — New Brunswick Fishing Licence Guide 2026", "url": "https://canadafishinglicence.com/provinces/new-brunswick/" },
+    { "label": "Canada Fishing Licence — PEI Fishing Licence Guide 2026", "url": "https://canadafishinglicence.com/provinces/pei/" }
+  ]
+}

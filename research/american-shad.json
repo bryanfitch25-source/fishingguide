@@ -1,0 +1,84 @@
+{
+  "slug": "american-shad",
+  "common_name": "American Shad",
+  "scientific_name": "Alosa sapidissima",
+  "category": "saltwater",
+  "provinces": ["NB", "NS"],
+  "summary": "A hard-fighting anadromous herring relative that runs up Maritime rivers by the tens of thousands each spring — the Saint John River near Mactaquac in New Brunswick and several Nova Scotia rivers, especially the Annapolis, are the region's best-known runs. Often called \"the poor man's salmon\" for the sport it offers on light tackle.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "American shad (*Alosa sapidissima*) are the largest member of the herring family in Atlantic Canada — deep-bodied, strongly compressed, silvery fish with a row of dark spots trailing back from the shoulder. They're anadromous: adults live at sea and run up freshwater rivers each spring to spawn, arriving in the Saint John Region in numbers described as being visible \"by the tens of thousands\" during the peak of the run. Typical rod-caught fish run 1-3.5 kg (2-8 lb), and despite their herring-family lineage, they pull hard and jump, which is exactly why anglers call them the poor man's salmon.\n\nShad do not feed during their spawning migration, so strikes are believed to be triggered by aggression, reflex, or simple annoyance at a lure invading their space rather than genuine feeding behavior — which affects how you need to fish for them.",
+      "sources": [
+        { "label": "Outdoor Canada, 9 Nova Scotia rivers with spectacular shad fishing", "url": "https://www.outdoorcanada.ca/9-nova-scotia-rivers-with-spectacular-shad-fishing/" },
+        { "label": "Discover Saint John, Fishing in the Saint John Region", "url": "https://discoversaintjohn.com/fishing-saint-john-region" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "**New Brunswick:** the Saint John River is the region's headline shad water, with the spring run concentrating around **Mactaquac** — the Mactaquac Dam (built 1967) has historically been a bottleneck/counting point for the run, though DFO has moved to close the Mactaquac Biodiversity Facility that supported the population, a development worth watching for anyone planning trips around this fishery in future years.\n\n**Nova Scotia:** the **Annapolis River** is internationally known as one of the best places anywhere to catch American shad, with fish entering by the thousands in season and fifty-fish days reported as realistic on a good day, in the right spot. The **Shubenacadie River, Stewiacke River, and Nine Mile River**, along with several rivers through the Annapolis Valley, all carry healthy shad runs as well. On the Stewiacke specifically, look for fast-moving water no more than a couple of feet deep to find catchable fish.",
+      "sources": [
+        { "label": "Outdoor Canada, 9 Nova Scotia rivers with spectacular shad fishing", "url": "https://www.outdoorcanada.ca/9-nova-scotia-rivers-with-spectacular-shad-fishing/" },
+        { "label": "Fish Nova Scotia, Annapolis River", "url": "https://www.fishnovascotia.ca/places/annapolis-river" },
+        { "label": "Fish Nova Scotia, Stewiacke River", "url": "https://www.fishnovascotia.ca/places/stewiacke-river" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Spring is the entire game with this species — shad push into Maritime rivers to spawn as water temperatures rise, with the Saint John Region run typically visible through spring, and Nova Scotia's Annapolis Valley rivers seeing their runs on a similar spring timetable. Within a day, dawn and dusk (the sudden light change) are frequently when the bite turns on hardest, sometimes triggering large numbers of fish to strike within a short window.",
+      "sources": [
+        { "label": "Outdoor Life, How to Catch Shad, a Beginner's Guide", "url": "https://www.outdoorlife.com/fishing/how-to-catch-shad/" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Medium-light spinning rod, 6-7 ft. |\n| Reel | Spinning reel holding ~150 yards of 6-10 lb line. |\n| Lures | Classic shad darts and small casting spoons; curly-tail jigs and small crappie jigs also work. |\n| Extras | Split shot or a small egg sinker to get light darts/jigs down in faster current. |",
+      "sources": [
+        { "label": "Outdoor Life, How to Catch Shad, a Beginner's Guide", "url": "https://www.outdoorlife.com/fishing/how-to-catch-shad/" }
+      ]
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Cast a shad dart or small jig upstream or across the current, let it sink for a second, then start a slow, steady retrieve — keep it moving low, just off bottom, since shad travel low in the water column.\n2. Work the lure through the water column with a gentle up-and-down jigging motion, imitating an injured baitfish.\n3. Target eddies, the outside of bends, creek mouths, and places where the river widens — shad pause to rest in these calmer pockets before pushing on to the next stretch of current.\n4. Since shad aren't feeding, expect strikes to come from putting the lure right in their path repeatedly rather than from a scent or bait appeal — persistence and precise current reads matter more than lure choice.\n5. Fish dawn and dusk first if your schedule allows — the light change alone can trigger a short, intense window of activity.",
+      "sources": [
+        { "label": "MeatEater Fishing, How to Catch Spring Shad", "url": "https://www.themeateater.com/fish/general/how-to-catch-spring-shad" },
+        { "label": "Outdoor Life, How to Catch Shad, a Beginner's Guide", "url": "https://www.outdoorlife.com/fishing/how-to-catch-shad/" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "Shad have soft mouths and are easy to lose or injure on a hard hookset — use steady rod pressure rather than trout-style hooksets and keep fish in the water as much as possible when unhooking, especially any you intend to release. Given the DFO-flagged concerns around the Saint John River population (see Conservation notes below), practicing careful release on non-retained fish is worth doing even where not strictly mandated.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "American shad status varies by watershed and is actively being reviewed. COSEWIC (Canada's species-at-risk assessment body) has listed American shad as a **prioritized candidate species** for a formal status assessment — meaning it is flagged as a species of concern under active review, though it has not (as of the sources reviewed here) received a formal at-risk designation. Separately, the Saint John River's Mactaquac Dam has been a long-standing bottleneck for the population, and DFO has moved to close the Mactaquac Biodiversity Facility that supported it, a signal that this population may be under increasing pressure.\n\nGiven both signals, fish this species conservatively: check the current DFO Maritimes/Gulf Region in-season notices for the river you're fishing before your trip, since quotas and any conservation-driven restrictions can change year to year and mid-season, and treat any bag limit or closure notice as taking precedence over general information in this guide.",
+      "sources": [
+        { "label": "Nova Scotia Fishing Forum, Cosewic Lists American Shad As \"mid-Priority\" Candidate", "url": "https://www.novascotiafishing.com/threads/cosewic-lists-american-shad-as-mid-priority-candidate.13065/" },
+        { "label": "CBC News, First Nations fighting to save St. John River salmon, as DFO closes support facility", "url": "https://www.cbc.ca/news/canada/new-brunswick/first-nations-fight-for-wolastoq-salmon-extinction-9.7272910" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Tidal/freshwater (anadromous)", "season": "Spring run timing varies year to year with water temperature — check current DFO Maritimes/Gulf Region in-season notices for the Saint John River before your trip", "bag_limit": "No specific current daily quota independently confirmed for this guide — historical federal regulation references a daily quota in the low single digits for shad in some Maritime waters, but exact current numbers must be confirmed against the current DFO in-season notice for the water you're fishing given active status review of this species", "size_limit": "Not independently confirmed — check current DFO notice", "notes": "No provincial angling licence is required in tidal water; freshwater sections of the Saint John River above tidal influence may require an NB angling licence — confirm for your specific location. American shad status is under active COSEWIC review; treat any current DFO closure or quota notice as authoritative over this guide.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026 — confirm current in-season notice before fishing" },
+    { "province": "NS", "water_type": "Tidal/freshwater (anadromous)", "season": "Spring run, timing varies by river and year — check current DFO Maritimes Region in-season notices for the Annapolis, Shubenacadie, Stewiacke, or Nine Mile rivers before your trip", "bag_limit": "No specific current daily quota independently confirmed for this guide — check the current DFO in-season notice for the river you're fishing", "size_limit": "Not independently confirmed — check current DFO notice", "notes": "Nova Scotia inland waters restrict some anadromous species fishing methods to angling only, with some rivers restricting fishing to daylight hours only for certain species — confirm exact method/time-of-day rules for shad on your river via the current DFO notice. No provincial angling licence required in tidal water.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html", "last_verified": "2026 — confirm current in-season notice before fishing" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring spawning run — exact timing varies year to year with water temperature" },
+    { "label": "Where (NB)", "value": "Saint John River around Mactaquac" },
+    { "label": "Where (NS)", "value": "Annapolis River (renowned run), Shubenacadie, Stewiacke, Nine Mile River" },
+    { "label": "Gear", "value": "Light spinning rod, shad darts/small spoons, slow retrieve near bottom" },
+    { "label": "Watch", "value": "COSEWIC prioritized candidate for status review — check current DFO notices before keeping fish" }
+  ],
+  "sources": [
+    { "label": "Outdoor Canada, 9 Nova Scotia rivers with spectacular shad fishing", "url": "https://www.outdoorcanada.ca/9-nova-scotia-rivers-with-spectacular-shad-fishing/" },
+    { "label": "Discover Saint John, Fishing in the Saint John Region", "url": "https://discoversaintjohn.com/fishing-saint-john-region" },
+    { "label": "Fish Nova Scotia, Annapolis River", "url": "https://www.fishnovascotia.ca/places/annapolis-river" },
+    { "label": "Fish Nova Scotia, Stewiacke River", "url": "https://www.fishnovascotia.ca/places/stewiacke-river" },
+    { "label": "Outdoor Life, How to Catch Shad, a Beginner's Guide", "url": "https://www.outdoorlife.com/fishing/how-to-catch-shad/" },
+    { "label": "MeatEater Fishing, How to Catch Spring Shad", "url": "https://www.themeateater.com/fish/general/how-to-catch-spring-shad" },
+    { "label": "Nova Scotia Fishing Forum, Cosewic Lists American Shad As \"mid-Priority\" Candidate", "url": "https://www.novascotiafishing.com/threads/cosewic-lists-american-shad-as-mid-priority-candidate.13065/" },
+    { "label": "CBC News, First Nations fighting to save St. John River salmon, as DFO closes support facility", "url": "https://www.cbc.ca/news/canada/new-brunswick/first-nations-fight-for-wolastoq-salmon-extinction-9.7272910" },
+    { "label": "DFO Maritimes Region, Tidal and freshwater (Diadromous) recreational fisheries", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" }
+  ]
+}

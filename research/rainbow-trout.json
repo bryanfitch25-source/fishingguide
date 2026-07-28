@@ -1,0 +1,82 @@
+{
+  "slug": "rainbow-trout",
+  "common_name": "Rainbow Trout",
+  "scientific_name": "Oncorhynchus mykiss",
+  "category": "freshwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Introduced, hard-fighting trout stocked and naturalized across all three Maritime provinces, with PEI's river-run 'sea-run' rainbows drawing the most dedicated following — best fished with light spinning gear or fly tackle in rivers, streams, and stocked lakes from spring through the fall extended season.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Rainbow trout (*Oncorhynchus mykiss*) are native to the Pacific coast of North America and were introduced to Atlantic Canada for sport fishing; they are not native to NB, NS, or PEI but are now established through stocking and, in some river systems, naturalized wild populations.\n\nIdentify them by an olive-green to blue-green back, a pink-to-reddish lateral band running the length of the body (most pronounced on river fish), small evenly-distributed black spots on the body and tail, and a lack of teeth on the tongue (a difference from brown trout). Rainbows are aggressive, acrobatic fighters — a big part of their popularity with anglers who also fish brook and brown trout in the same waters.\n\nIn PEI specifically, some river systems support a naturalized, sea-run-like population that moves between river and estuary, giving anglers a bigger, harder-pulling fish than a typical stocked-lake rainbow.",
+      "sources": [
+        { "label": "Cast & Fly — Rainbow vs Brown Trout: ID, Habits & Fly Fishing Tips", "url": "https://castandfly.com/rainbow-vs-brown-trout/" },
+        { "label": "Fishing Skillz — Trout Identification Guide", "url": "https://www.fishingskillz.com/identify-different-trout-species/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "- **Saint John River system (NB)** — a broad, well-known fishery holding rainbow trout alongside brown trout, bass, and other species.\n- **Bras d'Or Lakes and tributaries (Cape Breton, NS)** — a popular recreational rainbow fishery, with rivers flowing into the Bras d'Or supporting both stocked fish and spawning escapees.\n- **Albro Lake, Halifax (NS)** — HRM's most popular urban stocked fishery, regularly stocked with rainbow and brook trout.\n- **Morell, Valleyfield, West, Naufrage, and Trout Rivers (PEI)** — home to PEI's signature rainbow trout and brook trout river fisheries.\n- Nova Scotia stocks roughly 200 lakes each spring and another 200 in the fall province-wide with rainbow and brook trout — check the current Anglers' Handbook stocked-lakes list for a water near you.",
+      "sources": [
+        { "label": "Angler's Atlas — St. John River", "url": "https://www.anglersatlas.com/place/724844/st-john-river" },
+        { "label": "Canada Fishing Licence — Nova Scotia Stocked Lakes Guide 2026", "url": "https://canadafishinglicence.com/guides/nova-scotia-stocked-lakes-trout-guide/" },
+        { "label": "Tourism PEI — River Fishing", "url": "https://www.tourismpei.com/askanislander/questions/river-fishing" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "### New Brunswick\nMost Regional Fishery Areas (RFAs) open rivers/streams **May 1 – September 15** and lakes **May 15 – September 15** for trout, though exact dates vary by RFA — check the current NB Fish Regulations Summary for your specific water.\n\n### Nova Scotia\nGeneral inland trout season runs **April 1 – September 30**, with natural bait prohibited province-wide in September (artificial fly/unbaited lure only that month). NS also runs a dedicated Winter Sportfishing Weekend program on select stocked lakes.\n\n### PEI\nRegular rainbow trout season runs roughly **May 15 – November 15** on scheduled river systems, and PEI adds an **extended season (Sept 16 – Dec 31 in most locations, to Nov 30 on some ponds)** where only single barbless fly or barbless lure (no bait) is permitted.",
+      "sources": [
+        { "label": "Canada Fishing Licence — Nova Scotia Fishing Regulations 2026", "url": "https://canadafishinglicence.com/guides/nova-scotia-fishing-season-regulations-2026/" },
+        { "label": "Government of Prince Edward Island — Extended Angling Season", "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/2024-extended-angling-season" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Fly rod | 5-6 wt, 9 ft, floating line for rivers and stocked lakes alike. |\n| Spinning rod | Light 6-7 ft spinning rod, 4-8 lb line — rainbows fight hard for their size and a soft tip protects light line/tippet. |\n| Flies | Nymphs (Hare's Ear, Pheasant Tail) fished under an indicator for river fish; small streamers for aggressive, actively-feeding fish. |\n| Lures | Small inline spinners (1/16-1/8 oz) and small spoons — flash and vibration are the trigger. |\n| Extras | Barbless single hook/fly during PEI's extended season (legally required); small landing net for handling fish quickly. |",
+      "sources": [
+        { "label": "KastKing — How to Find the Difference Between Trout Species", "url": "https://kastking.com/blogs/how-to/how-to-find-the-difference-between-trout-species" }
+      ]
+    },
+    {
+      "heading": "Technique",
+      "body_md": "**Fly fishing** excels in clear water and shallow streams where you can read specific lies or rising fish. Dead-drift a nymph through likely current seams and pocket water; switch to a small streamer stripped with short pulls when fish are actively chasing baitfish.\n\n**Spin fishing** covers more water faster and handles murky or windy conditions better than fly gear. Cast a small inline spinner or spoon across and slightly upstream of a run, retrieving just fast enough to keep the blade turning — rainbows in moving water tend to hit hardest on a retrieve that swings naturally through a seam rather than one stripped straight back.\n\nRainbows confined to a single lake their whole life are generally less selective feeders than river fish that need to keep growing toward reproduction — lake stockers will often hit a lure or fly more readily than a wary river fish.",
+      "sources": [
+        { "label": "Field & Stream — Spin Fishing for Trout: A Complete Guide", "url": "https://fieldandstream.com/stories/fishing/freshwater-fishing/trout-fishing/spin-fishing-for-trout" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "- Wet your hands before handling any trout you plan to release — dry hands strip the protective slime coat and increase infection risk.\n- Keep fish in the water as much as possible; if photographing, support horizontally and keep the time out of water under 10 seconds.\n- Use barbless hooks where required (mandatory during PEI's extended season) to speed release regardless of local rule — it reduces handling injury on any water.\n- If you're keeping fish within the legal limit for the table, dispatch and bleed promptly rather than stringing live fish for an extended period.",
+      "sources": []
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Rainbow trout are an introduced species in the Maritimes, sustained largely through provincial stocking programs (NS alone stocks roughly 400 lakes annually across spring and fall). Because they're not native, there's generally no conservation concern about harvesting them within posted limits — in fact stocked-lake fisheries are specifically managed to be harvested. No regional mercury/consumption advisory specific to rainbow trout turned up in current provincial notices; as with any freshwater fish, check your province's general fish consumption advisory list if fishing a specific lake or industrial-adjacent watershed.",
+      "sources": [
+        { "label": "Canada Fishing Licence — Nova Scotia Stocked Lakes Guide 2026", "url": "https://canadafishinglicence.com/guides/nova-scotia-stocked-lakes-trout-guide/" }
+      ]
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Freshwater rivers, streams, lakes", "season": "Most RFAs: rivers/streams May 1–Sep 15; lakes May 15–Sep 15 (varies by RFA)", "bag_limit": "5 fish combined daily limit across trout species (rainbow/brown/brook combined), varies by RFA", "size_limit": "Minimum 15 cm total length", "notes": "Regular angling licence covers rainbow trout (no separate salmon licence needed). Some RFAs impose stricter local limits — confirm against the current NB Fish Regulations Summary for your specific water.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Freshwater rivers, streams, lakes", "season": "Apr 1–Sep 30 inland; Sep 1–30 fly/unbaited-lure only province-wide", "bag_limit": "Combined limit of 5 fish/day across rainbow, brown, and brook trout; some Special Management Areas impose stricter local limits", "size_limit": "Generally no minimum size outside Special Management Areas (some SMAs require one fish over 35 cm)", "notes": "General Fishing Licence required. Natural bait prohibited every September province-wide. Bras d'Or Lakes area open all year with a reduced 2-fish limit Oct-Mar in some sections.", "source_url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Freshwater rivers, streams, ponds", "season": "Regular season ~May 15–Nov 15; extended season ~Sep 16–Dec 31 (to Nov 30 on some ponds), single barbless fly/lure only", "bag_limit": "3 rainbow trout per day", "size_limit": "Only 1 of the 3 daily fish may be greater than 40 cm", "notes": "Extended season restricted to single barbless fly or barbless lure, no bait. Regular PEI angling licence required (~$10 resident plus mandatory Wildlife Conservation Fund contribution).", "source_url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/2024-extended-angling-season", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring through fall, varies by province; PEI has a fall extended fly/lure-only season" },
+    { "label": "NB Bag Limit", "value": "5 combined trout species/day" },
+    { "label": "NS Bag Limit", "value": "5 combined trout species/day; Sept fly/lure only" },
+    { "label": "PEI Bag Limit", "value": "3/day, only 1 over 40 cm" },
+    { "label": "Best Gear", "value": "Light spinning rod with small inline spinners, or 5-6 wt fly rod with nymphs/streamers" },
+    { "label": "Top Waters", "value": "Saint John River (NB), Bras d'Or Lakes (NS), Morell & West Rivers (PEI)" }
+  ],
+  "sources": [
+    { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+    { "label": "Government of Prince Edward Island — Extended Angling Season", "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/2024-extended-angling-season" },
+    { "label": "Cast & Fly — Rainbow vs Brown Trout: ID, Habits & Fly Fishing Tips", "url": "https://castandfly.com/rainbow-vs-brown-trout/" },
+    { "label": "Canada Fishing Licence — Nova Scotia Stocked Lakes Guide 2026", "url": "https://canadafishinglicence.com/guides/nova-scotia-stocked-lakes-trout-guide/" },
+    { "label": "Angler's Atlas — St. John River", "url": "https://www.anglersatlas.com/place/724844/st-john-river" }
+  ]
+}

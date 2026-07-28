@@ -1,0 +1,119 @@
+{
+  "slug": "winter-flounder",
+  "common_name": "Winter Flounder",
+  "scientific_name": "Pseudopleuronectes americanus",
+  "category": "saltwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Small, easy-to-catch flatfish taken from wharves, shallow bays, and estuary mouths on mud-sand bottom, best in spring and early summer on light bottom tackle with worms or clams.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Winter flounder (*Pseudopleuronectes americanus*, also called blackback or mud dab locally) are a right-eyed flatfish — both eyes sit on the right side of the body, with the eyed side showing a brown, reddish-brown, olive-green, or almost-black coloring that shifts to match the bottom, and the blind (underside) side pale white. The lateral line is nearly straight (not strongly arched like some other flatfish), the tail is rounded, and the mouth is small with few or no teeth — a key reason small hooks out-produce big ones.\n\nMost fish caught from shore run well under the maximum size — DFO lists winter flounder growing to roughly 50 cm (about 20 in), with males living around 11 years and females around 12, though some sources report fish to 15+ years and 58 cm in slower-growing populations. They're sight feeders, most active by day, and prefer a narrow water temperature band of about 12–15°C, which drives predictable seasonal movement: into shallow bays and inshore flats when the water is in that range, off into deeper/cooler water when it isn't.",
+      "sources": [
+        { "label": "DFO — Species Profile, Winter Flounder", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/winter-flounder-plie-rouge-eng.html" },
+        { "label": "DFO — Rebuilding Plan: Winter Flounder, NAFO Division 4T", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/flounder-limande/winter-flounder-plie-rouge-eng.html" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "### Season\nSpring through early summer is the classic shore window in this region — fish move into shallow inshore flats, estuary mouths, and harbours to feed and spawn as water temperatures come into their preferred 12–15°C range, then drift back to deeper, cooler water as summer peaks. Local anglers report the best shore fishing from roughly April/May into July, tapering as water warms.\n\n### Spawning\nDFO's species profile notes winter flounder in the Bay of Fundy region spawn inshore in spring (May), conducted mostly at night; more broadly across their range spawning runs late winter into early spring (the fish's namesake season), with regional timing varying by latitude and water temperature. No direct spawning-timing study exists specifically for the southern Gulf of St. Lawrence stock.\n\n### Tide\nLocal reports consistently favor high tide through the start of the falling tide — fish move onto shallow flats and into creek/harbour mouths to feed as the tide floods, then start dropping back as it ebbs. PEI tourism guidance specifically calls out high-to-falling tide as the productive window.",
+      "sources": [
+        { "label": "DFO — Species Profile, Winter Flounder", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/winter-flounder-plie-rouge-eng.html" },
+        { "label": "Tourism PEI, Ask an Islander — flounder fishing in PEI", "url": "https://www.tourismpei.com/askanislander/questions/i-want-to-fish-for-flounder-in-pei-where-should-i-do-that-i-am-there-the" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "Winter flounder sit on soft mud, sand, or pebbled bottom in fairly shallow water (DFO notes usually under 100 m, but shore anglers are typically working single-digit-to-low-teens feet of depth) — river mouths, harbour flats, and the edges of channels and sandbars are the pattern to look for everywhere in this region.\n\n**New Brunswick (Bay of Fundy side):** Beaver Harbour wharf is a locally reported producer for flounder (along with mackerel and bluefish); Dipper Harbour wharf is fished for flounder as the tide comes in. Forum consensus is that Bay of Fundy flounder hold in about 10 ft of water and move in and out with the tide to stay near that depth.\n\n**Nova Scotia:** Eastern Passage, particularly around the sandbar off McCormacks Beach near the boardwalk, and the channel down toward Fisherman's Cove, are reported producers in the Halifax Harbour area. More generally, river mouths and tidal channels along the Nova Scotia coast hold fish.\n\n**Prince Edward Island:** The Old Rustico breakwater wharf, Northport Harbour near Alberton (fishable directly off the wharf), and the MacIntyre Creek bridge on Route 350 in Canavoy are all named local spots. Charlottetown Harbour is another commonly fished area for shore anglers.\n\nThese are angler-reported locations from local forums and tourism sources, not DFO-designated fishing grounds — access, bottom conditions, and productivity change season to season, so treat them as starting points.",
+      "sources": [
+        { "label": "New Brunswick Fishing Forum, Beaver Harbour Flounder?", "url": "https://www.newbrunswickfishing.com/threads/beaver-harbour-flounder.1845/" },
+        { "label": "New Brunswick Fishing Forum, Flounder", "url": "https://www.newbrunswickfishing.com/threads/flounder.1454/" },
+        { "label": "Nova Scotia Fishing Forum, Where Are Those Flounders!?", "url": "https://www.novascotiafishing.com/threads/where-are-those-flounders.5081/" },
+        { "label": "Tourism PEI, Ask an Islander — flounder fishing in PEI", "url": "https://www.tourismpei.com/askanislander/questions/i-want-to-fish-for-flounder-in-pei-where-should-i-do-that-i-am-there-the" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod | Light spinning rod, 6–7 ft — this is a light-tackle, finesse fishery; a heavy rod masks the soft bite. |\n| Reel | Small-to-medium spinning reel with 8–10 lb mono or light braid. |\n| Rig | Hi-lo (two-hook) bottom rig with a pyramid or bank sinker just heavy enough to hold bottom in the current — the standard PEI/Maritime setup for shore flounder. |\n| Hooks | Small — size 6–10 long-shank or wide-gap — matched to the flounder's small mouth. |\n| Bait | Sandworms/bloodworms or clam strips are the standard local bait; cut fish, squid, mackerel, herring, and shrimp are also reported to work when worms aren't available. |\n| Extras | Small cooler with ice, a rag for handling slimy fish, needle-nose pliers for small hooks set deep in a small mouth. |",
+      "sources": [
+        { "label": "Tourism PEI, Ask an Islander — flounder fishing in PEI", "url": "https://www.tourismpei.com/askanislander/questions/i-want-to-fish-for-flounder-in-pei-where-should-i-do-that-i-am-there-the" },
+        { "label": "Nova Scotia Fishing Forum, Flounder Tips Needed", "url": "https://www.novascotiafishing.com/threads/flounder-tips-needed.4915/" }
+      ]
+    },
+    {
+      "heading": "Technique",
+      "body_md": "Winter flounder fishing is a slow, patient, stationary game — not a search-and-cover-water fishery like mackerel or striped bass.\n\n1. Find a flat, channel edge, or sandbar near a harbour mouth, wharf, or river mouth with mud/sand bottom and a couple feet to low double-digit feet of water on the tide you're fishing.\n2. Bait both hooks of the hi-lo rig with a piece of sandworm/bloodworm or a clam strip — small pieces; flounder have small mouths and pick at bait rather than inhaling it.\n3. Cast out and let the rig settle to bottom. Keep the rod tip low and watch it, or hold the line lightly between two fingers — flounder bite as light taps and nibbles, not hard strikes.\n4. Resist striking on the first tap. Let the fish mouth the bait for a few seconds — flounder often peck at bait repeatedly before committing — then come tight with a firm, steady sweep rather than a hard snap.\n5. If nothing happens after 10–15 minutes in one spot, especially near slack tide, move a short distance along the flat/channel edge rather than waiting it out — flounder aren't evenly distributed even within a good area.\n6. Fish the high-to-falling tide window where possible; activity drops off noticeably as the flat empties out on a big ebb.",
+      "sources": [
+        { "label": "Tourism PEI, Ask an Islander — flounder fishing in PEI", "url": "https://www.tourismpei.com/askanislander/questions/i-want-to-fish-for-flounder-in-pei-where-should-i-do-that-i-am-there-the" },
+        { "label": "Nova Scotia Fishing Forum, Flounder Tips Needed", "url": "https://www.novascotiafishing.com/threads/flounder-tips-needed.4915/" }
+      ]
+    },
+    {
+      "heading": "Handling & Release",
+      "body_md": "Winter flounder have a small mouth, so hooks can go in deep on a missed hookset — use needle-nose pliers rather than fingers, and keep a hook-out tool handy for fish that are gut- or gill-hooked.\n\n- If you're keeping fish to eat, bleed and ice them promptly like any other bottom fish — flatfish flesh holds up well but still benefits from quick icing on a warm day.\n- Given the documented long-term decline of this stock in the southern Gulf of St. Lawrence (see Conservation notes below), consider releasing fish you don't intend to eat, and handle release fish quickly and with wet hands to protect the slime coat.\n- No Canadian federal mercury consumption advisory specific to winter flounder turned up in this research — flatfish generally test low for mercury compared to large predatory species, but no NB/NS/PEI-specific advisory was found to cite directly.",
+      "sources": [
+        { "label": "DFO — Rebuilding Plan: Winter Flounder, NAFO Division 4T", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/flounder-limande/winter-flounder-plie-rouge-eng.html" }
+      ]
+    },
+    {
+      "heading": "Conservation & Regulatory Notes",
+      "body_md": "This is the section anglers in this region most need to read before keeping fish.\n\n**Stock decline (southern Gulf of St. Lawrence, NAFO Division 4T):** The commercial winter flounder Total Allowable Catch was cut from 1,000 tonnes to 300 tonnes in 2012 as the stock declined, then cut again to 150 tonnes in 2022 with no sign of rebuilding. In February 2023, DFO fully closed the directed commercial winter flounder fishery in 4T (winter flounder is now bycatch-only in other groundfish fisheries, at a 150-tonne annual allocation with per-trip bycatch caps being tightened through 2027). A formal rebuilding plan for the stock was approved in March 2024. Winter flounder size-at-maturity has also dropped over time — from roughly 22–24 cm in the 1970s to about 17 cm now — a sign of sustained fishing/environmental pressure on the stock.\n\n**Recreational fishing is NOT closed.** DFO's own rebuilding-plan documentation confirms an authorized recreational groundfish fishery with access to winter flounder remains open in Maritime Provinces waters, and states no removal estimates exist for recreational catch — DFO's qualitative read is that recreational take is likely minimal since most anglers in the aggregate groundfish fishery are targeting cod. Given the commercial closure and confirmed stock decline, fish conservatively and lean toward releasing surplus catch.\n\n**How the recreational bag limit works — this is not a flounder-specific limit.** In both DFO regions covering NB/NS/PEI, winter flounder falls under the general recreational \"groundfish\" aggregate bag limit alongside cod, haddock, pollock, and other groundfish — there is no flounder-specific bag or size limit in either region's notices. See the regulations table below for the current numbers by province, and note the Gulf Region limit differs from the Maritimes Region limit (Atlantic-coast NS and Bay of Fundy).",
+      "sources": [
+        { "label": "DFO — Rebuilding Plan: Winter Flounder, NAFO Division 4T", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/flounder-limande/winter-flounder-plie-rouge-eng.html" },
+        { "label": "DFO Gulf Region — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+        { "label": "DFO Maritimes Region — Recreational Groundfish Fishing", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" }
+      ]
+    }
+  ],
+  "regulations": [
+    {
+      "province": "NB",
+      "water_type": "Tidal/saltwater (DFO Gulf Region — Northumberland Strait/southern Gulf of St. Lawrence coast)",
+      "season": "Groundfish aggregate fishery open April 15 – October 1, 2026 within 50 m of the coastline (per the 2026 Gulf variation order, dated April 14, 2026)",
+      "bag_limit": "Winter flounder counts toward the 15 groundfish/day aggregate limit for NB waters (zero retention on cod, white hake, skate, haddock, pollock, Atlantic halibut, and wolffish species within that aggregate). No flounder-specific bag limit found.",
+      "size_limit": "None specified in the DFO notice for winter flounder",
+      "notes": "No provincial licence needed in tidal/salt water. A separate window (July 16 – Aug 21, 2026) allows retention of up to 5 cod/white hake within the same 15-fish aggregate — this does not add to the flounder allowance. Verify current-year dates against the live Gulf Region notice before each trip, as these variation orders are reissued annually and can change mid-season.",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    },
+    {
+      "province": "NS",
+      "water_type": "Tidal/saltwater — split by DFO region depending on coast",
+      "season": "Northumberland Strait side (Gulf Region): April 15 – October 1, 2026 aggregate season, within 50 m of coast. Atlantic coast/Bay of Fundy side (Maritimes Region, Halifax Harbour and west): open February 1 – December 31. Hartlen Point and east (Maritimes Region): open 3rd Saturday in June through Labour Day only.",
+      "bag_limit": "Gulf Region (Northumberland Strait side): winter flounder counts toward the 15 groundfish/day aggregate (zero retention on cod, white hake, skate, haddock, pollock, halibut, wolffish). Maritimes Region, Halifax Harbour and west: 10 groundfish/day aggregate (cod retention further restricted to a mid-June–Labour Day window, max 5 cod within that 10). Maritimes Region, Hartlen Point and east: 5 groundfish/day aggregate.",
+      "size_limit": "None specified for winter flounder in either region's notice",
+      "notes": "Nova Scotia has two different DFO regions and two different rule sets depending on which coast you're fishing — Gulf Region rules apply on the Northumberland Strait side, Maritimes Region rules apply on the Atlantic coast/Bay of Fundy side. No provincial licence needed in tidal/salt water either way. Halibut, northern wolffish, and spotted wolffish may never be retained in Maritimes Region waters. Verify current dates/limits against the live DFO notices before each trip.",
+      "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html",
+      "last_verified": "2026"
+    },
+    {
+      "province": "PEI",
+      "water_type": "Tidal/saltwater (DFO Gulf Region)",
+      "season": "Groundfish aggregate fishery open April 15 – October 1, 2026 within 50 m of the coastline (per the 2026 Gulf variation order, dated April 14, 2026)",
+      "bag_limit": "Winter flounder counts toward the 5 groundfish/day aggregate limit for PEI waters (zero retention on cod, white hake, skate, haddock, pollock, Atlantic halibut, and wolffish species within that aggregate) — PEI's aggregate limit is lower than NB's and NS's Gulf-side limit (5 vs 15). No flounder-specific bag limit found.",
+      "size_limit": "None specified in the DFO notice for winter flounder",
+      "notes": "No provincial licence needed in tidal/salt water. A separate window (Aug 1 – Sept 5, 2026) allows limited cod/white hake retention within the aggregate; this does not add to the flounder allowance. Tourism PEI's own visitor-facing guidance cites a 5 flounder/day figure for July, consistent with the 5-fish aggregate. Verify current-year dates against the live Gulf Region notice before each trip.",
+      "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0",
+      "last_verified": "2026"
+    }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Spring through early summer best from shore; DFO groundfish aggregate season runs April 15 - Oct 1 in Gulf Region waters" },
+    { "label": "Best Tide", "value": "High through early falling tide" },
+    { "label": "Water Temp", "value": "Fish concentrate inshore in the 12-15°C range" },
+    { "label": "Bag Limit", "value": "No flounder-specific limit - counts toward the regional groundfish aggregate (15/day NB & NS Gulf-side, 5/day PEI, 10/day NS Maritimes Halifax-and-west, 5/day NS Maritimes Hartlen Point-and-east)" },
+    { "label": "Size Limit", "value": "None specified in current DFO notices" },
+    { "label": "Rig", "value": "Hi-lo bottom rig, size 6-10 hooks, small pieces of bloodworm/sandworm or clam strip" },
+    { "label": "Bite", "value": "Light taps and nibbles - let the fish mouth the bait a few seconds before a firm sweeping hookset" },
+    { "label": "Stock Status", "value": "Commercial fishery in southern Gulf (4T) fully closed since Feb 2023 due to sustained decline; recreational fishery remains open but fish conservatively" }
+  ],
+  "sources": [
+    { "label": "DFO — Species Profile, Winter Flounder", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/winter-flounder-plie-rouge-eng.html" },
+    { "label": "DFO — Rebuilding Plan: Winter Flounder, NAFO Division 4T", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/ifmp-gmp/flounder-limande/winter-flounder-plie-rouge-eng.html" },
+    { "label": "DFO Gulf Region — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO Maritimes Region — Recreational Groundfish Fishing", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" },
+    { "label": "New Brunswick Fishing Forum, Beaver Harbour Flounder?", "url": "https://www.newbrunswickfishing.com/threads/beaver-harbour-flounder.1845/" },
+    { "label": "Nova Scotia Fishing Forum, Where Are Those Flounders!?", "url": "https://www.novascotiafishing.com/threads/where-are-those-flounders.5081/" },
+    { "label": "Tourism PEI, Ask an Islander — flounder fishing in PEI", "url": "https://www.tourismpei.com/askanislander/questions/i-want-to-fish-for-flounder-in-pei-where-should-i-do-that-i-am-there-the" }
+  ]
+}

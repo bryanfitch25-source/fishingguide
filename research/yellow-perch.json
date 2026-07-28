@@ -1,0 +1,77 @@
+{
+  "slug": "yellow-perch",
+  "common_name": "Yellow Perch",
+  "scientific_name": "Perca flavescens",
+  "category": "freshwater",
+  "provinces": ["NB", "NS", "PEI"],
+  "summary": "Widespread, easy-to-catch freshwater panfish found in lakes across all three Maritime provinces — a reliable year-round target, especially popular through the ice in winter.",
+  "sections": [
+    {
+      "heading": "Know the Fish",
+      "body_md": "Yellow perch (*Perca flavescens*) are easy to identify: golden-yellow body, 6–8 dark vertical bars, and orange-tinged lower fins. They school tightly by size and are active feeders on insect larvae, small crustaceans, and baitfish, which is why perch fishing is often a fast, high-volume affair once you find the school. Most Maritime lake perch run 6–10 inches, with 12-inch-plus \"jumbos\" a nice bonus.\n\nPerch are native and common across most of NB and NS; on Prince Edward Island they aren't native but are established through stocking in a number of colder, spring-fed freshwater bodies, and are a popular ice-fishing target there.",
+      "sources": [
+        { "label": "New Brunswick Fishing Forum, Yellow Perch?", "url": "https://www.newbrunswickfishing.com/threads/yellow-perch.71/" }
+      ]
+    },
+    {
+      "heading": "Where to Find Them",
+      "body_md": "**New Brunswick:** widely reported across the Saint John River valley and Fredericton/Saint John area lakes — **French Lake** is called out by local anglers as one of the most consistently active yellow perch lakes, and in the Saint John area, **Douglas Lake** (off Loch Lomond Road), **Hunter Lake, McBrien's Lake, and First, Second, and Third Lakes** are all reported producers.\n\n**Nova Scotia:** perch are present in lakes throughout the province and are a common bycatch/target species wherever anglers fish for bass or trout in weedy lake systems.\n\n**PEI:** perch are stocked in a number of colder freshwater ponds and lakes on the island and are a particularly popular target for ice anglers in winter.",
+      "sources": [
+        { "label": "New Brunswick Fishing Forum, Yellow Perch?", "url": "https://www.newbrunswickfishing.com/threads/yellow-perch.71/" }
+      ]
+    },
+    {
+      "heading": "When to Go",
+      "body_md": "Yellow perch are a genuine year-round target in this region. Open-water fishing is best in spring right after ice-out (perch spawn early, in shallow water, and feed hard beforehand) and again in fall as they bulk up for winter. Through summer they tend to move a bit deeper and school around structure. Ice fishing is a major part of the yellow perch fishery here — schools concentrate predictably under the ice and can be caught in numbers through a single hole once located.",
+      "sources": [
+        { "label": "Wired2Fish, How to Chase Wintertime Yellow Perch", "url": "https://www.wired2fish.com/winter-fishing/how-to-chase-wintertime-yellow-perch" }
+      ]
+    },
+    {
+      "heading": "Gear",
+      "body_md": "| Item | Recommendation |\n|---|---|\n| Rod (open water) | Light spinning rod, 6–7 ft, 4-8 lb line. |\n| Rod (ice) | Short (24-32\") light-action ice rod with a sensitive spring or spiral bobber tip. |\n| Terminal tackle | Small jigs (1/16-1/8 oz), teardrop jigs, and jigging spoons in the 1.25-2 inch range. |\n| Bait | Fresh minnows (whole or a minnow head on a jig), waxworms, or maggots/spikes. |\n| Extras | A small sonar/flasher unit helps a lot for locating suspended schools through the ice. |",
+      "sources": [
+        { "label": "Outdoor Life, Tips for Catching Jumbo Yellow Perch Through the Ice", "url": "https://www.outdoorlife.com/fishing/tips-ice-fishing-jumbo-perch/" }
+      ]
+    },
+    {
+      "heading": "Technique",
+      "body_md": "1. Start fishing near bottom — perch feed close to bottom more often than not — then work up through the water column if you're marking fish higher.\n2. Tip a small jig or jigging spoon with a fresh minnow head, waxworm, or maggot; perch will hit bare jigs when actively feeding but a scent/flavor edge usually out-produces plastic alone.\n3. Use a subtle presentation: light jiggling shakes and slow lift-and-pause work better than aggressive snapping, especially on pressured or finicky schools.\n4. Once you find a school (through the ice especially), stay put — perch school tight, and a productive hole can often be fished steadily rather than searched away from.\n5. In open water, target weed edges, drop-offs, and points in spring and fall; move to deeper basin structure in summer.",
+      "sources": [
+        { "label": "Outdoor Life, Tips for Catching Jumbo Yellow Perch Through the Ice", "url": "https://www.outdoorlife.com/fishing/tips-ice-fishing-jumbo-perch/" }
+      ]
+    },
+    {
+      "heading": "Handling & Consumption",
+      "body_md": "Yellow perch have sharp dorsal spines — grip fish from the top down, laying the spines flat, or cradle them belly-up to unhook safely. They're excellent, mild-flavored table fish and a traditional favorite for shore lunches and fish fries across the Maritimes; fillet around the light rib cage and skin is optional given their small size.\n\n**Important bait restriction (NB):** it is illegal to use yellow perch as live or dead bait in New Brunswick waters — plan to bring commercial bait rather than perch you've caught yourself.",
+      "sources": [
+        { "label": "Government of New Brunswick, Fish NB Angling Regulations (regulations summary)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" }
+      ]
+    },
+    {
+      "heading": "Conservation & Consumption Notes",
+      "body_md": "Yellow perch populations are generally healthy and abundant across the region — this is a species you can fish hard without conservation concern in most waters. As with any panfish, extremely heavy harvest pressure on a small lake can shift a population toward smaller average size over time, so many experienced anglers voluntarily release larger \"breeder\" fish and keep average-size perch for the table.",
+      "sources": []
+    }
+  ],
+  "regulations": [
+    { "province": "NB", "water_type": "Freshwater", "season": "Open season varies by water body — recreational ice fishing for yellow perch (by angling or set lines in permitted waters) generally runs January 1 to March 31 in addition to the regular open-water season; confirm exact dates for your water in the current GNB Fish Regulations Summary", "bag_limit": "Fishing quotas and length limits vary by specific water body — check the current regulations summary for the lake you plan to fish", "size_limit": "Varies by water body — see current regulations summary", "notes": "A valid NB angling licence is required. Yellow perch may not be used as live or dead bait anywhere in NB.", "source_url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf", "last_verified": "2026" },
+    { "province": "NS", "water_type": "Freshwater", "season": "See current Nova Scotia Anglers' Handbook for season dates by Recreational Fishing Area — many areas offer expanded winter/ice fishing opportunities for yellow perch", "bag_limit": "No specific bag limit figure independently confirmed for this guide — consult the current Anglers' Handbook for your Recreational Fishing Area", "size_limit": "None specified in sources reviewed", "notes": "A valid NS angling licence is required for freshwater fishing.", "source_url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf", "last_verified": "2026" },
+    { "province": "PEI", "water_type": "Freshwater", "season": "Yellow perch are a popular target during PEI's winter ice-fishing season on select stocked ponds/lakes — check the current PEI Angling Summary for open dates and eligible waters", "bag_limit": "Not independently confirmed for this guide — consult the current PEI Angling Summary", "size_limit": "Not independently confirmed for this guide — consult the current PEI Angling Summary", "notes": "A valid PEI angling licence is required for freshwater fishing; anglers under 16 fish free. Yellow perch are not native to PEI but are stocked in a number of freshwater bodies.", "source_url": "https://www.princeedwardisland.ca/en/publication/2025-angling-summary", "last_verified": "2026" }
+  ],
+  "quick_reference": [
+    { "label": "Season", "value": "Year-round target — spring/fall open water plus a strong winter ice fishery" },
+    { "label": "Where (NB)", "value": "French Lake, Douglas/Hunter/McBrien's/1st-3rd Lakes (Saint John area)" },
+    { "label": "Gear", "value": "Light spinning or ice rod, small jigs/teardrops tipped with minnow head or waxworm" },
+    { "label": "Bait note (NB)", "value": "Illegal to use yellow perch as bait anywhere in NB" },
+    { "label": "Table Fare", "value": "Excellent, mild white flesh — a Maritime shore-lunch staple" }
+  ],
+  "sources": [
+    { "label": "New Brunswick Fishing Forum, Yellow Perch?", "url": "https://www.newbrunswickfishing.com/threads/yellow-perch.71/" },
+    { "label": "Government of New Brunswick, Fish NB Angling Regulations (regulations summary)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
+    { "label": "Nova Scotia Anglers' Handbook and Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+    { "label": "PEI 2025 Angling Summary", "url": "https://www.princeedwardisland.ca/en/publication/2025-angling-summary" },
+    { "label": "Outdoor Life, Tips for Catching Jumbo Yellow Perch Through the Ice", "url": "https://www.outdoorlife.com/fishing/tips-ice-fishing-jumbo-perch/" },
+    { "label": "Wired2Fish, How to Chase Wintertime Yellow Perch", "url": "https://www.wired2fish.com/winter-fishing/how-to-chase-wintertime-yellow-perch" }
+  ]
+}
