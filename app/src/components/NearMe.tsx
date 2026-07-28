@@ -127,7 +127,7 @@ export function NearMe({
           <p className="mt-3 text-sm text-muted">
             You appear to be in <strong>{provinceLabel(loc.guess.province)}</strong> (nearest
             reference point: {loc.guess.nearestTown}, ~{loc.guess.distanceKm} km). Location is
-            only used in your browser — it's never stored or sent anywhere.
+            only used in your browser; it&apos;s never stored or sent anywhere.
           </p>
         )}
       </div>
