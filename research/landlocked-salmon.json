@@ -69,6 +69,26 @@
     { "label": "Best Gear", "value": "6-7 wt fly rod with streamers, or medium spinning rod with small spoons" },
     { "label": "Key Waters", "value": "Tetagouche Lakes, Loch Lomond, Grand & Oromocto Lakes (NB); Grand Lake, Halifax County (NS)" }
   ],
+  "variants": [
+    {
+      "name": "Sea-Run Atlantic Salmon",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "Genetically identical to landlocked salmon — same species, no physical differences between the two forms. What differs is life history: sea-run fish migrate to the ocean to feed and grow before returning to their natal river, while landlocked fish complete their entire life cycle using a lake instead of the ocean.",
+      "where_found": "Sea-run fish are found in open river systems like the Miramichi (NB) and Margaree (NS); landlocked fish are confined to the specific designated lakes covered by this entry.",
+      "notes": "Completely different regulations apply. Sea-run Atlantic salmon retention is prohibited region-wide (catch-and-release only), while landlocked salmon in designated lakes may be retained within posted bag and size limits. Fishing a designated landlocked lake does not give you any exemption to keep a sea-run fish, and vice versa.",
+      "image_query": null
+    },
+    {
+      "name": "Brown Trout",
+      "kind": "lookalike",
+      "scientific_name": "Salmo trutta",
+      "how_to_tell": "Landlocked salmon have a slightly forked tail with a thin caudal peduncle, a maxillary (upper jaw) that does not extend much past the eye, and a darker adipose fin with little to no spotting. Brown trout have a nearly square tail with a thicker peduncle, a maxillary that often extends slightly past the eye, more numerous reddish spots overall, and a larger adipose fin that's often orange-tinged with visible spots. Post-spawn male landlocked salmon can turn dark and golden in late fall, making them look especially like a brown trout at first glance.",
+      "where_found": "Any designated landlocked salmon lake that also holds brown trout — check the current NB/NS regulations for which specific lakes carry both species.",
+      "notes": "Worth checking carefully where bag limits or size rules differ between the two species in the same lake.",
+      "image_query": "Salmo trutta"
+    }
+  ],
   "sources": [
     { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
     { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },

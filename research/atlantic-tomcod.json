@@ -66,6 +66,26 @@
     { "province": "NS", "water_type": "Tidal/saltwater and estuary", "season": "No closed season for hook-and-line recreational take in tidal water; winter spawning run (e.g. Shubenacadie estuary) peaks in January", "bag_limit": "No specific bag limit found in DFO notices reviewed — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. Traditional winter/ice fishery on rivers like the Shubenacadie — confirm current local ice-safety conditions and any posted access rules before fishing through the ice.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html", "last_verified": "2026" },
     { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
   ],
+  "variants": [
+    {
+      "name": "Rainbow Smelt",
+      "kind": "lookalike",
+      "scientific_name": "Osmerus mordax",
+      "how_to_tell": "Smelt has a single dorsal fin plus a small adipose fin (the little fleshy fin between dorsal and tail) and a deeply forked tail, while tomcod has three dorsal fins, two anal fins, a rounded tail, and no adipose fin at all. Smelt has a pointed snout with visible canine-like teeth and no chin barbel; tomcod has a short chin barbel and a blunter, more cod-like head. Fresh smelt also carry a distinctive cucumber-like smell that tomcod lack, and smelt flanks show an iridescent purple-pink stripe over silver rather than tomcod's more mottled olive-brown back.",
+      "where_found": "Same estuaries and river mouths as tomcod, often run at the same time of year — both are cold-tolerant estuarine species caught through the ice or from shore in the same NB/NS systems.",
+      "notes": "No regulatory difference found between the two, but they're genuinely easy to mix up in a winter bucket of small silvery fish — the dorsal-fin count and barbel are the fastest checks.",
+      "image_query": "Osmerus mordax"
+    },
+    {
+      "name": "Juvenile Atlantic Cod",
+      "kind": "lookalike",
+      "scientific_name": "Gadus morhua",
+      "how_to_tell": "Tomcod are a distinct dwarf species, not a young Atlantic cod — the reliable check is size and barbel length: tomcod max out around 15 cm (6 in) with a chin barbel shorter than the diameter of the eye, while even small cod encountered on typical gear are considerably larger with a proportionally longer, more obvious barbel. Both share the three-dorsal-fin, two-anal-fin cod-family body plan, which is why the confusion happens at all.",
+      "where_found": "Tomcod stay in estuaries and river mouths; small cod are more likely around coastal wharves and deeper structure rather than upriver.",
+      "notes": "No retention concern either way in this region, but useful to know a tiny cod-shaped fish caught in an estuary is almost certainly a tomcod, not an undersized cod.",
+      "image_query": null
+    }
+  ],
   "quick_reference": [
     { "label": "Season", "value": "January spawning run (peak); year-round as bycatch on flounder gear" },
     { "label": "Signature Fishery", "value": "Winter ice/estuary fishery on the Shubenacadie River, NS — a real regional tradition" },

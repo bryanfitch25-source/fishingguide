@@ -74,6 +74,26 @@
     { "label": "Table Fare", "value": "Bony, oily, strong smell — most anglers release; ice promptly if keeping" },
     { "label": "NS Note", "value": "Also a real commercial gillnet/weir fishery, especially on the Gaspereau River (Annapolis system)" }
   ],
+  "variants": [
+    {
+      "name": "Blueback Herring",
+      "kind": "related-species",
+      "scientific_name": "Alosa aestivalis",
+      "how_to_tell": "The two \"gaspereau\" species run together and look nearly identical at a glance, but two checks separate them reliably. Eye size relative to the snout: an alewife's eye is wider than the distance from the tip of its snout to the front of the eye (a noticeably large eye), while a blueback herring's eye is smaller — its width equals that snout-to-eye distance rather than exceeding it. The more reliable check if you can open the belly: peritoneum (the membrane lining the body cavity) colour — alewife have a pale, silvery-white peritoneum, blueback herring have a dark, almost black one. Even with both checks, morphological ID between the two species is reported to be wrong up to 16% of the time, so treat this as a good-faith field call, not a certainty.",
+      "where_found": "Blueback herring run the same rivers at the same time as alewife across NB, NS, and PEI, and the two are generally not distinguished by anglers or managed separately — both are simply \"gaspereau\" or \"river herring\" in local use and regulation.",
+      "notes": "DFO manages alewife and blueback herring together under the same gaspereau regulations, so misidentifying one for the other has no bag-limit consequence in this fishery — the value here is understanding what you're actually catching, since the two species can have different population trends river to river.",
+      "image_query": "Alosa aestivalis"
+    },
+    {
+      "name": "American Shad",
+      "kind": "lookalike",
+      "scientific_name": "Alosa sapidissima",
+      "how_to_tell": "American shad are much larger than gaspereau — adult shad females reach up to 30 inches, dwarfing an adult alewife or blueback herring, which rarely exceed a foot. The jaw is the definitive check: a shad's lower jaw rises in a gradual slope and tucks into a notch under the upper jaw, while gaspereau (both alewife and blueback herring) have a lower jaw that angles up sharply in a bent, shovel-like shape.",
+      "where_found": "American shad run the same rivers as gaspereau at the same time of year, including the Saint John River and the Annapolis River system, so mixed schools of both are common during the spring push.",
+      "notes": "American shad is a COSEWIC prioritized candidate species under active status review, a materially different conservation picture than gaspereau's mixed-but-generally-fishable status — worth knowing which species is filling your bucket before you assume gaspereau rules apply to a larger fish in the same net or school.",
+      "image_query": "Alosa sapidissima"
+    }
+  ],
   "sources": [
     { "label": "Maine Sea Grant, Maine Seafood Guide — Alewife", "url": "https://seagrant.umaine.edu/maine-seafood-guide/alewife/" },
     { "label": "DFO, Gaspereau Assessment for the Gulf Region to 2019", "url": "https://publications.gc.ca/collections/collection_2024/mpo-dfo/fs70-5/Fs70-5-2024-041-eng.pdf" },

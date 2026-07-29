@@ -1,8 +1,10 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getSpeciesBySlug, getAllSpecies } from "@/lib/data";
 import { ProvinceBadge, CategoryBadge } from "@/components/Badges";
 import { GuideMarkdown } from "@/components/GuideMarkdown";
 import { RegulationsTable } from "@/components/RegulationsTable";
+import { VariantsSection } from "@/components/VariantsSection";
 
 export async function generateStaticParams() {
   const species = await getAllSpecies();
@@ -26,20 +28,49 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
-      <div className="mb-8">
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <CategoryBadge category={species.category} />
-          {species.provinces.map((p) => (
-            <ProvinceBadge key={p} province={p} />
-          ))}
+      <div className="mb-8 grid grid-cols-1 sm:grid-cols-[1fr_320px] gap-6 items-start">
+        <div>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <CategoryBadge category={species.category} />
+            {species.provinces.map((p) => (
+              <ProvinceBadge key={p} province={p} />
+            ))}
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">
+            {species.common_name}
+          </h1>
+          {species.scientific_name && (
+            <p className="italic text-muted mt-1">{species.scientific_name}</p>
+          )}
+          {species.summary && <p className="mt-3 max-w-3xl text-lg">{species.summary}</p>}
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">
-          {species.common_name}
-        </h1>
-        {species.scientific_name && (
-          <p className="italic text-muted mt-1">{species.scientific_name}</p>
+        {species.image.path && (
+          <div>
+            <div className="relative h-56 w-full rounded-xl overflow-hidden bg-brand-light">
+              <Image
+                src={species.image.path}
+                alt={species.common_name}
+                fill
+                sizes="320px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            {species.image.credit && (
+              <p className="mt-1.5 text-[11px] text-muted">
+                Photo:{" "}
+                {species.image.source_url ? (
+                  <a href={species.image.source_url} target="_blank" rel="noreferrer" className="underline">
+                    {species.image.credit}
+                  </a>
+                ) : (
+                  species.image.credit
+                )}
+                {species.image.license ? ` (${species.image.license})` : ""}
+              </p>
+            )}
+          </div>
         )}
-        {species.summary && <p className="mt-3 max-w-3xl text-lg">{species.summary}</p>}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
@@ -64,6 +95,8 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
               )}
             </section>
           ))}
+
+          <VariantsSection variants={species.variants} />
 
           <section className="mb-8">
             <h2 className="text-xl font-bold text-brand-dark border-b border-border pb-2 mb-3">

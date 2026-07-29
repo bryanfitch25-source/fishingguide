@@ -86,6 +86,35 @@
     { "label": "After the Catch", "value": "Bleed, ice immediately, gut/clean promptly — flesh spoils fast" },
     { "label": "As Bait", "value": "Live-line, fresh-cut chunks, or a whole dead mackerel on bottom — freshness is everything" }
   ],
+  "variants": [
+    {
+      "name": "Northern Contingent Mackerel",
+      "kind": "stock",
+      "scientific_name": null,
+      "how_to_tell": "Not visually distinguishable from the southern contingent — this is a population/management distinction, not a physical one. The northern contingent is the group that spawns in the Gulf of St. Lawrence in June-July before dispersing along the coast.",
+      "where_found": "The Gulf of St. Lawrence, including the Northumberland Strait shorelines covered in this guide — this is the contingent responsible for the fish showing up inshore in this region from August into fall.",
+      "notes": "Explains the region's fishing calendar: mackerel arrive close to shore here mainly after the northern contingent finishes spawning offshore in the Gulf, which is why the inshore window opens in August rather than earlier in summer.",
+      "image_query": null
+    },
+    {
+      "name": "Southern Contingent Mackerel",
+      "kind": "stock",
+      "scientific_name": null,
+      "how_to_tell": "Also not visually distinguishable in hand — a separate spawning population managed and assessed independently of the northern (Gulf of St. Lawrence) contingent.",
+      "where_found": "Primarily south of this region along the US Atlantic coast and southern Scotian Shelf; mixes with the northern contingent to varying degrees in DFO stock assessments.",
+      "notes": "Relevant mainly for understanding why Canadian and US stock assessments and quota discussions sometimes reference different population trends for what looks like \"the same\" mackerel from a wharf in NB or PEI.",
+      "image_query": null
+    },
+    {
+      "name": "Chub Mackerel",
+      "kind": "related-species",
+      "scientific_name": "Scomber colias",
+      "how_to_tell": "Chub mackerel show dusky mottled blotches or spots below the midline, where Atlantic mackerel are clean silvery-white below the midline with no spotting. The two dorsal fins also sit closer together on a chub mackerel than on an Atlantic mackerel, and the first dorsal fin has 9-10 spines on a chub versus 11-13 on an Atlantic mackerel.",
+      "where_found": "Occasionally reported in warmer years as water temperatures shift, though Atlantic mackerel remains the dominant species encountered inshore in this region.",
+      "notes": "No specific regulatory distinction found for this region, but correctly identifying an unusual mackerel catch is worth doing for accurate reporting of any range-shift sightings as this warmer-water species becomes more common with changing sea temperatures.",
+      "image_query": "Scomber colias"
+    }
+  ],
   "sources": [
     { "label": "NH Fish & Game, Atlantic Mackerel", "url": "https://www.wildlife.state.nh.us/marine/mackerel.html" },
     { "label": "Mass.gov, Creature Feature: Atlantic Mackerel", "url": "https://www.mass.gov/info-details/creature-feature-atlantic-mackerel" },

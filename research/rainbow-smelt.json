@@ -66,6 +66,35 @@
     { "label": "Table Fare", "value": "Popular local eating fish — whole, floured, pan-fried" },
     { "label": "Watch For", "value": "Weekly closed days on many spawning rivers — check before you go" }
   ],
+  "variants": [
+    {
+      "name": "Landlocked Smelt",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "Landlocked (freshwater-resident) smelt look essentially identical to the sea-run form — same iridescent silver-purple sides and adipose fin — but stay in a lake year-round rather than migrating from salt water. They tend to run smaller on average than sea-run fish reaching estuary size classes.",
+      "where_found": "Landlocked populations exist in some cold, deep freshwater lakes in the region as a resident forage/panfish, separate from the tidal river and estuary run that drives most of the NB/NS/PEI smelt fishery covered in this guide.",
+      "notes": "The dip-net and hook-and-line rules in this guide apply to the tidal/anadromous fishery — a landlocked lake population may fall under different inland/provincial angling rules rather than the DFO diadromous framework.",
+      "image_query": null
+    },
+    {
+      "name": "Juvenile Herring",
+      "kind": "lookalike",
+      "scientific_name": "Clupea harengus",
+      "how_to_tell": "Young herring school alongside smelt in estuaries and can be mistaken for them at a glance, but herring lack a smelt's adipose fin (the small fleshy fin between the dorsal and tail) entirely, and lack a smelt's strong canine teeth. Herring also have a deeper, more compressed body and a distinct row of scutes (bony plates) along the belly that smelt do not have.",
+      "where_found": "Both species use the same estuary shallows and river mouths across NB, NS, and PEI, especially where baitfish schools concentrate near river mouths.",
+      "notes": "No specific bag-limit conflict identified between the two in this guide's research, but confirming the adipose fin is a quick, reliable way to know you're looking at smelt before counting them against a smelt-specific bag limit.",
+      "image_query": "Clupea harengus juvenile"
+    },
+    {
+      "name": "Silversides",
+      "kind": "lookalike",
+      "scientific_name": "Menidia menidia",
+      "how_to_tell": "Atlantic silversides are a similar small, slender, silvery baitfish often lumped in with \"smelt\" colloquially, but they aren't related. Silversides lack a lateral line (a visible line of sensing pores down the flank that smelt have), have small, weak teeth compared to a true smelt's noticeably strong canines, and their small spiny first dorsal fin sits well separated from the soft second dorsal, with pelvic fins set further back than in a smelt.",
+      "where_found": "Silversides school in the same shallow estuary and beach habitat used by rainbow smelt across the region, particularly in warmer months.",
+      "notes": "Worth knowing the difference mainly for accurate identification rather than any specific rule conflict — silversides are not the regulated species covered by this guide's smelt dip-net and bag-limit rules.",
+      "image_query": "Menidia menidia"
+    }
+  ],
   "sources": [
     { "label": "USGS NAS, Rainbow Smelt (Osmerus mordax) Species Profile", "url": "https://nas.er.usgs.gov/queries/factsheet.aspx?SpeciesID=796" },
     { "label": "identifyfish.blogspot.com, Fish Identification: Rainbow Smelt", "url": "http://identifyfish.blogspot.com/2010/09/rainbow-smelt-osmerus-mordax.html" },

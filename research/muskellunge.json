@@ -72,6 +72,35 @@
     { "label": "Gear", "value": "Heavy casting rod, 65-100 lb braid, wire/heavy fluoro leader, big bucktails/jerkbaits, large net" },
     { "label": "Technique", "value": "Fast retrieve tight to structure, always finish with a figure-8 boatside" }
   ],
+  "variants": [
+    {
+      "name": "Northern Pike",
+      "kind": "lookalike",
+      "scientific_name": "Esox lucius",
+      "how_to_tell": "Pike show light, bean-shaped yellowish spots scattered over a darker green body — the reverse of a muskie's dark spots/bars over a lighter body. The surest check is the cheek and gill cover: pike have a fully scaled cheek but only the upper half of the gill cover (operculum) is scaled, the lower half is bare — on a muskie, the lower half of BOTH the cheek and gill cover are bare. Counting sensory pores on the underside of the lower jaw also works: pike have 4-5 pores per side, muskellunge have 6-9.",
+      "where_found": "Northern pike are a recent, spreading invasive in the Saint John River watershed, moving down from upstream/Maine waters into the same system muskellunge occupy — expect the two species to increasingly overlap in the mid-to-lower Saint John River.",
+      "notes": "Both species are now on NB's 2026 mandatory-retention invasive list, so misidentifying one for the other doesn't change what you're legally required to do with it in a listed RFA — but confirming which species you actually caught still matters for accurate catch reporting to DNR.",
+      "image_query": "Esox lucius"
+    },
+    {
+      "name": "Chain Pickerel",
+      "kind": "lookalike",
+      "scientific_name": "Esox niger",
+      "how_to_tell": "Chain pickerel are much smaller (typically under 24 inches) with a distinctive dark chain-link/mesh pattern over a lighter body, versus a muskie's spots or vertical bars. The cheek and gill cover are fully scaled top to bottom on a chain pickerel — neither the muskellunge (bare lower cheek and gill cover) nor the pike (bare lower gill cover only) share this trait.",
+      "where_found": "Established and spreading in NB, including waters connected to the Saint John River system — chain pickerel are smaller and more common in weedy backwaters than muskellunge.",
+      "notes": "Chain pickerel is also on NB's mandatory-retention invasive list province-wide as of April 2026. A small pike-family fish with a full scale pattern top to bottom on cheek and gill cover is very unlikely to be a muskellunge, so don't assume a mandatory-retention muskie situation just because it's toothy and pike-shaped.",
+      "image_query": "Esox niger"
+    },
+    {
+      "name": "Tiger Muskie",
+      "kind": "related-species",
+      "scientific_name": "Esox masquinongy x Esox lucius",
+      "how_to_tell": "A naturally-occurring, sterile hybrid of muskellunge and northern pike. Shows narrow, irregular dark vertical bars that merge and interlock toward the back (distinct from a pure muskie's cleaner spot/bar pattern), rounded tail lobes rather than a muskie's more pointed tail, and 10-16 jaw pores — overlapping both parent species' counts. Cheeks and jaws are usually spotted.",
+      "where_found": "Not stocked or confirmed established in NB — flagged here because pike and muskellunge now overlap in the Saint John River system, creating at least the theoretical conditions for a wild-produced hybrid to show up. Treat any unusual-patterned pike-family fish from that river as worth a closer look and a photo.",
+      "notes": "If the 2026 mandatory-retention rule applies to muskellunge in your RFA, a true hybrid's status is a genuine grey area this guide could not resolve — photograph the cheek/gill-cover scale pattern and jaw pores and check with GNB before deciding whether to release or retain an unusual-looking fish.",
+      "image_query": "Esox masquinongy x Esox lucius tiger muskellunge"
+    }
+  ],
   "sources": [
     { "label": "Muskies Canada, Saint John River Chapter", "url": "https://muskiescanada.ca/saint-john-river/" },
     { "label": "UNB Newsroom, UNB student project examines the sustainability of the St. John River's muskie population", "url": "https://blogs.unb.ca/newsroom/2021/05/muskie-population.php" },

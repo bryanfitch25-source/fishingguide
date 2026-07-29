@@ -71,6 +71,35 @@
     { "label": "Watch For", "value": "Northwest Miramichi spawning closure (late May–June); Bay of Fundy stock has separate stricter rules" },
     { "label": "Source Population", "value": "Northwest Miramichi River estuary — the only confirmed spawning ground for this stock" }
   ],
+  "variants": [
+    {
+      "name": "Southern Gulf of St. Lawrence Stock (Miramichi-spawned)",
+      "kind": "stock",
+      "scientific_name": null,
+      "how_to_tell": "No visible physical difference from the Bay of Fundy stock — the two are told apart by genetics (they are isolated and genetically distinct populations) and by where and when you catch them, not by markings on the fish.",
+      "where_found": "The entire Northumberland Strait and Gulf shoreline of NB, NS, and PEI — all spawned in one place, the Northwest Miramichi River estuary, then disperse coastwide each summer.",
+      "notes": "This is the large, recovered stock (900,000+ spawners) that the standard 50-65 cm slot and 4-fish daily limit apply to. It is a completely separate population from the Bay of Fundy stock below, even though the fish look identical.",
+      "image_query": null
+    },
+    {
+      "name": "Bay of Fundy Stock (Shubenacadie/Minas Basin)",
+      "kind": "stock",
+      "scientific_name": null,
+      "how_to_tell": "Physically indistinguishable from the southern Gulf stock. Identified only by location: any striped bass caught in the Bay of Fundy/upper Minas Basin drainage, including the Shubenacadie and Stewiacke rivers, belongs to this separate, genetically distinct, much smaller population.",
+      "where_found": "Shubenacadie and Stewiacke rivers and the Minas Basin (NS) — spawns in the inner Bay of Fundy rather than the Miramichi.",
+      "notes": "Managed far more conservatively by DFO Maritimes Region than the Gulf Region slot fishery: reported rules include a 1 fish/day limit, a wider 68-150 cm slot, and a fly/unbaited-lure-only catch-and-release window (roughly May 10-Jun 10) on parts of the Shubenacadie. Confirm current Maritimes Region regulations before keeping any fish here — Gulf Region rules (50-65 cm, 4/day) do not apply.",
+      "image_query": null
+    },
+    {
+      "name": "Juvenile Striped Bass",
+      "kind": "lookalike",
+      "scientific_name": "Morone americana",
+      "how_to_tell": "A small striped bass still shows continuous, unbroken horizontal stripes running the length of the body, a slender profile (body depth generally less than a third of its length), a spiny first dorsal fin clearly separated from the soft second dorsal, and two tooth patches side by side on the back of the tongue. White perch lack horizontal stripes entirely (or show only faint, broken ones), are noticeably deeper-bodied, have dorsal fins that are barely connected, and lack the central double tooth patch on the tongue.",
+      "where_found": "Anywhere small stripers and white perch overlap — river mouths, estuaries, and tidal reaches across NB, NS, and PEI, especially the Miramichi and other Northumberland Strait systems.",
+      "notes": "Consequential mix-up: white perch has its own separate limits, while any striped bass under the 50 cm minimum must be released immediately. Keeping an undersized striper because it was mistaken for a white perch is an offence under the striped bass slot-limit rule.",
+      "image_query": "Morone americana"
+    }
+  ],
   "sources": [
     { "label": "DFO Gulf Region — Striped Bass Recreational Fishery in the Southern Gulf of St. Lawrence in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
     { "label": "DFO Gulf Region — Frequently Asked Questions (FAQ) about Striped Bass", "url": "https://www.glf.dfo-mpo.gc.ca/en/frequently-asked-questions-faq-about-striped-bass" },

@@ -77,6 +77,44 @@
     { "label": "Conservation", "value": "COSEWIC-assessed Threatened (2012); not SARA-listed as of Dec 2025 — fish conservatively" },
     { "label": "Handling", "value": "Extremely slippery — use a rag/gloves and a lidded container" }
   ],
+  "variants": [
+    {
+      "name": "Glass Eel",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "The first stage after the leaf-shaped ocean larva (leptocephalus) transforms on the continental shelf — fully transparent, with no pigment yet, typically found right at the head of the estuary as they arrive from the sea.",
+      "where_found": "River mouths and lower estuaries across NB and NS in spring, as they arrive from the Sargasso Sea.",
+      "notes": "Not legal to target recreationally. Glass eels feed the licensed commercial elver fishery (see Elver entry below) — recreational anglers have no legal path to harvest this stage.",
+      "image_query": null
+    },
+    {
+      "name": "Elver",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "A glass eel that has started picking up pigment (a \"smoky\" tint) as it pushes further upriver toward fresh water — defined under federal regulation as any American eel under 10 cm in length.",
+      "where_found": "Estuaries and lower rivers across NB and NS during the spring run, closer to head-of-tide than glass eels.",
+      "notes": "The elver fishery is a tightly licensed, limited-entry commercial fishery in the Maritimes, now valued at tens of millions of dollars a year and among the most valuable fish by weight sold in Canada. It is NOT open to recreational anglers under any circumstance — the Maritime Provinces Fishery Regulations explicitly prohibit recreational elver fishing. Do not attempt to catch, net, or possess elvers without a commercial licence.",
+      "image_query": null
+    },
+    {
+      "name": "Yellow Eel",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "The long-lived growth stage anglers actually catch on hook and line — greenish-yellow to olive-brown, typically 8-20+ inches, and can remain in this stage for 3 to 30+ years before maturing further.",
+      "where_found": "Every tidal estuary and connected river system across NB, NS, and PEI covered elsewhere in this guide — this is the stage targeted by the bottom-bait technique described above.",
+      "notes": "This is the legal recreational stage, subject to the bag/size limits in the regulations table above (e.g., 35 cm minimum size, daily bag limits by region).",
+      "image_query": "Anguilla rostrata"
+    },
+    {
+      "name": "Silver Eel",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "The final, mature migratory stage: eyes enlarge, the body shifts from yellow-green to a dark gray back with a silvery-white belly and flanks, and reproductive organs develop ahead of the one-way trip back to the Sargasso Sea to spawn and die.",
+      "where_found": "Encountered in the same rivers as yellow eels, typically in fall as maturing fish stage for their downstream migration to the sea.",
+      "notes": "Still the same legally-fishable species and stage as yellow eel under current regulations, but consider releasing silver-phase fish specifically — they represent the population's active spawning migration back to the Sargasso Sea, and given the species' long-term decline, letting mature fish complete that migration matters more than for a younger yellow eel.",
+      "image_query": null
+    }
+  ],
   "sources": [
     { "label": "Maryland Sea Grant, American Eels: Life cycle and ecology", "url": "https://www.mdsg.umd.edu/onthebay-blog/american-eels-life-cycle-and-ecology" },
     { "label": "U.S. Fish & Wildlife Service, American Eel (Anguilla rostrata)", "url": "https://www.fws.gov/species/american-eel-anguilla-rostrata" },

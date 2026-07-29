@@ -68,6 +68,35 @@
     { "label": "Best Method", "value": "Worm drift or small spinner through pools and undercut banks" },
     { "label": "Sea-run bonus", "value": "Estuaries, late spring/early summer" }
   ],
+  "variants": [
+    {
+      "name": "Sea-Run Brook Trout (\"Salter\")",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "Bright chrome-silver flanks with washed-out spotting compared to the vivid marbling of a resident stream fish; the red spots with pale halos are still visible up close. Reverts to typical brook trout colouring within days of re-entering fresh water.",
+      "where_found": "Tidal and estuary reaches of coastal rivers across all three provinces — the Cocagne and Shediac (NB), Boughton and Morell (PEI), and most NS coastal systems.",
+      "notes": "Best targeted May through early July as fish gorge on estuary baitfish and shrimp. Falls under the same provincial licence and limits as resident brook trout — there is no separate sea-run category.",
+      "image_query": "Salvelinus fontinalis"
+    },
+    {
+      "name": "Resident Stream Brook Trout",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "Stays in fresh water its whole life. Shows the classic vivid marbled (vermiculated) dark-green back, red spots ringed in pale blue along the flanks, and white-edged lower fins year-round rather than the washed-out chrome look of a fish fresh from the estuary.",
+      "where_found": "Small, cold, clean streams and lakes throughout NB, NS, and PEI — the most widely distributed form of the species regionally.",
+      "notes": "Same licence and limits as sea-run fish caught in the same water.",
+      "image_query": null
+    },
+    {
+      "name": "Atlantic Salmon Parr",
+      "kind": "lookalike",
+      "scientific_name": "Salmo salar",
+      "how_to_tell": "Salmon parr lack the red spots that brook trout show along their sides, instead displaying plain vertical parr bars with only a few dark spots above the lateral line. Parr also have a more streamlined body, a sharper snout, a deeply forked tail (brook trout have a squarer, only slightly forked tail), and an adipose fin that is never orange or red, unlike a brook trout's often reddish-tinged adipose fin.",
+      "where_found": "The same small streams and rivers across NB, NS, and PEI where brook trout are caught — nearly every cold, clean trout stream in the region also holds young salmon.",
+      "notes": "Must be released immediately regardless of season, size, or limit — retention of any Atlantic salmon is currently prohibited across the region, and salmon parr are one of the most commonly misidentified fish in Maritime small-stream angling.",
+      "image_query": "Salmo salar parr"
+    }
+  ],
   "sources": [
     { "label": "GNB Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
     { "label": "newbrunswickfishing.com forum threads", "url": "https://www.newbrunswickfishing.com/" },

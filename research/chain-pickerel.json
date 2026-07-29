@@ -74,6 +74,26 @@
     { "label": "Where (NS)", "value": "Southwestern NS (Yarmouth/Shelburne/Queens area) and spreading watersheds" },
     { "label": "Gear", "value": "Medium-light spinning rod, 8-12 lb line, wire or heavy fluoro leader for the teeth" }
   ],
+  "variants": [
+    {
+      "name": "Northern Pike",
+      "kind": "lookalike",
+      "scientific_name": "Esox lucius",
+      "how_to_tell": "Chain pickerel show a dark, chain-like mesh pattern over a lighter green-gold body, with both the cheek and the entire gill cover (operculum) fully covered in scales. Northern pike are larger-growing, with light, bean-shaped cream or yellow spots scattered across a darker olive-green to brown body — the opposite light-on-dark pattern from a pickerel's dark-on-light mesh — and only the cheek is fully scaled; the lower half of the gill cover is bare of scales.",
+      "where_found": "Reported as an increasingly encountered fish in the Saint John River drainage (NB) as pike move in from neighbouring Maine waters; not yet a long-established Maritime population the way chain pickerel is.",
+      "notes": "Getting this wrong matters in the wrong direction here too: chain pickerel is a mandatory-keep invasive in several NB RFAs and province-wide in NS, while northern pike is not currently subject to the same mandatory-retention rule in this region — confirm the species carefully before deciding whether a fish must be kept.",
+      "image_query": "Esox lucius"
+    },
+    {
+      "name": "Muskellunge",
+      "kind": "lookalike",
+      "scientific_name": "Esox masquinongy",
+      "how_to_tell": "Chain pickerel have both cheek and gill cover fully scaled and typically fewer than 120 lateral line scales in the low range for the genus. Muskellunge are the largest esocid, with only the upper portion of the cheek and gill cover scaled (the rest bare), dark spots or vertical bars on a lighter body (opposite of a pickerel's dark mesh-on-light-body look), and six or more sensory pores per side on the underside of the lower jaw versus a pickerel's fewer pores.",
+      "where_found": "Saint John River, New Brunswick, particularly near the Meduxnekeag River — an introduced, unwanted population that established itself in the mid-2000s.",
+      "notes": "Muskellunge is not currently a mandatory-retention species in NB the way chain pickerel is in several RFAs — do not assume the same keep-it-rule applies just because both are toothy esocids caught in the same water.",
+      "image_query": "Esox masquinongy"
+    }
+  ],
   "sources": [
     { "label": "Nova Scotia Invasive Species Council, Chain Pickerel", "url": "https://nsinvasives.ca/chain-pickerel/" },
     { "label": "USGS Nonindigenous Aquatic Species, Chain Pickerel factsheet", "url": "https://nas.er.usgs.gov/queries/factsheet.aspx?SpeciesID=681" },

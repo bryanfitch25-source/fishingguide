@@ -97,6 +97,44 @@
       "last_verified": "2026"
     }
   ],
+  "variants": [
+    {
+      "name": "Atlantic Halibut",
+      "kind": "lookalike",
+      "scientific_name": "Hippoglossus hippoglossus",
+      "how_to_tell": "Both are right-eyed flatfish, so eye side alone will NOT tell them apart — this is the important trap. The reliable checks are the lateral line and mouth: halibut has a lateral line that arcs sharply above the pectoral fin (winter flounder's lateral line runs nearly straight), and a large, gaping mouth that extends back to the eyes (winter flounder's mouth is small, built for picking at worms and clams). Halibut also has a concave/forked tail versus winter flounder's rounded tail, and even a small halibut is proportionally more elongated and diamond-shaped than a winter flounder of the same length.",
+      "where_found": "Halibut are typically a deeper, offshore fish, but juveniles can turn up inshore in the same soft-bottom flats and channels winter flounder are caught from — the overlap is real, not theoretical.",
+      "notes": "Atlantic halibut is ZERO RETENTION year-round in these waters under both DFO Gulf and Maritimes Region rules, with no exceptions in the aggregate groundfish bag limits. Keeping even a small halibut mistaken for a large winter flounder is a genuine regulatory violation, not a technicality — check the lateral-line arc and mouth size on anything unusually large or big-mouthed before it goes in the cooler, and release any halibut immediately.",
+      "image_query": "Hippoglossus hippoglossus"
+    },
+    {
+      "name": "Yellowtail Flounder",
+      "kind": "lookalike",
+      "scientific_name": "Limanda ferruginea",
+      "how_to_tell": "Yellowtail flounder has a yellow tail fin and yellow-edged dorsal/anal fins, a thinner body, and large rusty-red irregular spots on an olive-brown back — all absent on winter flounder, which runs plain brown to almost black with no yellow trim. Yellowtail also has an arched lateral line versus winter flounder's nearly straight one, though both share a small mouth.",
+      "where_found": "More of an offshore/deeper-water species than winter flounder, less commonly encountered from shore in this region.",
+      "notes": "Both count toward the same groundfish aggregate bag limit, so misidentifying one for the other has no regulatory consequence here, but the yellow tail is a fast, reliable field check if it comes up.",
+      "image_query": "Limanda ferruginea"
+    },
+    {
+      "name": "American Plaice",
+      "kind": "lookalike",
+      "scientific_name": "Hippoglossoides platessoides",
+      "how_to_tell": "American plaice has a distinctly larger mouth than winter flounder's small worm-picking mouth, a rounded tail, and a nearly straight lateral line, with a reddish-brown eyed side. The larger mouth is the fastest check against winter flounder specifically.",
+      "where_found": "Deeper offshore bottom generally, less of a shore-caught fish than winter flounder in this region.",
+      "notes": "Counts toward the same groundfish aggregate bag limit as winter flounder — no separate rule to worry about, just worth knowing if a bigger-mouthed flatfish turns up on flounder gear.",
+      "image_query": "Hippoglossoides platessoides"
+    },
+    {
+      "name": "Witch Flounder",
+      "kind": "lookalike",
+      "scientific_name": "Glyptocephalus cynoglossus",
+      "how_to_tell": "Witch flounder is narrower and less oval than winter flounder, with a small head and mouth, and often a dusky-to-black patch on the topside pectoral fin with a faint pale border — a mark winter flounder lacks entirely.",
+      "where_found": "A deeper, offshore species, uncommon in the shallow shore/estuary water winter flounder are typically caught from.",
+      "notes": "Counts toward the same groundfish aggregate limit as winter flounder — no separate rule, just useful for ID if one turns up on deeper boat gear.",
+      "image_query": "Glyptocephalus cynoglossus"
+    }
+  ],
   "quick_reference": [
     { "label": "Season", "value": "Spring through early summer best from shore; DFO groundfish aggregate season runs April 15 - Oct 1 in Gulf Region waters" },
     { "label": "Best Tide", "value": "High through early falling tide" },

@@ -3,10 +3,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const files = readdirSync(__dirname).filter((f) => f.endsWith(".json"));
+const files = readdirSync(__dirname).filter((f) => f.endsWith(".json") && !f.startsWith("_"));
 
 const VALID_PROVINCES = ["NB", "NS", "PEI"];
 const VALID_CATEGORIES = ["freshwater", "saltwater", "anadromous"];
+const VALID_VARIANT_KINDS = ["form", "stock", "life-stage", "lookalike", "related-species"];
 
 let errors = 0;
 
@@ -62,6 +63,16 @@ for (const file of files) {
     for (const s of data.sections ?? []) {
       if (!s.heading || !s.body_md) {
         console.error(`${ctx} section missing heading/body_md`);
+        errors++;
+      }
+    }
+    for (const v of data.variants ?? []) {
+      if (!v.name || !v.kind || !v.how_to_tell) {
+        console.error(`${ctx} variant missing name/kind/how_to_tell: ${JSON.stringify(v).slice(0, 80)}`);
+        errors++;
+      }
+      if (v.kind && !VALID_VARIANT_KINDS.includes(v.kind)) {
+        console.error(`${ctx} invalid variant kind: ${v.kind}`);
         errors++;
       }
     }

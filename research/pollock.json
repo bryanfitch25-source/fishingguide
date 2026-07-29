@@ -103,6 +103,35 @@
       "last_verified": "2026"
     }
   ],
+  "variants": [
+    {
+      "name": "Atlantic Cod",
+      "kind": "lookalike",
+      "scientific_name": "Gadus morhua",
+      "how_to_tell": "Cod has a rounded/square tail (pollock's is forked), an obvious chin barbel (pollock's is tiny or absent, especially on bigger fish), and an upper jaw that projects past the lower (pollock's lower jaw protrudes). Cod also runs brown-to-greenish and mottled with dark spots, while pollock is olive-green to smoky black on the back with a cleaner, less-blotched flank and a straighter, less obviously pale lateral line than cod's curved one.",
+      "where_found": "Same wharves, breakwaters, and offshore structure as pollock region-wide; cod stays closer to bottom while pollock will chase bait right to the surface.",
+      "notes": "The retention rules differ sharply: pollock is zero-retention in the DFO Gulf Region (NB, PEI, NS Northumberland Strait) in 2026, while cod has a short open window there with a 5-fish sub-limit. Getting the jaw/tail/barbel check backwards and keeping a cod thinking it's a legal pollock, or vice versa, is a real and avoidable violation on the Gulf side.",
+      "image_query": "Gadus morhua"
+    },
+    {
+      "name": "Haddock",
+      "kind": "lookalike",
+      "scientific_name": "Melanogrammus aeglefinus",
+      "how_to_tell": "Haddock has a dark, straight lateral line and a distinct dark oval blotch (\"Devil's thumbprint\") above the pectoral fin, both absent on pollock. Haddock also lacks pollock's protruding lower jaw and forked tail is less pronounced, with a cleaner silvery-grey body versus pollock's olive-to-black back.",
+      "where_found": "Offshore banks and ledges, most associated with the Bay of Fundy/NS Atlantic side rather than shallow Gulf inshore water.",
+      "notes": "Haddock shares pollock's zero-retention status in the 2026 DFO Gulf Region notice — both must be released in NB, PEI, and NS's Northumberland Strait shore. On the DFO Maritimes Region side (NS Atlantic coast/Bay of Fundy), haddock retention is permitted within the same aggregate bag limit as pollock, so the practical handling is identical there.",
+      "image_query": "Melanogrammus aeglefinus"
+    },
+    {
+      "name": "Harbor Pollock (juvenile)",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "Fish under about two years old and 1-3 lbs that school tight around wharves, breakwaters, kelp beds, and rocky intertidal structure — the fish most shore anglers actually catch. Same field marks as adult pollock, just smaller and more likely encountered in a tight surface-feeding school at dusk.",
+      "where_found": "Inshore wharves and breakwaters region-wide, especially in summer and fall; adults move offshore onto banks and ledges.",
+      "notes": "Same rules apply as adult pollock — zero retention in the Gulf Region, retainable within the aggregate groundfish limit in the Maritimes Region.",
+      "image_query": null
+    }
+  ],
   "quick_reference": [
     { "label": "Season", "value": "Spring through fall inshore; Maritimes-region NS waters open most of the year (closed January)" },
     { "label": "Best Time", "value": "Dusk, when pollock chase bait to the surface" },

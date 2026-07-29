@@ -70,6 +70,26 @@
     { "label": "Gear", "value": "Light spinning rod, shad darts/small spoons, slow retrieve near bottom" },
     { "label": "Watch", "value": "COSEWIC prioritized candidate for status review — check current DFO notices before keeping fish" }
   ],
+  "variants": [
+    {
+      "name": "Alewife (Gaspereau)",
+      "kind": "lookalike",
+      "scientific_name": "Alosa pseudoharengus",
+      "how_to_tell": "Size is the fastest check: American shad run much larger, with adult females reaching up to 30 inches, while alewife top out around 7-9 oz — smaller than any legal-size shad. The jaw is the definitive check on a fish in hand: a shad's lower jaw rises in a gradual slope and tucks into a notch under the upper jaw, while an alewife's (and blueback herring's) lower jaw juts upward sharply in a bent, shovel-like angle.",
+      "where_found": "Alewife run the same rivers at the same time as American shad throughout NB and NS — the Saint John River and Annapolis system carry both runs concurrently in spring.",
+      "notes": "Regulatory and conservation status differ: American shad is a COSEWIC prioritized candidate species under active review, while alewife (gaspereau) supports an active commercial fishery in Nova Scotia. Confirm which species you have before assuming either species' rules apply.",
+      "image_query": "Alosa pseudoharengus"
+    },
+    {
+      "name": "Blueback Herring (Gaspereau)",
+      "kind": "lookalike",
+      "scientific_name": "Alosa aestivalis",
+      "how_to_tell": "Same size difference as alewife applies here: blueback herring reach only about a pound, far smaller than a legal adult American shad. The jaw check is identical too — a shad's lower jaw slopes gradually into a notch under the upper jaw, while a blueback herring's lower jaw angles up sharply in the same shovel shape as an alewife's.",
+      "where_found": "Runs the same rivers and same spring window as American shad and alewife across NB and NS, including the Saint John River and Annapolis system.",
+      "notes": "Same practical concern as alewife: don't assume shad-specific conservation flags or bag rules apply to a smaller river-herring catch, or vice versa — check the jaw and size before deciding what you've caught.",
+      "image_query": "Alosa aestivalis"
+    }
+  ],
   "sources": [
     { "label": "Outdoor Canada, 9 Nova Scotia rivers with spectacular shad fishing", "url": "https://www.outdoorcanada.ca/9-nova-scotia-rivers-with-spectacular-shad-fishing/" },
     { "label": "Discover Saint John, Fishing in the Saint John Region", "url": "https://discoversaintjohn.com/fishing-saint-john-region" },

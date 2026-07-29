@@ -96,6 +96,26 @@
       "last_verified": "2026"
     }
   ],
+  "variants": [
+    {
+      "name": "Smooth Dogfish",
+      "kind": "lookalike",
+      "scientific_name": "Mustelus canis",
+      "how_to_tell": "Smooth dogfish has no dorsal spines at all — its two dorsal fins are plain and spineless, versus spiny dogfish's sharp spine in front of each dorsal fin. Smooth dogfish also has an anal fin (spiny dogfish has none), flat pavement-like teeth built for crushing rather than the small sharp teeth of spiny dogfish, and lacks the white spots scattered across a spiny dogfish's back and sides.",
+      "where_found": "More of a warm-water, southern New England/Mid-Atlantic species that occasionally reaches Maritime waters at the northern edge of its range; spiny dogfish is the default dogfish encountered region-wide.",
+      "notes": "The missing dorsal spines are the safety-relevant distinction — a smooth dogfish can be handled without the puncture risk spiny dogfish poses. Check for spines before assuming any small shark needs the same careful handling.",
+      "image_query": "Mustelus canis"
+    },
+    {
+      "name": "Juvenile Porbeagle",
+      "kind": "lookalike",
+      "scientific_name": "Lamna nasus",
+      "how_to_tell": "Even a young porbeagle is a heavier-bodied, more torpedo-shaped shark than spiny dogfish, with a large first dorsal fin carrying a distinctive white patch on its free rear tip, no dorsal spines at all, and a secondary keel on the tail base alongside the main caudal keel (spiny dogfish has neither feature). Porbeagle teeth are large, pointed, and visible even in a small individual, unlike spiny dogfish's small teeth in a comparatively slender jaw.",
+      "where_found": "Offshore and open-water, encountered more on deeper boat trips than the shallow wharf/bottom-fishing water where spiny dogfish are typical bycatch.",
+      "notes": "Porbeagle is managed under DFO's recreational shark licence system, a completely different regulatory track from spiny dogfish's groundfish management — confirm which licence covers what's in hand before deciding whether a fish can be retained.",
+      "image_query": "Lamna nasus"
+    }
+  ],
   "quick_reference": [
     { "label": "Typical catch", "value": "Incidental bycatch while bottom fishing for cod, pollock, flounder — rarely a deliberate target here" },
     { "label": "Identification", "value": "No anal fin; sharp spine forward of each of the 2 dorsal fins" },

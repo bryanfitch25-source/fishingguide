@@ -59,6 +59,26 @@
     { "province": "NS", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO notices reviewed — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. NS has coastline in both DFO Maritimes Region and DFO Gulf Region — no cunner-specific limit found in either.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html", "last_verified": "2026" },
     { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
   ],
+  "variants": [
+    {
+      "name": "Tautog (Blackfish)",
+      "kind": "lookalike",
+      "scientific_name": "Tautoga onitis",
+      "how_to_tell": "Tautog is a much bigger, heavier-bodied fish, averaging 1-3 lb and reaching up to 3 ft/25 lb versus cunner's small size throughout life. Tautog has a high-arched, steep, rounded head profile with a blunt snout and thick rubbery lips, while cunner has a more pointed head profile and thinner lips. Tautog's dark, mottled blackish-brown coloring also runs heavier and less speckled than cunner's variable mottled pattern with gold flecking.",
+      "where_found": "Same structure cunner relates to — wharf pilings, breakwaters, rock jetties — with tautog present at the northern edge of its range in Nova Scotia, overlapping cunner water.",
+      "notes": "No regulatory concern in this region, but worth knowing a noticeably larger, blunt-headed wrasse on the same light gear is likely a tautog, not an oversized cunner.",
+      "image_query": "Tautoga onitis"
+    },
+    {
+      "name": "Juvenile Pollock",
+      "kind": "lookalike",
+      "scientific_name": "Pollachius virens",
+      "how_to_tell": "Juvenile (\"harbor\") pollock share the same wharf-piling and breakwater structure as cunner and are a similar size in their first year or two, but pollock has a forked tail (cunner's is rounded/fan-shaped), a single soft dorsal fin running the length of the back with no spiny section (cunner's dorsal fin has a distinct spiny front section), and a cod-family body shape versus cunner's deeper-bodied wrasse shape.",
+      "where_found": "Both hold tight to the same inshore wharf and breakwater structure region-wide, especially in summer and fall.",
+      "notes": "No regulatory concern, but useful when a mixed bag of small structure-oriented fish comes up and includes something that doesn't quite look like a cunner.",
+      "image_query": null
+    }
+  ],
   "quick_reference": [
     { "label": "Season", "value": "Spring through fall — dormant/torpid in cold winter water" },
     { "label": "Best Time", "value": "Any time — not especially tide- or light-dependent" },

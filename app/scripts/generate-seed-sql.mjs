@@ -1,12 +1,14 @@
-// Converts ../../research/*.json into a single, idempotent SQL script:
-// app/supabase/seed.sql — paste-and-run in the Supabase SQL Editor (or `psql -f`).
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+// Converts ../../research/*.json (+ _image-credits.json) into a single, idempotent SQL
+// script: app/supabase/seed.sql — paste-and-run in the Supabase SQL Editor (or `psql -f`).
+import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const researchDir = path.resolve(__dirname, "..", "..", "research");
 const outPath = path.resolve(__dirname, "..", "supabase", "seed.sql");
+const creditsPath = path.join(researchDir, "_image-credits.json");
+const imageDir = path.resolve(__dirname, "..", "public", "species");
 
 function q(value) {
   // SQL string literal, safely escaped. null/undefined -> NULL.
@@ -30,24 +32,46 @@ function loadJsonFiles(locationOnly) {
     .map((f) => JSON.parse(readFileSync(path.join(researchDir, f), "utf8")));
 }
 
+const credits = existsSync(creditsPath) ? JSON.parse(readFileSync(creditsPath, "utf8")) : {};
+
+/** Returns {path, credit, license, source_url} for a species slug or variant key, or all-null. */
+function imageFor(key) {
+  const hasFile = existsSync(path.join(imageDir, `${key}.jpg`));
+  const credit = credits[key];
+  if (!hasFile || !credit) {
+    return { path: null, credit: null, license: null, source_url: null };
+  }
+  return {
+    path: `/species/${key}.jpg`,
+    credit: credit.credit ?? null,
+    license: credit.license ?? null,
+    source_url: credit.source_url ?? null,
+  };
+}
+
 const speciesFiles = loadJsonFiles(false);
 const locationFiles = loadJsonFiles(true);
 
 let sql = `-- Generated seed data for Maritime Angler. Safe to re-run (upserts + delete/reinsert children).
--- Run this AFTER supabase/migrations/20260728000001_init_schema.sql has been applied.
+-- Run this AFTER both migrations in supabase/migrations/ have been applied.
 begin;
 `;
 
 for (const s of speciesFiles) {
+  const img = imageFor(s.slug);
   sql += `\n-- ===== ${s.common_name} (${s.slug}) =====\n`;
-  sql += `insert into species (slug, common_name, scientific_name, category, provinces, summary, is_published, updated_at)
-values (${q(s.slug)}, ${q(s.common_name)}, ${q(s.scientific_name)}, ${q(s.category)}, ${qTextArray(s.provinces)}, ${q(s.summary)}, true, now())
+  sql += `insert into species (slug, common_name, scientific_name, category, provinces, summary, image_path, image_credit, image_license, image_source_url, is_published, updated_at)
+values (${q(s.slug)}, ${q(s.common_name)}, ${q(s.scientific_name)}, ${q(s.category)}, ${qTextArray(s.provinces)}, ${q(s.summary)}, ${q(img.path)}, ${q(img.credit)}, ${q(img.license)}, ${q(img.source_url)}, true, now())
 on conflict (slug) do update set
   common_name = excluded.common_name,
   scientific_name = excluded.scientific_name,
   category = excluded.category,
   provinces = excluded.provinces,
   summary = excluded.summary,
+  image_path = excluded.image_path,
+  image_credit = excluded.image_credit,
+  image_license = excluded.image_license,
+  image_source_url = excluded.image_source_url,
   is_published = true,
   updated_at = now();
 `;
@@ -55,6 +79,7 @@ on conflict (slug) do update set
   sql += `delete from regulations where species_id = (select id from species where slug = ${q(s.slug)});\n`;
   sql += `delete from quick_reference where species_id = (select id from species where slug = ${q(s.slug)});\n`;
   sql += `delete from species_sources where species_id = (select id from species where slug = ${q(s.slug)});\n`;
+  sql += `delete from species_variants where species_id = (select id from species where slug = ${q(s.slug)});\n`;
 
   (s.sections ?? []).forEach((sec, i) => {
     sql += `insert into guide_sections (species_id, position, heading, body_md, sources) values ((select id from species where slug = ${q(s.slug)}), ${i}, ${q(sec.heading)}, ${q(sec.body_md)}, ${qJsonb(sec.sources)});\n`;
@@ -70,6 +95,11 @@ on conflict (slug) do update set
 
   (s.sources ?? []).forEach((src) => {
     sql += `insert into species_sources (species_id, label, url) values ((select id from species where slug = ${q(s.slug)}), ${q(src.label)}, ${q(src.url)});\n`;
+  });
+
+  (s.variants ?? []).forEach((v, i) => {
+    const vImg = imageFor(`${s.slug}--variant-${i}`);
+    sql += `insert into species_variants (species_id, position, name, kind, scientific_name, how_to_tell, where_found, notes, image_path, image_credit, image_license, image_source_url) values ((select id from species where slug = ${q(s.slug)}), ${i}, ${q(v.name)}, ${q(v.kind)}, ${q(v.scientific_name)}, ${q(v.how_to_tell)}, ${q(v.where_found)}, ${q(v.notes)}, ${q(vImg.path)}, ${q(vImg.credit)}, ${q(vImg.license)}, ${q(vImg.source_url)});\n`;
   });
 }
 
@@ -107,4 +137,7 @@ on conflict (slug) do update set
 sql += `\ncommit;\n`;
 
 writeFileSync(outPath, sql, "utf8");
-console.log(`Wrote ${outPath} (${speciesFiles.length} species, ${locationFiles.length} location guides).`);
+const withImages = speciesFiles.filter((s) => imageFor(s.slug).path).length;
+console.log(
+  `Wrote ${outPath} (${speciesFiles.length} species [${withImages} with photos], ${locationFiles.length} location guides).`
+);

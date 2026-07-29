@@ -1,0 +1,478 @@
+{
+  "atlantic-mackerel": {
+    "credit": "Petar Milošević",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Atlantic_mackerel_(Scomber_scombrus).jpg",
+    "title": "Atlantic mackerel (Scomber scombrus).jpg",
+    "query": "Scomber scombrus"
+  },
+  "brook-trout": {
+    "credit": "Photo by and (C)2007 Derek Ramsey (Ram-Man)",
+    "license": "CC BY-SA 2.5",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Brook_Trout_Salvelinus_fontinalis_2900px.jpg",
+    "title": "Brook Trout Salvelinus fontinalis 2900px.jpg",
+    "query": "Salvelinus fontinalis"
+  },
+  "atlantic-tomcod": {
+    "credit": "New York Fish and Game Commission",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:FMIB_41877_Tomcod_(Microgadus_tomcod_Walbaum).jpeg",
+    "title": "FMIB 41877 Tomcod (Microgadus tomcod Walbaum).jpeg",
+    "query": "Microgadus tomcod"
+  },
+  "brown-trout": {
+    "credit": "Eric Engbretson for U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmo_trutta.jpg",
+    "title": "Salmo trutta.jpg",
+    "query": "Salmo trutta"
+  },
+  "chain-pickerel": {
+    "credit": "Noel Burkhead/Howard Jelks",
+    "license": "CC BY-SA 2.5",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esox_niger.jpg",
+    "title": "Esox niger.jpg",
+    "query": "Esox niger"
+  },
+  "cunner": {
+    "credit": "State of New York Forest, Fish, and Game Commission",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:FMIB_43254_Bergall;_Cunner_(Tautogolabrus_adspersus).jpeg",
+    "title": "FMIB 43254 Bergall; Cunner (Tautogolabrus adspersus).jpeg",
+    "query": "Tautogolabrus adspersus"
+  },
+  "pollock": {
+    "credit": "Gervais et Boulart",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pollachius_virens_Gervais.jpg",
+    "title": "Pollachius virens Gervais.jpg",
+    "query": "Pollachius virens"
+  },
+  "smallmouth-bass": {
+    "credit": "Timothy Knepp, U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Micropterus_dolomieu2.jpg",
+    "title": "Micropterus dolomieu2.jpg",
+    "query": "Micropterus dolomieu"
+  },
+  "spiny-dogfish": {
+    "credit": "Doug Costa, NOAA/SBNMS",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Squalus_acanthias_stellwagen.jpg",
+    "title": "Squalus acanthias stellwagen.jpg",
+    "query": "Squalus acanthias"
+  },
+  "striped-bass": {
+    "credit": "Timothy Knepp",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Striped_bass_FWS_1.jpg",
+    "title": "Striped bass FWS 1.jpg",
+    "query": "Morone saxatilis"
+  },
+  "winter-flounder": {
+    "credit": "Smithsonian Environmental Research Center",
+    "license": "CC BY 2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pseudopleuronectes_americanus_(S0892)_(12658628105).jpg",
+    "title": "Pseudopleuronectes americanus (S0892) (12658628105).jpg",
+    "query": "Pseudopleuronectes americanus"
+  },
+  "white-perch": {
+    "credit": "Cephas",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Morone_americana_PAQ.jpg",
+    "title": "Morone americana PAQ.jpg",
+    "query": "Morone americana"
+  },
+  "white-perch--variant-1": {
+    "credit": "Robert Colletta",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:D3149-1._yellow_perch_(Perca_flavescens).jpg",
+    "title": "D3149-1. yellow perch (Perca flavescens).jpg",
+    "query": "Perca flavescens"
+  },
+  "yellow-perch": {
+    "credit": "Robert Colletta",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:D3149-1._yellow_perch_(Perca_flavescens).jpg",
+    "title": "D3149-1. yellow perch (Perca flavescens).jpg",
+    "query": "Perca flavescens"
+  },
+  "yellow-perch--variant-0": {
+    "credit": "Cephas",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Morone_americana_PAQ.jpg",
+    "title": "Morone americana PAQ.jpg",
+    "query": "Morone americana"
+  },
+  "yellow-perch--variant-1": {
+    "credit": "USFWS Mountain-Prairie",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Walleye_Fingerling_(9518198980).jpg",
+    "title": "Walleye Fingerling (9518198980).jpg",
+    "query": "Sander vitreus juvenile"
+  },
+  "rainbow-smelt--variant-1": {
+    "credit": "Olivier Dugornay",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Juv%C3%A9niles_de_hareng_(Clupea_harengus)_%C3%A0_70_jours_post-%C3%A9closion_(Ifremer_00614-72593_-_28700).jpg",
+    "title": "Juvéniles de hareng (Clupea harengus) à 70 jours post-éclosion (Ifremer 00614-72593 - 28700).jpg",
+    "query": "Clupea harengus juvenile"
+  },
+  "rainbow-smelt--variant-2": {
+    "credit": "Smithsonian Environmental Research Center",
+    "license": "CC BY 2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Menidia_menidia_RR_08-11-19_0545_(48555459552).jpg",
+    "title": "Menidia menidia RR 08-11-19 0545 (48555459552).jpg",
+    "query": "Menidia menidia"
+  },
+  "acadian-redfish": {
+    "credit": "Steven G. Johnson",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Acadian_redfish.jpg",
+    "title": "Acadian redfish.jpg",
+    "query": "Sebastes fasciatus"
+  },
+  "acadian-redfish--variant-1": {
+    "credit": "User:Tanzania",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sebastes_norvegicus.jpeg",
+    "title": "Sebastes norvegicus.jpeg",
+    "query": "Sebastes norvegicus"
+  },
+  "american-eel--variant-2": {
+    "credit": "USFWS Mountain Prairie",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:American_Eel_(Anguilla_rostrata)_-_white_background.jpg",
+    "title": "American Eel (Anguilla rostrata) - white background.jpg",
+    "query": "Anguilla rostrata"
+  },
+  "american-shad--variant-0": {
+    "credit": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alosa_pseudoharengus.jpg",
+    "title": "Alosa pseudoharengus.jpg",
+    "query": "Alosa pseudoharengus"
+  },
+  "american-shad--variant-1": {
+    "credit": "Smithsonian Environmental Research Center",
+    "license": "CC BY 2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alosa_aestivalis_(S0110)_(15910316357).jpg",
+    "title": "Alosa aestivalis (S0110) (15910316357).jpg",
+    "query": "Alosa aestivalis"
+  },
+  "atlantic-cod--variant-0": {
+    "credit": "Vsevolod Rudyi",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Melanogrammus_aeglefinus_318932194.jpg",
+    "title": "Melanogrammus aeglefinus 318932194.jpg",
+    "query": "Melanogrammus aeglefinus"
+  },
+  "atlantic-cod--variant-1": {
+    "credit": "Gervais et Boulart",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pollachius_virens_Gervais.jpg",
+    "title": "Pollachius virens Gervais.jpg",
+    "query": "Pollachius virens"
+  },
+  "atlantic-cod--variant-2": {
+    "credit": "New York Fish and Game Commission",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:FMIB_41877_Tomcod_(Microgadus_tomcod_Walbaum).jpeg",
+    "title": "FMIB 41877 Tomcod (Microgadus tomcod Walbaum).jpeg",
+    "query": "Microgadus tomcod"
+  },
+  "atlantic-herring--variant-2": {
+    "credit": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alosa_pseudoharengus.jpg",
+    "title": "Alosa pseudoharengus.jpg",
+    "query": "Alosa pseudoharengus"
+  },
+  "atlantic-herring--variant-3": {
+    "credit": "Petar Milošević",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Atlantic_mackerel_(Scomber_scombrus).jpg",
+    "title": "Atlantic mackerel (Scomber scombrus).jpg",
+    "query": "Scomber scombrus"
+  },
+  "atlantic-salmon--variant-2": {
+    "credit": "Peter Steenstra at the Green Lake National Fish Hatchery",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Atlantic_salmon_parr.jpg",
+    "title": "Atlantic salmon parr.jpg",
+    "query": "Salmo salar parr"
+  },
+  "atlantic-salmon--variant-4": {
+    "credit": "Photo by and (C)2007 Derek Ramsey (Ram-Man)",
+    "license": "CC BY-SA 2.5",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Brook_Trout_Salvelinus_fontinalis_2900px.jpg",
+    "title": "Brook Trout Salvelinus fontinalis 2900px.jpg",
+    "query": "Salvelinus fontinalis"
+  },
+  "atlantic-tomcod--variant-0": {
+    "credit": "Bex Goreham",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Osmerus_mordax_380012943.jpg",
+    "title": "Osmerus mordax 380012943.jpg",
+    "query": "Osmerus mordax"
+  },
+  "bluefin-tuna--variant-2": {
+    "credit": "Marc Taquet",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Banc_de_thons_albacores_(Thunnus_albacares)_(Ifremer_00568-68027_-_25201).jpg",
+    "title": "Banc de thons albacores (Thunnus albacares) (Ifremer 00568-68027 - 25201).jpg",
+    "query": "Thunnus albacares"
+  },
+  "bluefin-tuna--variant-3": {
+    "credit": "Allen Shimada, NOAA NMFS OST",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Thunnus_obesus_(bigeye_tuna).jpg",
+    "title": "Thunnus obesus (bigeye tuna).jpg",
+    "query": "Thunnus obesus"
+  },
+  "bluefin-tuna--variant-4": {
+    "credit": "Hugues Evano (IFREMER, Délégation océan Indien (DOI), Département Ressources Biologiques et Environnement (RBE), F-97420 Le Port, France)",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Thon_germon_(Thunnus_alalunga)_(Ifremer_00764-87615).jpg",
+    "title": "Thon germon (Thunnus alalunga) (Ifremer 00764-87615).jpg",
+    "query": "Thunnus alalunga"
+  },
+  "brook-trout--variant-0": {
+    "credit": "Photo by and (C)2007 Derek Ramsey (Ram-Man)",
+    "license": "CC BY-SA 2.5",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Brook_Trout_Salvelinus_fontinalis_2900px.jpg",
+    "title": "Brook Trout Salvelinus fontinalis 2900px.jpg",
+    "query": "Salvelinus fontinalis"
+  },
+  "brook-trout--variant-2": {
+    "credit": "Peter Steenstra at the Green Lake National Fish Hatchery",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Atlantic_salmon_parr.jpg",
+    "title": "Atlantic salmon parr.jpg",
+    "query": "Salmo salar parr"
+  },
+  "brown-trout--variant-1": {
+    "credit": "Uwe Kils",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmonlarvakils.jpg",
+    "title": "Salmonlarvakils.jpg",
+    "query": "Salmo salar"
+  },
+  "chain-pickerel--variant-0": {
+    "credit": "George Chernilevsky",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esox_lucius_2021_G1.jpg",
+    "title": "Esox lucius 2021 G1.jpg",
+    "query": "Esox lucius"
+  },
+  "chain-pickerel--variant-1": {
+    "credit": "Knepp, Timothy - U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Muskellunge_USFWS.jpg",
+    "title": "Muskellunge USFWS.jpg",
+    "query": "Esox masquinongy"
+  },
+  "gaspereau--variant-0": {
+    "credit": "Smithsonian Environmental Research Center",
+    "license": "CC BY 2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alosa_aestivalis_(S0110)_(15910316357).jpg",
+    "title": "Alosa aestivalis (S0110) (15910316357).jpg",
+    "query": "Alosa aestivalis"
+  },
+  "landlocked-salmon--variant-1": {
+    "credit": "Eric Engbretson for U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmo_trutta.jpg",
+    "title": "Salmo trutta.jpg",
+    "query": "Salmo trutta"
+  },
+  "largemouth-bass--variant-0": {
+    "credit": "Timothy Knepp, U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Micropterus_dolomieu2.jpg",
+    "title": "Micropterus dolomieu2.jpg",
+    "query": "Micropterus dolomieu"
+  },
+  "muskellunge--variant-0": {
+    "credit": "George Chernilevsky",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esox_lucius_2021_G1.jpg",
+    "title": "Esox lucius 2021 G1.jpg",
+    "query": "Esox lucius"
+  },
+  "muskellunge--variant-1": {
+    "credit": "Noel Burkhead/Howard Jelks",
+    "license": "CC BY-SA 2.5",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esox_niger.jpg",
+    "title": "Esox niger.jpg",
+    "query": "Esox niger"
+  },
+  "pollock--variant-0": {
+    "credit": "Wilhelm Thomas Fiege",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Atlantic_Cod,_Atlantischer_Kabeljau_(Gadus_morhua).jpg",
+    "title": "Atlantic Cod, Atlantischer Kabeljau (Gadus morhua).jpg",
+    "query": "Gadus morhua"
+  },
+  "pollock--variant-1": {
+    "credit": "Vsevolod Rudyi",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Melanogrammus_aeglefinus_318932194.jpg",
+    "title": "Melanogrammus aeglefinus 318932194.jpg",
+    "query": "Melanogrammus aeglefinus"
+  },
+  "rainbow-smelt": {
+    "credit": "Bex Goreham",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Osmerus_mordax_380012943.jpg",
+    "title": "Osmerus mordax 380012943.jpg",
+    "query": "Osmerus mordax"
+  },
+  "rainbow-trout": {
+    "credit": "USFWS Mountain Prairie",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Trout_(Oncorhynchus_mykiss)_Gavins_Point.jpg",
+    "title": "Rainbow Trout (Oncorhynchus mykiss) Gavins Point.jpg",
+    "query": "Oncorhynchus mykiss"
+  },
+  "sculpin--variant-1": {
+    "credit": "Luis Miguel Bugallo Sánchez (Lmbuga)",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:2018._Myoxocephalus_octodecemspinosus_(Mitchil_1814)._Museo_do_Mar_de_Galicia.jpg",
+    "title": "2018. Myoxocephalus octodecemspinosus (Mitchil 1814). Museo do Mar de Galicia.jpg",
+    "query": "Myoxocephalus octodecemspinosus"
+  },
+  "sculpin--variant-2": {
+    "credit": "TinoStrauss",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Myoxocephalus_scorpius_01.jpg",
+    "title": "Myoxocephalus scorpius 01.jpg",
+    "query": "Myoxocephalus scorpius"
+  },
+  "sculpin--variant-3": {
+    "credit": "Norbert Verneau",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hemitripterus_americanus.jpg",
+    "title": "Hemitripterus americanus.jpg",
+    "query": "Hemitripterus americanus"
+  },
+  "smallmouth-bass--variant-0": {
+    "credit": "USFWS Mountain Prairie",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Largemouth_Bass_(Micropterus_salmoides)_June_2023.jpg",
+    "title": "Largemouth Bass (Micropterus salmoides) June 2023.jpg",
+    "query": "Micropterus salmoides"
+  },
+  "spiny-dogfish--variant-0": {
+    "credit": "NOAA",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mustelus_canis_noaa.jpg",
+    "title": "Mustelus canis noaa.jpg",
+    "query": "Mustelus canis"
+  },
+  "striped-bass--variant-2": {
+    "credit": "Cephas",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Morone_americana_PAQ.jpg",
+    "title": "Morone americana PAQ.jpg",
+    "query": "Morone americana"
+  },
+  "white-perch--variant-0": {
+    "credit": "Smithsonian Environmental Research Center",
+    "license": "CC BY 2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Morone_saxatilis_(S0016)_(12679096963).jpg",
+    "title": "Morone saxatilis (S0016) (12679096963).jpg",
+    "query": "Morone saxatilis juvenile"
+  },
+  "winter-flounder--variant-0": {
+    "credit": "U.Name.Me",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hippoglossus_hippoglossus_NHM.jpg",
+    "title": "Hippoglossus hippoglossus NHM.jpg",
+    "query": "Hippoglossus hippoglossus"
+  },
+  "winter-flounder--variant-1": {
+    "credit": "NOAA Fisheries",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Limanda_ferruginea_(NOAA)_no_watermark.png",
+    "title": "Limanda ferruginea (NOAA) no watermark.png",
+    "query": "Limanda ferruginea"
+  },
+  "winter-flounder--variant-2": {
+    "credit": "André-Philippe D. Picard",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Plie_canadienne_(Hippoglossoides_platessoides).jpg",
+    "title": "Plie canadienne (Hippoglossoides platessoides).jpg",
+    "query": "Hippoglossoides platessoides"
+  },
+  "winter-flounder--variant-3": {
+    "credit": "Cedricguppy - Loury Cédric",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Glyptocephalus_cynoglossus_-_(Pleuronectes_cynoglossus)_-_squelette_mnhn_Paris.JPG",
+    "title": "Glyptocephalus cynoglossus - (Pleuronectes cynoglossus) - squelette mnhn Paris.JPG",
+    "query": "Glyptocephalus cynoglossus"
+  },
+  "american-eel": {
+    "credit": "USFWS Mountain Prairie",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:American_Eel_(Anguilla_rostrata)_-_white_background.jpg",
+    "title": "American Eel (Anguilla rostrata) - white background.jpg",
+    "query": "Anguilla rostrata"
+  },
+  "atlantic-cod": {
+    "credit": "Wilhelm Thomas Fiege",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Atlantic_Cod,_Atlantischer_Kabeljau_(Gadus_morhua).jpg",
+    "title": "Atlantic Cod, Atlantischer Kabeljau (Gadus morhua).jpg",
+    "query": "Gadus morhua"
+  },
+  "atlantic-herring": {
+    "credit": "savoieju",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Clupea_harengus_Atlantic.jpg",
+    "title": "Clupea harengus Atlantic.jpg",
+    "query": "Clupea harengus"
+  },
+  "atlantic-salmon": {
+    "credit": "Uwe Kils",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmonlarvakils.jpg",
+    "title": "Salmonlarvakils.jpg",
+    "query": "Salmo salar"
+  },
+  "bluefin-tuna": {
+    "credit": "Rafa Gallut",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:At%C3%BAn_rojo,_thunnus_thynnus,_pescado_a_jigging_en_Cabo_de_Palos,_Murcia..JPG",
+    "title": "Atún rojo, thunnus thynnus, pescado a jigging en Cabo de Palos, Murcia..JPG",
+    "query": "Thunnus thynnus"
+  },
+  "gaspereau": {
+    "credit": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alosa_pseudoharengus.jpg",
+    "title": "Alosa pseudoharengus.jpg",
+    "query": "Alosa pseudoharengus"
+  },
+  "landlocked-salmon": {
+    "credit": "Uwe Kils",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmonlarvakils.jpg",
+    "title": "Salmonlarvakils.jpg",
+    "query": "Salmo salar"
+  },
+  "largemouth-bass": {
+    "credit": "USFWS Mountain Prairie",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Largemouth_Bass_(Micropterus_salmoides)_June_2023.jpg",
+    "title": "Largemouth Bass (Micropterus salmoides) June 2023.jpg",
+    "query": "Micropterus salmoides"
+  },
+  "muskellunge": {
+    "credit": "Knepp, Timothy - U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Muskellunge_USFWS.jpg",
+    "title": "Muskellunge USFWS.jpg",
+    "query": "Esox masquinongy"
+  }
+}

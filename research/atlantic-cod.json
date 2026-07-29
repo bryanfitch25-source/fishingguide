@@ -121,6 +121,35 @@
       "last_verified": "2023 (page date) / checked July 2026"
     }
   ],
+  "variants": [
+    {
+      "name": "Haddock",
+      "kind": "lookalike",
+      "scientific_name": "Melanogrammus aeglefinus",
+      "how_to_tell": "Haddock has a straight, dark (almost black) lateral line, versus cod's pale, curved lateral line — this is the fastest field check. Haddock also carries a distinct dark oval blotch (\"the Devil's thumbprint\") above and behind the pectoral fin that cod never has, and lacks cod's chin barbel entirely (cod's barbel is obvious and always present). Haddock's body is a cleaner silvery-grey without cod's mottled brown-to-greenish blotching, and its tail is slightly forked with a dark rear edge versus cod's more rounded/square tail.",
+      "where_found": "Deeper offshore banks and ledges, generally in the same grounds as cod but more associated with clean sand/gravel bottom; caught alongside cod on the Scotian Shelf and Bay of Fundy side of NS.",
+      "notes": "Haddock is zero-retention under the 2026 DFO Gulf Region notice — must be released immediately in NB, PEI, and the NS Northumberland Strait/Gulf shore, exactly like pollock, even during the open cod window. On the DFO Maritimes Region side (NS Atlantic coast, Bay of Fundy), haddock retention is permitted within the same aggregate groundfish bag limit as cod and pollock (10/day Halifax Harbour and west, 5/day Hartlen Point and east). Confusing a haddock for a cod on the Gulf side and keeping it is a real, avoidable violation — check the lateral line and thumbprint before it goes in the cooler.",
+      "image_query": "Melanogrammus aeglefinus"
+    },
+    {
+      "name": "Pollock",
+      "kind": "lookalike",
+      "scientific_name": "Pollachius virens",
+      "how_to_tell": "Pollock has a forked tail (cod's is rounded/square), a protruding lower jaw that projects past the upper jaw (cod's upper jaw projects further), and a chin barbel that's tiny or absent versus cod's obvious barbel. Pollock's back runs olive-green to smoky black rather than cod's brown-to-greenish mottling, and its lateral line is straighter and less distinctly pale than cod's curved one.",
+      "where_found": "Same wharves, breakwaters, and offshore structure as cod region-wide; pollock also feed well up in the water column and even at the surface, unlike bottom-hugging cod.",
+      "notes": "Retention rules genuinely differ between the two species in the Gulf Region: pollock is zero-retention there in 2026 while cod has a short open window and a 5-fish sub-limit within the 15-fish groundfish aggregate. Mistaking a pollock for a legal cod (or vice versa) on the Gulf side has real consequences — check jaw, tail, and barbel before deciding what goes in the cooler.",
+      "image_query": "Pollachius virens"
+    },
+    {
+      "name": "Atlantic Tomcod",
+      "kind": "lookalike",
+      "scientific_name": "Microgadus tomcod",
+      "how_to_tell": "Tomcod are a dwarf cod-family relative, not a juvenile Atlantic cod — the giveaway is size: tomcod max out around 15 cm (6 in), while even small recreationally-caught cod run 40+ cm. Both have three dorsal fins, two anal fins, and a chin barbel, so a small tomcod can superficially resemble a baby cod at a glance, but no genuinely juvenile Atlantic cod of that tiny size shows up on typical estuary or wharf gear in this region.",
+      "where_found": "Estuaries and river mouths (e.g. the Shubenacadie, NS) rather than the open coastal and offshore structure cod relate to.",
+      "notes": "No regulatory concern — both are legal to target where seasons allow — but worth knowing tomcod is its own species, not a undersized cod, if one turns up on flounder gear in an estuary.",
+      "image_query": "Microgadus tomcod"
+    }
+  ],
   "quick_reference": [
     { "label": "Gulf Region season (NB, PEI, NS Strait side)", "value": "General groundfish April 15–Oct 1, 2026; cod retention only in a shorter window within that" },
     { "label": "Cod window — NB", "value": "July 16 – August 21, 2026, sunrise to sunset" },

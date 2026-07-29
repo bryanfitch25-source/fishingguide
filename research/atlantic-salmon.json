@@ -84,6 +84,53 @@
     { "label": "Watch For", "value": "Warm Water Protocol closures on Miramichi, Restigouche, Nepisiguit, Margaree in hot weather" },
     { "label": "Top Rivers", "value": "Miramichi & Restigouche (NB), Margaree (NS), Morell & Mill (PEI)" }
   ],
+  "variants": [
+    {
+      "name": "Grilse",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "A returning adult under 63 cm fork length that has spent only one winter at sea — smaller and more streamlined than a multi-sea-winter fish, typically in the 2-6 lb range. Look and behave like small versions of a full adult salmon: silver on return, darkening as they hold in the river.",
+      "where_found": "All open salmon rivers in NB, NS, and PEI — grilse make up the bulk of most rivers' summer run, including the Miramichi, Restigouche, and Margaree.",
+      "notes": "DFO's grilse/large-salmon split (above or below 63 cm) is the actual regulatory size break used in stock assessments and historically in retention rules; even though the whole recreational fishery is catch-and-release right now, this is still the line anglers and biologists use to describe run composition and report catches.",
+      "image_query": null
+    },
+    {
+      "name": "Multi-Sea-Winter (MSW) Salmon",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "A returning adult 63 cm fork length or larger that has spent two or more winters at sea. Noticeably deeper-bodied and heavier than a grilse of the same river, sometimes 10+ lbs on big systems like the Restigouche.",
+      "where_found": "Same rivers as grilse, though MSW fish make up a larger share of the run on some systems (the Restigouche is known for larger multi-sea-winter fish) than others.",
+      "notes": "Same catch-and-release rule applies regardless of size class — there is no size-based retention distinction in the current recreational fishery.",
+      "image_query": null
+    },
+    {
+      "name": "Parr",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "Juvenile stream-dwelling stage, one to eight years old depending on the river. Slim and streamlined with a sharp snout, small mouth, a deeply forked tail, well-defined vertical parr marks (bars) down the flanks, few spots on the gill cover (often just one large spot), and an adipose fin that is never orange or red. A single row of teeth on the roof of the mouth (vomerine teeth) separates it from brown trout parr, which have two zig-zag rows.",
+      "where_found": "Every salmon-bearing stream and river in NB, NS, and PEI, well upstream of tidal water.",
+      "notes": "Must always be released immediately — parr are juvenile Atlantic salmon, not a legal catch of any kind, and are commonly mistaken for brook trout (see the brook-trout lookalike entry on this page).",
+      "image_query": "Salmo salar parr"
+    },
+    {
+      "name": "Smolt",
+      "kind": "life-stage",
+      "scientific_name": null,
+      "how_to_tell": "The migratory stage a parr transforms into before heading to sea, usually 13-18 cm and two to five years old. Parr marks fade and the fish turns bright silver with a nearly black back and white belly, ready to imprint on saltwater life.",
+      "where_found": "Same rivers as parr, moving downstream toward tidal water and the ocean during the smolt run, roughly May-June.",
+      "notes": "Also a fish that must be released immediately if encountered — smolts are the same protected wild salmon population, just mid-migration.",
+      "image_query": null
+    },
+    {
+      "name": "Brook Trout",
+      "kind": "lookalike",
+      "scientific_name": "Salvelinus fontinalis",
+      "how_to_tell": "The critical confusion in Maritime trout streams. Brook trout have red spots surrounded by a pale blue halo along their flanks and worm-like marbled (vermiculated) markings on the back — Atlantic salmon parr never have red spots and instead show plain vertical parr bars with only a few dark spots above the lateral line. Brook trout also have a squarer, less deeply forked tail than the sharply forked tail of a salmon parr, and white leading edges on their lower fins that parr lack.",
+      "where_found": "The same small streams and rivers across NB, NS, and PEI where salmon parr are found — nearly all cold, clean Maritime trout water.",
+      "notes": "Getting this backwards has real consequences: a salmon parr caught in a trout stream must be released immediately regardless of season or limit, since retention of any Atlantic salmon is currently prohibited across the region.",
+      "image_query": "Salvelinus fontinalis"
+    }
+  ],
   "sources": [
     { "label": "DFO Gulf Region — Atlantic Salmon Recreational Fishing for the Gulf Region in 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/atlantic-salmon-recreational-fishing-gulf-region-2026" },
     { "label": "DFO — Atlantic Salmon, a Remarkable Life Cycle", "url": "https://www.dfo-mpo.gc.ca/species-especes/publications/salmon-saumon/lifecycle-cyclevital/index-eng.html" },

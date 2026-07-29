@@ -67,6 +67,17 @@
     { "label": "Best Time", "value": "Late spring spawn through summer; dawn/dusk for topwater" },
     { "label": "Gear", "value": "Medium-heavy spinning/baitcasting rod, 10-17 lb line, weedless soft plastics and topwater" }
   ],
+  "variants": [
+    {
+      "name": "Smallmouth Bass",
+      "kind": "lookalike",
+      "scientific_name": "Micropterus dolomieu",
+      "how_to_tell": "On a largemouth, the jaw hinge extends back well past the eye; on a smallmouth, the corner of the upper jaw lines up roughly even with the eye. A largemouth's dorsal fin has a deep notch that can look like two separate fins, while a smallmouth's dorsal fin is joined by only a shallow notch, appearing almost continuous. Colour also differs: largemouth are greener with a single bold horizontal stripe running eye-to-tail, while smallmouth are brown to bronze with faint vertical bars running gill-to-tail rather than a horizontal stripe.",
+      "where_found": "Smallmouth bass are far more widespread across NB, NS, and PEI, including the same Saint John River system that holds largemouth. Largemouth remain confirmed only in specific NB waters (Grand Lake, Washademoak Lake, Oromocto Lake, Mactaquac Arm, Meduxnekeag River, Spednic Lake).",
+      "notes": "The two species carry different mandatory-retention rules under NB's April 2026 invasive-species regulations: largemouth must be retained in the Restigouche, Chaleur, Miramichi, Southeast, Inner Bay of Fundy, and Upper Saint John RFAs, while smallmouth's mandatory-retention list (Restigouche, Chaleur, Miramichi, Southeast) does not include Inner Bay of Fundy or Upper Saint John. Misidentifying the species can mean releasing a fish that was legally required to be kept, or vice versa — both carry $100-$500 fines.",
+      "image_query": "Micropterus dolomieu"
+    }
+  ],
   "sources": [
     { "label": "DFO, Largemouth Bass species profile", "url": "https://www.dfo-mpo.gc.ca/species-especes/profiles-profils/largemouthbass-achigangrandebouche-eng.html" },
     { "label": "New Brunswick Invasive Species Council, Invasive Gamefish", "url": "https://www.nbinvasives.ca/invasive-gamefish" },

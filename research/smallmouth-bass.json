@@ -71,6 +71,17 @@
     { "label": "Best Method", "value": "In-line spinner, topwater popper, or tube jig on structure" },
     { "label": "Watch for", "value": "Mandatory-retention invasive rule in some NB RFAs (Restigouche, Chaleur, Miramichi, Southeast)" }
   ],
+  "variants": [
+    {
+      "name": "Largemouth Bass",
+      "kind": "lookalike",
+      "scientific_name": "Micropterus salmoides",
+      "how_to_tell": "On a smallmouth, the corner of the upper jaw lines up roughly even with the eye; on a largemouth, the jaw hinge extends back well past the eye. Smallmouth have a spiny and soft dorsal fin joined by only a shallow notch, appearing almost as one continuous fin, while a largemouth's dorsal fin has a deep notch that can look like two separate fins. Colour also differs: smallmouth are brown to bronze with faint vertical bars running gill-to-tail, while largemouth are greener with a single bold horizontal stripe running eye-to-tail rather than vertical bars.",
+      "where_found": "Both species now occur in the Saint John River system (NB); largemouth are confirmed only in NB (Grand Lake, Washademoak Lake, Oromocto Lake, Mactaquac Arm, Meduxnekeag River, Spednic Lake) with no established NS or PEI population, while smallmouth are more widespread across all three provinces.",
+      "notes": "This distinction has real legal weight under NB's April 2026 invasive-species rules: mandatory-retention Recreational Fishery Areas differ by species (smallmouth: Restigouche, Chaleur, Miramichi, Southeast; largemouth: Restigouche, Chaleur, Miramichi, Southeast, Inner Bay of Fundy, and Upper Saint John). Misidentifying one bass as the other in a mandatory-retention RFA — or releasing either species where retention is required — can draw a $100-$500 fine.",
+      "image_query": "Micropterus salmoides"
+    }
+  ],
   "sources": [
     { "label": "GNB Fish 2026-27 Regulations Summary", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
     { "label": "NB Fish & Wildlife Licensing", "url": "https://www2.gnb.ca/content/gnb/en/departments/erd/fish-and-wildlife/content/go-fishing.html" },

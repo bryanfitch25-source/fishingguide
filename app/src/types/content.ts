@@ -33,6 +33,27 @@ export interface QuickReferenceItem {
   value: string;
 }
 
+export interface ImageInfo {
+  path: string | null;
+  credit: string | null;
+  license: string | null;
+  source_url: string | null;
+}
+
+export type VariantKind = "form" | "stock" | "life-stage" | "lookalike" | "related-species";
+
+export interface SpeciesVariant {
+  id: string;
+  position: number;
+  name: string;
+  kind: VariantKind;
+  scientific_name: string | null;
+  how_to_tell: string;
+  where_found: string | null;
+  notes: string | null;
+  image: ImageInfo;
+}
+
 export interface Species {
   id: string;
   slug: string;
@@ -41,6 +62,7 @@ export interface Species {
   category: SpeciesCategory;
   provinces: Province[];
   summary: string | null;
+  image: ImageInfo;
 }
 
 export interface SpeciesWithContent extends Species {
@@ -48,6 +70,7 @@ export interface SpeciesWithContent extends Species {
   regulations: Regulation[];
   quick_reference: QuickReferenceItem[];
   species_sources: SourceLink[];
+  variants: SpeciesVariant[];
 }
 
 export interface LocationGuideSection {

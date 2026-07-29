@@ -57,6 +57,44 @@
     { "province": "NS", "water_type": "Tidal/saltwater and estuary", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in DFO notices reviewed — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water. A small directed commercial longhorn sculpin fishery has operated seasonally in St. Mary's Bay — this is a commercial, licence-only activity, distinct from recreational hook-and-line rules.", "source_url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html", "last_verified": "2026" },
     { "province": "PEI", "water_type": "Tidal/saltwater", "season": "No closed season for hook-and-line recreational take in tidal water", "bag_limit": "No specific bag limit found in current DFO Gulf Region notices for PEI — fish conservatively", "size_limit": "None specified", "notes": "No provincial licence needed in tidal/salt water.", "source_url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0", "last_verified": "2026" }
   ],
+  "variants": [
+    {
+      "name": "Grubby",
+      "kind": "related-species",
+      "scientific_name": "Myoxocephalus aenaeus",
+      "how_to_tell": "The smallest and shortest-spined of the region's common sculpins — cheek (preopercular) spines are noticeably short compared to longhorn sculpin's long, gill-cover-spanning spine, and grubby has only 10-11 anal fin rays with no pore behind the last gill arch (shorthorn has 13-14 rays and that pore).",
+      "where_found": "Same wharf, estuary, and flounder-ground bottom as the other sculpins region-wide, including Cocagne Cove, NB.",
+      "notes": "Least likely of the group to cause a painful spine wound given its short spines, but still worth a rag or glove when unhooking.",
+      "image_query": "Myoxocephalus aenaeus"
+    },
+    {
+      "name": "Longhorn Sculpin",
+      "kind": "related-species",
+      "scientific_name": "Myoxocephalus octodecemspinosus",
+      "how_to_tell": "Identified by its long preopercular (cheek) spine, roughly four times the length of the spine below it and long enough to extend past the gill cover — the clearest single field mark separating it from grubby and shorthorn sculpin. Its first dorsal fin also stands taller than the second, and its lateral line shows smooth cartilaginous plates rather than the prickly scales found on shorthorn sculpin.",
+      "where_found": "Bay of Fundy and St. Mary's Bay, NS specifically, plus offshore on Banquereau and Sable Island Banks; also common inshore region-wide as flounder-ground bycatch.",
+      "notes": "Longhorn sculpin spines can inflict a genuinely painful puncture wound, with venom in the spine groove causing swelling, redness, and throbbing pain some anglers compare to a bee or wasp sting. Handle with a rag or glove, keep fingers clear of the head and gill-cover spines when unhooking, and immerse a puncture wound in hot water if stung.",
+      "image_query": "Myoxocephalus octodecemspinosus"
+    },
+    {
+      "name": "Shorthorn Sculpin",
+      "kind": "related-species",
+      "scientific_name": "Myoxocephalus scorpius",
+      "how_to_tell": "Cheek spines are short and blunt-triangular, with the uppermost less than twice the length of the one below it (versus longhorn's uppermost spine at roughly 4x). Shorthorn has 13-14 anal fin rays and a small pore on each side of the throat behind the last gill arch, both absent on grubby, and prickly (not smooth) scales along the lateral line versus longhorn's smooth cartilaginous plates.",
+      "where_found": "Same rocky, ledge, and estuary bottom as the other sculpins region-wide; tends toward colder, more northerly water within the group's range.",
+      "notes": "Spines are less prominent than longhorn's but still capable of a painful jab — same rag/glove handling applies.",
+      "image_query": "Myoxocephalus scorpius"
+    },
+    {
+      "name": "Sea Raven",
+      "kind": "related-species",
+      "scientific_name": "Hemitripterus americanus",
+      "how_to_tell": "Unmistakable once you know what to look for: sea raven has fleshy, branched skin tabs along the lower jaw, snout, and head, a ragged, torn-looking first dorsal fin outline unlike any true sculpin's, prickly spine-covered skin, and a stouter, heavier body than grubby, longhorn, or shorthorn sculpin.",
+      "where_found": "Same wharf and bottom structure as the other sculpins region-wide.",
+      "notes": "Not a true sculpin (a related but separate family, Hemitripteridae) — often lumped in with \"sculpin\" bycatch by anglers regardless. Handle carefully; the spiny skin and dorsal fin can still scrape or prick bare hands even without the venom concern longhorn sculpin poses.",
+      "image_query": "Hemitripterus americanus"
+    }
+  ],
   "quick_reference": [
     { "label": "Season", "value": "Year-round — not a run-timed species" },
     { "label": "Where", "value": "Rocky/ledge bottom, wharves, and flounder grounds" },

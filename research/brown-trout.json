@@ -69,6 +69,26 @@
     { "label": "Best Gear", "value": "Large dry flies/streamers at low light, or inline spinners on light spinning gear" },
     { "label": "Known Waters", "value": "Saint John River system (NB); Mersey River, MacPhersons Lake, Garden of Eden Lake (NS)" }
   ],
+  "variants": [
+    {
+      "name": "Sea Trout (Sea-Run Brown Trout)",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "The same species as resident brown trout, just anadromous. Fresh from the estuary it's distinctly silvery, with a dark grey back and bright silver flanks fading to a white or cream belly, and noticeably larger than resident fish from the same river. After time back in fresh water it darkens and starts to look like an oversized resident brown, at which point only a scale reading (showing fast marine growth rings) can confirm sea-run origin.",
+      "where_found": "Not established as a distinct fishery in the NB/NS sources checked for this guide — brown trout populations here are documented mainly as resident river and stocked-lake fish. Anglers on tidal reaches of brown trout rivers should still be aware sea-run individuals are biologically possible.",
+      "notes": "Falls under the same brown trout licence and limits as resident fish — there is no separate sea trout category in NB or NS regulations.",
+      "image_query": null
+    },
+    {
+      "name": "Atlantic Salmon",
+      "kind": "lookalike",
+      "scientific_name": "Salmo salar",
+      "how_to_tell": "DFO's own field marks: Atlantic salmon have an upper jaw that does NOT extend past the eye, an adipose fin that is never orange, and only a few spots concentrated on the upper body. Brown trout, by contrast, have an upper jaw extending past the eye, an adipose fin that may be fringed with orange or red, and spots scattered heavily over the entire body, including large dark spots ringed with a lighter halo mixed with red spots. Mouth check: salmon have a single row of teeth on the roof of the mouth (vomerine teeth); brown trout have two rows in a zig-zag pattern.",
+      "where_found": "Rivers in NB and NS where both species can occur, including sections of the Saint John River system.",
+      "notes": "This confusion has a real legal consequence: Atlantic salmon retention is currently prohibited across NB, NS, and PEI, so any fish identified as a salmon rather than a brown trout must be released immediately regardless of size or season.",
+      "image_query": "Salmo salar"
+    }
+  ],
   "sources": [
     { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
     { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },

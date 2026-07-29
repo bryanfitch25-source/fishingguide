@@ -100,6 +100,26 @@
       "last_verified": "2026"
     }
   ],
+  "variants": [
+    {
+      "name": "Deepwater/Beaked Redfish",
+      "kind": "related-species",
+      "scientific_name": "Sebastes mentella",
+      "how_to_tell": "Externally near-identical to Acadian redfish and not practically distinguishable boat-side. The reliable check is anal fin soft-ray count (typically 8 in S. mentella vs typically 7 in S. fasciatus) and dorsal fin soft-ray count (usually 14-15 vs 14 in fasciatus) — both require careful fin counting, not a glance. Depth is a rough guide: S. mentella tends to sit deeper (roughly 300-500m+, sometimes to 1,000m+) than S. fasciatus.",
+      "where_found": "More transatlantic in distribution and generally deeper on the continental slope than S. fasciatus, though ranges overlap broadly through the Gulf of St. Lawrence and Scotian Shelf.",
+      "notes": "Both species are managed and sold together as \"redfish\"/\"ocean perch\" with no separate recreational rule — the distinction is scientific/commercial bookkeeping, not something that changes what an angler does with a fish in hand.",
+      "image_query": "Sebastes mentella"
+    },
+    {
+      "name": "Golden Redfish",
+      "kind": "related-species",
+      "scientific_name": "Sebastes norvegicus",
+      "how_to_tell": "The third \"redfish\" species present in the Northwest Atlantic, distinguished from the two beaked-redfish species (fasciatus/mentella) by a much-reduced symphyseal tubercle (the small bony knob at the tip of the lower jaw, prominent on the other two species) and typically 15 dorsal fin soft rays. Like fasciatus vs. mentella, this is a fin-count and jaw-detail distinction, not something visible at a glance.",
+      "where_found": "Continental shelf and slope waters generally in the 100-300m range, overlapping with both other redfish species in this region.",
+      "notes": "Sold and regulated identically to Acadian and deepwater redfish under the same \"redfish\"/\"ocean perch\" umbrella — no separate recreational bag limit or rule exists for it.",
+      "image_query": "Sebastes norvegicus"
+    }
+  ],
   "quick_reference": [
     { "label": "Realistic recreational target?", "value": "Mostly no — deepwater bycatch only, not a documented shore/inshore fishery in NB/NS/PEI" },
     { "label": "Depth", "value": "70-500m, mostly 150-300m" },

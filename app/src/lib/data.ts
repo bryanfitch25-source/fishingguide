@@ -4,16 +4,20 @@ import type {
   SpeciesWithContent,
   LocationGuide,
   LocationGuideWithContent,
+  ImageInfo,
 } from "@/types/content";
 
-const SPECIES_LIST_SELECT = "id, slug, common_name, scientific_name, category, provinces, summary";
+const SPECIES_LIST_SELECT =
+  "id, slug, common_name, scientific_name, category, provinces, summary, image_path, image_credit, image_license, image_source_url";
 
 const SPECIES_DETAIL_SELECT = `
   id, slug, common_name, scientific_name, category, provinces, summary,
+  image_path, image_credit, image_license, image_source_url,
   guide_sections ( id, position, heading, body_md, sources ),
   regulations ( id, province, water_type, season, bag_limit, size_limit, notes, source_url, last_verified ),
   quick_reference ( id, position, label, value ),
-  species_sources ( label, url )
+  species_sources ( label, url ),
+  species_variants ( id, position, name, kind, scientific_name, how_to_tell, where_found, notes, image_path, image_credit, image_license, image_source_url )
 `;
 
 const LOCATION_LIST_SELECT = "id, slug, title, province, region_name, intro_md, lat, lng";
@@ -24,6 +28,31 @@ const LOCATION_DETAIL_SELECT = `
   location_guide_spots ( id, position, name, description, map_url ),
   location_guide_sources ( label, url )
 `;
+
+interface RawImageFields {
+  image_path: string | null;
+  image_credit: string | null;
+  image_license: string | null;
+  image_source_url: string | null;
+}
+
+function extractImage(row: RawImageFields): ImageInfo {
+  return {
+    path: row.image_path,
+    credit: row.image_credit,
+    license: row.image_license,
+    source_url: row.image_source_url,
+  };
+}
+
+function mapSpeciesListRow(row: RawImageFields & Record<string, unknown>): Species {
+  const { image_path, image_credit, image_license, image_source_url, ...rest } = row;
+  void image_path;
+  void image_credit;
+  void image_license;
+  void image_source_url;
+  return { ...(rest as unknown as Species), image: extractImage(row) };
+}
 
 export async function getAllSpecies(): Promise<Species[]> {
   if (!isSupabaseConfigured) return [];
@@ -36,7 +65,9 @@ export async function getAllSpecies(): Promise<Species[]> {
     console.error("getAllSpecies error", error);
     return [];
   }
-  return (data as unknown as Species[]) ?? [];
+  return ((data ?? []) as unknown as (RawImageFields & Record<string, unknown>)[]).map(
+    mapSpeciesListRow
+  );
 }
 
 export async function getSpeciesBySlug(slug: string): Promise<SpeciesWithContent | null> {
@@ -52,9 +83,31 @@ export async function getSpeciesBySlug(slug: string): Promise<SpeciesWithContent
     return null;
   }
   if (!data) return null;
-  const species = data as unknown as SpeciesWithContent;
-  species.guide_sections = [...(species.guide_sections ?? [])].sort((a, b) => a.position - b.position);
-  species.quick_reference = [...(species.quick_reference ?? [])].sort((a, b) => a.position - b.position);
+
+  const raw = data as unknown as RawImageFields & {
+    species_variants?: (RawImageFields & Record<string, unknown>)[];
+  } & Record<string, unknown>;
+
+  const species = mapSpeciesListRow(raw) as SpeciesWithContent;
+  species.guide_sections = [...((raw.guide_sections as SpeciesWithContent["guide_sections"]) ?? [])].sort(
+    (a, b) => a.position - b.position
+  );
+  species.regulations = (raw.regulations as SpeciesWithContent["regulations"]) ?? [];
+  species.quick_reference = [
+    ...((raw.quick_reference as SpeciesWithContent["quick_reference"]) ?? []),
+  ].sort((a, b) => a.position - b.position);
+  species.species_sources = (raw.species_sources as SpeciesWithContent["species_sources"]) ?? [];
+  species.variants = (raw.species_variants ?? [])
+    .map((v) => {
+      const { image_path, image_credit, image_license, image_source_url, ...vRest } = v;
+      void image_path;
+      void image_credit;
+      void image_license;
+      void image_source_url;
+      return { ...(vRest as unknown as SpeciesWithContent["variants"][number]), image: extractImage(v) };
+    })
+    .sort((a, b) => a.position - b.position);
+
   return species;
 }
 

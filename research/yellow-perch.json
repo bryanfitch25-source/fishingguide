@@ -66,6 +66,26 @@
     { "label": "Bait note (NB)", "value": "Illegal to use yellow perch as bait anywhere in NB" },
     { "label": "Table Fare", "value": "Excellent, mild white flesh — a Maritime shore-lunch staple" }
   ],
+  "variants": [
+    {
+      "name": "White Perch",
+      "kind": "lookalike",
+      "scientific_name": "Morone americana",
+      "how_to_tell": "White perch belong to the temperate bass family, not the perch family, and it shows: a uniform silvery-to-olive body with no vertical bars at all, versus a yellow perch's 6-8 sharply defined dark bars on a golden-yellow body. White perch also run deeper-bodied with two dorsal fins set close together, while a yellow perch's pelvic fin points out at a 45-degree angle rather than the downward, widening pelvic fin of a white perch.",
+      "where_found": "Both species overlap in slow, brackish-influenced water — Mactaquac headpond and other Saint John River system headponds hold both. Yellow perch stick to fully fresh water more consistently; white perch tolerate and often prefer brackish estuary mouths.",
+      "notes": "No retention consequence between these two, but the bait-use rule differs: yellow perch cannot legally be used as bait anywhere in NB, a restriction that does not apply to white perch.",
+      "image_query": "Morone americana"
+    },
+    {
+      "name": "Juvenile Walleye",
+      "kind": "lookalike",
+      "scientific_name": "Sander vitreus",
+      "how_to_tell": "Walleye are true Percidae relatives of yellow perch and share the same family fang-like conical teeth on both — but yellow perch never develop the walleye's large canine teeth, and a small walleye shows a more olive-gold, mottled body with a distinctive white-tipped lower lobe of the tail fin, which yellow perch lack entirely.",
+      "where_found": "Anywhere the two species share water in NB lake systems with both stocked or naturalized populations — check locally which lakes carry walleye before assuming every small perch-shaped fish is a yellow perch.",
+      "notes": "Walleye regulations (seasons, size limits) differ from yellow perch — confirm which species you have before keeping a small fish from a lake known to hold both.",
+      "image_query": "Sander vitreus juvenile"
+    }
+  ],
   "sources": [
     { "label": "New Brunswick Fishing Forum, Yellow Perch?", "url": "https://www.newbrunswickfishing.com/threads/yellow-perch.71/" },
     { "label": "Government of New Brunswick, Fish NB Angling Regulations (regulations summary)", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },

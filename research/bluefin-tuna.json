@@ -71,6 +71,53 @@
     { "label": "Gear", "value": "Charter-supplied big-game tackle, barbless circle hooks, ~180 lb-class line" },
     { "label": "Retention", "value": "Only licence/tag holders under DFO quota — most trips are catch-and-release" }
   ],
+  "variants": [
+    {
+      "name": "School Bluefin",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "A size class, not a different-looking fish: roughly 27 to under 47 inches curved fork length, translating to about 10-60 lb. Same species and appearance as a giant, just younger and smaller.",
+      "where_found": "Occurs in the same Gulf of St. Lawrence waters as larger size classes, though the licensed charter fishery out of North Lake, PEI is built around targeting giants specifically.",
+      "notes": "Size class matters directly for quota management — ICCAT and DFO subdivide Canadian bluefin quota by size class (school, large school/small medium, giant), so which class a fish falls into affects licence conditions and reporting.",
+      "image_query": null
+    },
+    {
+      "name": "Giant Bluefin",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "The size class this fishery is built around: roughly 73 inches curved fork length and up, from about 200 lb into four figures. This is the size class North Lake's charter fleet targets and the one most associated with the region's reputation.",
+      "where_found": "Concentrated around North Lake and East Point, PEI, and other southern Gulf of St. Lawrence grounds through the July-October season.",
+      "notes": "The catch-and-release charter product described elsewhere in this guide is built specifically around giants — barbless circle hooks and ~180 lb-class line exist to let a fish this size be fought and released safely.",
+      "image_query": null
+    },
+    {
+      "name": "Yellowfin Tuna",
+      "kind": "lookalike",
+      "scientific_name": "Thunnus albacares",
+      "how_to_tell": "Pectoral fin length is the most reliable check: a bluefin's pectoral fin falls short of reaching the start of the second dorsal fin, while a yellowfin's pectoral fin extends just past it. Yellowfin also show a bright yellow lateral stripe and a mostly-yellow second dorsal fin and finlets, versus a bluefin's grey-and-yellow mixed second dorsal.",
+      "where_found": "Yellowfin are a warmer-water species less commonly encountered in the Gulf of St. Lawrence than bluefin, but can turn up during offshore trips in the wider Maritimes region.",
+      "notes": "Different species entirely with separate quota and licensing frameworks from Atlantic bluefin — a charter targeting bluefin under a bluefin licence cannot simply retain an incidental yellowfin under those same tags.",
+      "image_query": "Thunnus albacares"
+    },
+    {
+      "name": "Bigeye Tuna",
+      "kind": "lookalike",
+      "scientific_name": "Thunnus obesus",
+      "how_to_tell": "Bigeye and yellowfin are hard to tell apart from bluefin by pectoral length alone since both can reach or pass the second dorsal fin start — the belly pattern is the tiebreaker: yellowfin show alternating light lines and dots on the belly that bigeye lack. Bluefin are distinguished from both by the shorter pectoral fin that falls short of the second dorsal.",
+      "where_found": "An occasional deepwater visitor to Atlantic Canadian offshore grounds, less commonly encountered than bluefin in the southern Gulf specifically.",
+      "notes": "A separately managed species from Atlantic bluefin — confirm species before assuming bluefin tags or quota rules apply to an incidental catch.",
+      "image_query": "Thunnus obesus"
+    },
+    {
+      "name": "Albacore",
+      "kind": "lookalike",
+      "scientific_name": "Thunnus alalunga",
+      "how_to_tell": "The easiest of the tuna lookalikes to rule out: albacore have by far the longest pectoral fins of any tuna, extending well past the start of the second dorsal fin — noticeably longer and more sickle-shaped than a bluefin's short pectoral.",
+      "where_found": "Present in Atlantic Canadian offshore waters generally, though less central to the southern Gulf of St. Lawrence bluefin grounds specifically.",
+      "notes": "Managed as a distinct species from Atlantic bluefin tuna with its own quota framework — the long pectoral fin makes this an easy one to rule out at a glance.",
+      "image_query": "Thunnus alalunga"
+    }
+  ],
   "sources": [
     { "label": "Nature.com/Scientific Reports, Annual migrations, vertical habitat use and fidelity of Atlantic bluefin tuna", "url": "https://www.nature.com/articles/s41598-024-80861-w" },
     { "label": "ScienceDirect, Atlantic bluefin tuna diet variability in the southern Gulf of St. Lawrence, Canada", "url": "https://www.sciencedirect.com/science/article/pii/S0141113623000776" },

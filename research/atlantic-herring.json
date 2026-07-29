@@ -96,6 +96,44 @@
       "last_verified": "2026"
     }
   ],
+  "variants": [
+    {
+      "name": "Fall-Spawning Component",
+      "kind": "stock",
+      "scientific_name": null,
+      "how_to_tell": "No visible field difference from spring spawners — spawning timing (roughly August–October) and which spawning grounds fish are aggregating near are the only ways to tell components apart, and that's only knowable near known spawning grounds at the right time of year.",
+      "where_found": "Southern Gulf of St. Lawrence, region-wide — this is the large majority of herring caught inshore.",
+      "notes": "DFO's 2026 assessment placed this component in the Healthy Zone, with the commercial fall TAC increased to 15,500 tonnes for 2026-2027. No recreational bag limit exists either way, but this is the stock doing well.",
+      "image_query": null
+    },
+    {
+      "name": "Spring-Spawning Component",
+      "kind": "stock",
+      "scientific_name": null,
+      "how_to_tell": "No visible field difference from fall spawners — identified by location and timing, tied to specific spring spawning grounds such as Grand Manan, Advocate Bay/Parrsboro (upper Bay of Fundy), and Spectacle Buoy (southwest NS).",
+      "where_found": "Grand Manan, Advocate Bay, Parrsboro, and Spectacle Buoy specifically — a much smaller geographic footprint than the fall spawners.",
+      "notes": "DFO projections show this component trending toward near-zero within about a decade, driven by high natural mortality and poor recruitment tied to warming water. A formal rebuilding plan is in place. Avoid targeting known spring spawning aggregations near these specific grounds and keep only what's needed as bait.",
+      "image_query": null
+    },
+    {
+      "name": "Gaspereau (Alewife / Blueback Herring)",
+      "kind": "related-species",
+      "scientific_name": "Alosa pseudoharengus / Alosa aestivalis",
+      "how_to_tell": "Both \"gaspereau\" species are deeper-bodied and more silvery than the slimmer, more torpedo-shaped Atlantic herring, and run up rivers to spawn rather than staying purely in tidal/offshore water. Between the two gaspereau species: alewife has an eye diameter larger than its snout length and a white-to-pale peritoneum (gut lining, visible if you slit the belly); blueback herring has an eye diameter equal to or smaller than its snout length and a black or sooty peritoneum. The peritoneum color is the one sure way to separate the two.",
+      "where_found": "River mouths and freshwater/tidal transition zones during their spring spawning runs, distinct from Atlantic herring's fully marine/tidal habitat.",
+      "notes": "Gaspereau are managed and counted together as a combined fishery even though they're two separate species — worth knowing if fishing a river-run gaspereau spot and wondering why the fish don't quite match a herring guide.",
+      "image_query": "Alosa pseudoharengus"
+    },
+    {
+      "name": "Juvenile Atlantic Mackerel",
+      "kind": "lookalike",
+      "scientific_name": "Scomber scombrus",
+      "how_to_tell": "Mackerel has two separate dorsal fins versus herring's single mid-body dorsal fin, and shows 20-30 wavy black bars across its back with a narrow dark streak along the flank — herring has no such markings and appears uniformly silver with a plain back. Mackerel is also more compact and spindle-shaped where herring is slimmer and more elongated.",
+      "where_found": "Same lit wharves and piers herring are jigged from, especially where sabiki rigs are worked for mixed bait catches.",
+      "notes": "No regulatory concern, but useful when a mixed sabiki drop comes up with fish that don't quite look like herring — check for the dorsal fin count and back markings before assuming the whole catch is one species.",
+      "image_query": "Scomber scombrus"
+    }
+  ],
   "quick_reference": [
     { "label": "Season", "value": "Summer into fall, overlapping the mackerel run" },
     { "label": "Best Time", "value": "After dark, under a lit wharf or pier light" },

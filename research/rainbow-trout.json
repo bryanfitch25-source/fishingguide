@@ -71,6 +71,26 @@
     { "label": "Best Gear", "value": "Light spinning rod with small inline spinners, or 5-6 wt fly rod with nymphs/streamers" },
     { "label": "Top Waters", "value": "Saint John River (NB), Bras d'Or Lakes (NS), Morell & West Rivers (PEI)" }
   ],
+  "variants": [
+    {
+      "name": "Sea-Run Rainbow Trout (\"Steelhead\")",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "The same species as resident rainbow trout, genetically, but grown much larger on rich ocean feeding. Fresh-run fish are more streamlined with a dark-olive back and silvery-white sides, a pink-to-red stripe still visible along the flank, and noticeably larger size than a lake or river resident from the same system. There is no reliable visual field mark to prove a fish went to sea — that's only confirmed by scale reading or otolith analysis.",
+      "where_found": "PEI's east and south shore river systems, including the Morell, Valleyfield, and Trout Rivers, which support naturalized river-run populations moving between fresh and estuary water.",
+      "notes": "Best targeted in fall (September-November) as fish run up PEI rivers. Falls under the same rainbow trout licence and limits as any other rainbow — there is no separate steelhead category or regulation in this region.",
+      "image_query": null
+    },
+    {
+      "name": "Resident/Stocked Rainbow Trout",
+      "kind": "form",
+      "scientific_name": null,
+      "how_to_tell": "Spends its whole life in a lake, pond, or river without going to sea. Generally smaller than a sea-run fish from the same watershed, with the same olive-green back, pink lateral band, and evenly spread small black spots, but less streamlined and without the silvery ocean sheen of a fresh-run fish.",
+      "where_found": "Stocked lakes across all three provinces (e.g. Albro Lake, NS; roughly 200 NS lakes stocked each spring and fall) and river systems like the Saint John (NB) and Bras d'Or tributaries (NS).",
+      "notes": "Lake-confined stockers tend to be less selective feeders than river fish, since they don't need to keep growing toward a spawning migration.",
+      "image_query": null
+    }
+  ],
   "sources": [
     { "label": "New Brunswick Fish Regulations Summary 2026-27", "url": "https://www2.gnb.ca/content/dam/gnb/Departments/nr-rn/pdf/en/Fish/Fish.pdf" },
     { "label": "Nova Scotia Anglers' Handbook and 2026 Summary of Regulations", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
