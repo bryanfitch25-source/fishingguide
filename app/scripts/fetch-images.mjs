@@ -70,20 +70,27 @@ async function api(params) {
 
 /** True if the candidate's title plausibly refers to the query (guards against
  * unrelated Commons matches, e.g. a scenic photo of a place called "Redfish Lake"
- * turning up for a search on the fish species "Sebastes fasciatus"). A single generic
- * word from the common name (e.g. just "redfish") is NOT enough on its own — that's how
- * "Boats in Redfish Lake.jpg" slipped through — so common-name terms must match as a
- * complete phrase, while individual scientific-name words (genus/species epithet) are
- * distinctive enough to match alone. */
+ * turning up for a search on the fish species "Sebastes fasciatus", OR a completely
+ * different species in the same genus, e.g. "Salmo trutta" (brown trout) matching a
+ * "Salmo salar" (landlocked salmon) search because "Salmo" alone was accepted). A
+ * genus-only match is NOT enough for a two-word binomial — both the genus AND species
+ * epithet must appear. A single generic word from the common name (e.g. just "redfish")
+ * is likewise NOT enough on its own — that's how "Boats in Redfish Lake.jpg" slipped
+ * through — so common-name terms must match as a complete phrase. */
 function titleMatchesQuery(title, query, extraPhrases = []) {
   const t = title.toLowerCase();
 
+  // Life-stage descriptors are often appended to an image_query (e.g. "Clupea harengus
+  // juvenile") but a correct photo's title won't necessarily use that exact English word
+  // (French "Juvéniles", or just "Fingerling") — so they're excluded from the required
+  // match set. Only the taxonomic name itself (genus + epithet) must all be present.
+  const DESCRIPTORS = new Set(["juvenile", "juveniles", "adult", "adults", "larva", "larvae", "larval", "young", "immature"]);
   const sciWords = query
     .toLowerCase()
     .split(/\s+/)
-    .filter((w) => w.length >= 4 && w !== "spp." && w !== "spp")
+    .filter((w) => w.length >= 4 && w !== "spp." && w !== "spp" && !DESCRIPTORS.has(w))
     .map((w) => w.replace(/\.$/, ""));
-  if (sciWords.some((w) => t.includes(w))) return true;
+  if (sciWords.length && sciWords.every((w) => t.includes(w))) return true;
 
   return extraPhrases.some((phrase) => phrase.length >= 4 && t.includes(phrase.toLowerCase()));
 }
@@ -124,23 +131,29 @@ async function searchImages(query, extraTerms = [], limit = 12) {
         artist: stripHtml(meta.Artist?.value),
         credit: stripHtml(meta.Credit?.value),
         description: stripHtml(meta.ImageDescription?.value),
+        categories: (stripHtml(meta.Categories?.value) ?? "").toLowerCase(),
         assessments: (meta.Assessments?.value ?? "").toLowerCase(),
       };
     })
     .filter(Boolean)
     .filter((c) => c.mime === "image/jpeg" || c.mime === "image/png")
+    // Commons categorizes scientific/wildlife-agency drawings as "X illustrations" even
+    // when the filename itself looks innocuous (e.g. "Salmo salar.jpg" by a USFWS staff
+    // illustrator) — the title-only checks below can't catch that, so check categories too.
+    .filter((c) => !/\billustration|drawing|clip ?art|line art|graphic/i.test(c.categories))
     .filter((c) => c.width >= 500)
     // Skip obvious non-photos of the live animal: maps/diagrams, and prepared food
     // (a huge fraction of Commons fish photos are plated dishes, not the live animal).
     .filter(
       (c) =>
-        !/\b(map|distribution|range|stamp|logo|diagram|chart|stuffed|cooked|dish|sauce|recipe|cuisine|plate|grilled|fried|fillet|market|frozen|canned|sushi|sashimi|egg|eggs|spawn)\b/i.test(
+        !/\b(map|distribution|range|stamp|logo|diagram|chart|stuffed|cooked|dish|sauce|recipe|cuisine|plate|grilled|fried|fillet|market|frozen|canned|sushi|sashimi|egg|eggs|spawn|illustration|illustrated|drawing|drawn|engraving|engraved|lithograph|sketch|painting|painted|woodcut|etching|clipart|clip-art|vintage|antique|skeleton|squelette|specimen|preserved|taxidermy|mount|mounted|skull|fossil|stamp|postage|coin|figurine|toy|cartoon|line-art|silhouette|icon|vector|graphic|transparent)\b/i.test(
           c.title
         )
     )
-    // "larv" as a substring, not a whole-word match — catches "larva", "larvae", "larval",
-    // and French "larve(s)" (Ifremer/European Commons uploads title these in French).
-    .filter((c) => !/larv/i.test(c.title))
+    // Plain-substring (no word boundary) checks for compound words that would otherwise
+    // slip past \b matching, e.g. "Salmonlarvakils.jpg" (larva), "FMIB..." (a Field Museum
+    // illustrated-book plate series — old engravings, not photographs).
+    .filter((c) => !/larv|fmib/i.test(c.title))
     // Guard against unrelated matches (place names, boats, etc.) that share a word with the query.
     .filter((c) => titleMatchesQuery(c.title, query, extraTerms))
     .sort((a, b) => {

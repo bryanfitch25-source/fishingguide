@@ -13,13 +13,6 @@
     "title": "Brook Trout Salvelinus fontinalis 2900px.jpg",
     "query": "Salvelinus fontinalis"
   },
-  "atlantic-tomcod": {
-    "credit": "New York Fish and Game Commission",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:FMIB_41877_Tomcod_(Microgadus_tomcod_Walbaum).jpeg",
-    "title": "FMIB 41877 Tomcod (Microgadus tomcod Walbaum).jpeg",
-    "query": "Microgadus tomcod"
-  },
   "brown-trout": {
     "credit": "Eric Engbretson for U.S. Fish and Wildlife Service",
     "license": "Public domain",
@@ -34,40 +27,12 @@
     "title": "Esox niger.jpg",
     "query": "Esox niger"
   },
-  "cunner": {
-    "credit": "State of New York Forest, Fish, and Game Commission",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:FMIB_43254_Bergall;_Cunner_(Tautogolabrus_adspersus).jpeg",
-    "title": "FMIB 43254 Bergall; Cunner (Tautogolabrus adspersus).jpeg",
-    "query": "Tautogolabrus adspersus"
-  },
-  "pollock": {
-    "credit": "Gervais et Boulart",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Pollachius_virens_Gervais.jpg",
-    "title": "Pollachius virens Gervais.jpg",
-    "query": "Pollachius virens"
-  },
-  "smallmouth-bass": {
-    "credit": "Timothy Knepp, U.S. Fish and Wildlife Service",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Micropterus_dolomieu2.jpg",
-    "title": "Micropterus dolomieu2.jpg",
-    "query": "Micropterus dolomieu"
-  },
   "spiny-dogfish": {
     "credit": "Doug Costa, NOAA/SBNMS",
     "license": "Public domain",
     "source_url": "https://commons.wikimedia.org/wiki/File:Squalus_acanthias_stellwagen.jpg",
     "title": "Squalus acanthias stellwagen.jpg",
     "query": "Squalus acanthias"
-  },
-  "striped-bass": {
-    "credit": "Timothy Knepp",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Striped_bass_FWS_1.jpg",
-    "title": "Striped bass FWS 1.jpg",
-    "query": "Morone saxatilis"
   },
   "winter-flounder": {
     "credit": "Smithsonian Environmental Research Center",
@@ -167,20 +132,6 @@
     "title": "Melanogrammus aeglefinus 318932194.jpg",
     "query": "Melanogrammus aeglefinus"
   },
-  "atlantic-cod--variant-1": {
-    "credit": "Gervais et Boulart",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Pollachius_virens_Gervais.jpg",
-    "title": "Pollachius virens Gervais.jpg",
-    "query": "Pollachius virens"
-  },
-  "atlantic-cod--variant-2": {
-    "credit": "New York Fish and Game Commission",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:FMIB_41877_Tomcod_(Microgadus_tomcod_Walbaum).jpeg",
-    "title": "FMIB 41877 Tomcod (Microgadus tomcod Walbaum).jpeg",
-    "query": "Microgadus tomcod"
-  },
   "atlantic-herring--variant-2": {
     "credit": "Unknown author",
     "license": "CC BY-SA 3.0",
@@ -251,26 +202,12 @@
     "title": "Atlantic salmon parr.jpg",
     "query": "Salmo salar parr"
   },
-  "brown-trout--variant-1": {
-    "credit": "Uwe Kils",
-    "license": "CC BY-SA 3.0",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Salmonlarvakils.jpg",
-    "title": "Salmonlarvakils.jpg",
-    "query": "Salmo salar"
-  },
   "chain-pickerel--variant-0": {
     "credit": "George Chernilevsky",
     "license": "CC BY-SA 4.0",
     "source_url": "https://commons.wikimedia.org/wiki/File:Esox_lucius_2021_G1.jpg",
     "title": "Esox lucius 2021 G1.jpg",
     "query": "Esox lucius"
-  },
-  "chain-pickerel--variant-1": {
-    "credit": "Knepp, Timothy - U.S. Fish and Wildlife Service",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Muskellunge_USFWS.jpg",
-    "title": "Muskellunge USFWS.jpg",
-    "query": "Esox masquinongy"
   },
   "gaspereau--variant-0": {
     "credit": "Smithsonian Environmental Research Center",
@@ -285,13 +222,6 @@
     "source_url": "https://commons.wikimedia.org/wiki/File:Salmo_trutta.jpg",
     "title": "Salmo trutta.jpg",
     "query": "Salmo trutta"
-  },
-  "largemouth-bass--variant-0": {
-    "credit": "Timothy Knepp, U.S. Fish and Wildlife Service",
-    "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Micropterus_dolomieu2.jpg",
-    "title": "Micropterus dolomieu2.jpg",
-    "query": "Micropterus dolomieu"
   },
   "muskellunge--variant-0": {
     "credit": "George Chernilevsky",
@@ -405,13 +335,6 @@
     "title": "Plie canadienne (Hippoglossoides platessoides).jpg",
     "query": "Hippoglossoides platessoides"
   },
-  "winter-flounder--variant-3": {
-    "credit": "Cedricguppy - Loury Cédric",
-    "license": "CC BY-SA 4.0",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Glyptocephalus_cynoglossus_-_(Pleuronectes_cynoglossus)_-_squelette_mnhn_Paris.JPG",
-    "title": "Glyptocephalus cynoglossus - (Pleuronectes cynoglossus) - squelette mnhn Paris.JPG",
-    "query": "Glyptocephalus cynoglossus"
-  },
   "american-eel": {
     "credit": "USFWS Mountain Prairie",
     "license": "Public domain",
@@ -433,13 +356,6 @@
     "title": "Clupea harengus Atlantic.jpg",
     "query": "Clupea harengus"
   },
-  "atlantic-salmon": {
-    "credit": "Uwe Kils",
-    "license": "CC BY-SA 3.0",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Salmonlarvakils.jpg",
-    "title": "Salmonlarvakils.jpg",
-    "query": "Salmo salar"
-  },
   "bluefin-tuna": {
     "credit": "Rafa Gallut",
     "license": "CC BY-SA 3.0",
@@ -454,13 +370,6 @@
     "title": "Alosa pseudoharengus.jpg",
     "query": "Alosa pseudoharengus"
   },
-  "landlocked-salmon": {
-    "credit": "Uwe Kils",
-    "license": "CC BY-SA 3.0",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Salmonlarvakils.jpg",
-    "title": "Salmonlarvakils.jpg",
-    "query": "Salmo salar"
-  },
   "largemouth-bass": {
     "credit": "USFWS Mountain Prairie",
     "license": "Public domain",
@@ -468,11 +377,102 @@
     "title": "Largemouth Bass (Micropterus salmoides) June 2023.jpg",
     "query": "Micropterus salmoides"
   },
-  "muskellunge": {
-    "credit": "Knepp, Timothy - U.S. Fish and Wildlife Service",
+  "cunner--variant-0": {
+    "credit": "Bobby McCabe",
+    "license": "CC BY 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tautoga_onitis_333198009.jpg",
+    "title": "Tautoga onitis 333198009.jpg",
+    "query": "Tautoga onitis"
+  },
+  "winter-flounder--variant-3": {
+    "credit": "Arnstein Rønning",
+    "license": "CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Glyptocephalus_cynoglossus_no.jpg",
+    "title": "Glyptocephalus cynoglossus no.jpg",
+    "query": "Glyptocephalus cynoglossus"
+  },
+  "atlantic-cod--variant-1": {
+    "credit": "Wilhelm Thomas Fiege",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Seelachs,_K%C3%B6hler_(Pollachius_virens).jpg",
+    "title": "Seelachs, Köhler (Pollachius virens).jpg",
+    "query": "Pollachius virens"
+  },
+  "atlantic-cod--variant-2": {
+    "credit": "agbelliveau",
+    "license": "CC0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Microgadus_tomcod_20148419.jpg",
+    "title": "Microgadus tomcod 20148419.jpg",
+    "query": "Microgadus tomcod"
+  },
+  "atlantic-salmon": {
+    "credit": "E. Peter Steenstra/USFWS",
     "license": "Public domain",
-    "source_url": "https://commons.wikimedia.org/wiki/File:Muskellunge_USFWS.jpg",
-    "title": "Muskellunge USFWS.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmo_salar_smolts.jpg",
+    "title": "Salmo salar smolts.jpg",
+    "query": "Salmo salar"
+  },
+  "atlantic-tomcod": {
+    "credit": "agbelliveau",
+    "license": "CC0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Microgadus_tomcod_20148419.jpg",
+    "title": "Microgadus tomcod 20148419.jpg",
+    "query": "Microgadus tomcod"
+  },
+  "brown-trout--variant-1": {
+    "credit": "E. Peter Steenstra/USFWS",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmo_salar_smolts.jpg",
+    "title": "Salmo salar smolts.jpg",
+    "query": "Salmo salar"
+  },
+  "chain-pickerel--variant-1": {
+    "credit": "Engbretson, Eric / U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esox_masquinongyeditcrop.jpg",
+    "title": "Esox masquinongyeditcrop.jpg",
     "query": "Esox masquinongy"
+  },
+  "landlocked-salmon": {
+    "credit": "E. Peter Steenstra/USFWS",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salmo_salar_smolts.jpg",
+    "title": "Salmo salar smolts.jpg",
+    "query": "Salmo salar"
+  },
+  "muskellunge": {
+    "credit": "Engbretson, Eric / U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esox_masquinongyeditcrop.jpg",
+    "title": "Esox masquinongyeditcrop.jpg",
+    "query": "Esox masquinongy"
+  },
+  "pollock": {
+    "credit": "Wilhelm Thomas Fiege",
+    "license": "CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Seelachs,_K%C3%B6hler_(Pollachius_virens).jpg",
+    "title": "Seelachs, Köhler (Pollachius virens).jpg",
+    "query": "Pollachius virens"
+  },
+  "smallmouth-bass": {
+    "credit": "Eric Engbretson, U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Micropterus_dolomieu.jpg",
+    "title": "Micropterus dolomieu.jpg",
+    "query": "Micropterus dolomieu"
+  },
+  "striped-bass": {
+    "credit": "Ryan Hagerty/USFWS",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Striped_bass_(Morone_saxatilis).png",
+    "title": "Striped bass (Morone saxatilis).png",
+    "query": "Morone saxatilis"
+  },
+  "largemouth-bass--variant-0": {
+    "credit": "Eric Engbretson, U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Micropterus_dolomieu.jpg",
+    "title": "Micropterus dolomieu.jpg",
+    "query": "Micropterus dolomieu"
   }
 }
