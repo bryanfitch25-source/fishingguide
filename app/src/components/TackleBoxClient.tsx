@@ -2,7 +2,15 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
-import { TACKLE_CATEGORIES, type TackleCategory, type TackleItem, type TackleTray } from "@/types/tackle";
+import {
+  TACKLE_CATEGORIES,
+  TRAY_BRANDS,
+  TRAY_SIZE_CLASSES,
+  type TackleCategory,
+  type TackleItem,
+  type TackleTray,
+  type TraySizeClass,
+} from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
@@ -55,6 +63,12 @@ const emptyForm = {
   species_slugs: [] as string[],
 };
 
+const emptyTrayForm = {
+  name: "",
+  brand: "",
+  size_class: "" as TraySizeClass | "",
+};
+
 export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const supabase = useMemo(() => createClient(), []);
   const [items, setItems] = useState<TackleItem[]>([]);
@@ -68,10 +82,9 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const [saving, setSaving] = useState(false);
 
   const [showTrays, setShowTrays] = useState(false);
-  const [newTrayName, setNewTrayName] = useState("");
   const [trayError, setTrayError] = useState<string | null>(null);
   const [editingTrayId, setEditingTrayId] = useState<string | null>(null);
-  const [editingTrayName, setEditingTrayName] = useState("");
+  const [trayForm, setTrayForm] = useState(emptyTrayForm);
 
   async function loadAll() {
     setLoading(true);
@@ -196,11 +209,19 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     }));
   }
 
+  function suggestTrayName(brand: string, size: TraySizeClass | "") {
+    const sizeLabel = TRAY_SIZE_CLASSES.find((s) => s.value === size)?.label;
+    return [brand, sizeLabel].filter(Boolean).join(" ");
+  }
+
   async function handleAddTray(e: React.FormEvent) {
     e.preventDefault();
     setTrayError(null);
-    const name = newTrayName.trim();
-    if (!name) return;
+    const name = trayForm.name.trim() || suggestTrayName(trayForm.brand, trayForm.size_class);
+    if (!name) {
+      setTrayError("Give the tray a name, or pick a brand/size to auto-name it.");
+      return;
+    }
 
     const {
       data: { user },
@@ -210,21 +231,31 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       return;
     }
 
-    const { error } = await supabase
-      .from("tackle_trays")
-      .insert({ user_id: user.id, name, position: trays.length });
+    const { error } = await supabase.from("tackle_trays").insert({
+      user_id: user.id,
+      name,
+      brand: trayForm.brand || null,
+      size_class: trayForm.size_class || null,
+      position: trays.length,
+    });
     if (error) {
       setTrayError(error.message);
       return;
     }
-    setNewTrayName("");
+    setTrayForm(emptyTrayForm);
     loadAll();
   }
 
-  async function handleRenameTray(id: string) {
-    const name = editingTrayName.trim();
-    if (!name) return;
-    const { error } = await supabase.from("tackle_trays").update({ name }).eq("id", id);
+  async function handleSaveTray(id: string) {
+    const name = trayForm.name.trim() || suggestTrayName(trayForm.brand, trayForm.size_class);
+    if (!name) {
+      setTrayError("Give the tray a name, or pick a brand/size to auto-name it.");
+      return;
+    }
+    const { error } = await supabase
+      .from("tackle_trays")
+      .update({ name, brand: trayForm.brand || null, size_class: trayForm.size_class || null })
+      .eq("id", id);
     if (error) setTrayError(error.message);
     setEditingTrayId(null);
     loadAll();
@@ -271,73 +302,151 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             )}
             <ul className="space-y-2">
               {trays.map((tray) => (
-                <li key={tray.id} className="flex items-center justify-between gap-2 text-sm">
+                <li key={tray.id} className="rounded-lg border border-border p-3">
                   {editingTrayId === tray.id ? (
                     <form
-                      className="flex items-center gap-2 flex-1"
+                      className="space-y-2"
                       onSubmit={(e) => {
                         e.preventDefault();
-                        handleRenameTray(tray.id);
+                        handleSaveTray(tray.id);
                       }}
                     >
-                      <input
-                        autoFocus
-                        value={editingTrayName}
-                        onChange={(e) => setEditingTrayName(e.target.value)}
-                        className="flex-1 rounded-lg border border-border bg-background px-2 py-1 text-sm"
-                      />
-                      <button type="submit" className="text-accent-dark hover:underline">
-                        Save
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setEditingTrayId(null)}
-                        className="text-muted hover:underline"
-                      >
-                        Cancel
-                      </button>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <input
+                          autoFocus
+                          value={trayForm.name}
+                          onChange={(e) => setTrayForm({ ...trayForm, name: e.target.value })}
+                          placeholder="Tray name (optional if brand/size chosen)"
+                          className="rounded-lg border border-border bg-background px-2 py-1.5 text-sm"
+                        />
+                        <select
+                          value={trayForm.brand}
+                          onChange={(e) => setTrayForm({ ...trayForm, brand: e.target.value })}
+                          className="rounded-lg border border-border bg-background px-2 py-1.5 text-sm"
+                        >
+                          <option value="">— Brand —</option>
+                          {TRAY_BRANDS.map((b) => (
+                            <option key={b} value={b}>
+                              {b}
+                            </option>
+                          ))}
+                        </select>
+                        <select
+                          value={trayForm.size_class}
+                          onChange={(e) =>
+                            setTrayForm({ ...trayForm, size_class: e.target.value as TraySizeClass })
+                          }
+                          className="rounded-lg border border-border bg-background px-2 py-1.5 text-sm"
+                        >
+                          <option value="">— Size —</option>
+                          {TRAY_SIZE_CLASSES.map((s) => (
+                            <option key={s.value} value={s.value}>
+                              {s.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="flex gap-3 text-sm">
+                        <button type="submit" className="text-accent-dark hover:underline">
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setEditingTrayId(null)}
+                          className="text-muted hover:underline"
+                        >
+                          Cancel
+                        </button>
+                      </div>
                     </form>
                   ) : (
-                    <>
+                    <div className="flex items-center justify-between gap-2 text-sm">
                       <span>
-                        {tray.name}{" "}
+                        <span className="font-medium">{tray.name}</span>{" "}
+                        {(tray.brand || tray.size_class) && (
+                          <span className="text-muted">
+                            (
+                            {[tray.brand, TRAY_SIZE_CLASSES.find((s) => s.value === tray.size_class)?.label]
+                              .filter(Boolean)
+                              .join(", ")}
+                            )
+                          </span>
+                        )}{" "}
                         <span className="text-muted">
-                          ({items.filter((i) => i.tray_id === tray.id).length})
+                          — {items.filter((i) => i.tray_id === tray.id).length} item
+                          {items.filter((i) => i.tray_id === tray.id).length === 1 ? "" : "s"}
                         </span>
                       </span>
-                      <span className="flex gap-3">
+                      <span className="flex gap-3 shrink-0">
                         <button
                           onClick={() => {
                             setEditingTrayId(tray.id);
-                            setEditingTrayName(tray.name);
+                            setTrayForm({
+                              name: tray.name,
+                              brand: tray.brand ?? "",
+                              size_class: tray.size_class ?? "",
+                            });
                           }}
                           className="text-accent-dark hover:underline"
                         >
-                          Rename
+                          Edit
                         </button>
                         <button onClick={() => handleDeleteTray(tray.id)} className="text-danger hover:underline">
                           Delete
                         </button>
                       </span>
-                    </>
+                    </div>
                   )}
                 </li>
               ))}
             </ul>
-            <form onSubmit={handleAddTray} className="flex gap-2">
+            <form
+              onSubmit={handleAddTray}
+              className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-2 pt-2 border-t border-border"
+            >
               <input
-                value={newTrayName}
-                onChange={(e) => setNewTrayName(e.target.value)}
-                placeholder="e.g. Bass tray, Boat bag"
-                className="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                value={trayForm.name}
+                onChange={(e) => setTrayForm({ ...trayForm, name: e.target.value })}
+                placeholder="Name (optional — auto-fills from brand/size)"
+                className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
               />
+              <select
+                value={trayForm.brand}
+                onChange={(e) => setTrayForm({ ...trayForm, brand: e.target.value })}
+                className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              >
+                <option value="">— Brand —</option>
+                {TRAY_BRANDS.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={trayForm.size_class}
+                onChange={(e) => setTrayForm({ ...trayForm, size_class: e.target.value as TraySizeClass })}
+                className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                title={TRAY_SIZE_CLASSES.find((s) => s.value === trayForm.size_class)?.dims}
+              >
+                <option value="">— Size —</option>
+                {TRAY_SIZE_CLASSES.map((s) => (
+                  <option key={s.value} value={s.value}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
               <button
                 type="submit"
-                className="rounded-lg bg-tackle text-white font-semibold px-4 py-2 text-sm hover:opacity-90 transition"
+                className="rounded-lg bg-tackle text-white font-semibold px-4 py-2 text-sm hover:opacity-90 transition whitespace-nowrap"
               >
                 + Add Tray
               </button>
             </form>
+            {trayForm.size_class && (
+              <p className="text-xs text-muted">
+                {TRAY_SIZE_CLASSES.find((s) => s.value === trayForm.size_class)?.dims}
+              </p>
+            )}
           </div>
         )}
       </div>
