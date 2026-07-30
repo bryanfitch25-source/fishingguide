@@ -1,15 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f9f8;
-  --foreground: #10241f;
+  --background: #f6f7f5;
+  --foreground: #14231f;
   --surface: #ffffff;
-  --border: #d9e2df;
-  --brand: #0b6e4f;
-  --brand-dark: #084c37;
-  --brand-light: #e6f4ee;
-  --accent: #1c7ed6;
-  --muted: #5b6b66;
+  --border: #dde3df;
+
+  /* Ocean teal — primary brand color, used for nav/links/primary buttons */
+  --brand: #0e7490;
+  --brand-dark: #0c4a5c;
+  --brand-light: #e0f2f6;
+
+  /* Warm amber — secondary accent for CTAs and highlights, keeps the palette
+     from reading as one flat hue */
+  --accent: #d97706;
+  --accent-dark: #b45309;
+  --accent-light: #fef3e2;
+
+  /* Section accents — Fishing Guide / Tackle Box / Catch Log each get a
+     distinct identity on the home page and their own section headers */
+  --guide: #0e7490;
+  --guide-light: #e0f2f6;
+  --tackle: #b45309;
+  --tackle-light: #fef3e2;
+  --catches: #be123c;
+  --catches-light: #fde5eb;
+
+  --muted: #5c6b66;
+  --success: #15803d;
+  --danger: #b91c1c;
 }
 
 @theme inline {
@@ -21,22 +40,46 @@
   --color-brand-dark: var(--brand-dark);
   --color-brand-light: var(--brand-light);
   --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+  --color-guide: var(--guide);
+  --color-guide-light: var(--guide-light);
+  --color-tackle: var(--tackle);
+  --color-tackle-light: var(--tackle-light);
+  --color-catches: var(--catches);
+  --color-catches-light: var(--catches-light);
   --color-muted: var(--muted);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0b1615;
-    --foreground: #e8f1ee;
-    --surface: #111f1c;
-    --border: #223330;
-    --brand: #2fa876;
-    --brand-dark: #1c7052;
-    --brand-light: #16281f;
-    --accent: #4dabf7;
-    --muted: #93a8a2;
+    --background: #0b1614;
+    --foreground: #eaf1ef;
+    --surface: #12201d;
+    --border: #24352f;
+
+    --brand: #22a6c9;
+    --brand-dark: #7dd3e0;
+    --brand-light: #123339;
+
+    --accent: #f0a030;
+    --accent-dark: #ffcc80;
+    --accent-light: #2e2312;
+
+    --guide: #22a6c9;
+    --guide-light: #123339;
+    --tackle: #f0a030;
+    --tackle-light: #2e2312;
+    --catches: #f4527a;
+    --catches-light: #2e1620;
+
+    --muted: #96a8a2;
+    --success: #4ade80;
+    --danger: #f87171;
   }
 }
 
@@ -99,6 +142,6 @@ body {
 }
 
 .prose-guide a {
-  color: var(--accent);
+  color: var(--accent-dark);
   text-decoration: underline;
 }

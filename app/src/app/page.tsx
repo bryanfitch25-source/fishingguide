@@ -12,6 +12,9 @@ const SECTIONS = [
     title: "Fishing Guide",
     description:
       "27 species guides, trip guides by location, a regulations overview, and Fish Near Me — everything you need to know before you go.",
+    border: "hover:border-guide",
+    bg: "bg-guide-light",
+    heading: "text-xl font-bold text-foreground mb-2 group-hover:text-guide",
   },
   {
     href: "/tackle",
@@ -19,6 +22,9 @@ const SECTIONS = [
     title: "Tackle Box",
     description:
       "Your personal tackle inventory — rods, reels, lures, and terminal tackle, organized by storage location and tagged to the species they're good for.",
+    border: "hover:border-tackle",
+    bg: "bg-tackle-light",
+    heading: "text-xl font-bold text-foreground mb-2 group-hover:text-tackle",
   },
   {
     href: "/catches",
@@ -26,6 +32,9 @@ const SECTIONS = [
     title: "Catch Log",
     description:
       "Log what you caught, where, and what you used to catch it — build your own record of what actually works.",
+    border: "hover:border-catches",
+    bg: "bg-catches-light",
+    heading: "text-xl font-bold text-foreground mb-2 group-hover:text-catches",
   },
 ];
 
@@ -45,14 +54,12 @@ export default function Home() {
           <Link
             key={s.href}
             href={s.href}
-            className="group rounded-2xl border border-border bg-surface p-6 shadow-sm transition hover:shadow-md hover:border-brand"
+            className={`group rounded-2xl border border-border bg-surface p-6 shadow-sm transition hover:shadow-md ${s.border}`}
           >
-            <div className="text-4xl mb-3" aria-hidden>
+            <div className={`inline-flex text-3xl mb-3 rounded-xl p-3 ${s.bg}`} aria-hidden>
               {s.emoji}
             </div>
-            <h2 className="text-xl font-bold text-brand-dark group-hover:text-brand mb-2">
-              {s.title}
-            </h2>
+            <h2 className={s.heading}>{s.title}</h2>
             <p className="text-sm text-muted leading-relaxed">{s.description}</p>
           </Link>
         ))}

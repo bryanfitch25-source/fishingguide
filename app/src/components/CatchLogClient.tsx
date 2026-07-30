@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import type { Catch } from "@/types/tackle";
+import { PhotoUploadField } from "./PhotoUploadField";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -246,12 +247,10 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Photo URL</label>
-              <input
+              <PhotoUploadField
+                folder="catches"
                 value={form.photo_url}
-                onChange={(e) => setForm({ ...form, photo_url: e.target.value })}
-                placeholder="https://…"
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                onChange={(url) => setForm({ ...form, photo_url: url })}
               />
             </div>
             <div className="flex items-center gap-2 pt-6">
@@ -304,6 +303,7 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
           <table className="w-full text-sm">
             <thead className="bg-brand-light">
               <tr>
+                <th className="text-left px-3 py-2"></th>
                 <th className="text-left px-3 py-2">Date</th>
                 <th className="text-left px-3 py-2">Species</th>
                 <th className="text-left px-3 py-2">Location</th>
@@ -316,6 +316,16 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
             <tbody>
               {catches.map((c) => (
                 <tr key={c.id} className="border-t border-border align-top">
+                  <td className="px-3 py-2">
+                    {c.photo_url && (
+                      // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
+                      <img
+                        src={c.photo_url}
+                        alt=""
+                        className="h-12 w-12 rounded-lg object-cover border border-border"
+                      />
+                    )}
+                  </td>
                   <td className="px-3 py-2 whitespace-nowrap">{c.catch_date}</td>
                   <td className="px-3 py-2">{speciesName(c.species_slug) ?? "—"}</td>
                   <td className="px-3 py-2">{c.location ?? "—"}</td>
