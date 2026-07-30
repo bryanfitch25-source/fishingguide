@@ -210,8 +210,16 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   }
 
   function suggestTrayName(brand: string, size: TraySizeClass | "") {
-    const sizeLabel = TRAY_SIZE_CLASSES.find((s) => s.value === size)?.label;
-    return [brand, sizeLabel].filter(Boolean).join(" ");
+    const sizeInfo = TRAY_SIZE_CLASSES.find((s) => s.value === size);
+    if (!sizeInfo) return brand;
+    // Prefer the brand-specific model number when we have one (e.g. "Flambeau 5007"
+    // instead of the generic "Large") so the name itself carries the designation.
+    const number =
+      brand === "Flambeau" && sizeInfo.flambeauNumber
+        ? sizeInfo.flambeauNumber
+        : sizeInfo.planoNumber;
+    const sizeName = number ? `${sizeInfo.label.split(" (")[0]} (${number})` : sizeInfo.label;
+    return [brand, sizeName].filter(Boolean).join(" ");
   }
 
   async function handleAddTray(e: React.FormEvent) {
@@ -282,6 +290,15 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const speciesName = (slug: string) => species.find((s) => s.slug === slug)?.common_name ?? slug;
   const trayName = (id: string | null) => (id ? trays.find((t) => t.id === id)?.name ?? null : null);
   const untrayedCount = items.filter((i) => !i.tray_id).length;
+
+  function traySizeDesignation(tray: TackleTray) {
+    const sizeInfo = TRAY_SIZE_CLASSES.find((s) => s.value === tray.size_class);
+    if (!sizeInfo) return null;
+    const number =
+      tray.brand === "Flambeau" && sizeInfo.flambeauNumber ? sizeInfo.flambeauNumber : sizeInfo.planoNumber;
+    const sizeName = sizeInfo.label.split(" (")[0];
+    return number ? `${sizeName} (${number})` : sizeName;
+  }
 
   return (
     <div>
@@ -365,11 +382,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                         <span className="font-medium">{tray.name}</span>{" "}
                         {(tray.brand || tray.size_class) && (
                           <span className="text-muted">
-                            (
-                            {[tray.brand, TRAY_SIZE_CLASSES.find((s) => s.value === tray.size_class)?.label]
-                              .filter(Boolean)
-                              .join(", ")}
-                            )
+                            ({[tray.brand, traySizeDesignation(tray)].filter(Boolean).join(", ")})
                           </span>
                         )}{" "}
                         <span className="text-muted">
