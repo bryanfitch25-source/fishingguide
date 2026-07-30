@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
-import { TACKLE_CATEGORIES, type TackleCategory, type TackleItem } from "@/types/tackle";
+import { TACKLE_CATEGORIES, type TackleCategory, type TackleItem, type TackleTray } from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
@@ -28,10 +28,17 @@ async function fetchItems(
   };
 }
 
+async function fetchTrays(supabase: SupabaseBrowserClient): Promise<TackleTray[]> {
+  const { data } = await supabase.from("tackle_trays").select("*").order("position").order("name");
+  return (data as TackleTray[]) ?? [];
+}
+
 interface SpeciesOption {
   slug: string;
   common_name: string;
 }
+
+const NO_TRAY = "none";
 
 const emptyForm = {
   id: null as string | null,
@@ -41,6 +48,7 @@ const emptyForm = {
   model: "",
   color_size: "",
   quantity: "1",
+  tray_id: NO_TRAY,
   storage_location: "",
   notes: "",
   photo_url: "",
@@ -50,28 +58,38 @@ const emptyForm = {
 export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const supabase = useMemo(() => createClient(), []);
   const [items, setItems] = useState<TackleItem[]>([]);
+  const [trays, setTrays] = useState<TackleTray[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<TackleCategory | "all">("all");
+  const [trayFilter, setTrayFilter] = useState<string | "all">("all");
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
 
-  async function loadItems() {
+  const [showTrays, setShowTrays] = useState(false);
+  const [newTrayName, setNewTrayName] = useState("");
+  const [trayError, setTrayError] = useState<string | null>(null);
+  const [editingTrayId, setEditingTrayId] = useState<string | null>(null);
+  const [editingTrayName, setEditingTrayName] = useState("");
+
+  async function loadAll() {
     setLoading(true);
-    const result = await fetchItems(supabase);
-    if (result.error) setError(result.error);
-    else setItems(result.items);
+    const [itemsResult, traysResult] = await Promise.all([fetchItems(supabase), fetchTrays(supabase)]);
+    if (itemsResult.error) setError(itemsResult.error);
+    else setItems(itemsResult.items);
+    setTrays(traysResult);
     setLoading(false);
   }
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const result = await fetchItems(supabase);
+      const [itemsResult, traysResult] = await Promise.all([fetchItems(supabase), fetchTrays(supabase)]);
       if (cancelled) return;
-      if (result.error) setError(result.error);
-      else setItems(result.items);
+      if (itemsResult.error) setError(itemsResult.error);
+      else setItems(itemsResult.items);
+      setTrays(traysResult);
       setLoading(false);
     })();
     return () => {
@@ -94,6 +112,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       model: item.model ?? "",
       color_size: item.color_size ?? "",
       quantity: String(item.quantity),
+      tray_id: item.tray_id ?? NO_TRAY,
       storage_location: item.storage_location ?? "",
       notes: item.notes ?? "",
       photo_url: item.photo_url ?? "",
@@ -106,7 +125,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     if (!confirm("Delete this tackle item?")) return;
     const { error } = await supabase.from("tackle_items").delete().eq("id", id);
     if (error) setError(error.message);
-    else loadItems();
+    else loadAll();
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -131,6 +150,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       model: form.model.trim() || null,
       color_size: form.color_size.trim() || null,
       quantity: Math.max(0, parseInt(form.quantity, 10) || 0),
+      tray_id: form.tray_id === NO_TRAY ? null : form.tray_id,
       storage_location: form.storage_location.trim() || null,
       notes: form.notes.trim() || null,
       photo_url: form.photo_url.trim() || null,
@@ -164,7 +184,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
 
     setSaving(false);
     setShowForm(false);
-    loadItems();
+    loadAll();
   }
 
   function toggleSpecies(slug: string) {
@@ -176,12 +196,153 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     }));
   }
 
-  const filtered = items.filter((i) => categoryFilter === "all" || i.category === categoryFilter);
+  async function handleAddTray(e: React.FormEvent) {
+    e.preventDefault();
+    setTrayError(null);
+    const name = newTrayName.trim();
+    if (!name) return;
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      setTrayError("You've been signed out — please sign in again.");
+      return;
+    }
+
+    const { error } = await supabase
+      .from("tackle_trays")
+      .insert({ user_id: user.id, name, position: trays.length });
+    if (error) {
+      setTrayError(error.message);
+      return;
+    }
+    setNewTrayName("");
+    loadAll();
+  }
+
+  async function handleRenameTray(id: string) {
+    const name = editingTrayName.trim();
+    if (!name) return;
+    const { error } = await supabase.from("tackle_trays").update({ name }).eq("id", id);
+    if (error) setTrayError(error.message);
+    setEditingTrayId(null);
+    loadAll();
+  }
+
+  async function handleDeleteTray(id: string) {
+    const count = items.filter((i) => i.tray_id === id).length;
+    const msg = count
+      ? `Delete this tray? ${count} item${count === 1 ? "" : "s"} in it will become untrayed, not deleted.`
+      : "Delete this tray?";
+    if (!confirm(msg)) return;
+    const { error } = await supabase.from("tackle_trays").delete().eq("id", id);
+    if (error) setTrayError(error.message);
+    if (trayFilter === id) setTrayFilter("all");
+    loadAll();
+  }
+
+  const filtered = items.filter((i) => {
+    if (categoryFilter !== "all" && i.category !== categoryFilter) return false;
+    if (trayFilter === "all") return true;
+    if (trayFilter === NO_TRAY) return !i.tray_id;
+    return i.tray_id === trayFilter;
+  });
   const speciesName = (slug: string) => species.find((s) => s.slug === slug)?.common_name ?? slug;
+  const trayName = (id: string | null) => (id ? trays.find((t) => t.id === id)?.name ?? null : null);
+  const untrayedCount = items.filter((i) => !i.tray_id).length;
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+      {/* Trays management */}
+      <div className="mb-6 rounded-xl border border-border bg-surface p-4">
+        <button
+          onClick={() => setShowTrays((v) => !v)}
+          className="flex items-center justify-between w-full text-left"
+        >
+          <span className="font-bold text-tackle">🗂️ Trays ({trays.length})</span>
+          <span className="text-muted text-sm">{showTrays ? "Hide" : "Manage"}</span>
+        </button>
+        {showTrays && (
+          <div className="mt-4 space-y-3">
+            {trayError && <p className="text-sm text-danger bg-red-50 rounded px-3 py-2">{trayError}</p>}
+            {trays.length === 0 && (
+              <p className="text-sm text-muted">No trays yet — add one below to start organizing.</p>
+            )}
+            <ul className="space-y-2">
+              {trays.map((tray) => (
+                <li key={tray.id} className="flex items-center justify-between gap-2 text-sm">
+                  {editingTrayId === tray.id ? (
+                    <form
+                      className="flex items-center gap-2 flex-1"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        handleRenameTray(tray.id);
+                      }}
+                    >
+                      <input
+                        autoFocus
+                        value={editingTrayName}
+                        onChange={(e) => setEditingTrayName(e.target.value)}
+                        className="flex-1 rounded-lg border border-border bg-background px-2 py-1 text-sm"
+                      />
+                      <button type="submit" className="text-accent-dark hover:underline">
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setEditingTrayId(null)}
+                        className="text-muted hover:underline"
+                      >
+                        Cancel
+                      </button>
+                    </form>
+                  ) : (
+                    <>
+                      <span>
+                        {tray.name}{" "}
+                        <span className="text-muted">
+                          ({items.filter((i) => i.tray_id === tray.id).length})
+                        </span>
+                      </span>
+                      <span className="flex gap-3">
+                        <button
+                          onClick={() => {
+                            setEditingTrayId(tray.id);
+                            setEditingTrayName(tray.name);
+                          }}
+                          className="text-accent-dark hover:underline"
+                        >
+                          Rename
+                        </button>
+                        <button onClick={() => handleDeleteTray(tray.id)} className="text-danger hover:underline">
+                          Delete
+                        </button>
+                      </span>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <form onSubmit={handleAddTray} className="flex gap-2">
+              <input
+                value={newTrayName}
+                onChange={(e) => setNewTrayName(e.target.value)}
+                placeholder="e.g. Bass tray, Boat bag"
+                className="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              />
+              <button
+                type="submit"
+                className="rounded-lg bg-tackle text-white font-semibold px-4 py-2 text-sm hover:opacity-90 transition"
+              >
+                + Add Tray
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setCategoryFilter("all")}
@@ -214,6 +375,40 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           + Add Item
         </button>
       </div>
+
+      {trays.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-6">
+          <button
+            onClick={() => setTrayFilter("all")}
+            className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
+              trayFilter === "all" ? "bg-tackle text-white border-tackle" : "border-border hover:border-tackle"
+            }`}
+          >
+            All Trays
+          </button>
+          {trays.map((tray) => (
+            <button
+              key={tray.id}
+              onClick={() => setTrayFilter(tray.id)}
+              className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
+                trayFilter === tray.id ? "bg-tackle text-white border-tackle" : "border-border hover:border-tackle"
+              }`}
+            >
+              🗂️ {tray.name} ({items.filter((i) => i.tray_id === tray.id).length})
+            </button>
+          ))}
+          {untrayedCount > 0 && (
+            <button
+              onClick={() => setTrayFilter(NO_TRAY)}
+              className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
+                trayFilter === NO_TRAY ? "bg-tackle text-white border-tackle" : "border-border hover:border-tackle"
+              }`}
+            >
+              No Tray ({untrayedCount})
+            </button>
+          )}
+        </div>
+      )}
 
       {error && <p className="text-sm text-red-700 bg-red-50 rounded px-3 py-2 mb-4">{error}</p>}
 
@@ -284,11 +479,31 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Storage Location</label>
+              <label className="block text-sm font-medium mb-1">Tray</label>
+              <select
+                value={form.tray_id}
+                onChange={(e) => setForm({ ...form, tray_id: e.target.value })}
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              >
+                <option value={NO_TRAY}>— No tray —</option>
+                {trays.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.name}
+                  </option>
+                ))}
+              </select>
+              {trays.length === 0 && (
+                <p className="mt-1 text-xs text-muted">
+                  No trays yet — use the Trays panel above to add one.
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Location Notes</label>
               <input
                 value={form.storage_location}
                 onChange={(e) => setForm({ ...form, storage_location: e.target.value })}
-                placeholder="e.g. Tackle bag, top tray"
+                placeholder="e.g. Top-left compartment"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               />
             </div>
@@ -351,7 +566,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
         <p className="text-muted text-sm">
           {items.length === 0
             ? "No tackle yet — add your first item above."
-            : "Nothing in this category."}
+            : "Nothing matches these filters."}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -379,6 +594,9 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 {item.model ? ` ${item.model}` : ""}
               </p>
               {item.color_size && <p className="text-sm">{item.color_size}</p>}
+              {trayName(item.tray_id) && (
+                <p className="text-sm text-tackle mt-1">🗂️ {trayName(item.tray_id)}</p>
+              )}
               {item.storage_location && (
                 <p className="text-sm text-muted mt-1">📍 {item.storage_location}</p>
               )}
@@ -396,10 +614,10 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 </div>
               )}
               <div className="mt-3 flex gap-3 text-sm">
-                <button onClick={() => startEdit(item)} className="text-accent hover:underline">
+                <button onClick={() => startEdit(item)} className="text-accent-dark hover:underline">
                   Edit
                 </button>
-                <button onClick={() => handleDelete(item.id)} className="text-red-600 hover:underline">
+                <button onClick={() => handleDelete(item.id)} className="text-danger hover:underline">
                   Delete
                 </button>
               </div>

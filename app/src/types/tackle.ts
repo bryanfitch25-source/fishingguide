@@ -21,6 +21,16 @@ export const TACKLE_CATEGORIES: { value: TackleCategory; label: string }[] = [
   { value: "other", label: "Other" },
 ];
 
+export interface TackleTray {
+  id: string;
+  user_id: string;
+  name: string;
+  notes: string | null;
+  position: number;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface TackleItem {
   id: string;
   user_id: string;
@@ -31,6 +41,7 @@ export interface TackleItem {
   color_size: string | null;
   quantity: number;
   storage_location: string | null;
+  tray_id: string | null;
   notes: string | null;
   photo_url: string | null;
   created_at: string;
