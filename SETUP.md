@@ -17,16 +17,41 @@ FishingGuide/
 it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 `research/_SCHEMA_AND_EXAMPLE.md` for the exact shape) and regenerate the seed SQL.
 
+## App structure
+
+Three sections, one nav:
+
+- **Fishing Guide** (`/guide`) — everything from before: species, trip guides, regulations, Fish Near Me. Public, no sign-in needed.
+- **Tackle Box** (`/tackle`) — your personal tackle inventory. Sign-in required; only you can see or edit it.
+- **Catch Log** (`/catches`) — what you caught, where, with what. Sign-in required.
+
+Tag a tackle item with the species it's good for and it shows up as "Gear You Own" on that
+species' guide page — the one thing a generic tackle app can't do, since it doesn't have
+your species guide's gear recommendations to link against.
+
+## One-time setup: your account
+
+The tackle box and catch log need you to be signed in (so a random visitor to the public
+site can't edit your gear or catches). Before creating your account:
+
+1. Supabase dashboard → your `fishingguide` project → **Authentication → Sign In / Providers → Email**.
+2. Turn **off** "Confirm email". For a personal app with one user, email confirmation is
+   just friction — and Supabase's free tier only sends a couple of confirmation emails per
+   hour, so leaving it on means you can hit that limit before you ever get signed in.
+3. Go to `/login` on the live site, click "Sign up", enter your email and a password. You're
+   in immediately — no confirmation email, no waiting.
+
 ## 1. Database — already applied ✅
 
 Your Supabase project: `https://zrerxskliybzcqexudfo.supabase.co` (project `fishingguide`)
 
-The schema and all content have **already been pushed** via `supabase db push` as three
-migrations:
+The schema and all content have **already been pushed** via `supabase db push` as a series
+of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 
-1. `20260728000001_init_schema.sql` — tables, indexes, RLS policies (public read-only)
-2. `20260728000002_seed_content.sql` — all 27 species guides + 2 location guides
-3. `20260728000003_grants.sql` — SELECT grants for the anon/authenticated API roles
+- `20260728000001_init_schema.sql` — species/regulations/location-guide tables, RLS (public read-only)
+- `20260728000002_seed_content.sql`, `20260728000003_grants.sql` — initial content + API grants
+- `20260728120000_images_and_variants.sql`, `20260729180000_real_photos_only.sql` — species photos + "Forms & Lookalikes" variants
+- `20260730100000_tackle_and_catches.sql` — `tackle_items`, `tackle_item_species`, `catches` tables, RLS scoped to `auth.uid()` (private, per-account)
 
 To update content later: edit the JSON in `research/`, run
 `node scripts/generate-seed-sql.mjs` in `app/`, copy the regenerated

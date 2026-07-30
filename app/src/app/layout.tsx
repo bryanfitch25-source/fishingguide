@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { AuthNav } from "@/components/AuthNav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,18 +40,16 @@ export default function RootLayout({
               <span>Maritime Angler</span>
             </Link>
             <nav className="flex items-center gap-5 text-sm font-medium">
-              <Link href="/species" className="hover:text-brand">
-                Species
+              <Link href="/guide" className="hover:text-brand">
+                Fishing Guide
               </Link>
-              <Link href="/locations" className="hover:text-brand">
-                Trip Guides
+              <Link href="/tackle" className="hover:text-brand">
+                Tackle Box
               </Link>
-              <Link href="/regulations" className="hover:text-brand">
-                Regulations
+              <Link href="/catches" className="hover:text-brand">
+                Catch Log
               </Link>
-              <Link href="/near-me" className="hover:text-brand">
-                Fish Near Me
-              </Link>
+              <AuthNav />
             </nav>
           </div>
         </header>

@@ -1,15 +1,15 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getSpeciesBySlug, getAllSpecies } from "@/lib/data";
+import { getSpeciesBySlug } from "@/lib/data";
 import { ProvinceBadge, CategoryBadge } from "@/components/Badges";
 import { GuideMarkdown } from "@/components/GuideMarkdown";
 import { RegulationsTable } from "@/components/RegulationsTable";
 import { VariantsSection } from "@/components/VariantsSection";
+import { OwnedGear } from "@/components/OwnedGear";
 
-export async function generateStaticParams() {
-  const species = await getAllSpecies();
-  return species.map((s) => ({ slug: s.slug }));
-}
+// Owned-gear lookup reads the auth session cookie, so this route can't be
+// fully static — that's an acceptable trade-off for a personal-use app.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
   const { slug } = await props.params;
@@ -95,6 +95,8 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
               )}
             </section>
           ))}
+
+          <OwnedGear speciesSlug={species.slug} />
 
           <VariantsSection variants={species.variants} />
 
