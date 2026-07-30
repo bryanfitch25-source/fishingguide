@@ -21,6 +21,19 @@ export const TACKLE_CATEGORIES: { value: TackleCategory; label: string }[] = [
   { value: "other", label: "Other" },
 ];
 
+// Fallback glyph shown on a tray-diagram tile when the item has no photo.
+export const CATEGORY_ICON: Record<TackleCategory, string> = {
+  rod: "🎣",
+  reel: "🎡",
+  lure: "🐟",
+  line: "🧵",
+  terminal_tackle: "🪝",
+  net: "🥅",
+  electronics: "📟",
+  apparel: "🧢",
+  other: "📦",
+};
+
 export type TrayBrand = "Plano" | "Flambeau" | "Bass Pro / Cabela's" | "Other / Custom";
 
 export const TRAY_BRANDS: TrayBrand[] = ["Plano", "Flambeau", "Bass Pro / Cabela's", "Other / Custom"];
@@ -38,6 +51,12 @@ export const TRAY_SIZE_CLASSES: {
   planoNumber: string | null;
   flambeauNumber: string | null;
   dims: string;
+  // Typical stock adjustable-divider configuration for this size, and the
+  // width:height footprint ratio (from `dims`) used to shape the diagram grid.
+  // Both are just a starting point — the actual divider count on a physical
+  // tray varies, so it's editable per-tray.
+  defaultCompartments: number;
+  aspectRatio: number;
 }[] = [
   {
     value: "micro",
@@ -45,6 +64,8 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3400",
     flambeauNumber: null,
     dims: "Plano 3400-series compartment box",
+    defaultCompartments: 4,
+    aspectRatio: 1.4,
   },
   {
     value: "small",
@@ -52,6 +73,8 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3500",
     flambeauNumber: null,
     dims: 'Plano 3500 — ~9.1" × 5" × 1.25"',
+    defaultCompartments: 5,
+    aspectRatio: 9.1 / 5,
   },
   {
     value: "medium",
@@ -59,6 +82,8 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3600",
     flambeauNumber: "4007",
     dims: 'Plano 3600 / Flambeau 4007 — ~11" × 7.25" × 1.75"',
+    defaultCompartments: 6,
+    aspectRatio: 11 / 7.25,
   },
   {
     value: "large",
@@ -66,8 +91,18 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3700",
     flambeauNumber: "5007",
     dims: 'Plano 3700 / Flambeau 5007 — ~14.25" × 9.1" × 2"',
+    defaultCompartments: 8,
+    aspectRatio: 14.25 / 9.1,
   },
-  { value: "custom", label: "Custom / Other size", planoNumber: null, flambeauNumber: null, dims: "" },
+  {
+    value: "custom",
+    label: "Custom / Other size",
+    planoNumber: null,
+    flambeauNumber: null,
+    dims: "",
+    defaultCompartments: 6,
+    aspectRatio: 1.5,
+  },
 ];
 
 export interface TackleTray {
@@ -76,6 +111,7 @@ export interface TackleTray {
   name: string;
   brand: string | null;
   size_class: TraySizeClass | null;
+  compartments: number | null;
   notes: string | null;
   position: number;
   created_at: string;

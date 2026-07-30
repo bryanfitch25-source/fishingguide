@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import {
+  CATEGORY_ICON,
   TACKLE_CATEGORIES,
   TRAY_BRANDS,
   TRAY_SIZE_CLASSES,
@@ -67,7 +68,12 @@ const emptyTrayForm = {
   name: "",
   brand: "",
   size_class: "" as TraySizeClass | "",
+  compartments: "",
 };
+
+function defaultCompartments(size: TraySizeClass | ""): number | null {
+  return TRAY_SIZE_CLASSES.find((s) => s.value === size)?.defaultCompartments ?? null;
+}
 
 export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const supabase = useMemo(() => createClient(), []);
@@ -85,6 +91,10 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const [trayError, setTrayError] = useState<string | null>(null);
   const [editingTrayId, setEditingTrayId] = useState<string | null>(null);
   const [trayForm, setTrayForm] = useState(emptyTrayForm);
+
+  const [viewMode, setViewMode] = useState<"list" | "diagram">("list");
+  const [detailItem, setDetailItem] = useState<TackleItem | null>(null);
+  const [stackSlot, setStackSlot] = useState<TackleItem[] | null>(null);
 
   async function loadAll() {
     setLoading(true);
@@ -244,6 +254,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       name,
       brand: trayForm.brand || null,
       size_class: trayForm.size_class || null,
+      compartments: parseInt(trayForm.compartments, 10) || defaultCompartments(trayForm.size_class),
       position: trays.length,
     });
     if (error) {
@@ -262,7 +273,12 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     }
     const { error } = await supabase
       .from("tackle_trays")
-      .update({ name, brand: trayForm.brand || null, size_class: trayForm.size_class || null })
+      .update({
+        name,
+        brand: trayForm.brand || null,
+        size_class: trayForm.size_class || null,
+        compartments: parseInt(trayForm.compartments, 10) || defaultCompartments(trayForm.size_class),
+      })
       .eq("id", id);
     if (error) setTrayError(error.message);
     setEditingTrayId(null);
@@ -290,6 +306,34 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const speciesName = (slug: string) => species.find((s) => s.slug === slug)?.common_name ?? slug;
   const trayName = (id: string | null) => (id ? trays.find((t) => t.id === id)?.name ?? null : null);
   const untrayedCount = items.filter((i) => !i.tray_id).length;
+
+  // Groups for the diagram view: one section per tray (in tray order), plus a
+  // trailing "No Tray" section — each rendered as a grid of clickable compartments.
+  const diagramGroups: { tray: TackleTray | null; items: TackleItem[] }[] = [
+    ...trays
+      .filter((t) => trayFilter === "all" || trayFilter === t.id)
+      .map((tray) => ({ tray, items: filtered.filter((i) => i.tray_id === tray.id) }))
+      .filter((g) => g.items.length > 0),
+    ...(trayFilter === "all" || trayFilter === NO_TRAY
+      ? [{ tray: null, items: filtered.filter((i) => !i.tray_id) }].filter((g) => g.items.length > 0)
+      : []),
+  ];
+
+  // Lays items out into a fixed number of compartments (the tray's real divider
+  // count) instead of an open-ended flow grid. If a tray has more items than
+  // compartments, items stack round-robin into the same slot rather than adding
+  // phantom slots the physical tray doesn't have.
+  function traySlots(tray: TackleTray | null, groupItems: TackleItem[]): TackleItem[][] {
+    const slotCount = tray?.compartments || groupItems.length || 1;
+    const slots: TackleItem[][] = Array.from({ length: slotCount }, () => []);
+    groupItems.forEach((item, i) => slots[i % slotCount].push(item));
+    return slots;
+  }
+
+  function trayGridColumns(tray: TackleTray | null, slotCount: number): number {
+    const aspect = TRAY_SIZE_CLASSES.find((s) => s.value === tray?.size_class)?.aspectRatio ?? 1.5;
+    return Math.max(1, Math.min(slotCount, Math.round(Math.sqrt(slotCount * aspect))));
+  }
 
   function traySizeDesignation(tray: TackleTray) {
     const sizeInfo = TRAY_SIZE_CLASSES.find((s) => s.value === tray.size_class);
@@ -328,7 +372,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                         handleSaveTray(tray.id);
                       }}
                     >
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
                         <input
                           autoFocus
                           value={trayForm.name}
@@ -362,6 +406,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                             </option>
                           ))}
                         </select>
+                        <input
+                          type="number"
+                          min={1}
+                          value={trayForm.compartments}
+                          onChange={(e) => setTrayForm({ ...trayForm, compartments: e.target.value })}
+                          placeholder={`# compartments (${defaultCompartments(trayForm.size_class) ?? "?"})`}
+                          className="rounded-lg border border-border bg-background px-2 py-1.5 text-sm"
+                        />
                       </div>
                       <div className="flex gap-3 text-sm">
                         <button type="submit" className="text-accent-dark hover:underline">
@@ -385,6 +437,9 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                             ({[tray.brand, traySizeDesignation(tray)].filter(Boolean).join(", ")})
                           </span>
                         )}{" "}
+                        {tray.compartments && (
+                          <span className="text-muted">— {tray.compartments} compartments</span>
+                        )}{" "}
                         <span className="text-muted">
                           — {items.filter((i) => i.tray_id === tray.id).length} item
                           {items.filter((i) => i.tray_id === tray.id).length === 1 ? "" : "s"}
@@ -398,6 +453,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                               name: tray.name,
                               brand: tray.brand ?? "",
                               size_class: tray.size_class ?? "",
+                              compartments: tray.compartments ? String(tray.compartments) : "",
                             });
                           }}
                           className="text-accent-dark hover:underline"
@@ -415,7 +471,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             </ul>
             <form
               onSubmit={handleAddTray}
-              className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-2 pt-2 border-t border-border"
+              className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-2 pt-2 border-t border-border"
             >
               <input
                 value={trayForm.name}
@@ -448,6 +504,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                   </option>
                 ))}
               </select>
+              <input
+                type="number"
+                min={1}
+                value={trayForm.compartments}
+                onChange={(e) => setTrayForm({ ...trayForm, compartments: e.target.value })}
+                placeholder={`# compartments (${defaultCompartments(trayForm.size_class) ?? "?"})`}
+                className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              />
               <button
                 type="submit"
                 className="rounded-lg bg-tackle text-white font-semibold px-4 py-2 text-sm hover:opacity-90 transition whitespace-nowrap"
@@ -490,12 +554,32 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             );
           })}
         </div>
-        <button
-          onClick={startAdd}
-          className="rounded-lg bg-brand text-white font-semibold px-4 py-2 text-sm hover:bg-brand-dark transition"
-        >
-          + Add Item
-        </button>
+        <div className="flex items-center gap-2">
+          <div className="flex rounded-lg border border-border p-0.5 text-sm">
+            <button
+              onClick={() => setViewMode("list")}
+              className={`rounded-md px-3 py-1.5 font-medium transition ${
+                viewMode === "list" ? "bg-tackle text-white" : "text-muted hover:text-foreground"
+              }`}
+            >
+              List
+            </button>
+            <button
+              onClick={() => setViewMode("diagram")}
+              className={`rounded-md px-3 py-1.5 font-medium transition ${
+                viewMode === "diagram" ? "bg-tackle text-white" : "text-muted hover:text-foreground"
+              }`}
+            >
+              🗂️ Diagram
+            </button>
+          </div>
+          <button
+            onClick={startAdd}
+            className="rounded-lg bg-brand text-white font-semibold px-4 py-2 text-sm hover:bg-brand-dark transition"
+          >
+            + Add Item
+          </button>
+        </div>
       </div>
 
       {trays.length > 0 && (
@@ -690,6 +774,71 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             ? "No tackle yet — add your first item above."
             : "Nothing matches these filters."}
         </p>
+      ) : viewMode === "diagram" ? (
+        <div className="space-y-6">
+          {diagramGroups.map((group) => {
+            const slots = traySlots(group.tray, group.items);
+            const columns = trayGridColumns(group.tray, slots.length);
+            return (
+              <div
+                key={group.tray?.id ?? "no-tray"}
+                className="rounded-xl border-2 border-tackle/40 bg-tackle-light/40 p-4"
+              >
+                <div className="mb-3 flex items-baseline justify-between gap-2">
+                  <h3 className="font-bold text-tackle">🗂️ {group.tray?.name ?? "No Tray"}</h3>
+                  <span className="text-xs text-muted">
+                    {group.items.length} item{group.items.length === 1 ? "" : "s"}
+                    {group.tray?.compartments ? ` · ${group.tray.compartments} compartments` : ""}
+                  </span>
+                </div>
+                <div
+                  className="grid gap-2"
+                  style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+                >
+                  {slots.map((slotItems, slotIndex) => {
+                    const top = slotItems[0];
+                    if (!top) {
+                      return (
+                        <div
+                          key={slotIndex}
+                          className="aspect-square rounded-lg border border-dashed border-tackle/25"
+                        />
+                      );
+                    }
+                    return (
+                      <button
+                        key={slotIndex}
+                        onClick={() =>
+                          slotItems.length > 1 ? setStackSlot(slotItems) : setDetailItem(top)
+                        }
+                        className="group relative flex aspect-square flex-col items-center justify-center rounded-lg border border-tackle/30 bg-surface p-1.5 text-center shadow-sm transition hover:border-tackle hover:shadow-md"
+                      >
+                        {top.photo_url ? (
+                          // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
+                          <img
+                            src={top.photo_url}
+                            alt=""
+                            className="absolute inset-0 h-full w-full rounded-lg object-cover"
+                          />
+                        ) : (
+                          <span className="text-2xl">{CATEGORY_ICON[top.category]}</span>
+                        )}
+                        <span className="relative mt-auto w-full truncate rounded bg-black/60 px-1 py-0.5 text-[11px] font-medium leading-tight text-white">
+                          {slotItems.length > 1 ? `${slotItems.length} items` : top.name}
+                        </span>
+                        {slotItems.length === 1 && top.quantity !== 1 && (
+                          <span className="absolute right-1 top-1 rounded-full bg-tackle px-1.5 py-0 text-[10px] font-bold text-white">
+                            ×{top.quantity}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((item) => (
@@ -745,6 +894,126 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {stackSlot && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setStackSlot(null)}
+        >
+          <div
+            className="w-full max-w-xs rounded-xl border border-border bg-surface p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="mb-2 font-bold text-tackle">This compartment holds {stackSlot.length} items</h3>
+            <ul className="space-y-1">
+              {stackSlot.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => {
+                      setDetailItem(item);
+                      setStackSlot(null);
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm hover:bg-tackle-light"
+                  >
+                    <span className="text-lg">{CATEGORY_ICON[item.category]}</span>
+                    {item.name}
+                    {item.quantity !== 1 && <span className="text-muted">×{item.quantity}</span>}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {detailItem && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setDetailItem(null)}
+        >
+          <div
+            className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-xl border border-border bg-surface p-5"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <h3 className="text-lg font-bold text-brand-dark">{detailItem.name}</h3>
+              <button
+                onClick={() => setDetailItem(null)}
+                className="shrink-0 rounded-full p-1 text-muted hover:bg-border/50"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            {detailItem.photo_url ? (
+              // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
+              <img
+                src={detailItem.photo_url}
+                alt=""
+                className="mb-3 h-48 w-full rounded-lg object-cover border border-border"
+              />
+            ) : (
+              <div className="mb-3 flex h-32 w-full items-center justify-center rounded-lg bg-tackle-light text-5xl">
+                {CATEGORY_ICON[detailItem.category]}
+              </div>
+            )}
+            <div className="space-y-1.5 text-sm">
+              <p>
+                <span className="text-muted">Category:</span>{" "}
+                {TACKLE_CATEGORIES.find((c) => c.value === detailItem.category)?.label}
+              </p>
+              {(detailItem.brand || detailItem.model) && (
+                <p>
+                  <span className="text-muted">Brand / Model:</span>{" "}
+                  {[detailItem.brand, detailItem.model].filter(Boolean).join(" ")}
+                </p>
+              )}
+              {detailItem.color_size && (
+                <p>
+                  <span className="text-muted">Color / Size:</span> {detailItem.color_size}
+                </p>
+              )}
+              <p>
+                <span className="text-muted">Quantity:</span> {detailItem.quantity}
+              </p>
+              {trayName(detailItem.tray_id) && (
+                <p className="text-tackle">🗂️ {trayName(detailItem.tray_id)}</p>
+              )}
+              {detailItem.storage_location && <p>📍 {detailItem.storage_location}</p>}
+              {detailItem.notes && <p className="pt-1 whitespace-pre-wrap">{detailItem.notes}</p>}
+              {(detailItem.species_slugs?.length ?? 0) > 0 && (
+                <div className="pt-2 flex flex-wrap gap-1">
+                  {detailItem.species_slugs!.map((slug) => (
+                    <span key={slug} className="rounded-full bg-blue-100 text-blue-900 px-2 py-0.5 text-xs">
+                      {speciesName(slug)}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="mt-4 flex gap-3 text-sm border-t border-border pt-3">
+              <button
+                onClick={() => {
+                  startEdit(detailItem);
+                  setDetailItem(null);
+                }}
+                className="text-accent-dark hover:underline"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => {
+                  handleDelete(detailItem.id);
+                  setDetailItem(null);
+                }}
+                className="text-danger hover:underline"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
