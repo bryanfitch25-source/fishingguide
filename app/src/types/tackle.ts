@@ -131,9 +131,11 @@ export interface TackleItem {
   tray_id: string | null;
   notes: string | null;
   photo_url: string | null;
+  packed: boolean;
   created_at: string;
   updated_at: string;
   species_slugs?: string[];
+  catch_count?: number;
 }
 
 export interface Catch {
@@ -148,6 +150,8 @@ export interface Catch {
   kept: boolean;
   notes: string | null;
   photo_url: string | null;
+  lat: number | null;
+  lng: number | null;
   created_at: string;
   updated_at: string;
 }

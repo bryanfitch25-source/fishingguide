@@ -1,9 +1,14 @@
 import Link from "next/link";
+import { RecentActivity } from "@/components/RecentActivity";
 
 export const metadata = {
   title: "Maritime Angler",
   description: "Your all-around fishing app: species guide, tackle box, and catch log for NB, NS & PEI.",
 };
+
+// RecentActivity reads the auth session cookie, so this route can't be fully static —
+// same trade-off already accepted on the species detail pages.
+export const dynamic = "force-dynamic";
 
 const SECTIONS = [
   {
@@ -38,7 +43,7 @@ const SECTIONS = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
       <div className="mb-12">
@@ -48,6 +53,8 @@ export default function Home() {
           box, and your catch log.
         </p>
       </div>
+
+      <RecentActivity />
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {SECTIONS.map((s) => (

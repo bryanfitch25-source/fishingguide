@@ -13,25 +13,38 @@ import {
   type TraySizeClass,
 } from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
+import { downloadCSV } from "@/lib/csv";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
+
+// Quantity at or below this counts as "running low" — worth restocking before a trip.
+const LOW_STOCK_THRESHOLD = 1;
 
 async function fetchItems(
   supabase: SupabaseBrowserClient
 ): Promise<{ items: TackleItem[]; error: string | null }> {
-  const { data, error } = await supabase
-    .from("tackle_items")
-    .select("*, tackle_item_species(species_slug)")
-    .order("created_at", { ascending: false });
+  const [itemsRes, catchesRes] = await Promise.all([
+    supabase
+      .from("tackle_items")
+      .select("*, tackle_item_species(species_slug)")
+      .order("created_at", { ascending: false }),
+    supabase.from("catches").select("tackle_item_id").not("tackle_item_id", "is", null),
+  ]);
 
-  if (error) return { items: [], error: error.message };
+  if (itemsRes.error) return { items: [], error: itemsRes.error.message };
+
+  const catchCounts = new Map<string, number>();
+  for (const row of (catchesRes.data as { tackle_item_id: string }[] | null) ?? []) {
+    catchCounts.set(row.tackle_item_id, (catchCounts.get(row.tackle_item_id) ?? 0) + 1);
+  }
 
   return {
-    items: (data ?? []).map((row) => ({
+    items: (itemsRes.data ?? []).map((row) => ({
       ...(row as unknown as TackleItem),
       species_slugs: (
         (row as { tackle_item_species?: { species_slug: string }[] }).tackle_item_species ?? []
       ).map((r) => r.species_slug),
+      catch_count: catchCounts.get((row as unknown as TackleItem).id) ?? 0,
     })),
     error: null,
   };
@@ -83,6 +96,8 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const [error, setError] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<TackleCategory | "all">("all");
   const [trayFilter, setTrayFilter] = useState<string | "all">("all");
+  const [lowStockOnly, setLowStockOnly] = useState(false);
+  const [sortBy, setSortBy] = useState<"recent" | "productive" | "name">("recent");
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
@@ -149,6 +164,41 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     const { error } = await supabase.from("tackle_items").delete().eq("id", id);
     if (error) setError(error.message);
     else loadAll();
+  }
+
+  async function togglePacked(item: TackleItem) {
+    // Optimistic update so the pack list feels instant while heading out the door.
+    setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, packed: !i.packed } : i)));
+    const { error } = await supabase.from("tackle_items").update({ packed: !item.packed }).eq("id", item.id);
+    if (error) {
+      setError(error.message);
+      setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, packed: item.packed } : i)));
+    }
+  }
+
+  async function resetPackList() {
+    if (!confirm("Unpack everything?")) return;
+    const { error } = await supabase.from("tackle_items").update({ packed: false }).eq("packed", true);
+    if (error) setError(error.message);
+    else loadAll();
+  }
+
+  function exportCSV() {
+    downloadCSV(
+      "tackle-inventory.csv",
+      ["Name", "Category", "Brand", "Model", "Color/Size", "Quantity", "Tray", "Location", "Notes"],
+      items.map((i) => [
+        i.name,
+        TACKLE_CATEGORIES.find((c) => c.value === i.category)?.label ?? i.category,
+        i.brand ?? "",
+        i.model ?? "",
+        i.color_size ?? "",
+        i.quantity,
+        trayName(i.tray_id) ?? "",
+        i.storage_location ?? "",
+        i.notes ?? "",
+      ])
+    );
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -297,12 +347,22 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     loadAll();
   }
 
-  const filtered = items.filter((i) => {
-    if (categoryFilter !== "all" && i.category !== categoryFilter) return false;
-    if (trayFilter === "all") return true;
-    if (trayFilter === NO_TRAY) return !i.tray_id;
-    return i.tray_id === trayFilter;
-  });
+  const lowStockCount = items.filter((i) => i.quantity <= LOW_STOCK_THRESHOLD).length;
+  const packedCount = items.filter((i) => i.packed).length;
+
+  const filtered = items
+    .filter((i) => {
+      if (categoryFilter !== "all" && i.category !== categoryFilter) return false;
+      if (lowStockOnly && i.quantity > LOW_STOCK_THRESHOLD) return false;
+      if (trayFilter === "all") return true;
+      if (trayFilter === NO_TRAY) return !i.tray_id;
+      return i.tray_id === trayFilter;
+    })
+    .sort((a, b) => {
+      if (sortBy === "productive") return (b.catch_count ?? 0) - (a.catch_count ?? 0);
+      if (sortBy === "name") return a.name.localeCompare(b.name);
+      return 0; // "recent" — already ordered by created_at from the query
+    });
   const speciesName = (slug: string) => species.find((s) => s.slug === slug)?.common_name ?? slug;
   const trayName = (id: string | null) => (id ? trays.find((t) => t.id === id)?.name ?? null : null);
   const untrayedCount = items.filter((i) => !i.tray_id).length;
@@ -553,8 +613,29 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               </button>
             );
           })}
+          {lowStockCount > 0 && (
+            <button
+              onClick={() => setLowStockOnly((v) => !v)}
+              className={`rounded-full px-3 py-1.5 text-sm font-medium border transition ${
+                lowStockOnly
+                  ? "bg-danger text-white border-danger"
+                  : "border-danger/40 text-danger hover:border-danger"
+              }`}
+            >
+              ⚠️ Low Stock ({lowStockCount})
+            </button>
+          )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+            className="rounded-lg border border-border bg-background px-2 py-1.5 text-sm"
+          >
+            <option value="recent">Sort: Recently Added</option>
+            <option value="productive">Sort: Most Productive</option>
+            <option value="name">Sort: Name A–Z</option>
+          </select>
           <div className="flex rounded-lg border border-border p-0.5 text-sm">
             <button
               onClick={() => setViewMode("list")}
@@ -574,6 +655,12 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             </button>
           </div>
           <button
+            onClick={exportCSV}
+            className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-tackle transition"
+          >
+            ⬇ Export CSV
+          </button>
+          <button
             onClick={startAdd}
             className="rounded-lg bg-brand text-white font-semibold px-4 py-2 text-sm hover:bg-brand-dark transition"
           >
@@ -581,6 +668,17 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           </button>
         </div>
       </div>
+
+      {packedCount > 0 && (
+        <div className="mb-3 flex items-center justify-between rounded-lg bg-brand-light px-3 py-2 text-sm">
+          <span className="font-medium text-brand-dark">
+            🎒 Pack list: {packedCount} of {items.length} packed
+          </span>
+          <button onClick={resetPackList} className="text-brand-dark hover:underline">
+            Unpack all
+          </button>
+        </div>
+      )}
 
       {trays.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">
@@ -842,7 +940,12 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((item) => (
-            <div key={item.id} className="rounded-xl border border-border bg-surface p-4">
+            <div
+              key={item.id}
+              className={`rounded-xl border bg-surface p-4 ${
+                item.packed ? "border-brand" : "border-border"
+              }`}
+            >
               <div className="flex items-start gap-3 mb-1">
                 {item.photo_url && (
                   // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
@@ -872,25 +975,36 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 <p className="text-sm text-muted mt-1">📍 {item.storage_location}</p>
               )}
               {item.notes && <p className="text-sm mt-1">{item.notes}</p>}
-              {(item.species_slugs?.length ?? 0) > 0 && (
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {item.species_slugs!.map((slug) => (
-                    <span
-                      key={slug}
-                      className="rounded-full bg-blue-100 text-blue-900 px-2 py-0.5 text-xs"
-                    >
-                      {speciesName(slug)}
-                    </span>
-                  ))}
+              <div className="mt-2 flex flex-wrap gap-1">
+                {item.quantity <= LOW_STOCK_THRESHOLD && (
+                  <span className="rounded-full bg-red-100 text-danger px-2 py-0.5 text-xs font-medium">
+                    ⚠️ Low stock
+                  </span>
+                )}
+                {(item.catch_count ?? 0) > 0 && (
+                  <span className="rounded-full bg-catches-light text-catches px-2 py-0.5 text-xs font-medium">
+                    🔥 Used in {item.catch_count} catch{item.catch_count === 1 ? "" : "es"}
+                  </span>
+                )}
+                {item.species_slugs?.map((slug) => (
+                  <span key={slug} className="rounded-full bg-blue-100 text-blue-900 px-2 py-0.5 text-xs">
+                    {speciesName(slug)}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-3 text-sm">
+                <div className="flex gap-3">
+                  <button onClick={() => startEdit(item)} className="text-accent-dark hover:underline">
+                    Edit
+                  </button>
+                  <button onClick={() => handleDelete(item.id)} className="text-danger hover:underline">
+                    Delete
+                  </button>
                 </div>
-              )}
-              <div className="mt-3 flex gap-3 text-sm">
-                <button onClick={() => startEdit(item)} className="text-accent-dark hover:underline">
-                  Edit
-                </button>
-                <button onClick={() => handleDelete(item.id)} className="text-danger hover:underline">
-                  Delete
-                </button>
+                <label className="flex items-center gap-1.5 text-muted">
+                  <input type="checkbox" checked={item.packed} onChange={() => togglePacked(item)} />
+                  Packed
+                </label>
               </div>
             </div>
           ))}
@@ -977,7 +1091,15 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               )}
               <p>
                 <span className="text-muted">Quantity:</span> {detailItem.quantity}
+                {detailItem.quantity <= LOW_STOCK_THRESHOLD && (
+                  <span className="ml-1.5 text-danger">⚠️ Low stock</span>
+                )}
               </p>
+              {(detailItem.catch_count ?? 0) > 0 && (
+                <p className="text-catches">
+                  🔥 Used in {detailItem.catch_count} catch{detailItem.catch_count === 1 ? "" : "es"}
+                </p>
+              )}
               {trayName(detailItem.tray_id) && (
                 <p className="text-tackle">🗂️ {trayName(detailItem.tray_id)}</p>
               )}

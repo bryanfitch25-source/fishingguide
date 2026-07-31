@@ -6,6 +6,7 @@ import { GuideMarkdown } from "@/components/GuideMarkdown";
 import { RegulationsTable } from "@/components/RegulationsTable";
 import { VariantsSection } from "@/components/VariantsSection";
 import { OwnedGear } from "@/components/OwnedGear";
+import { MyCatches } from "@/components/MyCatches";
 
 // Owned-gear lookup reads the auth session cookie, so this route can't be
 // fully static — that's an acceptable trade-off for a personal-use app.
@@ -95,6 +96,8 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
               )}
             </section>
           ))}
+
+          <MyCatches speciesSlug={species.slug} />
 
           <OwnedGear speciesSlug={species.slug} />
 

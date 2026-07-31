@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import type { Catch } from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
+import { moonPhase } from "@/lib/moonphase";
+import { downloadCSV } from "@/lib/csv";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -46,7 +48,22 @@ const emptyForm = {
   kept: false,
   notes: "",
   photo_url: "",
+  lat: null as number | null,
+  lng: null as number | null,
 };
+
+// Parses a free-form length string ("18 in", "45cm") into inches for personal-best
+// comparison. Best-effort only — unparseable strings just don't compete for the badge.
+function lengthInches(desc: string | null): number | null {
+  if (!desc) return null;
+  const m = desc.match(/([\d.]+)\s*(in|inch|inches|cm|centimeters?|"|')/i);
+  if (!m) return null;
+  const n = parseFloat(m[1]);
+  if (Number.isNaN(n)) return null;
+  return /cm|centimeter/i.test(m[2]) ? n / 2.54 : n;
+}
+
+type LocateState = "idle" | "locating" | "denied";
 
 export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
   const supabase = useMemo(() => createClient(), []);
@@ -57,6 +74,7 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [locateState, setLocateState] = useState<LocateState>("idle");
 
   async function loadAll() {
     setLoading(true);
@@ -100,6 +118,8 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
       kept: c.kept,
       notes: c.notes ?? "",
       photo_url: c.photo_url ?? "",
+      lat: c.lat,
+      lng: c.lng,
     });
     setShowForm(true);
   }
@@ -109,6 +129,21 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
     const { error } = await supabase.from("catches").delete().eq("id", id);
     if (error) setError(error.message);
     else loadAll();
+  }
+
+  function useMyLocation() {
+    if (!("geolocation" in navigator)) {
+      setLocateState("denied");
+      return;
+    }
+    setLocateState("locating");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setForm((f) => ({ ...f, lat: pos.coords.latitude, lng: pos.coords.longitude }));
+        setLocateState("idle");
+      },
+      () => setLocateState("denied")
+    );
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -136,6 +171,8 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
       kept: form.kept,
       notes: form.notes.trim() || null,
       photo_url: form.photo_url.trim() || null,
+      lat: form.lat,
+      lng: form.lng,
     };
 
     const query = form.id
@@ -156,18 +193,94 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
     slug ? species.find((s) => s.slug === slug)?.common_name ?? slug : null;
   const tackleName = (id: string | null) => (id ? tackle.find((t) => t.id === id)?.name ?? null : null);
 
+  // Personal best per species: the catch with the longest parsed length. Ties/unparseable
+  // lengths just don't get the badge — this is a nice-to-have, not exact science.
+  const personalBestIds = useMemo(() => {
+    const bestBySpecies = new Map<string, { id: string; inches: number }>();
+    for (const c of catches) {
+      if (!c.species_slug) continue;
+      const inches = lengthInches(c.length_desc);
+      if (inches === null) continue;
+      const current = bestBySpecies.get(c.species_slug);
+      if (!current || inches > current.inches) bestBySpecies.set(c.species_slug, { id: c.id, inches });
+    }
+    return new Set([...bestBySpecies.values()].map((v) => v.id));
+  }, [catches]);
+
+  const thisYear = new Date().getFullYear();
+  const stats = {
+    total: catches.length,
+    uniqueSpecies: new Set(catches.filter((c) => c.species_slug).map((c) => c.species_slug)).size,
+    kept: catches.filter((c) => c.kept).length,
+    released: catches.filter((c) => !c.kept).length,
+    thisYear: catches.filter((c) => new Date(c.catch_date).getFullYear() === thisYear).length,
+  };
+
+  function exportCSV() {
+    downloadCSV(
+      "catch-log.csv",
+      ["Date", "Species", "Location", "Length", "Weight", "Tackle", "Kept", "Moon Phase", "Notes"],
+      catches.map((c) => [
+        c.catch_date,
+        speciesName(c.species_slug) ?? "",
+        c.location ?? "",
+        c.length_desc ?? "",
+        c.weight_desc ?? "",
+        tackleName(c.tackle_item_id) ?? "",
+        c.kept ? "Kept" : "Released",
+        moonPhase(c.catch_date).name,
+        c.notes ?? "",
+      ])
+    );
+  }
+
   return (
     <div>
+      {catches.length > 0 && (
+        <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+            <p className="text-2xl font-extrabold text-catches">{stats.total}</p>
+            <p className="text-xs text-muted">Total Catches</p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+            <p className="text-2xl font-extrabold text-catches">{stats.uniqueSpecies}</p>
+            <p className="text-xs text-muted">Species Caught</p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+            <p className="text-2xl font-extrabold text-catches">{stats.thisYear}</p>
+            <p className="text-xs text-muted">This Year ({thisYear})</p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+            <p className="text-2xl font-extrabold text-catches">{stats.kept}</p>
+            <p className="text-xs text-muted">Kept</p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+            <p className="text-2xl font-extrabold text-catches">{stats.released}</p>
+            <p className="text-xs text-muted">Released</p>
+          </div>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-6">
         <p className="text-sm text-muted">
           {catches.length} catch{catches.length === 1 ? "" : "es"} logged
         </p>
-        <button
-          onClick={startAdd}
-          className="rounded-lg bg-brand text-white font-semibold px-4 py-2 text-sm hover:bg-brand-dark transition"
-        >
-          + Log a Catch
-        </button>
+        <div className="flex gap-2">
+          {catches.length > 0 && (
+            <button
+              onClick={exportCSV}
+              className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-catches transition"
+            >
+              ⬇ Export CSV
+            </button>
+          )}
+          <button
+            onClick={startAdd}
+            className="rounded-lg bg-brand text-white font-semibold px-4 py-2 text-sm hover:bg-brand-dark transition"
+          >
+            + Log a Catch
+          </button>
+        </div>
       </div>
 
       {error && <p className="text-sm text-red-700 bg-red-50 rounded px-3 py-2 mb-4">{error}</p>}
@@ -206,12 +319,38 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Location</label>
-              <input
-                value={form.location}
-                onChange={(e) => setForm({ ...form, location: e.target.value })}
-                placeholder="e.g. Pointe-du-Chêne Wharf"
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
+              <div className="flex gap-2">
+                <input
+                  value={form.location}
+                  onChange={(e) => setForm({ ...form, location: e.target.value })}
+                  placeholder="e.g. Pointe-du-Chêne Wharf"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={useMyLocation}
+                  disabled={locateState === "locating"}
+                  title="Pin your current GPS coordinates to this catch"
+                  className="shrink-0 rounded-lg border border-border px-3 py-2 text-sm hover:border-catches transition disabled:opacity-60"
+                >
+                  {locateState === "locating" ? "…" : "📍"}
+                </button>
+              </div>
+              {form.lat !== null && form.lng !== null && (
+                <p className="mt-1 text-xs text-muted">
+                  Pinned: {form.lat.toFixed(4)}, {form.lng.toFixed(4)}{" "}
+                  <button
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, lat: null, lng: null }))}
+                    className="text-danger hover:underline"
+                  >
+                    remove
+                  </button>
+                </p>
+              )}
+              {locateState === "denied" && (
+                <p className="mt-1 text-xs text-danger">Couldn&apos;t get your location — check permissions.</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Tackle used</label>
@@ -310,40 +449,74 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
                 <th className="text-left px-3 py-2">Size</th>
                 <th className="text-left px-3 py-2">Tackle</th>
                 <th className="text-left px-3 py-2">Kept?</th>
+                <th className="text-left px-3 py-2" title="Moon phase on the catch date">
+                  Moon
+                </th>
                 <th className="text-left px-3 py-2"></th>
               </tr>
             </thead>
             <tbody>
-              {catches.map((c) => (
-                <tr key={c.id} className="border-t border-border align-top">
-                  <td className="px-3 py-2">
-                    {c.photo_url && (
-                      // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
-                      <img
-                        src={c.photo_url}
-                        alt=""
-                        className="h-12 w-12 rounded-lg object-cover border border-border"
-                      />
-                    )}
-                  </td>
-                  <td className="px-3 py-2 whitespace-nowrap">{c.catch_date}</td>
-                  <td className="px-3 py-2">{speciesName(c.species_slug) ?? "—"}</td>
-                  <td className="px-3 py-2">{c.location ?? "—"}</td>
-                  <td className="px-3 py-2">
-                    {[c.length_desc, c.weight_desc].filter(Boolean).join(" / ") || "—"}
-                  </td>
-                  <td className="px-3 py-2">{tackleName(c.tackle_item_id) ?? "—"}</td>
-                  <td className="px-3 py-2">{c.kept ? "Kept" : "Released"}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    <button onClick={() => startEdit(c)} className="text-accent hover:underline mr-3">
-                      Edit
-                    </button>
-                    <button onClick={() => handleDelete(c.id)} className="text-red-600 hover:underline">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {catches.map((c) => {
+                const moon = moonPhase(c.catch_date);
+                return (
+                  <tr key={c.id} className="border-t border-border align-top">
+                    <td className="px-3 py-2">
+                      {c.photo_url && (
+                        // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
+                        <img
+                          src={c.photo_url}
+                          alt=""
+                          className="h-12 w-12 rounded-lg object-cover border border-border"
+                        />
+                      )}
+                    </td>
+                    <td className="px-3 py-2 whitespace-nowrap">{c.catch_date}</td>
+                    <td className="px-3 py-2">
+                      {speciesName(c.species_slug) ?? "—"}
+                      {personalBestIds.has(c.id) && (
+                        <span
+                          className="ml-1.5 rounded-full bg-accent-light px-1.5 py-0.5 text-[10px] font-bold text-accent-dark"
+                          title="Personal best for this species"
+                        >
+                          🏆 PB
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-3 py-2">
+                      {c.location ?? "—"}
+                      {c.lat !== null && c.lng !== null && (
+                        <>
+                          {" "}
+                          <a
+                            href={`https://www.openstreetmap.org/?mlat=${c.lat}&mlon=${c.lng}#map=14/${c.lat}/${c.lng}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-accent hover:underline"
+                          >
+                            📍 map
+                          </a>
+                        </>
+                      )}
+                    </td>
+                    <td className="px-3 py-2">
+                      {[c.length_desc, c.weight_desc].filter(Boolean).join(" / ") || "—"}
+                    </td>
+                    <td className="px-3 py-2">{tackleName(c.tackle_item_id) ?? "—"}</td>
+                    <td className="px-3 py-2">{c.kept ? "Kept" : "Released"}</td>
+                    <td className="px-3 py-2 text-lg" title={moon.name}>
+                      {moon.emoji}
+                    </td>
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      <button onClick={() => startEdit(c)} className="text-accent hover:underline mr-3">
+                        Edit
+                      </button>
+                      <button onClick={() => handleDelete(c.id)} className="text-red-600 hover:underline">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
