@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllLocationGuides } from "@/lib/data";
 import { ProvinceBadge } from "@/components/Badges";
+import { LocationsMapLoader } from "@/components/LocationsMapLoader";
 
 export const metadata = {
   title: "Trip Guides — Maritime Angler",
@@ -9,6 +10,16 @@ export const metadata = {
 
 export default async function LocationsIndexPage() {
   const locations = await getAllLocationGuides();
+  const pins = locations
+    .filter((l) => l.lat !== null && l.lng !== null)
+    .map((l) => ({
+      id: l.id,
+      lat: l.lat as number,
+      lng: l.lng as number,
+      title: l.title,
+      subtitle: l.region_name ?? undefined,
+      href: `/locations/${l.slug}`,
+    }));
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
@@ -17,6 +28,13 @@ export default async function LocationsIndexPage() {
         Regional, spot-by-spot guides — best access points, which species you&apos;ll encounter,
         tides, and gear for a specific stretch of coast or river.
       </p>
+
+      {pins.length > 0 && (
+        <div className="mb-8">
+          <LocationsMapLoader locationPins={pins} center={[46.2, -63.8]} zoom={7} />
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {locations.map((loc) => (
           <Link

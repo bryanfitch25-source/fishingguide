@@ -55,38 +55,77 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b1614;
-    --foreground: #eaf1ef;
-    --surface: #12201d;
-    --border: #24352f;
-
-    --brand: #22a6c9;
-    --brand-dark: #7dd3e0;
-    --brand-light: #123339;
-
-    --accent: #f0a030;
-    --accent-dark: #ffcc80;
-    --accent-light: #2e2312;
-
-    --guide: #22a6c9;
-    --guide-light: #123339;
-    --tackle: #f0a030;
-    --tackle-light: #2e2312;
-    --catches: #f4527a;
-    --catches-light: #2e1620;
-
-    --muted: #96a8a2;
-    --success: #4ade80;
-    --danger: #f87171;
-  }
-}
+/* This app is deliberately always-light: the background is real outdoor/fishing
+   scenery (see BackgroundScene.tsx + public/backgrounds/), and those photos are
+   curated to always be bright daytime shots — never night. So unlike a typical
+   app, there's no prefers-color-scheme: dark override here; the point of this
+   theme is to stay light and bright regardless of the visitor's OS setting. */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Fixed full-viewport photo behind everything, picked per-section by BackgroundScene. */
+.scene-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.4s ease;
+}
+
+/* A light wash over the photo so body text and unboxed headings stay readable —
+   cards (bg-surface) are already opaque and don't need this, it's for the gaps
+   around them where the scenery shows through. */
+.scene-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.86) 0%,
+    rgba(255, 255, 255, 0.78) 30%,
+    rgba(255, 255, 255, 0.82) 100%
+  );
+}
+
+.scene-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Print-friendly output for the Catch Log, Tackle Box, and Trip Planner — hides chrome
+   (nav, buttons, forms, the scenic background) and prints clean black-on-white content.
+   Anything meant only for print carries data-print-only; anything hidden when printing
+   carries .no-print. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .scene-bg {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .print-clean {
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+}
+
+[data-print-only] {
+  display: none;
+}
+@media print {
+  [data-print-only] {
+    display: block;
+  }
 }
 
 .prose-guide table {

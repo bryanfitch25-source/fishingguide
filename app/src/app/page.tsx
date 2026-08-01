@@ -46,7 +46,7 @@ const SECTIONS = [
 export default async function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
-      <div className="mb-12">
+      <div className="mb-12 scene-panel rounded-2xl p-6 sm:p-8 shadow-sm">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">Maritime Angler</h1>
         <p className="mt-3 max-w-2xl text-lg text-muted">
           Everything for fishing NB, NS &amp; PEI in one place: the reference guide, your tackle

@@ -1,12 +1,27 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { LocationGuide, Province, Species } from "@/types/content";
 import { SpeciesCard } from "./SpeciesCard";
 import { SEASONALITY, isInSeason } from "@/lib/seasonality";
 import { guessProvince, haversineKm, type ProvinceGuess } from "@/lib/geo";
 import { provinceLabel } from "./Badges";
+
+interface EnvironmentResponse {
+  weather: {
+    temperatureC: number | null;
+    condition: string | null;
+    windKmh: number | null;
+    windDirection: string | null;
+    pressureTendency: string | null;
+  } | null;
+  tide: { name: string; events: { time: string; type: string }[] } | null;
+  sunrise: string | null;
+  sunset: string | null;
+  moon: { emoji: string; name: string };
+  goodFishingDay: { label: string; reasons: string[] };
+}
 
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
@@ -28,6 +43,21 @@ export function NearMe({
 }) {
   const [loc, setLoc] = useState<LocationState>({ status: "idle" });
   const [manualProvince, setManualProvince] = useState<Province | null>(null);
+  const [env, setEnv] = useState<EnvironmentResponse | null>(null);
+
+  useEffect(() => {
+    if (loc.status !== "located") return;
+    let cancelled = false;
+    fetch(`/api/environment?lat=${loc.lat}&lng=${loc.lng}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled) setEnv(data);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [loc]);
 
   const month = new Date().getMonth() + 1;
   const monthName = MONTH_NAMES[month - 1];
@@ -131,6 +161,71 @@ export function NearMe({
           </p>
         )}
       </div>
+
+      {loc.status === "located" && env && (
+        <div className="mb-8 rounded-xl border border-border bg-surface p-5">
+          <div className="flex items-center justify-between gap-2 mb-3">
+            <h3 className="font-bold text-brand-dark">Conditions Right Now</h3>
+            <span
+              className={`rounded-full px-2.5 py-1 text-xs font-bold ${
+                env.goodFishingDay.label === "Great"
+                  ? "bg-green-100 text-green-800"
+                  : env.goodFishingDay.label === "Good"
+                    ? "bg-amber-100 text-amber-800"
+                    : "bg-gray-100 text-gray-700"
+              }`}
+              title="An informal indicator only — not a scientific model."
+            >
+              {env.goodFishingDay.label} Fishing Day
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+            <div>
+              <p className="text-xs text-muted">Weather</p>
+              <p className="font-semibold">
+                {env.weather?.temperatureC != null ? `${Math.round(env.weather.temperatureC)}°C` : "—"}
+              </p>
+              <p className="text-muted">{env.weather?.condition ?? ""}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted">Wind</p>
+              <p className="font-semibold">
+                {env.weather?.windKmh != null ? `${Math.round(env.weather.windKmh)} km/h` : "—"}
+              </p>
+              <p className="text-muted">{env.weather?.windDirection ?? ""}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted">Sun</p>
+              <p className="font-semibold">
+                {env.sunrise
+                  ? new Date(env.sunrise).toLocaleTimeString("en-CA", {
+                      hour: "numeric",
+                      minute: "2-digit",
+                      timeZone: "America/Moncton",
+                    })
+                  : "—"}
+                {" – "}
+                {env.sunset
+                  ? new Date(env.sunset).toLocaleTimeString("en-CA", {
+                      hour: "numeric",
+                      minute: "2-digit",
+                      timeZone: "America/Moncton",
+                    })
+                  : "—"}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-muted">Moon</p>
+              <p className="font-semibold">
+                {env.moon.emoji} {env.moon.name}
+              </p>
+            </div>
+          </div>
+          <p className="mt-2 text-[11px] text-muted">
+            Informal indicator only — always check the marine forecast and fish safely.
+          </p>
+        </div>
+      )}
 
       {loc.status === "located" && nearestGuides.length > 0 && !loc.guess.outOfRegion && (
         <section className="mb-10">

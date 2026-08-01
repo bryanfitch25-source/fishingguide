@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import { getLocationGuideBySlug, getAllLocationGuides } from "@/lib/data";
 import { ProvinceBadge } from "@/components/Badges";
 import { GuideMarkdown } from "@/components/GuideMarkdown";
+import { EnvironmentPanel } from "@/components/EnvironmentPanel";
+
+// Tide/weather data is worth refreshing more often than the hour-long default set
+// in the root layout.
+export const revalidate = 1800;
 
 export async function generateStaticParams() {
   const guides = await getAllLocationGuides();
@@ -35,6 +40,12 @@ export default async function LocationGuideDetailPage(props: { params: Promise<{
           </div>
         )}
       </div>
+
+      {guide.lat !== null && guide.lng !== null && (
+        <div className="mb-10 max-w-xl">
+          <EnvironmentPanel lat={guide.lat} lng={guide.lng} />
+        </div>
+      )}
 
       {guide.location_guide_spots.length > 0 && (
         <section className="mb-10">

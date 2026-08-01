@@ -15,10 +15,12 @@ export default async function CatchLogPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
-      <h1 className="text-3xl font-extrabold text-brand-dark mb-2">Catch Log</h1>
-      <p className="text-muted mb-8 max-w-2xl">
-        What you caught, where, and what you used — your own record of what actually works.
-      </p>
+      <div className="mb-8 scene-panel rounded-2xl p-5 sm:p-6">
+        <h1 className="text-3xl font-extrabold text-brand-dark mb-2">Catch Log</h1>
+        <p className="text-muted max-w-2xl">
+          What you caught, where, and what you used — your own record of what actually works.
+        </p>
+      </div>
       <CatchLogClient species={species.map((s) => ({ slug: s.slug, common_name: s.common_name }))} />
     </div>
   );

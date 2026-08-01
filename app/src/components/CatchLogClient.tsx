@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import type { Catch } from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
+import { MultiPhotoField } from "./MultiPhotoField";
 import { moonPhase } from "@/lib/moonphase";
 import { downloadCSV } from "@/lib/csv";
+import { LocationsMapLoader } from "./LocationsMapLoader";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -48,6 +50,7 @@ const emptyForm = {
   kept: false,
   notes: "",
   photo_url: "",
+  extra_photo_urls: [] as string[],
   lat: null as number | null,
   lng: null as number | null,
 };
@@ -65,6 +68,27 @@ function lengthInches(desc: string | null): number | null {
 
 type LocateState = "idle" | "locating" | "denied";
 
+// Minimal typing for the Web Speech API (not in TypeScript's default DOM lib) —
+// only the bits used for dictating a Notes field. Widely supported in Chrome/Edge;
+// unsupported browsers just never see the "Dictate" button (see voiceSupported).
+interface SpeechRecognitionLike extends EventTarget {
+  lang: string;
+  interimResults: boolean;
+  continuous: boolean;
+  start(): void;
+  stop(): void;
+  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onend: (() => void) | null;
+  onerror: (() => void) | null;
+}
+
+declare global {
+  interface Window {
+    SpeechRecognition?: new () => SpeechRecognitionLike;
+    webkitSpeechRecognition?: new () => SpeechRecognitionLike;
+  }
+}
+
 export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
   const supabase = useMemo(() => createClient(), []);
   const [catches, setCatches] = useState<Catch[]>([]);
@@ -72,9 +96,15 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [showInsights, setShowInsights] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [locateState, setLocateState] = useState<LocateState>("idle");
+  const [listening, setListening] = useState(false);
+  const [voiceSupported] = useState(
+    () => typeof window !== "undefined" && !!(window.SpeechRecognition || window.webkitSpeechRecognition)
+  );
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   async function loadAll() {
     setLoading(true);
@@ -118,6 +148,7 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
       kept: c.kept,
       notes: c.notes ?? "",
       photo_url: c.photo_url ?? "",
+      extra_photo_urls: c.extra_photo_urls ?? [],
       lat: c.lat,
       lng: c.lng,
     });
@@ -146,6 +177,30 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
     );
   }
 
+  function startVoiceNote() {
+    const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognitionCtor) return;
+    const recognition = new SpeechRecognitionCtor();
+    recognition.lang = "en-CA";
+    recognition.interimResults = false;
+    recognition.continuous = true;
+    recognition.onresult = (event) => {
+      let transcript = "";
+      for (let i = 0; i < event.results.length; i++) transcript += event.results[i][0].transcript + " ";
+      setForm((f) => ({ ...f, notes: (f.notes ? f.notes + " " : "") + transcript.trim() }));
+    };
+    recognition.onend = () => setListening(false);
+    recognition.onerror = () => setListening(false);
+    recognitionRef.current = recognition;
+    recognition.start();
+    setListening(true);
+  }
+
+  function stopVoiceNote() {
+    recognitionRef.current?.stop();
+    setListening(false);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -171,6 +226,7 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
       kept: form.kept,
       notes: form.notes.trim() || null,
       photo_url: form.photo_url.trim() || null,
+      extra_photo_urls: form.extra_photo_urls,
       lat: form.lat,
       lng: form.lng,
     };
@@ -215,6 +271,41 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
     released: catches.filter((c) => !c.kept).length,
     thisYear: catches.filter((c) => new Date(c.catch_date).getFullYear() === thisYear).length,
   };
+
+  const geoTaggedCatches = catches.filter((c) => c.lat !== null && c.lng !== null);
+
+  const MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+
+  const yearCatches = catches.filter((c) => new Date(c.catch_date).getFullYear() === thisYear);
+
+  const monthCounts = new Map<number, number>();
+  for (const c of yearCatches) {
+    const m = new Date(c.catch_date).getMonth();
+    monthCounts.set(m, (monthCounts.get(m) ?? 0) + 1);
+  }
+  const topMonth = [...monthCounts.entries()].sort((a, b) => b[1] - a[1])[0];
+
+  const tackleCounts = new Map<string, number>();
+  for (const c of yearCatches) {
+    if (!c.tackle_item_id) continue;
+    tackleCounts.set(c.tackle_item_id, (tackleCounts.get(c.tackle_item_id) ?? 0) + 1);
+  }
+  const topTackle = [...tackleCounts.entries()].sort((a, b) => b[1] - a[1])[0];
+
+  const caughtSlugs = new Set(catches.filter((c) => c.species_slug).map((c) => c.species_slug as string));
+  const lifeList = species
+    .map((s) => ({
+      ...s,
+      caught: caughtSlugs.has(s.slug),
+      firstCatchDate: catches
+        .filter((c) => c.species_slug === s.slug)
+        .map((c) => c.catch_date)
+        .sort()[0],
+    }))
+    .sort((a, b) => Number(b.caught) - Number(a.caught) || a.common_name.localeCompare(b.common_name));
 
   function exportCSV() {
     downloadCSV(
@@ -261,11 +352,45 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
         </div>
       )}
 
-      <div className="flex items-center justify-between mb-6">
+      {geoTaggedCatches.length > 0 && (
+        <div className="mb-6 no-print">
+          <LocationsMapLoader
+            locationPins={[]}
+            catchPins={geoTaggedCatches.map((c) => ({
+              id: c.id,
+              lat: c.lat as number,
+              lng: c.lng as number,
+              title: speciesName(c.species_slug) ?? "Catch",
+              subtitle: c.catch_date,
+            }))}
+            center={[geoTaggedCatches[0].lat as number, geoTaggedCatches[0].lng as number]}
+            zoom={8}
+            height={360}
+          />
+        </div>
+      )}
+
+      <div className="flex items-center justify-between mb-6 no-print">
         <p className="text-sm text-muted">
           {catches.length} catch{catches.length === 1 ? "" : "es"} logged
         </p>
         <div className="flex gap-2">
+          {catches.length > 0 && (
+            <button
+              onClick={() => window.print()}
+              className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-catches transition"
+            >
+              🖨️ Print
+            </button>
+          )}
+          {catches.length > 0 && (
+            <button
+              onClick={() => setShowInsights((v) => !v)}
+              className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-catches transition"
+            >
+              📅 {showInsights ? "Hide" : "Year in Review & Life List"}
+            </button>
+          )}
           {catches.length > 0 && (
             <button
               onClick={exportCSV}
@@ -283,12 +408,55 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
         </div>
       </div>
 
+      {showInsights && (
+        <div className="mb-6 rounded-xl border border-border bg-surface p-5">
+          <h3 className="font-bold text-brand-dark mb-3">📅 {thisYear} in Review</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-5">
+            <div>
+              <p className="text-xs text-muted">Catches this year</p>
+              <p className="font-semibold text-lg">{yearCatches.length}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted">Best month</p>
+              <p className="font-semibold text-lg">{topMonth ? MONTH_NAMES[topMonth[0]] : "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted">Most-used gear</p>
+              <p className="font-semibold text-lg">{topTackle ? tackleName(topTackle[0]) : "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted">Species this year</p>
+              <p className="font-semibold text-lg">
+                {new Set(yearCatches.filter((c) => c.species_slug).map((c) => c.species_slug)).size}
+              </p>
+            </div>
+          </div>
+
+          <h3 className="font-bold text-brand-dark mb-2">
+            🏅 Species Life List — {caughtSlugs.size} / {species.length} caught
+          </h3>
+          <div className="flex flex-wrap gap-1.5">
+            {lifeList.map((s) => (
+              <span
+                key={s.slug}
+                title={s.caught ? `First caught ${s.firstCatchDate}` : "Not caught yet"}
+                className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                  s.caught ? "bg-catches-light text-catches" : "bg-gray-100 text-gray-400"
+                }`}
+              >
+                {s.caught ? "🏅" : "⚪"} {s.common_name}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       {error && <p className="text-sm text-red-700 bg-red-50 rounded px-3 py-2 mb-4">{error}</p>}
 
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="mb-8 rounded-xl border border-border bg-surface p-5 space-y-4"
+          className="mb-8 rounded-xl border border-border bg-surface p-5 space-y-4 no-print"
         >
           <h2 className="font-bold text-brand-dark">{form.id ? "Edit Catch" : "New Catch"}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -390,6 +558,18 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
                 folder="catches"
                 value={form.photo_url}
                 onChange={(url) => setForm({ ...form, photo_url: url })}
+                onGpsDetected={(lat, lng) => setForm((f) => ({ ...f, lat, lng }))}
+              />
+              <p className="mt-1 text-[11px] text-muted">
+                If the photo has location data, we&apos;ll fill in the spot automatically — the
+                📍 button above still works too.
+              </p>
+            </div>
+            <div>
+              <MultiPhotoField
+                folder="catches"
+                values={form.extra_photo_urls}
+                onChange={(urls) => setForm({ ...form, extra_photo_urls: urls })}
               />
             </div>
             <div className="flex items-center gap-2 pt-6">
@@ -405,12 +585,25 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Notes</label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-sm font-medium">Notes</label>
+              {voiceSupported && (
+                <button
+                  type="button"
+                  onClick={listening ? stopVoiceNote : startVoiceNote}
+                  className={`text-xs font-medium rounded-full px-2.5 py-1 ${
+                    listening ? "bg-danger text-white" : "border border-border hover:border-catches"
+                  }`}
+                >
+                  {listening ? "⏹ Stop" : "🎤 Dictate"}
+                </button>
+              )}
+            </div>
             <textarea
               value={form.notes}
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               rows={2}
-              placeholder="Conditions, tide, what worked…"
+              placeholder="Conditions, tide, what worked… or tap 🎤 Dictate to talk it out"
               className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
             />
           </div>
@@ -462,12 +655,19 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
                   <tr key={c.id} className="border-t border-border align-top">
                     <td className="px-3 py-2">
                       {c.photo_url && (
-                        // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
-                        <img
-                          src={c.photo_url}
-                          alt=""
-                          className="h-12 w-12 rounded-lg object-cover border border-border"
-                        />
+                        <div className="relative inline-block">
+                          {/* eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo */}
+                          <img
+                            src={c.photo_url}
+                            alt=""
+                            className="h-12 w-12 rounded-lg object-cover border border-border"
+                          />
+                          {c.extra_photo_urls.length > 0 && (
+                            <span className="absolute -right-1 -bottom-1 rounded-full bg-catches text-white text-[10px] font-bold px-1.5 py-0.5">
+                              +{c.extra_photo_urls.length}
+                            </span>
+                          )}
+                        </div>
                       )}
                     </td>
                     <td className="px-3 py-2 whitespace-nowrap">{c.catch_date}</td>
@@ -506,7 +706,7 @@ export function CatchLogClient({ species }: { species: SpeciesOption[] }) {
                     <td className="px-3 py-2 text-lg" title={moon.name}>
                       {moon.emoji}
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap no-print">
                       <button onClick={() => startEdit(c)} className="text-accent hover:underline mr-3">
                         Edit
                       </button>

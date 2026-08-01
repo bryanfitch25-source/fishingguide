@@ -2,20 +2,22 @@
 
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
-
-const MAX_BYTES = 8 * 1024 * 1024; // 8 MB
+import { uploadPhoto } from "@/lib/photoUpload";
 
 export function PhotoUploadField({
   folder,
   value,
   onChange,
   label = "Photo",
+  onGpsDetected,
 }: {
   /** Storage sub-folder under the signed-in user's own prefix, e.g. "tackle" or "catches". */
   folder: string;
   value: string;
   onChange: (url: string) => void;
   label?: string;
+  /** Called when the uploaded photo's EXIF data includes GPS coordinates. */
+  onGpsDetected?: (lat: number, lng: number) => void;
 }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,44 +25,26 @@ export function PhotoUploadField({
 
   async function handleFile(file: File) {
     setError(null);
-
-    if (!file.type.startsWith("image/")) {
-      setError("Please choose an image file.");
-      return;
-    }
-    if (file.size > MAX_BYTES) {
-      setError("Image is too large (max 8 MB).");
-      return;
-    }
-
     setUploading(true);
+
+    if (onGpsDetected) {
+      try {
+        const exifr = await import("exifr");
+        const gps = await exifr.gps(file);
+        if (gps?.latitude && gps?.longitude) onGpsDetected(gps.latitude, gps.longitude);
+      } catch {
+        // No/unreadable EXIF data — not an error, just no auto-location this time.
+      }
+    }
+
     const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      setError("You've been signed out — please sign in again.");
-      setUploading(false);
-      return;
-    }
-
-    const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-    const path = `${user.id}/${folder}/${crypto.randomUUID()}.${ext}`;
-
-    const { error: uploadError } = await supabase.storage.from("photos").upload(path, file, {
-      cacheControl: "3600",
-      upsert: false,
-    });
-
-    if (uploadError) {
-      setError(uploadError.message);
-      setUploading(false);
-      return;
-    }
-
-    const { data: publicUrlData } = supabase.storage.from("photos").getPublicUrl(path);
-    onChange(publicUrlData.publicUrl);
+    const { url, error: uploadError } = await uploadPhoto(supabase, folder, file);
     setUploading(false);
+    if (uploadError) {
+      setError(uploadError);
+      return;
+    }
+    if (url) onChange(url);
   }
 
   return (

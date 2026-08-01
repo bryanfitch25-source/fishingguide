@@ -50,6 +50,24 @@ export default async function GuideHome() {
             >
               📍 Fish near me
             </Link>
+            <Link
+              href="/guide/seasonality"
+              className="rounded-lg border border-white/40 px-5 py-3 font-semibold hover:bg-white/10 transition"
+            >
+              📅 Seasonality calendar
+            </Link>
+            <Link
+              href="/species/compare"
+              className="rounded-lg border border-white/40 px-5 py-3 font-semibold hover:bg-white/10 transition"
+            >
+              ⚖️ Compare species
+            </Link>
+            <Link
+              href="/guide/knots"
+              className="rounded-lg border border-white/40 px-5 py-3 font-semibold hover:bg-white/10 transition"
+            >
+              🪢 Knots &amp; rigging
+            </Link>
           </div>
         </div>
       </section>

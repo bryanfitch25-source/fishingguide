@@ -13,6 +13,7 @@ import {
   type TraySizeClass,
 } from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
+import { MultiPhotoField } from "./MultiPhotoField";
 import { downloadCSV } from "@/lib/csv";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
@@ -74,6 +75,10 @@ const emptyForm = {
   storage_location: "",
   notes: "",
   photo_url: "",
+  extra_photo_urls: [] as string[],
+  last_serviced_on: "",
+  maintenance_interval_days: "",
+  maintenance_notes: "",
   species_slugs: [] as string[],
 };
 
@@ -154,6 +159,10 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       storage_location: item.storage_location ?? "",
       notes: item.notes ?? "",
       photo_url: item.photo_url ?? "",
+      extra_photo_urls: item.extra_photo_urls ?? [],
+      last_serviced_on: item.last_serviced_on ?? "",
+      maintenance_interval_days: item.maintenance_interval_days ? String(item.maintenance_interval_days) : "",
+      maintenance_notes: item.maintenance_notes ?? "",
       species_slugs: item.species_slugs ?? [],
     });
     setShowForm(true);
@@ -227,6 +236,12 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       storage_location: form.storage_location.trim() || null,
       notes: form.notes.trim() || null,
       photo_url: form.photo_url.trim() || null,
+      extra_photo_urls: form.extra_photo_urls,
+      last_serviced_on: form.last_serviced_on || null,
+      maintenance_interval_days: form.maintenance_interval_days
+        ? parseInt(form.maintenance_interval_days, 10)
+        : null,
+      maintenance_notes: form.maintenance_notes.trim() || null,
     };
 
     let itemId = form.id;
@@ -350,6 +365,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const lowStockCount = items.filter((i) => i.quantity <= LOW_STOCK_THRESHOLD).length;
   const packedCount = items.filter((i) => i.packed).length;
 
+  function isMaintenanceDue(item: TackleItem): boolean {
+    if (!item.maintenance_interval_days) return false;
+    if (!item.last_serviced_on) return true; // interval set but never logged as serviced
+    const dueDate = new Date(item.last_serviced_on);
+    dueDate.setDate(dueDate.getDate() + item.maintenance_interval_days);
+    return dueDate.getTime() <= new Date().getTime();
+  }
+
   const filtered = items
     .filter((i) => {
       if (categoryFilter !== "all" && i.category !== categoryFilter) return false;
@@ -407,7 +430,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   return (
     <div>
       {/* Trays management */}
-      <div className="mb-6 rounded-xl border border-border bg-surface p-4">
+      <div className="mb-6 rounded-xl border border-border bg-surface p-4 no-print">
         <button
           onClick={() => setShowTrays((v) => !v)}
           className="flex items-center justify-between w-full text-left"
@@ -588,7 +611,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
         )}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-3 no-print">
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setCategoryFilter("all")}
@@ -655,6 +678,12 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             </button>
           </div>
           <button
+            onClick={() => window.print()}
+            className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-tackle transition"
+          >
+            🖨️ Print
+          </button>
+          <button
             onClick={exportCSV}
             className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-tackle transition"
           >
@@ -681,7 +710,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       )}
 
       {trays.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-6 no-print">
           <button
             onClick={() => setTrayFilter("all")}
             className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
@@ -719,7 +748,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="mb-8 rounded-xl border border-border bg-surface p-5 space-y-4"
+          className="mb-8 rounded-xl border border-border bg-surface p-5 space-y-4 no-print"
         >
           <h2 className="font-bold text-brand-dark">{form.id ? "Edit Item" : "New Item"}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -818,6 +847,13 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 onChange={(url) => setForm({ ...form, photo_url: url })}
               />
             </div>
+            <div>
+              <MultiPhotoField
+                folder="tackle"
+                values={form.extra_photo_urls}
+                onChange={(urls) => setForm({ ...form, extra_photo_urls: urls })}
+              />
+            </div>
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Notes</label>
@@ -827,6 +863,40 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               rows={2}
               className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
             />
+          </div>
+          <div className="rounded-lg border border-border p-3">
+            <p className="text-sm font-semibold mb-2">🛠️ Maintenance</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-xs font-medium mb-1">Last serviced</label>
+                <input
+                  type="date"
+                  value={form.last_serviced_on}
+                  onChange={(e) => setForm({ ...form, last_serviced_on: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium mb-1">Remind every (days)</label>
+                <input
+                  type="number"
+                  min={1}
+                  value={form.maintenance_interval_days}
+                  onChange={(e) => setForm({ ...form, maintenance_interval_days: e.target.value })}
+                  placeholder="e.g. 180"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium mb-1">Maintenance notes</label>
+                <input
+                  value={form.maintenance_notes}
+                  onChange={(e) => setForm({ ...form, maintenance_notes: e.target.value })}
+                  placeholder="e.g. Re-line, oil reel"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
+            </div>
           </div>
           <div>
             <label className="block text-sm font-medium mb-2">
@@ -981,6 +1051,11 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                     ⚠️ Low stock
                   </span>
                 )}
+                {isMaintenanceDue(item) && (
+                  <span className="rounded-full bg-amber-100 text-amber-800 px-2 py-0.5 text-xs font-medium">
+                    🛠️ Maintenance due
+                  </span>
+                )}
                 {(item.catch_count ?? 0) > 0 && (
                   <span className="rounded-full bg-catches-light text-catches px-2 py-0.5 text-xs font-medium">
                     🔥 Used in {item.catch_count} catch{item.catch_count === 1 ? "" : "es"}
@@ -992,7 +1067,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                   </span>
                 ))}
               </div>
-              <div className="mt-3 flex items-center justify-between gap-3 text-sm">
+              <div className="mt-3 flex items-center justify-between gap-3 text-sm no-print">
                 <div className="flex gap-3">
                   <button onClick={() => startEdit(item)} className="text-accent-dark hover:underline">
                     Edit
@@ -1073,6 +1148,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 {CATEGORY_ICON[detailItem.category]}
               </div>
             )}
+            {detailItem.extra_photo_urls.length > 0 && (
+              <div className="mb-3 flex flex-wrap gap-2">
+                {detailItem.extra_photo_urls.map((url) => (
+                  // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
+                  <img key={url} src={url} alt="" className="h-16 w-16 rounded-lg object-cover border border-border" />
+                ))}
+              </div>
+            )}
             <div className="space-y-1.5 text-sm">
               <p>
                 <span className="text-muted">Category:</span>{" "}
@@ -1105,6 +1188,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               )}
               {detailItem.storage_location && <p>📍 {detailItem.storage_location}</p>}
               {detailItem.notes && <p className="pt-1 whitespace-pre-wrap">{detailItem.notes}</p>}
+              {(detailItem.last_serviced_on || detailItem.maintenance_interval_days) && (
+                <p className={isMaintenanceDue(detailItem) ? "text-amber-800" : ""}>
+                  🛠️ {isMaintenanceDue(detailItem) ? "Maintenance due" : "Last serviced"}
+                  {detailItem.last_serviced_on ? ` ${detailItem.last_serviced_on}` : ""}
+                  {detailItem.maintenance_interval_days ? ` · every ${detailItem.maintenance_interval_days} days` : ""}
+                  {detailItem.maintenance_notes ? ` — ${detailItem.maintenance_notes}` : ""}
+                </p>
+              )}
               {(detailItem.species_slugs?.length ?? 0) > 0 && (
                 <div className="pt-2 flex flex-wrap gap-1">
                   {detailItem.species_slugs!.map((slug) => (
