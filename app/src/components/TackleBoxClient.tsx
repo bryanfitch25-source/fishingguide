@@ -76,6 +76,8 @@ const emptyForm = {
   notes: "",
   photo_url: "",
   extra_photo_urls: [] as string[],
+  slot_index: "" as string, // "" = auto-place in next free slot
+  slot_span: "1",
   last_serviced_on: "",
   maintenance_interval_days: "",
   maintenance_notes: "",
@@ -160,6 +162,8 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       notes: item.notes ?? "",
       photo_url: item.photo_url ?? "",
       extra_photo_urls: item.extra_photo_urls ?? [],
+      slot_index: item.slot_index !== null ? String(item.slot_index) : "",
+      slot_span: String(item.slot_span || 1),
       last_serviced_on: item.last_serviced_on ?? "",
       maintenance_interval_days: item.maintenance_interval_days ? String(item.maintenance_interval_days) : "",
       maintenance_notes: item.maintenance_notes ?? "",
@@ -237,6 +241,8 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       notes: form.notes.trim() || null,
       photo_url: form.photo_url.trim() || null,
       extra_photo_urls: form.extra_photo_urls,
+      slot_index: form.slot_index !== "" ? parseInt(form.slot_index, 10) : null,
+      slot_span: Math.max(1, parseInt(form.slot_span, 10) || 1),
       last_serviced_on: form.last_serviced_on || null,
       maintenance_interval_days: form.maintenance_interval_days
         ? parseInt(form.maintenance_interval_days, 10)
@@ -390,27 +396,104 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   const trayName = (id: string | null) => (id ? trays.find((t) => t.id === id)?.name ?? null : null);
   const untrayedCount = items.filter((i) => !i.tray_id).length;
 
-  // Groups for the diagram view: one section per tray (in tray order), plus a
-  // trailing "No Tray" section — each rendered as a grid of clickable compartments.
+  // Groups for the diagram view: one section per tray (in tray order, shown even when
+  // empty so the layout is visible right away), plus a trailing "No Tray" section for
+  // untrayed items — each rendered as a grid of compartments.
   const diagramGroups: { tray: TackleTray | null; items: TackleItem[] }[] = [
     ...trays
       .filter((t) => trayFilter === "all" || trayFilter === t.id)
-      .map((tray) => ({ tray, items: filtered.filter((i) => i.tray_id === tray.id) }))
-      .filter((g) => g.items.length > 0),
+      .map((tray) => ({ tray, items: filtered.filter((i) => i.tray_id === tray.id) })),
     ...(trayFilter === "all" || trayFilter === NO_TRAY
       ? [{ tray: null, items: filtered.filter((i) => !i.tray_id) }].filter((g) => g.items.length > 0)
       : []),
   ];
 
-  // Lays items out into a fixed number of compartments (the tray's real divider
-  // count) instead of an open-ended flow grid. If a tray has more items than
-  // compartments, items stack round-robin into the same slot rather than adding
-  // phantom slots the physical tray doesn't have.
-  function traySlots(tray: TackleTray | null, groupItems: TackleItem[]): TackleItem[][] {
-    const slotCount = tray?.compartments || groupItems.length || 1;
-    const slots: TackleItem[][] = Array.from({ length: slotCount }, () => []);
-    groupItems.forEach((item, i) => slots[i % slotCount].push(item));
-    return slots;
+  interface TrayCell {
+    key: string;
+    span: number;
+    items: TackleItem[]; // empty = unfilled slot; 2+ = more items than free room, opens a picker
+  }
+
+  // Lays items into a fixed number of compartments (the tray's real divider count).
+  // Items with a chosen slot_index/slot_span are pinned there first; anything left
+  // unplaced (new items, or a manual placement that no longer fits) auto-fills the
+  // next free run of the right size. Whatever still doesn't fit gets bucketed into
+  // one overflow cell rather than silently dropped or inventing phantom slots.
+  function computeTrayCells(tray: TackleTray | null, groupItems: TackleItem[]): TrayCell[] {
+    const sizeDefault = tray ? TRAY_SIZE_CLASSES.find((s) => s.value === tray.size_class)?.defaultCompartments : null;
+    const slotCount = tray?.compartments || sizeDefault || groupItems.length || 1;
+    const occupied: (TackleItem | null)[] = Array(slotCount).fill(null);
+
+    const manual = groupItems
+      .filter((i) => i.slot_index !== null)
+      .sort((a, b) => (a.slot_index as number) - (b.slot_index as number));
+    const rest: TackleItem[] = groupItems.filter((i) => i.slot_index === null);
+
+    for (const item of manual) {
+      const start = item.slot_index as number;
+      const span = Math.max(1, item.slot_span || 1);
+      const fits = start >= 0 && start + span <= slotCount && occupied.slice(start, start + span).every((c) => !c);
+      if (fits) {
+        for (let k = start; k < start + span; k++) occupied[k] = item;
+      } else {
+        rest.push(item); // conflict or out of range — fall back to auto-placement
+      }
+    }
+
+    const overflow: TackleItem[] = [];
+    for (const item of rest) {
+      const span = Math.max(1, item.slot_span || 1);
+      let start = -1;
+      for (let i = 0; i <= slotCount - span; i++) {
+        if (occupied.slice(i, i + span).every((c) => !c)) {
+          start = i;
+          break;
+        }
+      }
+      if (start >= 0) {
+        for (let k = start; k < start + span; k++) occupied[k] = item;
+      } else {
+        overflow.push(item);
+      }
+    }
+
+    const cells: TrayCell[] = [];
+    let i = 0;
+    while (i < slotCount) {
+      const item = occupied[i];
+      if (!item) {
+        cells.push({ key: `empty-${i}`, span: 1, items: [] });
+        i++;
+        continue;
+      }
+      let span = 0;
+      while (i + span < slotCount && occupied[i + span] === item) span++;
+      cells.push({ key: item.id, span, items: [item] });
+      i += span;
+    }
+    if (overflow.length) cells.push({ key: "overflow", span: 1, items: overflow });
+    return cells;
+  }
+
+  // Starting positions where `span` consecutive slots are free in the given tray,
+  // for the "Position in tray" picker — only accounts for other items that already
+  // have a manual placement (auto-placed items float, so they don't block a choice).
+  function availableSlotStarts(trayId: string, span: number, excludeItemId: string | null): number[] {
+    const tray = trays.find((t) => t.id === trayId);
+    if (!tray) return [];
+    const sizeDefault = TRAY_SIZE_CLASSES.find((s) => s.value === tray.size_class)?.defaultCompartments;
+    const slotCount = tray.compartments || sizeDefault || 1;
+    const occupied = Array(slotCount).fill(false);
+    for (const item of items) {
+      if (item.tray_id !== trayId || item.id === excludeItemId || item.slot_index === null) continue;
+      const itemSpan = Math.max(1, item.slot_span || 1);
+      for (let k = item.slot_index; k < Math.min(slotCount, item.slot_index + itemSpan); k++) occupied[k] = true;
+    }
+    const starts: number[] = [];
+    for (let i = 0; i <= slotCount - span; i++) {
+      if (occupied.slice(i, i + span).every((c) => !c)) starts.push(i);
+    }
+    return starts;
   }
 
   function trayGridColumns(tray: TackleTray | null, slotCount: number): number {
@@ -831,6 +914,40 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 </p>
               )}
             </div>
+            {form.tray_id !== NO_TRAY && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Slots this item takes</label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={form.slot_span}
+                    onChange={(e) => setForm({ ...form, slot_span: e.target.value, slot_index: "" })}
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Position in tray</label>
+                  <select
+                    value={form.slot_index}
+                    onChange={(e) => setForm({ ...form, slot_index: e.target.value })}
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                  >
+                    <option value="">Auto (next free slot)</option>
+                    {availableSlotStarts(form.tray_id, Math.max(1, parseInt(form.slot_span, 10) || 1), form.id).map(
+                      (start) => {
+                        const span = Math.max(1, parseInt(form.slot_span, 10) || 1);
+                        return (
+                          <option key={start} value={start}>
+                            {span > 1 ? `Slots ${start + 1}–${start + span}` : `Slot ${start + 1}`}
+                          </option>
+                        );
+                      }
+                    )}
+                  </select>
+                </div>
+              </>
+            )}
             <div>
               <label className="block text-sm font-medium mb-1">Location Notes</label>
               <input
@@ -945,8 +1062,9 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       ) : viewMode === "diagram" ? (
         <div className="space-y-6">
           {diagramGroups.map((group) => {
-            const slots = traySlots(group.tray, group.items);
-            const columns = trayGridColumns(group.tray, slots.length);
+            const cells = computeTrayCells(group.tray, group.items);
+            const slotCount = cells.reduce((n, c) => n + (c.key === "overflow" ? 1 : c.span), 0);
+            const columns = trayGridColumns(group.tray, slotCount);
             return (
               <div
                 key={group.tray?.id ?? "no-tray"}
@@ -959,26 +1077,32 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                     {group.tray?.compartments ? ` · ${group.tray.compartments} compartments` : ""}
                   </span>
                 </div>
+                {group.items.length === 0 && (
+                  <p className="mb-2 text-xs text-muted">
+                    Empty — add an item and assign it a tray to start filling this in.
+                  </p>
+                )}
                 <div
                   className="grid gap-2"
                   style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
                 >
-                  {slots.map((slotItems, slotIndex) => {
-                    const top = slotItems[0];
+                  {cells.map((cell) => {
+                    const top = cell.items[0];
+                    const style = { gridColumn: `span ${cell.span}` };
                     if (!top) {
                       return (
                         <div
-                          key={slotIndex}
+                          key={cell.key}
+                          style={style}
                           className="aspect-square rounded-lg border border-dashed border-tackle/25"
                         />
                       );
                     }
                     return (
                       <button
-                        key={slotIndex}
-                        onClick={() =>
-                          slotItems.length > 1 ? setStackSlot(slotItems) : setDetailItem(top)
-                        }
+                        key={cell.key}
+                        style={style}
+                        onClick={() => (cell.items.length > 1 ? setStackSlot(cell.items) : setDetailItem(top))}
                         className="group relative flex aspect-square flex-col items-center justify-center rounded-lg border border-tackle/30 bg-surface p-1.5 text-center shadow-sm transition hover:border-tackle hover:shadow-md"
                       >
                         {top.photo_url ? (
@@ -992,9 +1116,9 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                           <span className="text-2xl">{CATEGORY_ICON[top.category]}</span>
                         )}
                         <span className="relative mt-auto w-full truncate rounded bg-black/60 px-1 py-0.5 text-[11px] font-medium leading-tight text-white">
-                          {slotItems.length > 1 ? `${slotItems.length} items` : top.name}
+                          {cell.items.length > 1 ? `${cell.items.length} items` : top.name}
                         </span>
-                        {slotItems.length === 1 && top.quantity !== 1 && (
+                        {cell.items.length === 1 && top.quantity !== 1 && (
                           <span className="absolute right-1 top-1 rounded-full bg-tackle px-1.5 py-0 text-[10px] font-bold text-white">
                             ×{top.quantity}
                           </span>
@@ -1184,7 +1308,15 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 </p>
               )}
               {trayName(detailItem.tray_id) && (
-                <p className="text-tackle">🗂️ {trayName(detailItem.tray_id)}</p>
+                <p className="text-tackle">
+                  🗂️ {trayName(detailItem.tray_id)}
+                  {detailItem.slot_index !== null &&
+                    ` — ${
+                      detailItem.slot_span > 1
+                        ? `slots ${detailItem.slot_index + 1}–${detailItem.slot_index + detailItem.slot_span}`
+                        : `slot ${detailItem.slot_index + 1}`
+                    }`}
+                </p>
               )}
               {detailItem.storage_location && <p>📍 {detailItem.storage_location}</p>}
               {detailItem.notes && <p className="pt-1 whitespace-pre-wrap">{detailItem.notes}</p>}

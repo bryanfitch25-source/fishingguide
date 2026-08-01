@@ -51,10 +51,11 @@ export const TRAY_SIZE_CLASSES: {
   planoNumber: string | null;
   flambeauNumber: string | null;
   dims: string;
-  // Typical stock adjustable-divider configuration for this size, and the
-  // width:height footprint ratio (from `dims`) used to shape the diagram grid.
-  // Both are just a starting point — the actual divider count on a physical
-  // tray varies, so it's editable per-tray.
+  // Maximum realistic compartment count with dividers fully in for this size (not a
+  // typical/average configuration — the diagram should start full, not sparse), and
+  // the width:height footprint ratio (from `dims`) used to shape the diagram grid.
+  // Both are just a starting point — the actual divider count on a physical tray
+  // varies, so it's editable per-tray.
   defaultCompartments: number;
   aspectRatio: number;
 }[] = [
@@ -73,7 +74,7 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3500",
     flambeauNumber: null,
     dims: 'Plano 3500 — ~9.1" × 5" × 1.25"',
-    defaultCompartments: 5,
+    defaultCompartments: 15,
     aspectRatio: 9.1 / 5,
   },
   {
@@ -82,7 +83,7 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3600",
     flambeauNumber: "4007",
     dims: 'Plano 3600 / Flambeau 4007 — ~11" × 7.25" × 1.75"',
-    defaultCompartments: 6,
+    defaultCompartments: 18,
     aspectRatio: 11 / 7.25,
   },
   {
@@ -91,7 +92,7 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: "3700",
     flambeauNumber: "5007",
     dims: 'Plano 3700 / Flambeau 5007 — ~14.25" × 9.1" × 2"',
-    defaultCompartments: 8,
+    defaultCompartments: 24,
     aspectRatio: 14.25 / 9.1,
   },
   {
@@ -100,7 +101,7 @@ export const TRAY_SIZE_CLASSES: {
     planoNumber: null,
     flambeauNumber: null,
     dims: "",
-    defaultCompartments: 6,
+    defaultCompartments: 12,
     aspectRatio: 1.5,
   },
 ];
@@ -132,6 +133,8 @@ export interface TackleItem {
   notes: string | null;
   photo_url: string | null;
   extra_photo_urls: string[];
+  slot_index: number | null;
+  slot_span: number;
   packed: boolean;
   last_serviced_on: string | null;
   maintenance_interval_days: number | null;
