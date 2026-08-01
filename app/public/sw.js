@@ -6,7 +6,18 @@
 const CACHE_NAME = "maritime-angler-v1";
 const NEVER_CACHE_PREFIXES = ["/tackle", "/catches", "/login", "/api/"];
 
-const PRECACHE_URLS = ["/", "/guide", "/species", "/locations", "/regulations", "/manifest.json", "/icon-192.png"];
+const PRECACHE_URLS = [
+  "/",
+  "/guide",
+  "/species",
+  "/locations",
+  "/regulations",
+  "/near-me",
+  "/guide/seasonality",
+  "/guide/knots",
+  "/manifest.json",
+  "/icon-192.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)));

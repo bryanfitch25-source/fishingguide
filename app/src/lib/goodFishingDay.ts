@@ -49,7 +49,8 @@ export function goodFishingDay(
   // sharp rise after a front's already passed.
   if (weather?.pressureTendency === "falling" || weather?.pressureTendency === "steady") {
     score += 1;
-    reasons.push(`📉 Barometric pressure ${weather.pressureTendency}`);
+    const icon = weather.pressureTendency === "falling" ? "📉" : "➖";
+    reasons.push(`${icon} Barometric pressure ${weather.pressureTendency}`);
   }
 
   const label = score >= 3 ? "Great" : score >= 1 ? "Good" : "Fair";

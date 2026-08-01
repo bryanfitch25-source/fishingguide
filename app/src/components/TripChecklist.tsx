@@ -12,7 +12,11 @@ export function TripChecklist({ items: initialItems }: { items: TackleItem[] }) 
 
   async function toggle(item: TackleItem) {
     setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, packed: !i.packed } : i)));
-    await supabase.from("tackle_items").update({ packed: !item.packed }).eq("id", item.id);
+    const { error } = await supabase.from("tackle_items").update({ packed: !item.packed }).eq("id", item.id);
+    if (error) {
+      // Roll back the optimistic update so the checkbox doesn't silently drift from the DB.
+      setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, packed: item.packed } : i)));
+    }
   }
 
   if (items.length === 0) {

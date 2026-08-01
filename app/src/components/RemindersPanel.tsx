@@ -27,9 +27,12 @@ export function RemindersPanel() {
       const { data } = await supabase.from("angler_settings").select("license_expiry").maybeSingle();
       if (data?.license_expiry) setLicenseExpiry(data.license_expiry);
 
+      // getRegistration() resolves immediately (unlike `.ready`, which never resolves
+      // at all if no service worker is registered — true in dev, where PWARegister
+      // deliberately skips registration).
       if ("serviceWorker" in navigator) {
-        const reg = await navigator.serviceWorker.ready;
-        const sub = await reg.pushManager.getSubscription();
+        const reg = await navigator.serviceWorker.getRegistration();
+        const sub = await reg?.pushManager.getSubscription();
         setPushEnabled(!!sub);
       }
     })();
@@ -59,12 +62,16 @@ export function RemindersPanel() {
       setMessage("Push isn't configured on this deployment.");
       return;
     }
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (!reg) {
+      setMessage("No service worker registered on this device yet — reload the page and try again.");
+      return;
+    }
     const permission = await Notification.requestPermission();
     if (permission !== "granted") {
       setMessage("Notification permission was denied.");
       return;
     }
-    const reg = await navigator.serviceWorker.ready;
     const sub = await reg.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(vapidKey),
@@ -79,8 +86,8 @@ export function RemindersPanel() {
   }
 
   async function disablePush() {
-    const reg = await navigator.serviceWorker.ready;
-    const sub = await reg.pushManager.getSubscription();
+    const reg = await navigator.serviceWorker.getRegistration();
+    const sub = await reg?.pushManager.getSubscription();
     if (sub) {
       await fetch("/api/push/subscribe", {
         method: "DELETE",

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-import { AuthNav } from "@/components/AuthNav";
-import { GlobalSearch } from "@/components/GlobalSearch";
+import { HeaderNav } from "@/components/HeaderNav";
 import { BackgroundScene } from "@/components/BackgroundScene";
 import { PWARegister } from "@/components/PWARegister";
 import "./globals.css";
@@ -50,28 +49,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <PWARegister />
         <BackgroundScene />
-        <header className="no-print border-b border-border bg-surface sticky top-0 z-20">
+        <header className="no-print relative border-b border-border bg-surface sticky top-0 z-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-brand-dark">
+            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-brand-dark shrink-0">
               <span aria-hidden>🎣</span>
               <span>Maritime Angler</span>
             </Link>
-            <nav className="flex items-center gap-5 text-sm font-medium">
-              <Link href="/guide" className="hover:text-brand">
-                Fishing Guide
-              </Link>
-              <Link href="/tackle" className="hover:text-brand">
-                Tackle Box
-              </Link>
-              <Link href="/trip-planner" className="hover:text-brand">
-                Trip Planner
-              </Link>
-              <Link href="/catches" className="hover:text-brand">
-                Catch Log
-              </Link>
-              <GlobalSearch />
-              <AuthNav />
-            </nav>
+            <HeaderNav />
           </div>
         </header>
         <main className="flex-1">{children}</main>
