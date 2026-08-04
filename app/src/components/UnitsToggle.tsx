@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase-browser";
 import { UNIT_SYSTEMS, type UnitSystem } from "@/lib/units";
+import { isMissingSchemaError } from "@/lib/schema-compat";
 import { AccentCard } from "./AccentCard";
 
 // Metric/imperial, app-wide.
@@ -39,7 +40,11 @@ export function UnitsToggle({ initialUnits }: { initialUnits: UnitSystem }) {
 
     if (error) {
       setUnits(previous);
-      setMessage(`Couldn't save that: ${error.message}`);
+      setMessage(
+        isMissingSchemaError(error)
+          ? "The units preference isn't in the database yet — run the pending migration (supabase db push) to enable it."
+          : `Couldn't save that: ${error.message}`
+      );
       return;
     }
     router.refresh();

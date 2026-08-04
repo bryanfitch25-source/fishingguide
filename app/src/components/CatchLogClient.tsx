@@ -24,6 +24,11 @@ import {
   weightUnitLabel,
   type UnitSystem,
 } from "@/lib/units";
+import {
+  writeWithSchemaFallback,
+  CATCH_MIGRATION_FIELDS,
+  MIGRATION_PENDING_NOTICE,
+} from "@/lib/schema-compat";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -234,9 +239,9 @@ export function CatchLogClient({
       weight_desc: c.weight_desc ?? "",
       // Numeric values are stored metric; show them in whichever units are selected.
       length_value:
-        c.length_cm === null ? "" : String(Number(cmToLengthInput(c.length_cm, units).toFixed(1))),
+        c.length_cm == null ? "" : String(Number(cmToLengthInput(c.length_cm, units).toFixed(1))),
       weight_value:
-        c.weight_kg === null ? "" : String(Number(kgToWeightInput(c.weight_kg, units).toFixed(2))),
+        c.weight_kg == null ? "" : String(Number(kgToWeightInput(c.weight_kg, units).toFixed(2))),
       kept: c.kept,
       notes: c.notes ?? "",
       photo_url: c.photo_url ?? "",
@@ -352,18 +357,24 @@ export function CatchLogClient({
       wind_kmh: form.snapshot?.windKmh ?? null,
     };
 
-    const query = form.id
-      ? supabase.from("catches").update(payload).eq("id", form.id)
-      : supabase.from("catches").insert(payload);
+    // Goes through the schema-compat path so logging a catch keeps working in the window
+    // between this code deploying and the migration being applied — see lib/schema-compat.
+    const { error, degraded } = await writeWithSchemaFallback(
+      payload,
+      CATCH_MIGRATION_FIELDS,
+      (p) =>
+        form.id
+          ? supabase.from("catches").update(p).eq("id", form.id)
+          : supabase.from("catches").insert(p)
+    );
 
-    const { error } = await query;
     setSaving(false);
     if (error) {
       setError(error.message);
       return;
     }
     setShowForm(false);
-    showToast(form.id ? "Catch updated." : "Catch logged.");
+    showToast(degraded ? MIGRATION_PENDING_NOTICE : form.id ? "Catch updated." : "Catch logged.");
     loadAll();
   }
 
@@ -377,7 +388,7 @@ export function CatchLogClient({
   const personalBestIds = useMemo(() => {
     const bestBySpecies = new Map<string, { id: string; cm: number }>();
     for (const c of catches) {
-      if (!c.species_slug || c.length_cm === null) continue;
+      if (!c.species_slug || c.length_cm == null) continue;
       const current = bestBySpecies.get(c.species_slug);
       if (!current || c.length_cm > current.cm) {
         bestBySpecies.set(c.species_slug, { id: c.id, cm: c.length_cm });
@@ -390,8 +401,8 @@ export function CatchLogClient({
   // originally typed, so a catch recorded as "about a footer" still shows something.
   function sizeLabel(c: Catch): string {
     const parts = [
-      c.length_cm !== null ? formatLength(c.length_cm, units) : c.length_desc,
-      c.weight_kg !== null ? formatWeight(c.weight_kg, units) : c.weight_desc,
+      c.length_cm != null ? formatLength(c.length_cm, units) : c.length_desc,
+      c.weight_kg != null ? formatWeight(c.weight_kg, units) : c.weight_desc,
     ].filter(Boolean);
     return parts.length ? parts.join(" / ") : "—";
   }
@@ -475,16 +486,16 @@ export function CatchLogClient({
           : "",
         speciesName(c.species_slug) ?? "",
         c.location ?? "",
-        c.length_cm !== null ? formatLength(c.length_cm, units) : c.length_desc ?? "",
-        c.weight_kg !== null ? formatWeight(c.weight_kg, units) : c.weight_desc ?? "",
+        c.length_cm != null ? formatLength(c.length_cm, units) : c.length_desc ?? "",
+        c.weight_kg != null ? formatWeight(c.weight_kg, units) : c.weight_desc ?? "",
         tackleName(c.tackle_item_id) ?? "",
         c.kept ? "Kept" : "Released",
         c.tide_state ?? "",
-        c.tide_height_m !== null ? formatHeight(c.tide_height_m, units) : "",
+        c.tide_height_m != null ? formatHeight(c.tide_height_m, units) : "",
         c.weather_condition ?? "",
-        c.temperature_c !== null ? formatTemperature(c.temperature_c, units) : "",
-        c.wind_kmh !== null ? formatSpeed(c.wind_kmh, units) : "",
-        c.pressure_kpa !== null ? formatPressure(c.pressure_kpa, units) : "",
+        c.temperature_c != null ? formatTemperature(c.temperature_c, units) : "",
+        c.wind_kmh != null ? formatSpeed(c.wind_kmh, units) : "",
+        c.pressure_kpa != null ? formatPressure(c.pressure_kpa, units) : "",
         moonPhase(c.catch_date).name,
         c.lat ?? "",
         c.lng ?? "",
@@ -647,12 +658,12 @@ export function CatchLogClient({
             <div className="rounded-lg border border-brand-light bg-brand-light/40 px-3 py-2 text-xs text-brand-dark">
               <span className="font-semibold">Conditions captured:</span>{" "}
               {form.snapshot.tideState === "rising" ? "↑ Rising" : form.snapshot.tideState === "falling" ? "↓ Falling" : "Tide unknown"}
-              {form.snapshot.tideHeightM !== null && ` ${formatHeight(form.snapshot.tideHeightM, units)}`}
+              {form.snapshot.tideHeightM != null && ` ${formatHeight(form.snapshot.tideHeightM, units)}`}
               {form.snapshot.stationName && ` at ${form.snapshot.stationName}`}
               {form.snapshot.weatherCondition && ` · ${form.snapshot.weatherCondition}`}
-              {form.snapshot.temperatureC !== null &&
+              {form.snapshot.temperatureC != null &&
                 ` · ${formatTemperature(form.snapshot.temperatureC, units)}`}
-              {form.snapshot.windKmh !== null && ` · wind ${formatSpeed(form.snapshot.windKmh, units)}`}
+              {form.snapshot.windKmh != null && ` · wind ${formatSpeed(form.snapshot.windKmh, units)}`}
               <span className="mt-0.5 block text-muted">
                 Recorded at the moment you tapped Quick Log — saved with this catch.
               </span>

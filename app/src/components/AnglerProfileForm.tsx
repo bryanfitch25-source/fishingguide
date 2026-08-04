@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import type { AnglerSettings, WaterPreference } from "@/types/tackle";
+import { isMissingSchemaError } from "@/lib/schema-compat";
 import { AccentCard } from "./AccentCard";
 
 const WATER_OPTIONS: { value: WaterPreference; label: string }[] = [
@@ -64,7 +65,13 @@ export function AnglerProfileForm({
     );
 
     setSaving(false);
-    setMessage(error ? `Couldn't save: ${error.message}` : "Profile saved.");
+    setMessage(
+      error
+        ? isMissingSchemaError(error)
+          ? "Profile fields aren’t in the database yet — run the pending migration (supabase db push)."
+          : `Couldn’t save: ${error.message}`
+        : "Profile saved."
+    );
     if (!error) setTimeout(() => setMessage(null), 2500);
   }
 

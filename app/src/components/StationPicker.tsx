@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import { MAX_FAVOURITE_STATIONS, type FavouriteStation } from "@/types/tackle";
 import { chsStationUrl } from "@/lib/tides";
+import { isMissingSchemaError } from "@/lib/schema-compat";
 import { AccentCard } from "./AccentCard";
 
 interface RankedStation {
@@ -134,7 +135,11 @@ export function StationPicker({
       { onConflict: "user_id" }
     );
     if (error) {
-      setStatus(`Couldn't save that station: ${error.message}`);
+      setStatus(
+        isMissingSchemaError(error)
+          ? "Station selection isn't in the database yet — run the pending migration (supabase db push). Tides still work on the default station until then."
+          : `Couldn't save that station: ${error.message}`
+      );
       return;
     }
     setSelected({
@@ -196,7 +201,9 @@ export function StationPicker({
       setStatus(
         error.message.includes("FAVOURITE_LIMIT")
           ? `You can keep up to ${MAX_FAVOURITE_STATIONS} favourite spots — remove one before adding another.`
-          : `Couldn't save that favourite: ${error.message}`
+          : isMissingSchemaError(error)
+            ? "Saved spots aren't in the database yet — run the pending migration (supabase db push) to enable My Spots."
+            : `Couldn't save that favourite: ${error.message}`
       );
       return;
     }
