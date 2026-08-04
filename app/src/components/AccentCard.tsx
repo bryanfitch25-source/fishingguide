@@ -43,11 +43,11 @@ export function AccentCard({
       className={`relative overflow-hidden rounded-xl border bg-surface ${TONE_RING[tone]} ${className}`}
     >
       <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TONE_BAR[tone]}`} />
-      <div className="p-5 pl-6">
+      <div className="p-4 pl-5 sm:p-5 sm:pl-6">
         {(title || action) && (
-          <div className="mb-3 flex items-start justify-between gap-3">
-            {title && <h3 className="font-bold text-brand-dark">{title}</h3>}
-            {action}
+          <div className="mb-2 sm:mb-3 flex items-start justify-between gap-2 sm:gap-3">
+            {title && <h3 className="font-bold text-brand-dark min-w-0">{title}</h3>}
+            {action && <div className="shrink-0">{action}</div>}
           </div>
         )}
         {children}

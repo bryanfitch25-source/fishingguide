@@ -51,8 +51,10 @@ export function HeaderNav() {
         </button>
       </div>
 
+      {/* top-full rather than a fixed offset: the header's height now varies with the
+          status-bar safe-area inset once installed to a Home Screen. */}
       {open && (
-        <div className="absolute left-0 right-0 top-16 border-b border-border bg-surface shadow-lg md:hidden">
+        <div className="absolute left-0 right-0 top-full border-b border-border bg-surface shadow-lg md:hidden">
           <nav className="flex flex-col p-2">
             {[...LINKS, ...SECONDARY_LINKS].map((l) => (
               <Link

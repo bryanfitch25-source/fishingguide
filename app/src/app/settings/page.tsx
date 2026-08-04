@@ -27,9 +27,9 @@ export default async function SettingsPage() {
   const units: UnitSystem = isUnitSystem(settings?.units) ? settings.units : "metric";
 
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 py-10">
-      <header className="mb-8 scene-panel rounded-2xl p-5 sm:p-6">
-        <h1 className="text-3xl font-extrabold text-brand-dark mb-2">Settings</h1>
+    <div className="mx-auto max-w-3xl px-3 sm:px-6 py-4 sm:py-10">
+      <header className="mb-4 sm:mb-8 scene-panel rounded-2xl p-4 sm:p-6">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-dark mb-1 sm:mb-2">Settings</h1>
         <p className="text-muted max-w-2xl">
           Your tide station, units, profile and reminders.
         </p>

@@ -60,8 +60,16 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <PWARegister />
         <BackgroundScene />
-        <header className="no-print relative border-b border-border bg-surface sticky top-0 z-20">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        {/* Installed to an iPhone Home Screen the page runs full-bleed under the status
+            bar (viewport-fit=cover + black-translucent), so the header has to reserve
+            that height itself or the clock lands on top of the title. Padding rather
+            than a margin, so the header's own background fills the status bar area
+            instead of leaving a transparent strip showing the scenery behind it. */}
+        <header
+          className="no-print relative border-b border-border bg-surface sticky top-0 z-20"
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
+        >
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-lg text-brand-dark shrink-0">
               <span aria-hidden>🎣</span>
               <span>Maritime Angler</span>
