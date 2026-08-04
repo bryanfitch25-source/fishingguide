@@ -147,13 +147,17 @@ end $$;
 -- that are still null, so re-running this migration never overwrites a value someone
 -- has since corrected by hand.
 
--- Length: cm / mm / in / inch / " / ft / feet / '
+-- Length: cm / mm / m / in / inch / " / ft / feet / '
+-- Branch order matters — cm and mm are tested before bare metres, so "45cm" can't be
+-- read as 45 metres. Mirrors parseLengthToCm's alternation order.
 update catches
 set length_cm = case
     when length_desc ~* '(\d+(\.\d+)?)\s*(cm|centimet)' then
       (substring(length_desc from '(\d+(?:\.\d+)?)\s*(?:cm|centimet)'))::numeric
     when length_desc ~* '(\d+(\.\d+)?)\s*(mm|millimet)' then
       (substring(length_desc from '(\d+(?:\.\d+)?)\s*(?:mm|millimet)'))::numeric / 10
+    when length_desc ~* '(\d+(\.\d+)?)\s*(m\M|met)' then
+      (substring(length_desc from '(\d+(?:\.\d+)?)\s*(?:m\M|met)'))::numeric * 100
     when length_desc ~* '(\d+(\.\d+)?)\s*(ft|feet|foot|'')' then
       (substring(length_desc from '(\d+(?:\.\d+)?)\s*(?:ft|feet|foot|'')'))::numeric * 30.48
     when length_desc ~* '(\d+(\.\d+)?)\s*(in|inch|")' then

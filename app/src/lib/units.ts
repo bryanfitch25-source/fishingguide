@@ -107,13 +107,20 @@ export function kgToWeightInput(kg: number, units: UnitSystem): number {
 
 export function parseLengthToCm(desc: string | null | undefined): number | null {
   if (!desc) return null;
-  const m = desc.match(/(\d+(?:\.\d+)?)\s*(cm|centimet(?:er|re)s?|mm|millimet(?:er|re)s?|in\b|inch(?:es)?|"|ft\b|feet|foot|')/i);
+  // Order matters: cm and mm have to be tried before the bare "m" alternative, or
+  // "45cm" would match as 45 metres.
+  const m = desc.match(
+    /(\d+(?:\.\d+)?)\s*(cm|centimet(?:er|re)s?|mm|millimet(?:er|re)s?|m\b|met(?:er|re)s?|in\b|inch(?:es)?|"|ft\b|feet|foot|')/i
+  );
   if (!m) return null;
   const n = parseFloat(m[1]);
   if (Number.isNaN(n)) return null;
   const unit = m[2].toLowerCase();
   if (/^(cm|centimet)/.test(unit)) return n;
   if (/^(mm|millimet)/.test(unit)) return n / 10;
+  // Metres are worth supporting because the app covers bluefin tuna, which anglers
+  // routinely record in metres rather than centimetres.
+  if (/^(m\b|met)/.test(unit)) return n * 100;
   if (/^(ft|feet|foot|')/.test(unit)) return inchesToCm(n * 12);
   return inchesToCm(n); // in / inch / inches / "
 }
