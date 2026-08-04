@@ -22,6 +22,16 @@ const SECTIONS = [
     heading: "text-xl font-bold text-foreground mb-2 group-hover:text-guide",
   },
   {
+    href: "/tides",
+    emoji: "🌊",
+    title: "Tides",
+    description:
+      "Live tide predictions for any Canadian station, a 24-hour tide curve, marine conditions and solunar feeding periods — plus every spot you fish, compared side by side.",
+    border: "hover:border-brand",
+    bg: "bg-brand-light",
+    heading: "text-xl font-bold text-foreground mb-2 group-hover:text-brand",
+  },
+  {
     href: "/tackle",
     emoji: "🧰",
     title: "Tackle Box",
@@ -49,14 +59,14 @@ export default async function Home() {
       <div className="mb-12 scene-panel rounded-2xl p-6 sm:p-8 shadow-sm">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">Maritime Angler</h1>
         <p className="mt-3 max-w-2xl text-lg text-muted">
-          Everything for fishing NB, NS &amp; PEI in one place: the reference guide, your tackle
-          box, and your catch log.
+          Everything for fishing NB, NS &amp; PEI in one place: the reference guide, live
+          tides, your tackle box, and your catch log.
         </p>
       </div>
 
       <RecentActivity />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {SECTIONS.map((s) => (
           <Link
             key={s.href}
