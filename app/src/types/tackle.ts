@@ -162,4 +162,62 @@ export interface Catch {
   lng: number | null;
   created_at: string;
   updated_at: string;
+
+  // Numeric measurements, always metric. These sit alongside the original free-text
+  // length_desc/weight_desc rather than replacing them — the migration backfills what
+  // it can parse, and anything it couldn't keeps displaying its original string.
+  length_cm: number | null;
+  weight_kg: number | null;
+
+  // Conditions at the moment of the catch. Recorded at logging time because it can't
+  // be reconstructed later — the tide and weather APIs only serve forecasts and recent
+  // observations. Null on catches logged before this existed, or entered by hand.
+  caught_at: string | null;
+  tide_state: "rising" | "falling" | "unknown" | null;
+  tide_height_m: number | null;
+  tide_station_name: string | null;
+  weather_condition: string | null;
+  temperature_c: number | null;
+  pressure_kpa: number | null;
+  wind_kmh: number | null;
 }
+
+export type WaterPreference = "salt" | "fresh" | "both";
+
+export interface AnglerSettings {
+  user_id: string;
+  license_expiry: string | null;
+  last_license_reminder_sent: string | null;
+
+  tide_station_id: string | null;
+  tide_station_code: string | null;
+  tide_station_name: string | null;
+  tide_station_lat: number | null;
+  tide_station_lng: number | null;
+
+  units: "metric" | "imperial";
+  tide_digest_enabled: boolean;
+  last_tide_digest_sent: string | null;
+
+  angler_name: string | null;
+  favourite_species_slug: string | null;
+  favourite_lure: string | null;
+  water_preference: WaterPreference | null;
+  profile_notes: string | null;
+
+  updated_at: string;
+}
+
+export interface FavouriteStation {
+  id: string;
+  user_id: string;
+  station_id: string;
+  station_code: string | null;
+  station_name: string;
+  latitude: number | null;
+  longitude: number | null;
+  position: number;
+  created_at: string;
+}
+
+export const MAX_FAVOURITE_STATIONS = 8;
