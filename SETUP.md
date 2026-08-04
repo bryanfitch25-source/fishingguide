@@ -117,6 +117,25 @@ The site is deployed on Vercel (account `bryanfitch25-9324`, scope `fitch2`):
 To use a custom domain later: buy the domain, then Vercel dashboard → fishingguide →
 Settings → Domains → add it and follow the DNS instructions.
 
+## Deploying a change that includes a migration
+
+**Apply the migration before merging, not after.** Vercel auto-deploys on every push to
+`main`, so merging first means the new code is live against a database that doesn't have
+its columns yet — signed-in pages break until the migration lands.
+
+```bash
+cd app
+supabase db push          # applies any migration not yet recorded as applied
+```
+
+Then merge. The order matters because the migrations here are additive: new columns and
+tables the old code simply ignores. Applying the migration early is harmless — the
+running site carries on working — while applying it late is a live outage.
+
+Migrations are written to be safely re-runnable (`add column if not exists`, guarded
+constraint creation, and backfills scoped to `where <col> is null` so they never
+overwrite a value corrected by hand).
+
 ## Known regulatory items that need a human double-check before you rely on this for legal compliance
 
 The research agents flagged a few items where official sources were ambiguous, hard to
