@@ -28,14 +28,14 @@ export function TideForecastList({
   hourly,
   units,
   timeZone = "America/Moncton",
-  nowMs = Date.now(),
+  nowMs,
 }: {
   events: TideEvent[];
   weather: WeatherConditions | null;
   hourly: Map<string, HourlyPoint> | null;
   units: UnitSystem;
   timeZone?: string;
-  nowMs?: number;
+  nowMs: number;
 }) {
   const upcoming = events.filter((e) => new Date(e.time).getTime() >= nowMs);
   if (upcoming.length === 0) {

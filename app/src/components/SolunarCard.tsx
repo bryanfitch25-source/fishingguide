@@ -14,11 +14,11 @@ import { activePeriod, PERIOD_LABEL, type SolunarDay } from "@/lib/solunar";
 export function SolunarCard({
   solunar,
   timeZone = "America/Moncton",
-  nowMs = Date.now(),
+  nowMs,
 }: {
   solunar: SolunarDay;
   timeZone?: string;
-  nowMs?: number;
+  nowMs: number;
 }) {
   const active = activePeriod(solunar.periods, nowMs);
   const majors = solunar.periods.filter((p) => p.kind === "major");

@@ -26,12 +26,12 @@ export function TideCurve({
   events,
   units,
   timeZone = "America/Moncton",
-  nowMs = Date.now(),
+  nowMs,
 }: {
   events: TideEvent[];
   units: UnitSystem;
   timeZone?: string;
-  nowMs?: number;
+  nowMs: number;
 }) {
   const points = sampleCurve(events, nowMs, 24, 15);
   if (points.length < 2) {

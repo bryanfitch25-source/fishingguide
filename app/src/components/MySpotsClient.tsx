@@ -37,44 +37,58 @@ export function MySpotsClient({
 }) {
   const supabase = useMemo(() => createClient(), []);
   const router = useRouter();
-  const [states, setStates] = useState<Record<string, CardState>>({});
   const [switching, setSwitching] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const loadAll = useCallback(() => {
-    setStates(Object.fromEntries(favourites.map((f) => [f.id, { status: "loading" } as CardState])));
+  // Seeded at construction rather than reset inside the effect: setting every card to
+  // "loading" synchronously in an effect schedules a second render pass before the
+  // first has painted, which React flags as a cascading render.
+  const [states, setStates] = useState<Record<string, CardState>>(() =>
+    Object.fromEntries(favourites.map((f) => [f.id, { status: "loading" } as CardState]))
+  );
+
+  // Fires the requests and nothing else — every setState here happens in a promise
+  // callback, never synchronously, so it's safe to call straight from an effect.
+  const fetchSnapshots = useCallback(() => {
     for (const fav of favourites) {
-      fetch(`/api/stations/snapshot?stationId=${encodeURIComponent(fav.station_id)}`)
-        .then(async (res) => {
-          if (res.ok) {
-            const snapshot: Snapshot = await res.json();
-            setStates((s) => ({ ...s, [fav.id]: { status: "ready", snapshot } }));
-            return;
-          }
-          const body = await res.json().catch(() => ({}));
-          setStates((s) => ({
-            ...s,
-            [fav.id]: {
-              status: "unavailable",
-              reason:
-                body.error === "inactive"
-                  ? "No predictions — station may be discontinued"
-                  : "Couldn't reach the tide service",
-            },
-          }));
-        })
-        .catch(() =>
-          setStates((s) => ({
-            ...s,
-            [fav.id]: { status: "unavailable", reason: "Couldn't reach the tide service" },
-          }))
-        );
+        fetch(`/api/stations/snapshot?stationId=${encodeURIComponent(fav.station_id)}`)
+          .then(async (res) => {
+            if (res.ok) {
+              const snapshot: Snapshot = await res.json();
+              setStates((s) => ({ ...s, [fav.id]: { status: "ready", snapshot } }));
+              return;
+            }
+            const body = await res.json().catch(() => ({}));
+            setStates((s) => ({
+              ...s,
+              [fav.id]: {
+                status: "unavailable",
+                reason:
+                  body.error === "inactive"
+                    ? "No predictions — station may be discontinued"
+                    : "Couldn't reach the tide service",
+              },
+            }));
+          })
+          .catch(() =>
+            setStates((s) => ({
+              ...s,
+              [fav.id]: { status: "unavailable", reason: "Couldn't reach the tide service" },
+            }))
+          );
     }
   }, [favourites]);
 
   useEffect(() => {
-    loadAll();
-  }, [loadAll]);
+    fetchSnapshots();
+  }, [fetchSnapshots]);
+
+  // The manual refresh button, unlike the initial load, does need to clear the readings
+  // already on screen so stale heights aren't left sitting there during the refetch.
+  function refresh() {
+    setStates(Object.fromEntries(favourites.map((f) => [f.id, { status: "loading" } as CardState])));
+    fetchSnapshots();
+  }
 
   async function switchTo(fav: FavouriteStation) {
     setSwitching(fav.id);
@@ -128,7 +142,7 @@ export function MySpotsClient({
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-muted">{favourites.length} saved</p>
         <button
-          onClick={loadAll}
+          onClick={refresh}
           className="rounded-lg border border-border bg-surface px-3 py-1.5 text-sm font-medium transition hover:border-brand"
         >
           ⟳ Refresh

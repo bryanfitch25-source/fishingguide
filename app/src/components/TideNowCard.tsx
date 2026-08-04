@@ -15,14 +15,14 @@ export function TideNowCard({
   weather,
   units,
   timeZone = "America/Moncton",
-  nowMs = Date.now(),
+  nowMs,
 }: {
   stationName: string;
   current: CurrentTide | null;
   weather: WeatherConditions | null;
   units: UnitSystem;
   timeZone?: string;
-  nowMs?: number;
+  nowMs: number;
 }) {
   if (!current) {
     return (
