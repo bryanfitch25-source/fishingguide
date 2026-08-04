@@ -152,8 +152,8 @@ export function TideCurve({
         <circle cx={nowX} cy={nowY} r="5" fill="var(--color-accent)" stroke="var(--color-surface)" strokeWidth="2" />
       </svg>
       <figcaption className="mt-1 text-[11px] text-muted">
-        Next 24 hours · predicted heights interpolated between high and low water ·
-        {units === "imperial" ? " feet" : " metres"} above chart datum
+        Predicted heights in {units === "imperial" ? "feet" : "metres"} above chart datum
+        <span className="hidden sm:inline">, interpolated between high and low water</span>
       </figcaption>
     </figure>
   );

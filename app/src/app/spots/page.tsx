@@ -21,9 +21,9 @@ export default async function MySpotsPage() {
   const units: UnitSystem = isUnitSystem(settingsRes.data?.units) ? settingsRes.data.units : "metric";
 
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 py-10">
-      <header className="mb-8 scene-panel rounded-2xl p-5 sm:p-6">
-        <h1 className="text-3xl font-extrabold text-brand-dark mb-2">My Spots</h1>
+    <div className="mx-auto max-w-4xl px-3 sm:px-6 py-4 sm:py-10">
+      <header className="mb-4 sm:mb-8 scene-panel rounded-2xl p-4 sm:p-6">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-dark mb-1 sm:mb-2">My Spots</h1>
         <p className="text-muted max-w-2xl">
           Every spot you fish, side by side, so you can see which one the tide suits right
           now without checking them one at a time.
