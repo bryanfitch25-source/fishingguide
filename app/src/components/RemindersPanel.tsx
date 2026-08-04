@@ -15,6 +15,7 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array<ArrayBuffer> {
 export function RemindersPanel() {
   const supabase = useMemo(() => createClient(), []);
   const [licenseExpiry, setLicenseExpiry] = useState("");
+  const [tideDigest, setTideDigest] = useState(false);
   const [saving, setSaving] = useState(false);
   const [pushEnabled, setPushEnabled] = useState(false);
   const [pushSupported] = useState(
@@ -24,8 +25,12 @@ export function RemindersPanel() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await supabase.from("angler_settings").select("license_expiry").maybeSingle();
+      const { data } = await supabase
+        .from("angler_settings")
+        .select("license_expiry, tide_digest_enabled")
+        .maybeSingle();
       if (data?.license_expiry) setLicenseExpiry(data.license_expiry);
+      if (data?.tide_digest_enabled) setTideDigest(true);
 
       // getRegistration() resolves immediately (unlike `.ready`, which never resolves
       // at all if no service worker is registered — true in dev, where PWARegister
@@ -54,6 +59,25 @@ export function RemindersPanel() {
     setSaving(false);
     setMessage("Saved.");
     setTimeout(() => setMessage(null), 2000);
+  }
+
+  async function toggleTideDigest() {
+    const next = !tideDigest;
+    setTideDigest(next); // optimistic — a switch should move when you tap it
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      setTideDigest(!next);
+      return;
+    }
+    const { error } = await supabase
+      .from("angler_settings")
+      .upsert({ user_id: user.id, tide_digest_enabled: next }, { onConflict: "user_id" });
+    if (error) {
+      setTideDigest(!next);
+      setMessage(`Couldn't save that: ${error.message}`);
+    }
   }
 
   async function enablePush() {
@@ -128,10 +152,29 @@ export function RemindersPanel() {
           </button>
         )}
       </div>
+      <label className="mb-3 flex items-start gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={tideDigest}
+          onChange={toggleTideDigest}
+          className="mt-0.5 h-4 w-4 accent-[var(--color-brand)]"
+        />
+        <span>
+          <span className="font-medium">Daily tide digest</span>
+          <span className="block text-xs text-muted">
+            Each morning, today&apos;s high and low tides for your selected station.
+          </span>
+        </span>
+      </label>
+
       {message && <p className="text-sm text-muted">{message}</p>}
       <p className="text-xs text-muted">
         You&apos;ll get a reminder 30, 7, and 1 day before your licence expires, on any device
         where you&apos;ve enabled notifications.
+      </p>
+      <p className="mt-1 text-xs text-muted">
+        On iPhone, notifications only work once the app is added to your Home Screen — Safari
+        doesn&apos;t deliver them to a normal browser tab.
       </p>
     </div>
   );

@@ -2,9 +2,22 @@
 // so it's readable with no signal at the wharf. Deliberately does NOT cache
 // /tackle, /catches, /login, or any /api/* route — those are per-user, auth-gated,
 // and must always go to the network so they never show stale or wrong-account data.
+//
+// /tides, /spots and /settings are excluded for both reasons at once: they're keyed to
+// the station saved on your account, and a cached tide reading is actively misleading
+// in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
+// live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v1";
-const NEVER_CACHE_PREFIXES = ["/tackle", "/catches", "/login", "/api/"];
+const CACHE_NAME = "maritime-angler-v2";
+const NEVER_CACHE_PREFIXES = [
+  "/tackle",
+  "/catches",
+  "/login",
+  "/tides",
+  "/spots",
+  "/settings",
+  "/api/",
+];
 
 const PRECACHE_URLS = [
   "/",
@@ -71,8 +84,9 @@ self.addEventListener("fetch", (event) => {
   }
 });
 
-// Reminder notifications (license renewal, gear maintenance) sent by the server —
-// see src/app/api/cron/send-reminders/route.ts.
+// Reminder notifications (licence renewal, gear maintenance, daily tide digest) sent by
+// the server — see src/app/api/cron/send-reminders/route.ts. On iOS these are only
+// delivered once the app has been added to the Home Screen.
 self.addEventListener("push", (event) => {
   if (!event.data) return;
   const data = event.data.json();

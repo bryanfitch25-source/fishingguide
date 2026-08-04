@@ -7,9 +7,18 @@ import { GlobalSearch } from "@/components/GlobalSearch";
 
 const LINKS = [
   { href: "/guide", label: "Fishing Guide" },
+  { href: "/tides", label: "Tides" },
   { href: "/tackle", label: "Tackle Box" },
   { href: "/trip-planner", label: "Trip Planner" },
   { href: "/catches", label: "Catch Log" },
+];
+
+// Kept out of the desktop row: six links plus search and sign-in overflows again on a
+// narrow laptop, and both of these are reachable from the Tides screen's own header.
+// The mobile menu has the room, so it lists them.
+const SECONDARY_LINKS = [
+  { href: "/spots", label: "My Spots" },
+  { href: "/settings", label: "Settings" },
 ];
 
 // The desktop nav crammed 4 links + search + sign-in into one row, which overflowed
@@ -45,7 +54,7 @@ export function HeaderNav() {
       {open && (
         <div className="absolute left-0 right-0 top-16 border-b border-border bg-surface shadow-lg md:hidden">
           <nav className="flex flex-col p-2">
-            {LINKS.map((l) => (
+            {[...LINKS, ...SECONDARY_LINKS].map((l) => (
               <Link
                 key={l.href}
                 href={l.href}

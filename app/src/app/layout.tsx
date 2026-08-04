@@ -30,10 +30,21 @@ export const metadata: Metadata = {
     ],
     apple: "/icon-192.png",
   },
+  appleWebApp: {
+    capable: true,
+    title: "Maritime Angler",
+    // Lets the page paint behind the status bar, which is what gives the safe-area
+    // insets something to inset from.
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport = {
   themeColor: "#0e7490",
+  // Required for env(safe-area-inset-*) to resolve to anything but zero once the app is
+  // installed to the iPhone Home Screen — without it the fixed quick-log button sits
+  // underneath the home indicator.
+  viewportFit: "cover" as const,
 };
 
 export default function RootLayout({

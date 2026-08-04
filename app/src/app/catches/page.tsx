@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/lib/supabase-server";
+import { createClient, getCurrentUser } from "@/lib/supabase-server";
 import { getAllSpecies } from "@/lib/data";
 import { CatchLogClient } from "@/components/CatchLogClient";
+import { isUnitSystem, type UnitSystem } from "@/lib/units";
 
 export const metadata = {
   title: "Catch Log — Maritime Angler",
@@ -11,7 +12,13 @@ export default async function CatchLogPage() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
-  const species = await getAllSpecies();
+  const supabase = await createClient();
+  const [species, settingsRes] = await Promise.all([
+    getAllSpecies(),
+    supabase.from("angler_settings").select("units").maybeSingle(),
+  ]);
+
+  const units: UnitSystem = isUnitSystem(settingsRes.data?.units) ? settingsRes.data.units : "metric";
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
@@ -21,7 +28,10 @@ export default async function CatchLogPage() {
           What you caught, where, and what you used — your own record of what actually works.
         </p>
       </div>
-      <CatchLogClient species={species.map((s) => ({ slug: s.slug, common_name: s.common_name }))} />
+      <CatchLogClient
+        species={species.map((s) => ({ slug: s.slug, common_name: s.common_name }))}
+        units={units}
+      />
     </div>
   );
 }

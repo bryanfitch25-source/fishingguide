@@ -19,11 +19,23 @@ it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 
 ## App structure
 
-Three sections, one nav:
-
-- **Fishing Guide** (`/guide`) — everything from before: species, trip guides, regulations, Fish Near Me. Public, no sign-in needed.
+- **Fishing Guide** (`/guide`) — species, trip guides, regulations, Fish Near Me. Public, no sign-in needed.
+- **Tides** (`/tides`) — current tide and 24-hour curve for your selected station, marine conditions, solunar feeding periods, and a 7-day high/low forecast. Public; signing in lets you choose a station instead of the default.
+- **My Spots** (`/spots`) — every station you've favourited, with its current tide, side by side. Sign-in required.
 - **Tackle Box** (`/tackle`) — your personal tackle inventory. Sign-in required; only you can see or edit it.
-- **Catch Log** (`/catches`) — what you caught, where, with what. Sign-in required.
+- **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. Sign-in required.
+- **Settings** (`/settings`) — tide station, units, angler profile, reminders. Sign-in required.
+
+### Notifications on iPhone
+
+Push only works on iOS once the app has been **added to the Home Screen** — Safari does
+not deliver notifications to an ordinary browser tab. Open the site in Safari, tap
+Share → Add to Home Screen, then enable notifications from `/settings`.
+
+The daily cron (`0 12 * * *`, 9am Atlantic) sends licence-expiry reminders, gear
+maintenance reminders, and — if enabled — a tide digest listing today's highs and lows.
+Per-tide "high tide in 30 minutes" alerts would need the cron running hourly, which
+Vercel's Hobby plan doesn't allow; the digest is the once-a-day equivalent.
 
 Tag a tackle item with the species it's good for and it shows up as "Gear You Own" on that
 species' guide page — the one thing a generic tackle app can't do, since it doesn't have
@@ -52,6 +64,7 @@ of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 - `20260728000002_seed_content.sql`, `20260728000003_grants.sql` — initial content + API grants
 - `20260728120000_images_and_variants.sql`, `20260729180000_real_photos_only.sql` — species photos + "Forms & Lookalikes" variants
 - `20260730100000_tackle_and_catches.sql` — `tackle_items`, `tackle_item_species`, `catches` tables, RLS scoped to `auth.uid()` (private, per-account)
+- `20260804120000_slack_water_tides_units_profile.sql` — **needs applying**: tide station + units + profile columns on `angler_settings`, the `favourite_stations` table (capped at 8 by a trigger), and the conditions-snapshot columns on `catches`. Also backfills numeric `length_cm` / `weight_kg` by parsing the existing free-text values, leaving the originals in place for anything it can't read.
 
 To update content later: edit the JSON in `research/`, run
 `node scripts/generate-seed-sql.mjs` in `app/`, copy the regenerated
@@ -103,6 +116,25 @@ The site is deployed on Vercel (account `bryanfitch25-9324`, scope `fitch2`):
 
 To use a custom domain later: buy the domain, then Vercel dashboard → fishingguide →
 Settings → Domains → add it and follow the DNS instructions.
+
+## Deploying a change that includes a migration
+
+**Apply the migration before merging, not after.** Vercel auto-deploys on every push to
+`main`, so merging first means the new code is live against a database that doesn't have
+its columns yet — signed-in pages break until the migration lands.
+
+```bash
+cd app
+supabase db push          # applies any migration not yet recorded as applied
+```
+
+Then merge. The order matters because the migrations here are additive: new columns and
+tables the old code simply ignores. Applying the migration early is harmless — the
+running site carries on working — while applying it late is a live outage.
+
+Migrations are written to be safely re-runnable (`add column if not exists`, guarded
+constraint creation, and backfills scoped to `where <col> is null` so they never
+overwrite a value corrected by hand).
 
 ## Known regulatory items that need a human double-check before you rely on this for legal compliance
 
