@@ -132,8 +132,13 @@ export function CatchLogClient({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [showInsights, setShowInsights] = useState(false);
-  const [showPatterns, setShowPatterns] = useState(false);
+  // One Insights panel, three tabs. There used to be two independent toggles — "Year in
+  // Review & Life List" and "Patterns" — that could both be open at once, stacking two
+  // full-width analysis panels above the catches they were analysing, and neither of
+  // which mentioned the other existed. They are the same kind of thing: looking back at
+  // what you have already logged. So they share one button and one open/closed state.
+  const [insightsOpen, setInsightsOpen] = useState(false);
+  const [insightsTab, setInsightsTab] = useState<"review" | "patterns" | "lifelist">("review");
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [locateState, setLocateState] = useState<LocateState>("idle");
@@ -588,18 +593,11 @@ export function CatchLogClient({
           )}
           {catches.length > 0 && (
             <button
-              onClick={() => setShowInsights((v) => !v)}
+              onClick={() => setInsightsOpen((v) => !v)}
+              aria-expanded={insightsOpen}
               className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-catches transition"
             >
-              📅 {showInsights ? "Hide" : "Year in Review & Life List"}
-            </button>
-          )}
-          {catches.length > 0 && (
-            <button
-              onClick={() => setShowPatterns((v) => !v)}
-              className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-catches transition"
-            >
-              📊 {showPatterns ? "Hide" : "Patterns"}
+              📊 {insightsOpen ? "Hide insights" : "Insights"}
             </button>
           )}
           {catches.length > 0 && (
@@ -619,53 +617,74 @@ export function CatchLogClient({
         </div>
       </div>
 
-      {showPatterns && (
-        <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-5">
-          <h3 className="font-bold text-brand-dark mb-3">📊 Patterns</h3>
-          <CatchInsights catches={catches} units={units} />
-        </div>
-      )}
-
-      {showInsights && (
-        <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-5">
-          <h3 className="font-bold text-brand-dark mb-3">📅 {thisYear} in Review</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-5">
-            <div>
-              <p className="text-xs text-muted">Catches this year</p>
-              <p className="font-semibold text-lg">{yearCatches.length}</p>
-            </div>
-            <div>
-              <p className="text-xs text-muted">Best month</p>
-              <p className="font-semibold text-lg">{topMonth ? MONTH_NAMES[topMonth[0]] : "—"}</p>
-            </div>
-            <div>
-              <p className="text-xs text-muted">Most-used gear</p>
-              <p className="font-semibold text-lg">{topTackle ? tackleName(topTackle[0]) : "—"}</p>
-            </div>
-            <div>
-              <p className="text-xs text-muted">Species this year</p>
-              <p className="font-semibold text-lg">
-                {new Set(yearCatches.filter((c) => c.species_slug).map((c) => c.species_slug)).size}
-              </p>
-            </div>
-          </div>
-
-          <h3 className="font-bold text-brand-dark mb-2">
-            🏅 Species Life List — {caughtSlugs.size} / {species.length} caught
-          </h3>
-          <div className="flex flex-wrap gap-1.5">
-            {lifeList.map((s) => (
-              <span
-                key={s.slug}
-                title={s.caught ? `First caught ${s.firstCatchDate}` : "Not caught yet"}
-                className={`rounded-full px-2.5 py-1 text-xs font-medium ${
-                  s.caught ? "bg-catches-light text-catches" : "bg-background text-muted"
+      {insightsOpen && (
+        <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-5 no-print">
+          <div role="tablist" aria-label="Insights" className="mb-4 flex flex-wrap gap-2">
+            {(
+              [
+                ["review", `📅 ${thisYear} in Review`],
+                ["patterns", "📊 Patterns"],
+                ["lifelist", `🏅 Life List (${caughtSlugs.size}/${species.length})`],
+              ] as const
+            ).map(([id, label]) => (
+              <button
+                key={id}
+                role="tab"
+                aria-selected={insightsTab === id}
+                onClick={() => setInsightsTab(id)}
+                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                  insightsTab === id
+                    ? "bg-catches text-on-brand"
+                    : "border border-border text-muted hover:border-catches"
                 }`}
               >
-                {s.caught ? "🏅" : "⚪"} {s.common_name}
-              </span>
+                {label}
+              </button>
             ))}
           </div>
+
+          {insightsTab === "review" && (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+              <div>
+                <p className="text-xs text-muted">Catches this year</p>
+                <p className="font-semibold text-lg">{yearCatches.length}</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted">Best month</p>
+                <p className="font-semibold text-lg">{topMonth ? MONTH_NAMES[topMonth[0]] : "—"}</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted">Most-used gear</p>
+                <p className="font-semibold text-lg">{topTackle ? tackleName(topTackle[0]) : "—"}</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted">Species this year</p>
+                <p className="font-semibold text-lg">
+                  {new Set(yearCatches.filter((c) => c.species_slug).map((c) => c.species_slug)).size}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {insightsTab === "patterns" && (
+            <CatchInsights catches={catches} units={units} species={species} />
+          )}
+
+          {insightsTab === "lifelist" && (
+            <div className="flex flex-wrap gap-1.5">
+              {lifeList.map((s) => (
+                <span
+                  key={s.slug}
+                  title={s.caught ? `First caught ${s.firstCatchDate}` : "Not caught yet"}
+                  className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                    s.caught ? "bg-catches-light text-catches" : "bg-background text-muted"
+                  }`}
+                >
+                  {s.caught ? "🏅" : "⚪"} {s.common_name}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

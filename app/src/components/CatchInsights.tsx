@@ -57,8 +57,41 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-export function CatchInsights({ catches, units }: { catches: Catch[]; units: UnitSystem }) {
+// Species that differ from your overall tide split are the interesting ones — striped
+// bass and mackerel do not behave the same way, and this app is unusually placed to say
+// so because it already ties every catch to a species guide.
+//
+// What this is NOT: a claim about catch *rate*. "70% of your catches come on the rising"
+// only means something next to how much of your fishing time was on the rising, and the
+// app records catches, not hours. The suggested proxy — the two hours either side of each
+// catch — reuses the same catches to stand in for the effort, so it would dress the same
+// number up as a comparison. Without effort data the honest statement is the one below:
+// this is where your catches fell, per species, and it is worth a look when a species
+// leans much harder than your average.
+const MIN_SPECIES_CATCHES = 4;
+
+interface SpeciesTide {
+  slug: string;
+  name: string;
+  rising: number;
+  falling: number;
+  total: number;
+}
+
+export function CatchInsights({
+  catches,
+  units,
+  species,
+}: {
+  catches: Catch[];
+  units: UnitSystem;
+  // The list itself rather than a slug→name map, because the list arrives from the server
+  // and keeps its identity between renders; a map built in the parent's render body would
+  // be a new object every time and would defeat the memo below.
+  species?: { slug: string; common_name: string }[];
+}) {
   const insights = useMemo(() => {
+    const speciesNames = new Map((species ?? []).map((s) => [s.slug, s.common_name]));
     const tideBuckets: Bucket[] = [
       { label: "Rising", count: catches.filter((c) => c.tide_state === "rising").length },
       { label: "Falling", count: catches.filter((c) => c.tide_state === "falling").length },
@@ -102,6 +135,33 @@ export function CatchInsights({ catches, units }: { catches: Catch[]; units: Uni
       return present.length ? present.reduce((a, b) => a + b, 0) / present.length : null;
     };
 
+    // Per-species tide split, over catches that actually recorded a tide state. Species
+    // below the threshold are pooled out rather than shown at 100% off two catches.
+    const bySpecies = new Map<string, SpeciesTide>();
+    for (const c of catches) {
+      if (!c.species_slug) continue;
+      if (c.tide_state !== "rising" && c.tide_state !== "falling") continue;
+      const row = bySpecies.get(c.species_slug) ?? {
+        slug: c.species_slug,
+        name: speciesNames.get(c.species_slug) ?? c.species_slug,
+        rising: 0,
+        falling: 0,
+        total: 0,
+      };
+      if (c.tide_state === "rising") row.rising += 1;
+      else row.falling += 1;
+      row.total += 1;
+      bySpecies.set(c.species_slug, row);
+    }
+    const speciesTides = [...bySpecies.values()]
+      .filter((s) => s.total >= MIN_SPECIES_CATCHES)
+      .sort((a, b) => b.total - a.total);
+
+    // The overall rising share, so each species can be read against it rather than in
+    // isolation — 60% rising means nothing until you know your own baseline.
+    const directional = tideBuckets[0].count + tideBuckets[1].count;
+    const overallRisingShare = directional > 0 ? tideBuckets[0].count / directional : null;
+
     const conditionCounts = new Map<string, number>();
     for (const c of catches) {
       if (!c.weather_condition) continue;
@@ -120,9 +180,11 @@ export function CatchInsights({ catches, units }: { catches: Catch[]; units: Uni
       avgPressure: average(catches.map((c) => c.pressure_kpa)),
       avgTemp: average(catches.map((c) => c.temperature_c)),
       commonestCondition,
+      speciesTides,
+      overallRisingShare,
       firstDate: catches.map((c) => c.catch_date).filter(Boolean).sort()[0] ?? null,
     };
-  }, [catches]);
+  }, [catches, species]);
 
   if (catches.length === 0) {
     return (
@@ -164,6 +226,62 @@ export function CatchInsights({ catches, units }: { catches: Catch[]; units: Uni
           emptyMessage="No catches have a recorded tide state yet — use the quick-log button and the tide at that moment gets saved with the catch."
         />
       </Section>
+
+      {insights.speciesTides.length > 0 && insights.overallRisingShare !== null && (
+        <Section title="Tide state by species">
+          <p className="mb-2 text-xs text-muted">
+            Where your catches fell, per species, next to your own overall split of{" "}
+            <span className="font-semibold">
+              {Math.round(insights.overallRisingShare * 100)}% rising
+            </span>
+            . Species with fewer than {MIN_SPECIES_CATCHES} tide-stamped catches are left out.
+          </p>
+          <ul className="space-y-1.5">
+            {insights.speciesTides.map((s) => {
+              const risingShare = s.rising / s.total;
+              // Ten points clear of your baseline is the point at which a split is worth
+              // a second look rather than noise on a small sample.
+              const leans = Math.abs(risingShare - (insights.overallRisingShare ?? 0)) >= 0.1;
+              return (
+                <li key={s.slug} className="flex items-center gap-2 text-sm">
+                  <span className="w-28 shrink-0 truncate text-muted" title={s.name}>
+                    {s.name}
+                  </span>
+                  <span className="flex h-4 flex-1 overflow-hidden rounded-full bg-background">
+                    <span
+                      className="block h-full bg-catches"
+                      style={{ width: `${risingShare * 100}%` }}
+                      title={`${s.rising} on the rising`}
+                    />
+                    <span
+                      className="block h-full bg-brand-light"
+                      style={{ width: `${(1 - risingShare) * 100}%` }}
+                      title={`${s.falling} on the falling`}
+                    />
+                  </span>
+                  {/* Emphasis rather than a marker glyph. A dot explained only by a
+                      title attribute is invisible on a touch screen, which is where
+                      this app spends its life. */}
+                  <span
+                    className={`w-24 shrink-0 text-right tabular-nums ${
+                      leans ? "font-bold text-catches" : "text-muted"
+                    }`}
+                  >
+                    {Math.round(risingShare * 100)}% ↑ · {s.total}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-2 text-xs text-muted">
+            ↑ is the rising tide, and a <strong className="text-catches">bold figure</strong>{" "}
+            leans at least ten points away from your own average — those are the ones worth a
+            look. This is where your catches landed, not a catch rate: the app records
+            catches, not the hours you fished, so it can&apos;t say whether the rising is
+            better or just when you happen to be on the water.
+          </p>
+        </Section>
+      )}
 
       <Section title="Time of day">
         <BarChart
