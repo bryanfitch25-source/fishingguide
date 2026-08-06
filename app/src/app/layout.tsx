@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  IBM_Plex_Sans,
+  IBM_Plex_Mono,
+  Fraunces,
+  Source_Sans_3,
+  Bricolage_Grotesque,
+  Public_Sans,
+} from "next/font/google";
 import Link from "next/link";
 import { HeaderNav } from "@/components/HeaderNav";
 import { BackgroundScene } from "@/components/BackgroundScene";
 import { PWARegister } from "@/components/PWARegister";
 import { BackButton } from "@/components/BackButton";
+import { getAppearance } from "@/lib/get-appearance";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +26,36 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// The three alternative pairings offered in Settings. next/font self-hosts these and
+// emits @font-face with `display: swap`; a browser only downloads the faces that
+// rendered text actually resolves to, so carrying four options costs nothing to the
+// three of them nobody has selected.
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["500"],
+});
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
+const sourceSans = Source_Sans_3({ variable: "--font-source-sans", subsets: ["latin"] });
+const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"] });
+const publicSans = Public_Sans({ variable: "--font-public-sans", subsets: ["latin"] });
+
+const FONT_VARIABLES = [
+  geistSans.variable,
+  geistMono.variable,
+  plexSans.variable,
+  plexMono.variable,
+  fraunces.variable,
+  sourceSans.variable,
+  bricolage.variable,
+  publicSans.variable,
+].join(" ");
 
 export const revalidate = 3600;
 
@@ -48,15 +88,22 @@ export const viewport = {
   viewportFit: "cover" as const,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Resolved on the server so the correct ground is in the very first byte of HTML.
+  // Reading it client-side would paint the default theme first and then swap, which on
+  // a dark preference is a full-screen white flash on every navigation.
+  const { theme, font } = await getAppearance();
+
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme={theme}
+      data-font={font}
+      className={`${FONT_VARIABLES} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <PWARegister />

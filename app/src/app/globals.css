@@ -1,49 +1,247 @@
 @import "tailwindcss";
 
-/* Surfaces are warm chart paper, not white.
+/* ── Themes ───────────────────────────────────────────────────────────────
+   Seven grounds, selectable from Settings. Every value in every theme is checked
+   against WCAG AA on the text that actually renders on it — body, muted, brand,
+   accent, the three section hues, success and danger, plus each pill tint against
+   its own label colour. The generator that produced this block refuses to emit a
+   theme with a pair below 4.5:1.
 
-   The reference is a real nautical chart: CHS and Admiralty charts print on a warm
-   buff stock with cyan-teal water, which is exactly the pairing this app already has
-   in its ocean-teal brand — and it suits a tide app better than the office-document
-   white it replaces. Practically, pure white cards over the photographic backgrounds
-   punched out as hard bright rectangles; dropping the surface a few points of
-   luminance and warming it lets the cards sit on the scenery instead of over it.
+   --on-brand exists because --brand does double duty: it is both a link colour and
+   the primary button background. On light grounds one dark teal serves both. On a
+   dark ground it cannot — a teal legible as text on navy is far too light to carry
+   white text — so the button takes dark ink instead, via the rule at the end.
+   ──────────────────────────────────────────────────────────────────────────── */
 
-   Every value below is checked against WCAG AA on the text that actually renders on
-   it — body #14231f, muted, brand teal, accent amber and the catches rose all clear
-   4.5:1 on --surface. The page background is deliberately a touch lighter than a
-   deeper buff would look, because brand teal on it lands at 4.55:1 and anything
-   darker drops the link colour below AA. */
+/* Chart Paper again, as the un-themed default.
+
+   This has to come *before* every [data-theme] block, not inside one. `:root` and an
+   attribute selector carry identical specificity (0,1,0), so whichever is written last
+   wins — declaring the default alongside [data-theme="paper"] silently overrode every
+   theme defined above it, and only the ones defined below it worked. */
 :root {
-  --background: #f1ece3;
-  --foreground: #14231f;
-  --surface: #faf7f1;
-  --border: #d5cab6;
-
-  /* Ocean teal — primary brand color, used for nav/links/primary buttons */
-  --brand: #0e7490;
-  --brand-dark: #0c4a5c;
-  --brand-light: #e0f2f6;
-
-  /* Warm amber — secondary accent for CTAs and highlights, keeps the palette
-     from reading as one flat hue */
-  --accent: #d97706;
-  --accent-dark: #b45309;
-  --accent-light: #fef3e2;
-
-  /* Section accents — Fishing Guide / Tackle Box / Catch Log each get a
-     distinct identity on the home page and their own section headers */
-  --guide: #0e7490;
-  --guide-light: #e0f2f6;
-  --tackle: #b45309;
-  --tackle-light: #fef3e2;
-  --catches: #be123c;
-  --catches-light: #fde5eb;
-
-  --muted: #5c6b66;
-  --success: #15803d;
-  --danger: #b91c1c;
+  --background: #F1ECE3;
+  --foreground: #14231F;
+  --surface: #FAF7F1;
+  --border: #D5CAB6;
+  --brand: #0E7490;
+  --brand-dark: #0C4A5C;
+  --brand-light: #E0F2F6;
+  --accent: #D97706;
+  --accent-dark: #B45309;
+  --accent-light: #FEF3E2;
+  --guide: #0E7490;
+  --guide-light: #E0F2F6;
+  --tackle: #B45309;
+  --tackle-light: #FEF3E2;
+  --catches: #BE123C;
+  --catches-light: #FDE5EB;
+  --muted: #5C6B66;
+  --success: #15803D;
+  --danger: #B91C1C;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(241,236,227,.56);
+  --card-shadow: 0 1px 2px rgba(74,60,40,.05), 0 4px 14px -6px rgba(74,60,40,.12);
+  --panel-bg: rgba(250,247,241,.86);
 }
+
+/* Deep Harbour — Night wheelhouse — hull navy, figures that glow. */
+[data-theme="harbour"] {
+  --background: #0E1C28;
+  --foreground: #E9EFF4;
+  --surface: #17293A;
+  --border: #2C4459;
+  --brand: #5AD1C8;
+  --brand-dark: #8FE3DC;
+  --brand-light: #123742;
+  /* Amber runs bright here rather than dark. It marks "now" on the tide curve, and the
+     dark amber the light themes use scored 2.96:1 on this ground — the marker was
+     effectively invisible. Nothing sets text on bg-accent (only the accent bar and the
+     emoji quick-log button use it), so brightening it costs nothing. */
+  --accent: #F3B84B;
+  --accent-dark: #FFCF6E;
+  --accent-light: #3A2E15;
+  --guide: #8FE3DC;
+  --guide-light: #123742;
+  --tackle: #F3B84B;
+  --tackle-light: #3A2E15;
+  --catches: #FF9182;
+  --catches-light: #3D2320;
+  --muted: #A0B6C6;
+  --success: #5CD68A;
+  --danger: #FF9182;
+  --on-brand: #06141D;
+  --scene-wash: rgba(10,22,32,.72);
+  --card-shadow: 0 1px 2px rgba(0,0,0,.45), 0 6px 18px -8px rgba(0,0,0,.65);
+  --panel-bg: rgba(23,41,58,.86);
+}
+
+/* Weathered Chart — Aged admiralty paper, dark enough to read as a colour. */
+[data-theme="chart"] {
+  --background: #D9CEB6;
+  --foreground: #241F14;
+  --surface: #EBE2CC;
+  --border: #BCAC8B;
+  --brand: #175E66;
+  --brand-dark: #0E4249;
+  --brand-light: #CFE0DF;
+  --accent: #8F4E12;
+  --accent-dark: #6F3B0C;
+  --accent-light: #EBD9BF;
+  --guide: #175E66;
+  --guide-light: #CFE0DF;
+  --tackle: #8F4E12;
+  --tackle-light: #EBD9BF;
+  --catches: #9E2B2B;
+  --catches-light: #EFD3CB;
+  --muted: #57503C;
+  --success: #2F6B33;
+  --danger: #9E2B2B;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(217,206,182,.66);
+  --card-shadow: 0 1px 2px rgba(74,60,40,.10), 0 5px 16px -8px rgba(74,60,40,.30);
+  --panel-bg: rgba(235,226,204,.88);
+}
+
+/* Sea Glass — Surf-worn bottle green — cool and quiet. */
+[data-theme="seaglass"] {
+  --background: #C3D4CE;
+  --foreground: #15241F;
+  --surface: #DDE8E3;
+  --border: #9DB3AB;
+  --brand: #115B62;
+  --brand-dark: #0A3C41;
+  --brand-light: #C6DCDC;
+  --accent: #8C4A16;
+  --accent-dark: #6C380F;
+  --accent-light: #E3D6C4;
+  --guide: #115B62;
+  --guide-light: #C6DCDC;
+  --tackle: #8C4A16;
+  --tackle-light: #E3D6C4;
+  --catches: #9B2833;
+  --catches-light: #EBD0D2;
+  --muted: #45594F;
+  --success: #2C6A3A;
+  --danger: #9B2833;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(195,212,206,.66);
+  --card-shadow: 0 1px 2px rgba(30,60,52,.10), 0 5px 16px -8px rgba(30,60,52,.30);
+  --panel-bg: rgba(221,232,227,.88);
+}
+
+/* Chart Paper — What's live today — warm, but still close to white. */
+[data-theme="paper"] {
+  --background: #F1ECE3;
+  --foreground: #14231F;
+  --surface: #FAF7F1;
+  --border: #D5CAB6;
+  --brand: #0E7490;
+  --brand-dark: #0C4A5C;
+  --brand-light: #E0F2F6;
+  --accent: #D97706;
+  --accent-dark: #B45309;
+  --accent-light: #FEF3E2;
+  --guide: #0E7490;
+  --guide-light: #E0F2F6;
+  --tackle: #B45309;
+  --tackle-light: #FEF3E2;
+  --catches: #BE123C;
+  --catches-light: #FDE5EB;
+  --muted: #5C6B66;
+  --success: #15803D;
+  --danger: #B91C1C;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(241,236,227,.56);
+  --card-shadow: 0 1px 2px rgba(74,60,40,.05), 0 4px 14px -6px rgba(74,60,40,.12);
+  --panel-bg: rgba(250,247,241,.86);
+}
+
+/* Chart Buff — Deeper buff. Rejected first time round — amber accent failed AA, so the accent is darkened here to clear it. */
+[data-theme="buff"] {
+  --background: #E8DFC9;
+  --foreground: #221E13;
+  --surface: #F5F0E6;
+  --border: #C9B994;
+  --brand: #116069;
+  --brand-dark: #0B4046;
+  --brand-light: #D5E4E3;
+  --accent: #8A4A10;
+  --accent-dark: #6B380B;
+  --accent-light: #EFDFC4;
+  --guide: #116069;
+  --guide-light: #D5E4E3;
+  --tackle: #8A4A10;
+  --tackle-light: #EFDFC4;
+  --catches: #A02224;
+  --catches-light: #F2D6CE;
+  --muted: #575039;
+  --success: #2C6A33;
+  --danger: #A02224;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(232,223,201,.60);
+  --card-shadow: 0 1px 2px rgba(74,60,40,.07), 0 5px 15px -7px rgba(74,60,40,.20);
+  --panel-bg: rgba(245,240,230,.88);
+}
+
+/* Sea Mist — Cool grey-blue. Considered and passed over for being too close to white. */
+[data-theme="mist"] {
+  --background: #E4EDEE;
+  --foreground: #132022;
+  --surface: #F2F7F7;
+  --border: #BDCFD1;
+  --brand: #0E6C82;
+  --brand-dark: #0A4655;
+  --brand-light: #D5E9EE;
+  --accent: #8E4C0D;
+  --accent-dark: #77400B;
+  --accent-light: #F0E1CB;
+  --guide: #0E6C82;
+  --guide-light: #D5E9EE;
+  --tackle: #8E4C0D;
+  --tackle-light: #F0E1CB;
+  --catches: #AC1F3C;
+  --catches-light: #F5D8DE;
+  --muted: #4E6165;
+  --success: #15703C;
+  --danger: #AC1F3C;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(228,237,238,.58);
+  --card-shadow: 0 1px 2px rgba(30,55,60,.06), 0 5px 15px -7px rgba(30,55,60,.16);
+  --panel-bg: rgba(242,247,247,.87);
+}
+
+/* Slate Teal — The deepest of the pale set. Also passed over originally for being too light. */
+[data-theme="slate"] {
+  --background: #DCE7E9;
+  --foreground: #111E21;
+  --surface: #EEF4F5;
+  --border: #B0C4C8;
+  --brand: #0D6274;
+  --brand-dark: #09404D;
+  --brand-light: #CFE4EA;
+  --accent: #8F4E10;
+  --accent-dark: #6E3B0B;
+  --accent-light: #EDDDC6;
+  --guide: #0D6274;
+  --guide-light: #CFE4EA;
+  --tackle: #8F4E10;
+  --tackle-light: #EDDDC6;
+  --catches: #A31D38;
+  --catches-light: #F1D4DA;
+  --muted: #4A5D61;
+  --success: #146836;
+  --danger: #A31D38;
+  --on-brand: #FFFFFF;
+  --scene-wash: rgba(220,231,233,.58);
+  --card-shadow: 0 1px 2px rgba(25,50,55,.07), 0 5px 15px -7px rgba(25,50,55,.18);
+  --panel-bg: rgba(238,244,245,.87);
+}
+
+/* Primary buttons are written as `bg-brand text-white`. On a dark ground that
+   would be white on bright teal, so the ink is swapped here rather than in every
+   component. Two classes beat Tailwind’s single-class .text-white. */
+[data-theme="harbour"] .bg-brand.text-white { color: var(--on-brand); }
 
 @theme inline {
   --color-background: var(--background);
@@ -65,20 +263,21 @@
   --color-muted: var(--muted);
   --color-success: var(--success);
   --color-danger: var(--danger);
+  --color-on-brand: var(--on-brand);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* This app is deliberately always-light: the background is real outdoor/fishing
-   scenery (see BackgroundScene.tsx + public/backgrounds/), and those photos are
-   curated to always be bright daytime shots — never night. So unlike a typical
-   app, there's no prefers-color-scheme: dark override here; the point of this
-   theme is to stay light and bright regardless of the visitor's OS setting. */
+/* Ground is a stated preference, not an inherited one. There's still no
+   prefers-color-scheme override: the OS setting says how someone likes their phone at
+   large, which is a poor proxy for what reads well on a wharf in daylight. Whoever is
+   using this picks a ground in Settings and it stays picked, on every device they sign
+   in on. Deep Harbour is there for anyone who wants dark; the rest are grounds, not
+   modes. */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 /* Fixed full-viewport photo behind everything, picked per-section by BackgroundScene. */
@@ -91,27 +290,27 @@ body {
   transition: background-image 0.4s ease;
 }
 
-/* A light wash over the photo so body text and unboxed headings stay readable —
-   cards (bg-surface) are already opaque and don't need this, it's for the gaps
-   around them where the scenery shows through. */
+/* A wash over the photo so body text and unboxed headings stay readable — cards
+   (bg-surface) are already opaque and don't need it; this is for the gaps around
+   them where the scenery shows through.
+
+   It's a theme token because the background photos are all bright daytime shots.
+   Under a light theme the wash knocks them back toward the card tone; under Deep
+   Harbour it has to do the opposite and pull them down toward navy, or a sunlit
+   marsh sits behind navy cards and the screen fights itself. */
 .scene-overlay {
   position: absolute;
   inset: 0;
-  /* Warm wash rather than white, so the scenery is knocked back toward the same
-     paper tone as the cards instead of toward a grey haze. */
-  background: linear-gradient(
-    to bottom,
-    rgba(241, 236, 227, 0.62) 0%,
-    rgba(241, 236, 227, 0.46) 30%,
-    rgba(241, 236, 227, 0.56) 100%
-  );
+  background: var(--scene-wash);
 }
 
 .scene-panel {
-  background: rgba(250, 247, 241, 0.86);
+  background: var(--panel-bg);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  /* A white hairline is the right highlight on paper grounds and a grubby smear on
+     dark ones, so the panel edge follows the theme's own border token. */
+  border: 1px solid var(--border);
 }
 
 /* Cards used to rely on a hard white-against-photo edge to read as raised. With a
@@ -119,9 +318,7 @@ body {
    instead — warm-tinted and very low opacity, since a neutral grey shadow over warm
    paper reads as dirt. */
 .card-lift {
-  box-shadow:
-    0 1px 2px rgba(74, 60, 40, 0.05),
-    0 4px 14px -6px rgba(74, 60, 40, 0.12);
+  box-shadow: var(--card-shadow);
 }
 
 /* Print-friendly output for the Catch Log, Tackle Box, and Trip Planner — hides chrome
@@ -209,4 +406,51 @@ body {
 .prose-guide a {
   color: var(--accent-dark);
   text-decoration: underline;
+}
+
+/* ── Type pairings ────────────────────────────────────────────────────────
+   Selected in Settings; `data-font` on <html> picks one. Each sets a display face
+   for headings, a body face for everything else, and a numeric face used wherever
+   figures line up in columns — tide heights, times, catch measurements.
+
+   Tabular figures are forced on the numeric face rather than left to the default,
+   because the tide list is a column of times and heights that would otherwise jitter
+   sideways as the digits change. */
+:root {
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+  --font-body: var(--font-geist-sans), system-ui, sans-serif;
+  --font-numeric: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+[data-font="instrument"] {
+  --font-display: var(--font-plex-sans), system-ui, sans-serif;
+  --font-body: var(--font-plex-sans), system-ui, sans-serif;
+  --font-numeric: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+[data-font="charthouse"] {
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source-sans), system-ui, sans-serif;
+  --font-numeric: var(--font-source-sans), system-ui, sans-serif;
+}
+
+[data-font="harbourmaster"] {
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-body: var(--font-public-sans), system-ui, sans-serif;
+  --font-numeric: var(--font-public-sans), system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Applied to the big tide reading, forecast rows and catch measurements. */
+.tabular,
+.tabular-nums {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
 }

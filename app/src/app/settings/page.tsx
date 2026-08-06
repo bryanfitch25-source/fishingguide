@@ -2,9 +2,11 @@ import { redirect } from "next/navigation";
 import { createClient, getCurrentUser } from "@/lib/supabase-server";
 import { getAllSpecies } from "@/lib/data";
 import { isUnitSystem, type UnitSystem } from "@/lib/units";
+import { DEFAULT_FONT, DEFAULT_THEME, isFontId, isThemeId } from "@/lib/appearance";
 import type { AnglerSettings, FavouriteStation } from "@/types/tackle";
 import { StationPicker } from "@/components/StationPicker";
 import { UnitsToggle } from "@/components/UnitsToggle";
+import { AppearancePicker } from "@/components/AppearancePicker";
 import { AnglerProfileForm } from "@/components/AnglerProfileForm";
 import { RemindersPanel } from "@/components/RemindersPanel";
 
@@ -49,6 +51,11 @@ export default async function SettingsPage() {
               : null
           }
           initialFavourites={(favouritesRes.data as FavouriteStation[]) ?? []}
+        />
+
+        <AppearancePicker
+          initialTheme={isThemeId(settings?.theme) ? settings.theme : DEFAULT_THEME}
+          initialFont={isFontId(settings?.font_pairing) ? settings.font_pairing : DEFAULT_FONT}
         />
 
         <UnitsToggle initialUnits={units} />
