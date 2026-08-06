@@ -196,6 +196,8 @@ export interface AnglerSettings {
   tide_station_lng: number | null;
 
   units: "metric" | "imperial";
+  theme: string;
+  font_pairing: string;
   tide_digest_enabled: boolean;
   last_tide_digest_sent: string | null;
 

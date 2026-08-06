@@ -68,6 +68,14 @@ Sunrise/sunset, moon phase and solunar feeding periods are all calculated in-app
 (`src/lib/sun.ts`, `moonphase.ts`, `solunar.ts`) rather than fetched, so they work
 offline and for any date.
 
+## Appearance
+
+Seven colour grounds and four type pairings, chosen under `/settings` and stored per
+account. Colour is entirely CSS — each option is a `[data-theme]` block in
+`globals.css`, applied via an attribute on `<html>` rendered server-side so there's no
+flash of the wrong ground on navigation. Every value in every theme is checked against
+WCAG AA on the text that renders on it; `src/lib/appearance.ts` holds the option list.
+
 ## Units
 
 Everything stored is metric. Imperial is a display-time conversion applied in one place
