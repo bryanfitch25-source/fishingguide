@@ -47,17 +47,26 @@ begin
 end $$;
 
 -- The items the research flagged as actively unresolved, rather than merely unchecked.
+-- Matched through species.slug rather than a slug column on the row: `regulations` keys
+-- on species_id. An earlier draft of this file wrote `where species_slug = ...`, which
+-- does not exist on this table and would have aborted the migration on its first update
+-- — taking the column additions above down with it, since a failed migration rolls back
+-- whole. Caught by running the chain against a local Postgres rather than by reading it.
 update regulations set verification_status = 'disputed',
   verification_note = 'New Brunswick''s April 2026 invasive-species rule requires mandatory retention in some Recreational Fishery Areas, but whether the established Saint John River catch-and-release fishery is exempt is unresolved. Confirm with NB Natural Resources before keeping or releasing.'
-where species_slug = 'muskellunge' and province = 'NB';
+where province = 'NB'
+  and species_id in (select id from species where slug = 'muskellunge');
 
 update regulations set verification_status = 'disputed',
   verification_note = 'Subject to the April 2026 NB mandatory-retention rule in specific Recreational Fishery Areas. Confirm the current RFA boundaries against the live GNB Fish Regulations Summary.'
-where species_slug in ('chain-pickerel', 'largemouth-bass', 'smallmouth-bass') and province = 'NB';
+where province = 'NB'
+  and species_id in (
+    select id from species where slug in ('chain-pickerel', 'largemouth-bass', 'smallmouth-bass')
+  );
 
 update regulations set verification_status = 'disputed',
   verification_note = 'No DFO notice clearly states whether this counts toward the general recreational groundfish bag limit in the Gulf Region. Treat the limit as unconfirmed.'
-where species_slug in ('acadian-redfish', 'spiny-dogfish');
+where species_id in (select id from species where slug in ('acadian-redfish', 'spiny-dogfish'));
 
 -- ---------------------------------------------------------------------------
 -- Season reminders
