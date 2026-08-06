@@ -9,6 +9,7 @@ import { moonPhase } from "@/lib/moonphase";
 import { downloadCSV } from "@/lib/csv";
 import { LocationsMapLoader } from "./LocationsMapLoader";
 import { CatchInsights } from "./CatchInsights";
+import { CatchCard } from "./CatchCard";
 import {
   cmToLengthInput,
   formatHeight,
@@ -397,6 +398,28 @@ export function CatchLogClient({
     return new Set([...bestBySpecies.values()].map((v) => v.id));
   }, [catches]);
 
+  // Catches arrive newest-first from the query, so walking them in order yields the
+  // months in order too — no second sort needed.
+  const catchesByMonth = useMemo(() => {
+    const groups = new Map<string, Catch[]>();
+    for (const c of catches) {
+      const key = (c.catch_date ?? "").slice(0, 7); // YYYY-MM
+      const list = groups.get(key);
+      if (list) list.push(c);
+      else groups.set(key, [c]);
+    }
+    return [...groups.entries()].map(([key, items]) => ({
+      key,
+      label: key
+        ? new Date(`${key}-01T12:00:00`).toLocaleDateString("en-CA", {
+            month: "long",
+            year: "numeric",
+          })
+        : "Undated",
+      items,
+    }));
+  }, [catches]);
+
   // Prefers the numeric value (unit-aware) and falls back to whatever free text was
   // originally typed, so a catch recorded as "about a footer" still shows something.
   function sizeLabel(c: Catch): string {
@@ -635,7 +658,7 @@ export function CatchLogClient({
                 key={s.slug}
                 title={s.caught ? `First caught ${s.firstCatchDate}` : "Not caught yet"}
                 className={`rounded-full px-2.5 py-1 text-xs font-medium ${
-                  s.caught ? "bg-catches-light text-catches" : "bg-gray-100 text-gray-400"
+                  s.caught ? "bg-catches-light text-catches" : "bg-background text-muted"
                 }`}
               >
                 {s.caught ? "🏅" : "⚪"} {s.common_name}
@@ -645,7 +668,7 @@ export function CatchLogClient({
         </div>
       )}
 
-      {error && <p className="text-sm text-red-700 bg-red-50 rounded px-3 py-2 mb-4">{error}</p>}
+      {error && <p className="mb-4 rounded bg-danger-light px-3 py-2 text-sm text-danger">{error}</p>}
 
       {showForm && (
         <form
@@ -868,93 +891,59 @@ export function CatchLogClient({
           yourself.
         </p>
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-border">
-          <table className="w-full text-sm">
-            <thead className="bg-brand-light">
+        <>
+          {/* Grouped by month so the log stays navigable as it grows, and so the passage
+              of a season is visible rather than implied by a date column. */}
+          {catchesByMonth.map(({ key, label, items }) => (
+            <section key={key} className="mb-6">
+              <h2 className="mb-2 text-xs font-bold uppercase tracking-wide text-muted">
+                {label} · {items.length} catch{items.length === 1 ? "" : "es"}
+              </h2>
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+                {items.map((c) => (
+                  <CatchCard
+                    key={c.id}
+                    c={c}
+                    speciesName={speciesName}
+                    tackleName={tackleName}
+                    isPersonalBest={personalBestIds.has(c.id)}
+                    units={units}
+                    onEdit={() => startEdit(c)}
+                    onDelete={() => handleDelete(c.id)}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+
+          {/* A photo grid prints badly — four tiles a page and the numbers scattered.
+              The Print button still exists, so the old tabular view survives as a
+              print-only sheet rather than being lost with the table. */}
+          <table data-print-only className="hidden w-full text-sm print:table">
+            <thead>
               <tr>
-                <th className="text-left px-3 py-2"></th>
-                <th className="text-left px-3 py-2">Date</th>
-                <th className="text-left px-3 py-2">Species</th>
-                <th className="text-left px-3 py-2">Location</th>
-                <th className="text-left px-3 py-2">Size</th>
-                <th className="text-left px-3 py-2">Tackle</th>
-                <th className="text-left px-3 py-2">Kept?</th>
-                <th className="text-left px-3 py-2" title="Moon phase on the catch date">
-                  Moon
-                </th>
-                <th className="text-left px-3 py-2"></th>
+                {["Date", "Species", "Location", "Size", "Tackle", "Kept?", "Moon"].map((h) => (
+                  <th key={h} className="border-b border-border px-2 py-1 text-left">
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {catches.map((c) => {
-                const moon = moonPhase(c.catch_date);
-                return (
-                  <tr key={c.id} className="border-t border-border align-top">
-                    <td className="px-3 py-2">
-                      {c.photo_url && (
-                        <div className="relative inline-block">
-                          {/* eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo */}
-                          <img
-                            src={c.photo_url}
-                            alt=""
-                            className="h-12 w-12 rounded-lg object-cover border border-border"
-                          />
-                          {c.extra_photo_urls.length > 0 && (
-                            <span className="absolute -right-1 -bottom-1 rounded-full bg-catches text-white text-[10px] font-bold px-1.5 py-0.5">
-                              +{c.extra_photo_urls.length}
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </td>
-                    <td className="px-3 py-2 whitespace-nowrap">{c.catch_date}</td>
-                    <td className="px-3 py-2">
-                      {speciesName(c.species_slug) ?? "—"}
-                      {personalBestIds.has(c.id) && (
-                        <span
-                          className="ml-1.5 rounded-full bg-accent-light px-1.5 py-0.5 text-[10px] font-bold text-accent-dark"
-                          title="Personal best for this species"
-                        >
-                          🏆 PB
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-3 py-2">
-                      {c.location ?? "—"}
-                      {c.lat !== null && c.lng !== null && (
-                        <>
-                          {" "}
-                          <a
-                            href={`https://www.openstreetmap.org/?mlat=${c.lat}&mlon=${c.lng}#map=14/${c.lat}/${c.lng}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-accent hover:underline"
-                          >
-                            📍 map
-                          </a>
-                        </>
-                      )}
-                    </td>
-                    <td className="px-3 py-2">{sizeLabel(c)}</td>
-                    <td className="px-3 py-2">{tackleName(c.tackle_item_id) ?? "—"}</td>
-                    <td className="px-3 py-2">{c.kept ? "Kept" : "Released"}</td>
-                    <td className="px-3 py-2 text-lg" title={moon.name}>
-                      {moon.emoji}
-                    </td>
-                    <td className="px-3 py-2 whitespace-nowrap no-print">
-                      <button onClick={() => startEdit(c)} className="text-accent hover:underline mr-3">
-                        Edit
-                      </button>
-                      <button onClick={() => handleDelete(c.id)} className="text-red-600 hover:underline">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {catches.map((c) => (
+                <tr key={c.id}>
+                  <td className="border-b border-border px-2 py-1">{c.catch_date}</td>
+                  <td className="border-b border-border px-2 py-1">{speciesName(c.species_slug) ?? "—"}</td>
+                  <td className="border-b border-border px-2 py-1">{c.location ?? "—"}</td>
+                  <td className="border-b border-border px-2 py-1">{sizeLabel(c)}</td>
+                  <td className="border-b border-border px-2 py-1">{tackleName(c.tackle_item_id) ?? "—"}</td>
+                  <td className="border-b border-border px-2 py-1">{c.kept ? "Kept" : "Released"}</td>
+                  <td className="border-b border-border px-2 py-1">{moonPhase(c.catch_date).name}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
-        </div>
+        </>
       )}
 
       {toast && (
