@@ -13,6 +13,7 @@ import { TideCurve } from "@/components/TideCurve";
 import { MarineCard } from "@/components/MarineCard";
 import { SolunarCard } from "@/components/SolunarCard";
 import { TideForecastList } from "@/components/TideForecastList";
+import { StationDistance } from "@/components/StationDistance";
 import { localDate } from "@/lib/dates";
 
 export const metadata = {
@@ -91,12 +92,24 @@ export default async function TidesPage() {
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-dark leading-tight">Tides</h1>
-            <p className="text-sm sm:text-base text-muted truncate">
-              {station.name}
-              {/* The "default station" qualifier is the first thing to go when space is
-                  tight — truncating it mid-word reads as a glitch, and the Station
-                  button sitting beside it already says one can be chosen. */}
-              {station.isDefault && <span className="hidden sm:inline"> — default station</span>}
+            {/* Truncation moved onto the name alone. It used to be on the whole line,
+                which would have swallowed the distance and — worse — the "somewhere
+                closer" link, leaving an element that is there but unreachable. The name
+                still gives up its tail first; everything after it stays clickable. */}
+            <p className="text-sm sm:text-base text-muted">
+              <span className="inline-block max-w-full truncate align-bottom">
+                {station.name}
+                {/* The "default station" qualifier is the first thing to go when space is
+                    tight — truncating it mid-word reads as a glitch, and the Station
+                    button sitting beside it already says one can be chosen. */}
+                {station.isDefault && <span className="hidden sm:inline"> — default station</span>}
+              </span>
+              <StationDistance
+                stationId={station.id}
+                stationLat={station.lat}
+                stationLng={station.lng}
+                units={units}
+              />
             </p>
           </div>
           <div className="flex shrink-0 gap-2">

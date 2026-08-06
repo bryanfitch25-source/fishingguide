@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getRegulationsOverview } from "@/lib/data";
 import { ProvinceBadge } from "@/components/Badges";
+import { SeasonStatus } from "@/components/SeasonStatus";
 import type { Province } from "@/types/content";
 
 export const metadata = {
@@ -54,7 +55,10 @@ export default async function RegulationsOverviewPage() {
                         </Link>
                       </td>
                       <td className="px-3 py-2">{row.water_type ?? "—"}</td>
-                      <td className="px-3 py-2">{row.season ?? "—"}</td>
+                      <td className="px-3 py-2">
+                        {row.season ?? "—"}
+                        <SeasonStatus season={row.season} />
+                      </td>
                       <td className="px-3 py-2">{row.bag_limit ?? "—"}</td>
                       <td className="px-3 py-2">{row.size_limit ?? "—"}</td>
                     </tr>
