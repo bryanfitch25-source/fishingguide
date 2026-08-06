@@ -408,6 +408,17 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       : []),
   ];
 
+  // Same grouping as the diagram, minus the empty trays: a heading over nothing is
+  // useful in the diagram (it shows you the physical box) but is just noise in a list.
+  const listGroups = diagramGroups.filter((g) => g.items.length > 0);
+
+  // Everything the app already knows needs doing, which until now was only discoverable
+  // by scrolling to the bottom of an individual card.
+  const needsAttention = {
+    low: items.filter((i) => i.quantity <= LOW_STOCK_THRESHOLD),
+    service: items.filter((i) => isMaintenanceDue(i)),
+  };
+
   interface TrayCell {
     key: string;
     span: number;
@@ -523,7 +534,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
         </button>
         {showTrays && (
           <div className="mt-4 space-y-3">
-            {trayError && <p className="text-sm text-danger bg-red-50 rounded px-3 py-2">{trayError}</p>}
+            {trayError && <p className="rounded bg-danger-light px-3 py-2 text-sm text-danger">{trayError}</p>}
             {trays.length === 0 && (
               <p className="text-sm text-muted">No trays yet — add one below to start organizing.</p>
             )}
@@ -826,7 +837,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
         </div>
       )}
 
-      {error && <p className="text-sm text-red-700 bg-red-50 rounded px-3 py-2 mb-4">{error}</p>}
+      {error && <p className="mb-4 rounded bg-danger-light px-3 py-2 text-sm text-danger">{error}</p>}
 
       {showForm && (
         <form
@@ -1051,6 +1062,40 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
         </form>
       )}
 
+      {/* Answers "what needs doing" before "what do I own". Both lists were already being
+          computed to drive a chip at the bottom of each card, which meant the only way to
+          find a reel due for service was to scroll past every reel that wasn't. Hidden
+          entirely when there's nothing wrong — a permanent "all good" panel is furniture. */}
+      {!loading && (needsAttention.low.length > 0 || needsAttention.service.length > 0) && (
+        <div className="mb-5 rounded-xl border border-danger/40 bg-surface card-lift p-4 no-print">
+          <h2 className="mb-2 text-xs font-bold uppercase tracking-wide text-muted">
+            Needs attention
+          </h2>
+          <ul className="space-y-1.5 text-sm">
+            {needsAttention.low.map((i) => (
+              <li key={`low-${i.id}`} className="flex items-center gap-2">
+                <span className="shrink-0 rounded-full bg-catches-light px-2 py-0.5 text-[10px] font-semibold text-catches">
+                  Low stock
+                </span>
+                <button onClick={() => setDetailItem(i)} className="truncate text-left hover:underline">
+                  {i.name} — {i.quantity} left
+                </button>
+              </li>
+            ))}
+            {needsAttention.service.map((i) => (
+              <li key={`svc-${i.id}`} className="flex items-center gap-2">
+                <span className="shrink-0 rounded-full bg-accent-light px-2 py-0.5 text-[10px] font-semibold text-accent-dark">
+                  Service due
+                </span>
+                <button onClick={() => setDetailItem(i)} className="truncate text-left hover:underline">
+                  {i.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {loading ? (
         <p className="text-muted text-sm">Loading…</p>
       ) : filtered.length === 0 ? (
@@ -1132,80 +1177,92 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           })}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((item) => (
-            <div
-              key={item.id}
-              className={`rounded-xl border bg-surface p-4 ${
-                item.packed ? "border-brand" : "border-border"
-              }`}
-            >
-              <div className="flex items-start gap-3 mb-1">
-                {item.photo_url && (
-                  // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
-                  <img
-                    src={item.photo_url}
-                    alt=""
-                    className="h-14 w-14 shrink-0 rounded-lg object-cover border border-border"
-                  />
-                )}
-                <div className="flex-1 flex items-start justify-between gap-2">
-                  <h3 className="font-bold text-brand-dark">{item.name}</h3>
-                  <span className="shrink-0 rounded-full bg-brand-light px-2 py-0.5 text-xs font-semibold text-brand-dark">
-                    ×{item.quantity}
-                  </span>
-                </div>
-              </div>
-              <p className="text-xs text-muted mb-2 capitalize">
-                {TACKLE_CATEGORIES.find((c) => c.value === item.category)?.label}
-                {item.brand ? ` · ${item.brand}` : ""}
-                {item.model ? ` ${item.model}` : ""}
-              </p>
-              {item.color_size && <p className="text-sm">{item.color_size}</p>}
-              {trayName(item.tray_id) && (
-                <p className="text-sm text-tackle mt-1">🗂️ {trayName(item.tray_id)}</p>
-              )}
-              {item.storage_location && (
-                <p className="text-sm text-muted mt-1">📍 {item.storage_location}</p>
-              )}
-              {item.notes && <p className="text-sm mt-1">{item.notes}</p>}
-              <div className="mt-2 flex flex-wrap gap-1">
-                {item.quantity <= LOW_STOCK_THRESHOLD && (
-                  <span className="rounded-full bg-red-100 text-danger px-2 py-0.5 text-xs font-medium">
-                    ⚠️ Low stock
-                  </span>
-                )}
-                {isMaintenanceDue(item) && (
-                  <span className="rounded-full bg-amber-100 text-amber-800 px-2 py-0.5 text-xs font-medium">
-                    🛠️ Maintenance due
-                  </span>
-                )}
-                {(item.catch_count ?? 0) > 0 && (
-                  <span className="rounded-full bg-catches-light text-catches px-2 py-0.5 text-xs font-medium">
-                    🔥 Used in {item.catch_count} catch{item.catch_count === 1 ? "" : "es"}
-                  </span>
-                )}
-                {item.species_slugs?.map((slug) => (
-                  <span key={slug} className="rounded-full bg-blue-100 text-blue-900 px-2 py-0.5 text-xs">
-                    {speciesName(slug)}
-                  </span>
+        <div className="space-y-5">
+          {/* Grouped by tray rather than a flat grid of cards. A card per item put every
+              attribute on its own line and then a tag pile of variable length underneath,
+              so no two cards were the same height and the grid went ragged. One row per
+              item is uniform, fits far more on a phone, and matches how the gear is
+              actually organised — you look in a tray, not in an alphabetical list. */}
+          {listGroups.map(({ tray, items: groupItems }) => (
+            <section key={tray?.id ?? "untrayed"}>
+              <h2 className="mb-1.5 flex items-baseline gap-2 text-xs font-bold uppercase tracking-wide text-muted">
+                <span className="text-tackle">🗂️ {tray?.name ?? "No tray"}</span>
+                <span>
+                  {groupItems.length} item{groupItems.length === 1 ? "" : "s"}
+                </span>
+              </h2>
+              <div className="overflow-hidden rounded-xl border border-border bg-surface card-lift">
+                {groupItems.map((item, i) => (
+                  <div
+                    key={item.id}
+                    className={`flex items-center gap-3 p-3 ${i > 0 ? "border-t border-border" : ""} ${
+                      item.packed ? "bg-brand-light/40" : ""
+                    }`}
+                  >
+                    {item.photo_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo
+                      <img
+                        src={item.photo_url}
+                        alt=""
+                        className="h-11 w-11 shrink-0 rounded-lg border border-border object-cover"
+                      />
+                    ) : (
+                      <span
+                        aria-hidden
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-lg"
+                      >
+                        {CATEGORY_ICON[item.category]}
+                      </span>
+                    )}
+
+                    <button
+                      onClick={() => setDetailItem(item)}
+                      className="min-w-0 flex-1 text-left"
+                      title="Open details"
+                    >
+                      <p className="truncate font-semibold text-brand-dark">{item.name}</p>
+                      <p className="truncate text-xs text-muted">
+                        {TACKLE_CATEGORIES.find((c) => c.value === item.category)?.label}
+                        {item.brand ? ` · ${item.brand}` : ""}
+                        {item.color_size ? ` · ${item.color_size}` : ""}
+                      </p>
+                      {/* Only exceptions get a chip. Everything else stays quiet, which is
+                          what keeps the rows scannable. */}
+                      {(item.quantity <= LOW_STOCK_THRESHOLD || isMaintenanceDue(item)) && (
+                        <span className="mt-1 inline-flex gap-1">
+                          {item.quantity <= LOW_STOCK_THRESHOLD && (
+                            <span className="rounded-full bg-catches-light px-2 py-0.5 text-[10px] font-semibold text-catches">
+                              Low stock
+                            </span>
+                          )}
+                          {isMaintenanceDue(item) && (
+                            <span className="rounded-full bg-accent-light px-2 py-0.5 text-[10px] font-semibold text-accent-dark">
+                              Service due
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </button>
+
+                    <div className="flex shrink-0 items-center gap-2">
+                      <span className="text-sm tabular-nums text-muted">×{item.quantity}</span>
+                      <label
+                        className="flex cursor-pointer items-center no-print"
+                        title={item.packed ? "Packed for this trip" : "Not packed"}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={item.packed}
+                          onChange={() => togglePacked(item)}
+                          className="h-4 w-4 accent-[var(--color-brand)]"
+                        />
+                        <span className="sr-only">Packed</span>
+                      </label>
+                    </div>
+                  </div>
                 ))}
               </div>
-              <div className="mt-3 flex items-center justify-between gap-3 text-sm no-print">
-                <div className="flex gap-3">
-                  <button onClick={() => startEdit(item)} className="text-accent-dark hover:underline">
-                    Edit
-                  </button>
-                  <button onClick={() => handleDelete(item.id)} className="text-danger hover:underline">
-                    Delete
-                  </button>
-                </div>
-                <label className="flex items-center gap-1.5 text-muted">
-                  <input type="checkbox" checked={item.packed} onChange={() => togglePacked(item)} />
-                  Packed
-                </label>
-              </div>
-            </div>
+            </section>
           ))}
         </div>
       )}
@@ -1321,7 +1378,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               {detailItem.storage_location && <p>📍 {detailItem.storage_location}</p>}
               {detailItem.notes && <p className="pt-1 whitespace-pre-wrap">{detailItem.notes}</p>}
               {(detailItem.last_serviced_on || detailItem.maintenance_interval_days) && (
-                <p className={isMaintenanceDue(detailItem) ? "text-amber-800" : ""}>
+                <p className={isMaintenanceDue(detailItem) ? "text-accent-dark" : ""}>
                   🛠️ {isMaintenanceDue(detailItem) ? "Maintenance due" : "Last serviced"}
                   {detailItem.last_serviced_on ? ` ${detailItem.last_serviced_on}` : ""}
                   {detailItem.maintenance_interval_days ? ` · every ${detailItem.maintenance_interval_days} days` : ""}
@@ -1331,7 +1388,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               {(detailItem.species_slugs?.length ?? 0) > 0 && (
                 <div className="pt-2 flex flex-wrap gap-1">
                   {detailItem.species_slugs!.map((slug) => (
-                    <span key={slug} className="rounded-full bg-blue-100 text-blue-900 px-2 py-0.5 text-xs">
+                    <span key={slug} className="rounded-full bg-brand-light px-2 py-0.5 text-xs text-brand-dark">
                       {speciesName(slug)}
                     </span>
                   ))}
