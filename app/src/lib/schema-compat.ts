@@ -66,6 +66,34 @@ export async function writeWithSchemaFallback<T extends Record<string, unknown>>
   return { error: second.error, degraded: second.error === null };
 }
 
+/**
+ * The read-side counterpart, and the one this file originally forgot.
+ *
+ * Everything above guards *writes*, on the reasoning that a write naming a missing column
+ * fails outright while a read is harmless. That reasoning was wrong. A PostgREST select
+ * naming a column that doesn't exist yet is rejected exactly the same way, and a caller
+ * that treats "the query errored" as "there is no such row" turns a pending migration into
+ * a 404 on content sitting right there in the database.
+ *
+ * Which is what happened. Adding two regulation columns to the species detail select took
+ * all 27 species guide pages to 404 in production, because the page calls notFound() when
+ * the lookup returns null. The columns were optional decoration on a badge; the pages they
+ * broke are the entire point of the app.
+ *
+ * So: run the query with the full column list, and if it fails only because the schema is
+ * older than the code, run it again with the narrower one. The new fields come back
+ * undefined, every consumer of them is already optional, and the page renders.
+ */
+export async function readWithSchemaFallback<T>(
+  run: (select: string) => PromiseLike<{ data: T; error: PostgrestError | null }>,
+  fullSelect: string,
+  baseSelect: string
+): Promise<{ data: T; error: PostgrestError | null }> {
+  const first = await run(fullSelect);
+  if (!first.error || !isMissingSchemaError(first.error)) return first;
+  return run(baseSelect);
+}
+
 /** Shown wherever a write had to fall back, so the cause isn't a mystery. */
 export const MIGRATION_PENDING_NOTICE =
   "Saved — but the tide and conditions fields aren't in the database yet. Run the pending migration (supabase db push) to start recording them.";
