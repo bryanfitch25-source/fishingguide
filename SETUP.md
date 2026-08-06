@@ -65,6 +65,9 @@ of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 - `20260728120000_images_and_variants.sql`, `20260729180000_real_photos_only.sql` — species photos + "Forms & Lookalikes" variants
 - `20260730100000_tackle_and_catches.sql` — `tackle_items`, `tackle_item_species`, `catches` tables, RLS scoped to `auth.uid()` (private, per-account)
 - `20260804120000_slack_water_tides_units_profile.sql` — applied ✅: tide station + units + profile columns on `angler_settings`, the `favourite_stations` table (capped at 8 by a trigger), and the conditions-snapshot columns on `catches`. Also backfills numeric `length_cm` / `weight_kg` by parsing the existing free-text values, leaving the originals in place for anything it can't read.
+- `20260806140000_repair_fraction_measurements.sql` — **needs applying**: recomputes catch measurements written as fractions, which the earlier backfill got wrong by up to 433%. The only migration here that overwrites rather than fills — run the review query in its header first to see what it will change.
+- `20260806150000_catch_counts_and_index.sql` — **needs applying**: indexes `catches.tackle_item_id` and adds a `tackle_item_catch_counts` view.
+- `20260806160000_upgrades.sql` — **needs applying**: structured regulation seasons, regulation verification status, season-reminder preferences.
 - `20260806120000_appearance_preferences.sql` — **needs applying**: `theme` and `font_pairing` on `angler_settings`, backing the colour and type pickers in Settings. Purely display preferences — the app falls back to the default ground if the columns are missing.
 
 To update content later: edit the JSON in `research/`, run

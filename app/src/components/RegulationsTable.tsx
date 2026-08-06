@@ -1,5 +1,42 @@
 import type { Regulation } from "@/types/content";
 import { provinceLabel } from "./Badges";
+import { parseSeason, isOpen, daysUntilOpen } from "@/lib/season";
+
+// Open/closed, where the written season is unambiguous enough to say so.
+//
+// Only about one regulation in seven has a season written as a single clean date range;
+// the rest describe several seasons, or vary by water body, and the parser deliberately
+// refuses those. So this badge is absent far more often than it is present — which is
+// the intended behaviour. A status that appears only when it is certain is trustworthy;
+// one that guesses at the rest would be worse than none, because a reader cannot tell
+// which kind they are looking at.
+function SeasonStatus({ season }: { season: string }) {
+  const parsed = parseSeason(season);
+  if (!parsed) return null;
+  const open = isOpen(parsed);
+  const days = daysUntilOpen(parsed);
+  return (
+    <span
+      className={`ml-2 rounded-full px-2 py-0.5 text-[10px] font-bold ${
+        open ? "bg-success-light text-success" : "bg-accent-light text-accent-dark"
+      }`}
+      title="Derived from the season text beside it — always confirm against the official source."
+    >
+      {open ? "OPEN NOW" : days !== null && days <= 60 ? `OPENS IN ${days}D` : "CLOSED"}
+    </span>
+  );
+}
+
+const VERIFICATION: Record<string, { label: string; className: string; }> = {
+  disputed: {
+    label: "⚠ Needs confirming",
+    className: "bg-danger-light text-danger",
+  },
+  unverified: {
+    label: "Not independently checked",
+    className: "bg-background text-muted",
+  },
+};
 
 export function RegulationsTable({ regulations }: { regulations: Regulation[] }) {
   if (!regulations.length) {
@@ -17,9 +54,18 @@ export function RegulationsTable({ regulations }: { regulations: Regulation[] })
         <div key={reg.id} className="rounded-lg border border-border bg-surface p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
             <h4 className="font-bold text-brand-dark">{provinceLabel(reg.province)}</h4>
-            {reg.last_verified && (
-              <span className="text-xs text-muted">Verified {reg.last_verified}</span>
-            )}
+            <span className="flex shrink-0 items-center gap-2">
+              {reg.verification_status && VERIFICATION[reg.verification_status] && (
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${VERIFICATION[reg.verification_status].className}`}
+                >
+                  {VERIFICATION[reg.verification_status].label}
+                </span>
+              )}
+              {reg.last_verified && (
+                <span className="text-xs text-muted">Verified {reg.last_verified}</span>
+              )}
+            </span>
           </div>
           <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
             {reg.water_type && (
@@ -31,7 +77,10 @@ export function RegulationsTable({ regulations }: { regulations: Regulation[] })
             {reg.season && (
               <div>
                 <dt className="text-muted">Season</dt>
-                <dd>{reg.season}</dd>
+                <dd>
+                  {reg.season}
+                  <SeasonStatus season={reg.season} />
+                </dd>
               </div>
             )}
             {reg.bag_limit && (
@@ -47,6 +96,11 @@ export function RegulationsTable({ regulations }: { regulations: Regulation[] })
               </div>
             )}
           </dl>
+          {reg.verification_note && (
+            <p className="mt-2 rounded-lg bg-danger-light px-3 py-2 text-sm text-danger">
+              {reg.verification_note}
+            </p>
+          )}
           {reg.notes && <p className="mt-2 text-sm">{reg.notes}</p>}
           {reg.source_url && (
             <a
