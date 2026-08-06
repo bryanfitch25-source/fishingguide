@@ -10,6 +10,7 @@ import { downloadCSV } from "@/lib/csv";
 import { LocationsMapLoader } from "./LocationsMapLoader";
 import { CatchInsights } from "./CatchInsights";
 import { CatchCard } from "./CatchCard";
+import { localDate } from "@/lib/dates";
 import {
   cmToLengthInput,
   formatHeight,
@@ -56,7 +57,7 @@ interface TackleOption {
 }
 
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  return localDate();
 }
 
 async function fetchAll(
@@ -209,7 +210,7 @@ export function CatchLogClient({
     const now = new Date();
     setForm({
       ...emptyForm,
-      catch_date: now.toISOString().slice(0, 10),
+      catch_date: localDate(now),
       caught_at: now.toISOString(),
       snapshot: conditions,
       location: conditions?.stationName ?? "",

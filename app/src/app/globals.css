@@ -37,6 +37,7 @@
   --catches: #BE123C;
   --catches-light: #FDE5EB;
   --muted: #5C6B66;
+  --success-light: #DDF0E3;
   --success: #15803D;
   --danger-light: #FDE5EB;
   --danger: #B91C1C;
@@ -69,6 +70,7 @@
   --catches: #FF9182;
   --catches-light: #3D2320;
   --muted: #A0B6C6;
+  --success-light: #123326;
   --success: #5CD68A;
   --danger-light: #3D2320;
   --danger: #FF9182;
@@ -97,6 +99,7 @@
   --catches: #9E2B2B;
   --catches-light: #EFD3CB;
   --muted: #57503C;
+  --success-light: #D5E3D0;
   --success: #2F6B33;
   --danger-light: #EFD3CB;
   --danger: #9E2B2B;
@@ -125,6 +128,7 @@
   --catches: #9B2833;
   --catches-light: #EBD0D2;
   --muted: #45594F;
+  --success-light: #CFE3D3;
   --success: #2C6A3A;
   --danger-light: #EBD0D2;
   --danger: #9B2833;
@@ -153,6 +157,7 @@
   --catches: #BE123C;
   --catches-light: #FDE5EB;
   --muted: #5C6B66;
+  --success-light: #DDF0E3;
   --success: #15803D;
   --danger-light: #FDE5EB;
   --danger: #B91C1C;
@@ -181,6 +186,7 @@
   --catches: #A02224;
   --catches-light: #F2D6CE;
   --muted: #575039;
+  --success-light: #D9E8D4;
   --success: #2C6A33;
   --danger-light: #F2D6CE;
   --danger: #A02224;
@@ -209,6 +215,7 @@
   --catches: #AC1F3C;
   --catches-light: #F5D8DE;
   --muted: #4E6165;
+  --success-light: #D6EDDD;
   --success: #15703C;
   --danger-light: #F5D8DE;
   --danger: #AC1F3C;
@@ -237,6 +244,7 @@
   --catches: #A31D38;
   --catches-light: #F1D4DA;
   --muted: #4A5D61;
+  --success-light: #D3E8DC;
   --success: #146836;
   --danger-light: #F1D4DA;
   --danger: #A31D38;
@@ -270,6 +278,7 @@
   --color-catches-light: var(--catches-light);
   --color-muted: var(--muted);
   --color-success: var(--success);
+  --color-success-light: var(--success-light);
   --color-danger: var(--danger);
   --color-danger-light: var(--danger-light);
   --color-on-brand: var(--on-brand);

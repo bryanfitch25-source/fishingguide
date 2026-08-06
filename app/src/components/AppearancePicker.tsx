@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase-browser";
 import { isMissingSchemaError } from "@/lib/schema-compat";
@@ -12,6 +12,7 @@ import {
   type ThemeOption,
 } from "@/lib/appearance";
 import { AccentCard } from "./AccentCard";
+import { writeAppearanceCookie } from "./ThemeScript";
 
 // Colour and type, chosen from Settings.
 //
@@ -22,9 +23,13 @@ import { AccentCard } from "./AccentCard";
 export function AppearancePicker({
   initialTheme,
   initialFont,
+  syncFromAccount = false,
 }: {
   initialTheme: ThemeId;
   initialFont: FontId;
+  /** Write the account's stored preference into the cookie on mount, for a device that
+   *  has signed in but never picked anything here. */
+  syncFromAccount?: boolean;
 }) {
   const supabase = useMemo(() => createClient(), []);
   const router = useRouter();
@@ -63,9 +68,11 @@ export function AppearancePicker({
     const previous = theme;
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
+    writeAppearanceCookie(next, font);
     save("theme", next, () => {
       setTheme(previous);
       document.documentElement.setAttribute("data-theme", previous);
+      writeAppearanceCookie(previous, font);
     });
   }
 
@@ -73,11 +80,23 @@ export function AppearancePicker({
     const previous = font;
     setFont(next);
     document.documentElement.setAttribute("data-font", next);
+    writeAppearanceCookie(theme, next);
     save("font_pairing", next, () => {
       setFont(previous);
       document.documentElement.setAttribute("data-font", previous);
+      writeAppearanceCookie(theme, previous);
     });
   }
+
+  useEffect(() => {
+    if (!syncFromAccount) return;
+    writeAppearanceCookie(initialTheme, initialFont);
+    document.documentElement.setAttribute("data-theme", initialTheme);
+    document.documentElement.setAttribute("data-font", initialFont);
+    // Runs once on mount; the values come from the server render and don't change
+    // underneath it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const groups: ThemeOption["group"][] = ["Dark", "Mid-tone", "Light"];
 

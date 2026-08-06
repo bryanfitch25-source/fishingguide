@@ -7,9 +7,9 @@ const PROVINCE_LABEL: Record<Province, string> = {
 };
 
 const CATEGORY_STYLE: Record<SpeciesCategory, string> = {
-  freshwater: "bg-blue-100 text-blue-900",
+  freshwater: "bg-brand-light text-brand-dark",
   saltwater: "bg-teal-100 text-teal-900",
-  anadromous: "bg-purple-100 text-purple-900",
+  anadromous: "bg-catches-light text-catches",
 };
 
 export function ProvinceBadge({ province }: { province: Province }) {

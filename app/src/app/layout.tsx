@@ -14,7 +14,7 @@ import { HeaderNav } from "@/components/HeaderNav";
 import { BackgroundScene } from "@/components/BackgroundScene";
 import { PWARegister } from "@/components/PWARegister";
 import { BackButton } from "@/components/BackButton";
-import { getAppearance } from "@/lib/get-appearance";
+import { ThemeScript } from "@/components/ThemeScript";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,24 +27,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// The three alternative pairings offered in Settings. next/font self-hosts these and
-// emits @font-face with `display: swap`; a browser only downloads the faces that
-// rendered text actually resolves to, so carrying four options costs nothing to the
-// three of them nobody has selected.
+// The three alternative pairings offered in Settings.
+//
+// preload:false on all of them. next/font preloads by default, which emitted a
+// <link rel=preload> for all eight faces and had every visitor download 191 KB of
+// fonts on every page — for three pairings nobody had selected. With preload off they
+// are fetched only when the CSS actually resolves to them, i.e. once, on the deliberate
+// act of choosing one. Geist keeps its preload, since it is the default and is always
+// the face in use until someone changes it.
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
   subsets: ["latin"],
   weight: ["400", "600"],
+  preload: false,
 });
 const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
   weight: ["500"],
+  preload: false,
 });
-const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
-const sourceSans = Source_Sans_3({ variable: "--font-source-sans", subsets: ["latin"] });
-const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"] });
-const publicSans = Public_Sans({ variable: "--font-public-sans", subsets: ["latin"] });
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], preload: false });
+const sourceSans = Source_Sans_3({ variable: "--font-source-sans", subsets: ["latin"], preload: false });
+const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], preload: false });
+const publicSans = Public_Sans({ variable: "--font-public-sans", subsets: ["latin"], preload: false });
 
 const FONT_VARIABLES = [
   geistSans.variable,
@@ -88,23 +94,20 @@ export const viewport = {
   viewportFit: "cover" as const,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Resolved on the server so the correct ground is in the very first byte of HTML.
-  // Reading it client-side would paint the default theme first and then swap, which on
-  // a dark preference is a full-screen white flash on every navigation.
-  const { theme, font } = await getAppearance();
-
+  // No appearance read here on purpose. Resolving it server-side meant a cookie read in
+  // the layout, which opted every route beneath it out of static rendering — the whole
+  // public guide stopped being served from the CDN. ThemeScript applies it from the
+  // client before first paint instead; see that file for why it has to be inline.
   return (
-    <html
-      lang="en"
-      data-theme={theme}
-      data-font={font}
-      className={`${FONT_VARIABLES} h-full antialiased`}
-    >
+    <html lang="en" className={`${FONT_VARIABLES} h-full antialiased`}>
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-full flex flex-col">
         <PWARegister />
         <BackgroundScene />

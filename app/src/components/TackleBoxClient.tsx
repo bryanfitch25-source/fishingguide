@@ -29,14 +29,16 @@ async function fetchItems(
       .from("tackle_items")
       .select("*, tackle_item_species(species_slug)")
       .order("created_at", { ascending: false }),
-    supabase.from("catches").select("tackle_item_id").not("tackle_item_id", "is", null),
+    // Counted in the database rather than by pulling every catch row to the browser
+    // and tallying them here. See the tackle_item_catch_counts view.
+    supabase.from("tackle_item_catch_counts").select("tackle_item_id, catch_count"),
   ]);
 
   if (itemsRes.error) return { items: [], error: itemsRes.error.message };
 
   const catchCounts = new Map<string, number>();
-  for (const row of (catchesRes.data as { tackle_item_id: string }[] | null) ?? []) {
-    catchCounts.set(row.tackle_item_id, (catchCounts.get(row.tackle_item_id) ?? 0) + 1);
+  for (const row of (catchesRes.data as { tackle_item_id: string; catch_count: number }[] | null) ?? []) {
+    catchCounts.set(row.tackle_item_id, row.catch_count);
   }
 
   return {
@@ -191,7 +193,18 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
 
   async function resetPackList() {
     if (!confirm("Unpack everything?")) return;
-    const { error } = await supabase.from("tackle_items").update({ packed: false }).eq("packed", true);
+    // Scoped to the signed-in angler as well as relying on RLS. This is the only
+    // destructive write in the app whose blast radius depended entirely on a policy
+    // being correct, and policies get edited.
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase
+      .from("tackle_items")
+      .update({ packed: false })
+      .eq("user_id", user.id)
+      .eq("packed", true);
     if (error) setError(error.message);
     else loadAll();
   }

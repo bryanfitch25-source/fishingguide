@@ -63,7 +63,7 @@ export function AccentCard({
 export function TideStatePill({ state }: { state: "rising" | "falling" | "unknown" }) {
   if (state === "unknown") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-bold text-gray-600">
+      <span className="inline-flex items-center gap-1 rounded-full bg-background px-2.5 py-1 text-xs font-bold text-muted">
         — DIRECTION UNKNOWN
       </span>
     );
