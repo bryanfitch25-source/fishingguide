@@ -1,4 +1,5 @@
 import { supabase, isSupabaseConfigured } from "./supabase";
+import { readWithSchemaFallback } from "./schema-compat";
 import type {
   Species,
   SpeciesWithContent,
@@ -10,15 +11,27 @@ import type {
 const SPECIES_LIST_SELECT =
   "id, slug, common_name, scientific_name, category, provinces, summary, image_path, image_credit, image_license, image_source_url";
 
-const SPECIES_DETAIL_SELECT = `
+// Regulation columns split into the ones that have always existed and the two added by
+// 20260806160000_upgrades.sql, so a deploy that lands before the migration can fall back
+// to the first list instead of failing the whole select. See readWithSchemaFallback.
+const REGULATION_BASE_COLUMNS =
+  "id, province, water_type, season, bag_limit, size_limit, notes, source_url, last_verified";
+const REGULATION_VERIFICATION_COLUMNS = "verification_status, verification_note";
+
+const speciesDetailSelect = (regulationColumns: string) => `
   id, slug, common_name, scientific_name, category, provinces, summary,
   image_path, image_credit, image_license, image_source_url,
   guide_sections ( id, position, heading, body_md, sources ),
-  regulations ( id, province, water_type, season, bag_limit, size_limit, notes, source_url, last_verified, verification_status, verification_note ),
+  regulations ( ${regulationColumns} ),
   quick_reference ( id, position, label, value ),
   species_sources ( label, url ),
   species_variants ( id, position, name, kind, scientific_name, how_to_tell, where_found, notes, image_path, image_credit, image_license, image_source_url )
 `;
+
+const SPECIES_DETAIL_SELECT = speciesDetailSelect(
+  `${REGULATION_BASE_COLUMNS}, ${REGULATION_VERIFICATION_COLUMNS}`
+);
+const SPECIES_DETAIL_SELECT_PRE_MIGRATION = speciesDetailSelect(REGULATION_BASE_COLUMNS);
 
 const LOCATION_LIST_SELECT = "id, slug, title, province, region_name, intro_md, lat, lng";
 
@@ -72,12 +85,12 @@ export async function getAllSpecies(): Promise<Species[]> {
 
 export async function getSpeciesBySlug(slug: string): Promise<SpeciesWithContent | null> {
   if (!isSupabaseConfigured) return null;
-  const { data, error } = await supabase
-    .from("species")
-    .select(SPECIES_DETAIL_SELECT)
-    .eq("slug", slug)
-    .eq("is_published", true)
-    .maybeSingle();
+  const { data, error } = await readWithSchemaFallback(
+    (select) =>
+      supabase.from("species").select(select).eq("slug", slug).eq("is_published", true).maybeSingle(),
+    SPECIES_DETAIL_SELECT,
+    SPECIES_DETAIL_SELECT_PRE_MIGRATION
+  );
   if (error) {
     console.error("getSpeciesBySlug error", error);
     return null;
