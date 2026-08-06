@@ -10,7 +10,7 @@ export function SeasonalityHeatmap({ species }: { species: Species[] }) {
     .sort((a, b) => a.species.common_name.localeCompare(b.species.common_name));
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border bg-surface">
+    <div className="overflow-x-auto rounded-xl border border-border bg-surface card-lift">
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="bg-brand-light">

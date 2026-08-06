@@ -7,7 +7,7 @@ export function SpeciesCard({ species }: { species: Species }) {
   return (
     <Link
       href={`/species/${species.slug}`}
-      className="group block overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition hover:shadow-md hover:border-brand"
+      className="group block overflow-hidden rounded-xl border border-border bg-surface card-lift shadow-sm transition hover:shadow-md hover:border-brand"
     >
       <div className="relative h-40 w-full bg-brand-light">
         {species.image.path ? (

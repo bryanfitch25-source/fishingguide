@@ -40,7 +40,7 @@ export function AccentCard({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border bg-surface ${TONE_RING[tone]} ${className}`}
+      className={`relative overflow-hidden rounded-xl border bg-surface card-lift ${TONE_RING[tone]} ${className}`}
     >
       <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TONE_BAR[tone]}`} />
       <div className="p-4 pl-5 sm:p-5 sm:pl-6">

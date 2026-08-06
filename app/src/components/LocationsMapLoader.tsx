@@ -9,7 +9,7 @@ import type { MapPin } from "./LocationsMap";
 const LocationsMap = dynamic(() => import("./LocationsMap").then((m) => m.LocationsMap), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[480px] items-center justify-center rounded-xl border border-border bg-surface text-sm text-muted">
+    <div className="flex h-[480px] items-center justify-center rounded-xl border border-border bg-surface card-lift text-sm text-muted">
       Loading map…
     </div>
   ),

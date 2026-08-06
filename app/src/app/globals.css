@@ -1,10 +1,24 @@
 @import "tailwindcss";
 
+/* Surfaces are warm chart paper, not white.
+
+   The reference is a real nautical chart: CHS and Admiralty charts print on a warm
+   buff stock with cyan-teal water, which is exactly the pairing this app already has
+   in its ocean-teal brand — and it suits a tide app better than the office-document
+   white it replaces. Practically, pure white cards over the photographic backgrounds
+   punched out as hard bright rectangles; dropping the surface a few points of
+   luminance and warming it lets the cards sit on the scenery instead of over it.
+
+   Every value below is checked against WCAG AA on the text that actually renders on
+   it — body #14231f, muted, brand teal, accent amber and the catches rose all clear
+   4.5:1 on --surface. The page background is deliberately a touch lighter than a
+   deeper buff would look, because brand teal on it lands at 4.55:1 and anything
+   darker drops the link colour below AA. */
 :root {
-  --background: #f6f7f5;
+  --background: #f1ece3;
   --foreground: #14231f;
-  --surface: #ffffff;
-  --border: #dde3df;
+  --surface: #faf7f1;
+  --border: #d5cab6;
 
   /* Ocean teal — primary brand color, used for nav/links/primary buttons */
   --brand: #0e7490;
@@ -83,19 +97,31 @@ body {
 .scene-overlay {
   position: absolute;
   inset: 0;
+  /* Warm wash rather than white, so the scenery is knocked back toward the same
+     paper tone as the cards instead of toward a grey haze. */
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.42) 30%,
-    rgba(255, 255, 255, 0.5) 100%
+    rgba(241, 236, 227, 0.62) 0%,
+    rgba(241, 236, 227, 0.46) 30%,
+    rgba(241, 236, 227, 0.56) 100%
   );
 }
 
 .scene-panel {
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(250, 247, 241, 0.86);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* Cards used to rely on a hard white-against-photo edge to read as raised. With a
+   warmer, closer surface that edge is gone, so the lift comes from a soft shadow
+   instead — warm-tinted and very low opacity, since a neutral grey shadow over warm
+   paper reads as dirt. */
+.card-lift {
+  box-shadow:
+    0 1px 2px rgba(74, 60, 40, 0.05),
+    0 4px 14px -6px rgba(74, 60, 40, 0.12);
 }
 
 /* Print-friendly output for the Catch Log, Tackle Box, and Trip Planner — hides chrome

@@ -19,7 +19,7 @@ export async function EnvironmentPanel({ lat, lng }: { lat: number; lng: number 
   const upcomingTides = tide?.events?.filter((e) => new Date(e.time).getTime() >= nowMs).slice(0, 4) ?? [];
 
   return (
-    <div className="rounded-xl border border-border bg-surface p-5">
+    <div className="rounded-xl border border-border bg-surface card-lift p-5">
       <div className="flex items-center justify-between gap-2 mb-4">
         <h3 className="font-bold text-brand-dark">Conditions Right Now</h3>
         <span

@@ -85,7 +85,7 @@ export default function KnotsPage() {
       </div>
       <div className="space-y-6">
         {KNOTS.map((k) => (
-          <section key={k.name} className="rounded-xl border border-border bg-surface p-5">
+          <section key={k.name} className="rounded-xl border border-border bg-surface card-lift p-5">
             <h2 className="text-lg font-bold text-brand-dark mb-1">{k.name}</h2>
             <p className="text-sm text-muted mb-3">{k.useCase}</p>
             <ol className="list-decimal list-inside space-y-1 text-sm">

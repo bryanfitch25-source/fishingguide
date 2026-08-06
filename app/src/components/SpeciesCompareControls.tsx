@@ -24,7 +24,7 @@ export function SpeciesCompareControls({ species, selected }: { species: Species
   }
 
   return (
-    <div className="no-print mb-6 rounded-xl border border-border bg-surface p-4">
+    <div className="no-print mb-6 rounded-xl border border-border bg-surface card-lift p-4">
       <p className="text-sm font-medium mb-2">Pick up to {MAX_COMPARE} species to compare</p>
       <input
         value={query}
