@@ -37,11 +37,37 @@ function monthNumber(word: string): number | null {
 const RANGE = /([A-Za-z]{3,9})\.?\s+(\d{1,2})\s*(?:[–—-]|to|through)\s*([A-Za-z]{3,9})\.?\s+(\d{1,2})/gi;
 
 /**
+ * A second season, or a date the range syntax cannot see, written as prose rather than
+ * as another Month-Day range.
+ *
+ * The first version of this guard only caught a semicolon or a second parseable range,
+ * and it was not enough. Live on the site it let through:
+ *
+ *   "Halifax Harbour and west (incl. Bay of Fundy): open Feb 1 - Dec 31. Hartlen Point
+ *    east to Cape North: open 3rd Saturday in June through Labour Day."
+ *
+ * which got a confident OPEN NOW off the first clause — true west of Hartlen Point and
+ * wrong east of it. The second season is real; it is just written in named days that the
+ * range syntax cannot match, so the count-the-ranges test saw one season where there are
+ * two. That is precisely the failure this guard exists to prevent, and it shipped.
+ *
+ * So: a full stop followed by a new sentence, a named-day season, or a hedge word all
+ * mean the text is saying more than the one range extracted from it.
+ */
+const SENTENCE_BREAK = /[.!]\s+[A-Z(]/;
+const NAMED_DAY =
+  /\b\d+(?:st|nd|rd|th)\s+\w+day\b|labou?r day|victoria day|thanksgiving|good friday|easter|civic holiday/i;
+const HEDGE =
+  /\bvaries?\b|\bvarying\b|\bdepend\w*\b|\bdiffer\w*\b|\bapprox\w*\b|\broughly\b|general window|~/i;
+
+/**
  * True when the text describes more than one season, or qualifies one heavily.
  *
  * This guard is why the parse rate is deliberately low. Measured against the 78 real
- * season strings in the content: 11 are a single clean range, 20 contain several ranges
- * or clause separators, and 47 have no range at all. Strings like
+ * season strings in the content, 6 survive it — 4 distinct strings across brook trout,
+ * smallmouth bass and winter flounder. Before the sentence-break, named-day and hedge
+ * tests were added it was 11, and 5 of those 11 were wrong or heavily qualified.
+ * Strings like
  *
  *   "Most RFAs: rivers/streams May 1–Sep 15; lakes May 15–Sep 15 (varies by RFA)"
  *   "Apr 1–Sep 30 inland; Sep 1–30 fly/unbaited-lure only province-wide"
@@ -52,7 +78,12 @@ const RANGE = /([A-Za-z]{3,9})\.?\s+(\d{1,2})\s*(?:[–—-]|to|through)\s*([A-Z
  */
 function isAmbiguous(text: string): boolean {
   const ranges = text.match(RANGE);
-  return (ranges?.length ?? 0) > 1 || text.includes(";");
+  if ((ranges?.length ?? 0) > 1) return true;
+  if (text.includes(";")) return true;
+  if (SENTENCE_BREAK.test(text)) return true;
+  if (NAMED_DAY.test(text)) return true;
+  if (HEDGE.test(text)) return true;
+  return false;
 }
 
 export function parseSeason(text: string | null | undefined): ParsedSeason | null {
