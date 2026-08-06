@@ -124,7 +124,7 @@ export function RemindersPanel() {
   }
 
   return (
-    <div className="mb-6 rounded-xl border border-border bg-surface p-4">
+    <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-4">
       <h3 className="font-bold text-brand-dark mb-3">🔔 Reminders</h3>
       <div className="flex flex-wrap items-end gap-3 mb-3">
         <div>

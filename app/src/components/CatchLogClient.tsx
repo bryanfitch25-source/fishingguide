@@ -508,23 +508,23 @@ export function CatchLogClient({
     <div>
       {catches.length > 0 && (
         <div className="mb-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
-          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+          <div className="rounded-xl border border-border bg-surface card-lift p-3 text-center">
             <p className="text-2xl font-extrabold text-catches">{stats.total}</p>
             <p className="text-xs text-muted">Total Catches</p>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+          <div className="rounded-xl border border-border bg-surface card-lift p-3 text-center">
             <p className="text-2xl font-extrabold text-catches">{stats.uniqueSpecies}</p>
             <p className="text-xs text-muted">Species Caught</p>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+          <div className="rounded-xl border border-border bg-surface card-lift p-3 text-center">
             <p className="text-2xl font-extrabold text-catches">{stats.thisYear}</p>
             <p className="text-xs text-muted">This Year ({thisYear})</p>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+          <div className="rounded-xl border border-border bg-surface card-lift p-3 text-center">
             <p className="text-2xl font-extrabold text-catches">{stats.kept}</p>
             <p className="text-xs text-muted">Kept</p>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-3 text-center">
+          <div className="rounded-xl border border-border bg-surface card-lift p-3 text-center">
             <p className="text-2xl font-extrabold text-catches">{stats.released}</p>
             <p className="text-xs text-muted">Released</p>
           </div>
@@ -596,14 +596,14 @@ export function CatchLogClient({
       </div>
 
       {showPatterns && (
-        <div className="mb-6 rounded-xl border border-border bg-surface p-5">
+        <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-5">
           <h3 className="font-bold text-brand-dark mb-3">📊 Patterns</h3>
           <CatchInsights catches={catches} units={units} />
         </div>
       )}
 
       {showInsights && (
-        <div className="mb-6 rounded-xl border border-border bg-surface p-5">
+        <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-5">
           <h3 className="font-bold text-brand-dark mb-3">📅 {thisYear} in Review</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-5">
             <div>
@@ -650,7 +650,7 @@ export function CatchLogClient({
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="mb-8 rounded-xl border border-border bg-surface p-5 space-y-4 no-print"
+          className="mb-8 rounded-xl border border-border bg-surface card-lift p-5 space-y-4 no-print"
         >
           <h2 className="font-bold text-brand-dark">{form.id ? "Edit Catch" : "New Catch"}</h2>
 

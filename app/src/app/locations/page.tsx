@@ -40,7 +40,7 @@ export default async function LocationsIndexPage() {
           <Link
             key={loc.id}
             href={`/locations/${loc.slug}`}
-            className="group block rounded-xl border border-border bg-surface p-5 shadow-sm transition hover:shadow-md hover:border-brand"
+            className="group block rounded-xl border border-border bg-surface card-lift p-5 shadow-sm transition hover:shadow-md hover:border-brand"
           >
             <div className="flex items-start justify-between gap-2 mb-1">
               <h2 className="text-lg font-bold text-brand-dark group-hover:text-brand">

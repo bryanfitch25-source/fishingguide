@@ -163,7 +163,7 @@ export function NearMe({
       </div>
 
       {loc.status === "located" && env && (
-        <div className="mb-8 rounded-xl border border-border bg-surface p-5">
+        <div className="mb-8 rounded-xl border border-border bg-surface card-lift p-5">
           <div className="flex items-center justify-between gap-2 mb-3">
             <h3 className="font-bold text-brand-dark">Conditions Right Now</h3>
             <span
@@ -235,7 +235,7 @@ export function NearMe({
               <Link
                 key={guide.id}
                 href={`/locations/${guide.slug}`}
-                className="group rounded-xl border border-border bg-surface p-4 hover:border-brand transition"
+                className="group rounded-xl border border-border bg-surface card-lift p-4 hover:border-brand transition"
               >
                 <span className="font-semibold text-brand-dark group-hover:text-brand">
                   {guide.title}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { HeaderNav } from "@/components/HeaderNav";
 import { BackgroundScene } from "@/components/BackgroundScene";
 import { PWARegister } from "@/components/PWARegister";
+import { BackButton } from "@/components/BackButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -69,11 +70,17 @@ export default function RootLayout({
           className="no-print relative border-b border-border bg-surface sticky top-0 z-20"
           style={{ paddingTop: "env(safe-area-inset-top)" }}
         >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-brand-dark shrink-0">
-              <span aria-hidden>🎣</span>
-              <span>Maritime Angler</span>
-            </Link>
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
+            <div className="flex min-w-0 items-center gap-1">
+              <BackButton />
+              <Link
+                href="/"
+                className="flex items-center gap-2 font-bold text-base sm:text-lg text-brand-dark shrink-0"
+              >
+                <span aria-hidden>🎣</span>
+                <span>Maritime Angler</span>
+              </Link>
+            </div>
             <HeaderNav />
           </div>
         </header>

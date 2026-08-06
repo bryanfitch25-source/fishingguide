@@ -130,7 +130,7 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
 
         <aside className="lg:sticky lg:top-24 self-start">
           {species.quick_reference.length > 0 && (
-            <div className="rounded-xl border border-border bg-surface p-5">
+            <div className="rounded-xl border border-border bg-surface card-lift p-5">
               <h3 className="font-bold text-brand-dark mb-3">Quick Reference</h3>
               <dl className="space-y-3 text-sm">
                 {species.quick_reference.map((qr) => (

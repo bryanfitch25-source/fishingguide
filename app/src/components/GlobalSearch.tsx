@@ -90,7 +90,7 @@ export function GlobalSearch() {
         🔍
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-80 rounded-xl border border-border bg-surface shadow-lg p-3 z-30">
+        <div className="absolute right-0 top-full mt-2 w-80 rounded-xl border border-border bg-surface card-lift shadow-lg p-3 z-30">
           <input
             autoFocus
             value={query}

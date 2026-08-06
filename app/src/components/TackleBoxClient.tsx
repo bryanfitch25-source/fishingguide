@@ -513,7 +513,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   return (
     <div>
       {/* Trays management */}
-      <div className="mb-6 rounded-xl border border-border bg-surface p-4 no-print">
+      <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-4 no-print">
         <button
           onClick={() => setShowTrays((v) => !v)}
           className="flex items-center justify-between w-full text-left"
@@ -831,7 +831,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="mb-8 rounded-xl border border-border bg-surface p-5 space-y-4 no-print"
+          className="mb-8 rounded-xl border border-border bg-surface card-lift p-5 space-y-4 no-print"
         >
           <h2 className="font-bold text-brand-dark">{form.id ? "Edit Item" : "New Item"}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1216,7 +1216,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           onClick={() => setStackSlot(null)}
         >
           <div
-            className="w-full max-w-xs rounded-xl border border-border bg-surface p-4"
+            className="w-full max-w-xs rounded-xl border border-border bg-surface card-lift p-4"
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="mb-2 font-bold text-tackle">This compartment holds {stackSlot.length} items</h3>
@@ -1247,7 +1247,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           onClick={() => setDetailItem(null)}
         >
           <div
-            className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-xl border border-border bg-surface p-5"
+            className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-xl border border-border bg-surface card-lift p-5"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-3 mb-3">
