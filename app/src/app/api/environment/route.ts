@@ -3,6 +3,7 @@ import { getTideForecast, getWeather } from "@/lib/environment";
 import { sunTimes } from "@/lib/sun";
 import { moonPhase } from "@/lib/moonphase";
 import { goodFishingDay } from "@/lib/goodFishingDay";
+import { localDate } from "@/lib/dates";
 
 // Client-side entry point (used by NearMe, which only has a browser-geolocation
 // point, not a server-rendered page) into the same environment data EnvironmentPanel
@@ -17,8 +18,8 @@ export async function GET(request: NextRequest) {
   const today = new Date();
   const [tide, weather] = await Promise.all([getTideForecast(lat, lng), getWeather(lat, lng)]);
   const sun = sunTimes(today, lat, lng);
-  const moon = moonPhase(today.toISOString().slice(0, 10));
-  const gfd = goodFishingDay(today.toISOString().slice(0, 10), tide, weather);
+  const moon = moonPhase(localDate(today));
+  const gfd = goodFishingDay(localDate(today), tide, weather);
 
   return NextResponse.json({
     tide,

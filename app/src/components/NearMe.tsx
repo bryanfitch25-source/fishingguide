@@ -145,10 +145,10 @@ export function NearMe({
         </div>
 
         {loc.status === "denied" && (
-          <p className="mt-3 text-sm text-amber-700">{loc.message}</p>
+          <p className="mt-3 text-sm text-accent-dark">{loc.message}</p>
         )}
         {loc.status === "located" && loc.guess.outOfRegion && !manualProvince && (
-          <p className="mt-3 text-sm text-amber-700">
+          <p className="mt-3 text-sm text-accent-dark">
             You look to be roughly {loc.guess.distanceKm} km from {loc.guess.nearestTown} — outside
             the region this app covers. Pick a province above to browse anyway.
           </p>
@@ -169,10 +169,10 @@ export function NearMe({
             <span
               className={`rounded-full px-2.5 py-1 text-xs font-bold ${
                 env.goodFishingDay.label === "Great"
-                  ? "bg-green-100 text-green-800"
+                  ? "bg-success-light text-success"
                   : env.goodFishingDay.label === "Good"
-                    ? "bg-amber-100 text-amber-800"
-                    : "bg-gray-100 text-gray-700"
+                    ? "bg-accent-light text-accent-dark"
+                    : "bg-background text-muted"
               }`}
               title="An informal indicator only — not a scientific model."
             >

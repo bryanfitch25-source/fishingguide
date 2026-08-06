@@ -8,7 +8,7 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v2";
+const CACHE_NAME = "maritime-angler-v3";
 const NEVER_CACHE_PREFIXES = [
   "/tackle",
   "/catches",
@@ -30,6 +30,44 @@ const PRECACHE_URLS = [
   "/guide/knots",
   "/manifest.json",
   "/icon-192.png",
+
+  // The individual guides, not just the indexes that link to them.
+  //
+  // Offline support existed so the content is readable with no signal at the wharf, but
+  // only the index pages were precached — so offline you got a list of 27 species and
+  // could open none of them. Pages did cache opportunistically after a first visit,
+  // which meant the feature worked only for content you had already read.
+  //
+  // ~30 extra HTML documents, which is small next to what the fonts were costing.
+  "/species/acadian-redfish",
+  "/species/american-eel",
+  "/species/american-shad",
+  "/species/atlantic-cod",
+  "/species/atlantic-herring",
+  "/species/atlantic-mackerel",
+  "/species/atlantic-salmon",
+  "/species/atlantic-tomcod",
+  "/species/bluefin-tuna",
+  "/species/brook-trout",
+  "/species/brown-trout",
+  "/species/chain-pickerel",
+  "/species/cunner",
+  "/species/gaspereau",
+  "/species/landlocked-salmon",
+  "/species/largemouth-bass",
+  "/species/muskellunge",
+  "/species/pollock",
+  "/species/rainbow-smelt",
+  "/species/rainbow-trout",
+  "/species/sculpin",
+  "/species/smallmouth-bass",
+  "/species/spiny-dogfish",
+  "/species/striped-bass",
+  "/species/white-perch",
+  "/species/winter-flounder",
+  "/species/yellow-perch",
+  "/locations/launching-pei",
+  "/locations/shediac-cocagne-nb"
 ];
 
 self.addEventListener("install", (event) => {

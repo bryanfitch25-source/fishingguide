@@ -14,7 +14,7 @@ const SPECIES_DETAIL_SELECT = `
   id, slug, common_name, scientific_name, category, provinces, summary,
   image_path, image_credit, image_license, image_source_url,
   guide_sections ( id, position, heading, body_md, sources ),
-  regulations ( id, province, water_type, season, bag_limit, size_limit, notes, source_url, last_verified ),
+  regulations ( id, province, water_type, season, bag_limit, size_limit, notes, source_url, last_verified, verification_status, verification_note ),
   quick_reference ( id, position, label, value ),
   species_sources ( label, url ),
   species_variants ( id, position, name, kind, scientific_name, how_to_tell, where_found, notes, image_path, image_credit, image_license, image_source_url )

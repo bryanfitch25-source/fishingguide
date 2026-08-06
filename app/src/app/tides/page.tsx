@@ -13,6 +13,7 @@ import { TideCurve } from "@/components/TideCurve";
 import { MarineCard } from "@/components/MarineCard";
 import { SolunarCard } from "@/components/SolunarCard";
 import { TideForecastList } from "@/components/TideForecastList";
+import { localDate } from "@/lib/dates";
 
 export const metadata = {
   title: "Tides — Maritime Angler",
@@ -68,12 +69,12 @@ export default async function TidesPage() {
   const current = events ? currentTide(events, nowMs) : null;
   const solunar = solunarDay(todayStart, station.lat, station.lng);
   const sun = sunTimes(now, station.lat, station.lng);
-  const moon = moonPhase(now.toISOString().slice(0, 10));
+  const moon = moonPhase(localDate(now));
 
   // Good Fishing Day keeps working from the same inputs as before; the tide shape it
   // wants matches what getActiveStationContext already loaded.
   const gfd = goodFishingDay(
-    now.toISOString().slice(0, 10),
+    localDate(now),
     events ? { name: station.name, distanceKm: 0, events } : null,
     weather
   );
@@ -163,10 +164,10 @@ export default async function TidesPage() {
               <span
                 className={`rounded-full px-2.5 py-1 text-xs font-bold ${
                   gfd.label === "Great"
-                    ? "bg-green-100 text-green-800"
+                    ? "bg-success-light text-success"
                     : gfd.label === "Good"
                       ? "bg-accent-light text-accent-dark"
-                      : "bg-gray-100 text-gray-700"
+                      : "bg-background text-muted"
                 }`}
                 title="An informal indicator only — not a scientific model."
               >

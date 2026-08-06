@@ -24,6 +24,12 @@ export interface Regulation {
   notes: string | null;
   source_url: string | null;
   last_verified: string | null;
+
+  // Whether a human has checked this against the official source. The research flagged
+  // several items as unresolved; carrying that on the row lets the species page say so
+  // rather than leaving it in a developer file nobody reading the guide will open.
+  verification_status?: "verified" | "unverified" | "disputed" | null;
+  verification_note?: string | null;
 }
 
 export interface QuickReferenceItem {

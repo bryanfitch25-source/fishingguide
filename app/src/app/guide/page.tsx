@@ -74,7 +74,7 @@ export default async function GuideHome() {
 
       {!isSupabaseConfigured && (
         <div className="mx-auto max-w-6xl px-4 sm:px-6 mt-6">
-          <div className="rounded-lg border border-amber-300 bg-amber-50 text-amber-900 px-4 py-3 text-sm">
+          <div className="rounded-lg border border-amber-300 bg-accent-light text-accent-dark px-4 py-3 text-sm">
             Supabase isn&apos;t configured yet — set <code>NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
             <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> in <code>.env.local</code>, run the
             migrations, and seed the database. See <code>SETUP.md</code>.

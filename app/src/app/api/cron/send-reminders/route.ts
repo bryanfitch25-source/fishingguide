@@ -5,6 +5,7 @@ import { getTideEvents } from "@/lib/tides";
 import { getWeather } from "@/lib/environment";
 import { goodFishingDay } from "@/lib/goodFishingDay";
 import { formatHeight, isUnitSystem, type UnitSystem } from "@/lib/units";
+import { localDate } from "@/lib/dates";
 
 const TIME_ZONE = "America/Moncton";
 
@@ -34,7 +35,7 @@ export async function GET(request: NextRequest) {
   }
   webpush.setVapidDetails("mailto:noreply@maritimeangler.app", vapidPublic, vapidPrivate);
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDate();
   const daysUntil = (dateStr: string) =>
     Math.ceil((new Date(dateStr).getTime() - new Date(today).getTime()) / 86400000);
 

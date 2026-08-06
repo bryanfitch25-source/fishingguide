@@ -2,6 +2,7 @@ import { getTideForecast, getWeather } from "@/lib/environment";
 import { sunTimes, formatTime } from "@/lib/sun";
 import { moonPhase } from "@/lib/moonphase";
 import { goodFishingDay } from "@/lib/goodFishingDay";
+import { localDate } from "@/lib/dates";
 
 // Renders live-ish (cached, see lib/environment.ts) conditions for a specific point:
 // current weather, next few tide events, sunrise/sunset, and the informal "Good
@@ -12,8 +13,8 @@ export async function EnvironmentPanel({ lat, lng }: { lat: number; lng: number 
   const today = new Date();
   const [tide, weather] = await Promise.all([getTideForecast(lat, lng), getWeather(lat, lng)]);
   const sun = sunTimes(today, lat, lng);
-  const moon = moonPhase(today.toISOString().slice(0, 10));
-  const gfd = goodFishingDay(today.toISOString().slice(0, 10), tide, weather);
+  const moon = moonPhase(localDate(today));
+  const gfd = goodFishingDay(localDate(today), tide, weather);
 
   const nowMs = today.getTime();
   const upcomingTides = tide?.events?.filter((e) => new Date(e.time).getTime() >= nowMs).slice(0, 4) ?? [];
@@ -25,10 +26,10 @@ export async function EnvironmentPanel({ lat, lng }: { lat: number; lng: number 
         <span
           className={`rounded-full px-2.5 py-1 text-xs font-bold ${
             gfd.label === "Great"
-              ? "bg-green-100 text-green-800"
+              ? "bg-success-light text-success"
               : gfd.label === "Good"
-                ? "bg-amber-100 text-amber-800"
-                : "bg-gray-100 text-gray-700"
+                ? "bg-accent-light text-accent-dark"
+                : "bg-background text-muted"
           }`}
           title="An informal indicator only — not a scientific model. Always fish safely regardless of conditions."
         >

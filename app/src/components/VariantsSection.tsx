@@ -10,10 +10,10 @@ const KIND_LABEL: Record<VariantKind, string> = {
 };
 
 const KIND_STYLE: Record<VariantKind, string> = {
-  form: "bg-blue-100 text-blue-900",
-  stock: "bg-purple-100 text-purple-900",
+  form: "bg-brand-light text-brand-dark",
+  stock: "bg-catches-light text-catches",
   "life-stage": "bg-emerald-100 text-emerald-900",
-  lookalike: "bg-amber-100 text-amber-900",
+  lookalike: "bg-accent-light text-accent-dark",
   "related-species": "bg-teal-100 text-teal-900",
 };
 
@@ -65,7 +65,7 @@ export function VariantsSection({ variants }: { variants: SpeciesVariant[] }) {
                 </p>
               )}
               {v.notes && (
-                <p className="text-sm mt-1.5 rounded bg-amber-50 text-amber-900 px-2 py-1.5">
+                <p className="text-sm mt-1.5 rounded bg-accent-light text-accent-dark px-2 py-1.5">
                   {v.notes}
                 </p>
               )}

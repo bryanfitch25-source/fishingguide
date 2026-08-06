@@ -21,7 +21,7 @@ export default async function RegulationsOverviewPage() {
         that change dates and limits with little notice — always confirm on the official DFO
         or provincial site linked from each species page before you fish.
       </p>
-      <div className="rounded-lg border border-amber-300 bg-amber-50 text-amber-900 px-4 py-3 text-sm mb-8">
+      <div className="rounded-lg border border-amber-300 bg-accent-light text-accent-dark px-4 py-3 text-sm mb-8">
         This page is a convenience index, not a legal reference. Tap through to a species for
         full regulation details and official source links.
       </div>

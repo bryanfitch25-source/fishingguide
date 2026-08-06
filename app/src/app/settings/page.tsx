@@ -53,9 +53,14 @@ export default async function SettingsPage() {
           initialFavourites={(favouritesRes.data as FavouriteStation[]) ?? []}
         />
 
+        {/* Seeds the cookie from the stored row on first visit from a new device, so
+            the account-level preference still travels — it just arrives one paint later
+            than it used to, on this one page, rather than costing every route its
+            static rendering. */}
         <AppearancePicker
           initialTheme={isThemeId(settings?.theme) ? settings.theme : DEFAULT_THEME}
           initialFont={isFontId(settings?.font_pairing) ? settings.font_pairing : DEFAULT_FONT}
+          syncFromAccount
         />
 
         <UnitsToggle initialUnits={units} />

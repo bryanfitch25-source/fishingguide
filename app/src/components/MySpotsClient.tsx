@@ -149,7 +149,7 @@ export function MySpotsClient({
         </button>
       </div>
 
-      {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+      {error && <p className="rounded bg-danger-light px-3 py-2 text-sm text-danger">{error}</p>}
 
       <div className="grid gap-4 sm:grid-cols-2">
         {favourites.map((fav) => {

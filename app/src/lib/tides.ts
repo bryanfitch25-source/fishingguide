@@ -233,13 +233,19 @@ export function sampleCurve(
   return points;
 }
 
-/** "in 2h 15m" / "in 45m" / "now" — the countdown beside the next tide event. */
+/** "in 2d 3h" / "in 2h 15m" / "in 45m" / "now" — the countdown beside a tide event. */
 export function formatCountdown(toMs: number, fromMs = Date.now()): string {
   const diffMin = Math.round((toMs - fromMs) / 60000);
   if (diffMin <= 0) return "now";
   const h = Math.floor(diffMin / 60);
   const m = diffMin % 60;
   if (h === 0) return `in ${m}m`;
+  // Past a day, hours stop being readable — "in 1666h 40m" is not an answer to anything.
+  if (h >= 24) {
+    const d = Math.floor(h / 24);
+    const rh = h % 24;
+    return rh === 0 ? `in ${d}d` : `in ${d}d ${rh}h`;
+  }
   if (m === 0) return `in ${h}h`;
   return `in ${h}h ${m}m`;
 }
