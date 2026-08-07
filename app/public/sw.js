@@ -3,12 +3,14 @@
 // /tackle, /catches, /login, or any /api/* route — those are per-user, auth-gated,
 // and must always go to the network so they never show stale or wrong-account data.
 //
+// /fly is excluded for the first reason: it's your own gear, behind auth, same as /tackle.
+//
 // /tides, /spots and /settings are excluded for both reasons at once: they're keyed to
 // the station saved on your account, and a cached tide reading is actively misleading
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v5";
+const CACHE_NAME = "maritime-angler-v6";
 
 // Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
 //
@@ -24,6 +26,7 @@ const NEVER_CACHE_PREFIXES = [
   "/tides",
   "/spots",
   "/settings",
+  "/fly",
   "/api/",
 ];
 

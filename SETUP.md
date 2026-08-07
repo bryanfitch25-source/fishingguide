@@ -22,7 +22,8 @@ it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 - **Fishing Guide** (`/guide`) — species, trip guides, regulations, Fish Near Me. Public, no sign-in needed.
 - **Tides** (`/tides`) — current tide and 24-hour curve for your selected station, marine conditions, solunar feeding periods, and a 7-day high/low forecast. Public; signing in lets you choose a station instead of the default.
 - **My Spots** (`/spots`) — every station you've favourited, with its current tide, side by side. Sign-in required.
-- **Tackle Box** (`/tackle`) — your personal tackle inventory. Sign-in required; only you can see or edit it.
+- **Tackle Box** (`/tackle`) — your conventional tackle inventory. Sign-in required; only you can see or edit it.
+- **Fly Box** (`/fly`) — fly rods, reels, lines, leaders and flies, kept entirely separate from the Tackle Box, plus Maritime patterns, line weights, the tippet chart, fly knots and the Atlantic salmon rules. Sign-in required.
 - **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. Sign-in required.
 - **Settings** (`/settings`) — tide station, units, angler profile, reminders. Sign-in required.
 
@@ -72,6 +73,7 @@ of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 - `20260806120000_appearance_preferences.sql` — **needs applying**: `theme` and `font_pairing` on `angler_settings`, backing the colour and type pickers in Settings. Purely display preferences — the app falls back to the default ground if the columns are missing.
 - `20260807090000_tackle_specs.sql` — **needs applying**: a `specs` jsonb column on `tackle_items` holding the per-category details (rod power and action, reel gear ratio, lure weight and dive depth, line test, and so on) that the category-specific forms collect. Purely additive. Until it's applied the tackle form still saves everything else and tells you the details weren't recorded, rather than failing.
 - `20260808090000_tackle_warranty.sql` — **needs applying**: warranty columns on `tackle_items` (purchase date, expiry, lifetime flag, provider, reference, notes) plus the dedupe field for the daily reminder and a partial index for the cron's expiry query. Purely additive; until it's applied the tackle form saves everything else and says the warranty wasn't recorded.
+- `20260809090000_fly_discipline.sql` — **needs applying**: a `discipline` column on `tackle_items` and `tackle_trays` separating fly gear from conventional tackle, and a widened `category` check so the fly categories are accepted. Existing rows default to `conventional`.
 
 To update content later: edit the JSON in `research/`, run
 `node scripts/generate-seed-sql.mjs` in `app/`, copy the regenerated

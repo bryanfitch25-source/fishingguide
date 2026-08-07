@@ -63,7 +63,14 @@ const ROD_POWERS = [
 
 const ROD_ACTIONS = ["Slow", "Moderate", "Moderate-Fast", "Fast", "Extra-Fast"];
 
-export const TACKLE_SPECS: Record<TackleCategory, CategorySpec> = {
+/** Split so each half is exhaustiveness-checked against its own half of the union. */
+type FlyOnlyCategory = Extract<
+  TackleCategory,
+  "fly_rod" | "fly_reel" | "fly_line" | "backing" | "leader_tippet" | "fly" | "fly_accessory"
+>;
+type ConventionalCategory = Exclude<TackleCategory, FlyOnlyCategory>;
+
+const CONVENTIONAL_SPECS: Record<ConventionalCategory, CategorySpec> = {
   rod: {
     title: "Rod details",
     blurb: "Power is how much it takes to bend it; action is where along the blank it bends.",
@@ -323,6 +330,157 @@ export const TACKLE_SPECS: Record<TackleCategory, CategorySpec> = {
       { id: "other_size", label: "Size / spec", type: "text", placeholder: "7 in", summary: true },
     ],
   },
+};
+
+// ---------------------------------------------------------------------------
+// Fly gear
+// ---------------------------------------------------------------------------
+//
+// Appended to the same registry so the form, the summary line, the detail panel and the
+// CSV export all work unchanged — the Fly Box is a different screen, not a different
+// mechanism. What differs is the vocabulary, and none of it maps onto the conventional
+// fields: a fly reel is sized by the line it holds rather than by a 1000–10000 number, a
+// line is a taper and a density, a leader is an X rating, and a fly is a pattern with a
+// hook size rather than a lure with an ounce weight.
+
+const FLY_LINE_WEIGHTS = ["1 wt", "2 wt", "3 wt", "4 wt", "5 wt", "6 wt", "7 wt", "8 wt", "9 wt", "10 wt", "11 wt", "12 wt"];
+const TIPPET_X = ["0X", "1X", "2X", "3X", "4X", "5X", "6X", "7X", "8X"];
+
+const FLY_SPECS: Record<FlyOnlyCategory, CategorySpec> = {
+  fly_rod: {
+    title: "Fly rod details",
+    blurb: "Line weight is the number that matters — it has to match the line and, loosely, the fish.",
+    fields: [
+      { id: "flyrod_weight", label: "Line weight", type: "select", options: FLY_LINE_WEIGHTS, summary: true },
+      { id: "flyrod_length", label: "Length", type: "text", placeholder: `9'0"`, summary: true },
+      { id: "flyrod_pieces", label: "Pieces", type: "select", options: ["1", "2", "3", "4", "5+"] },
+      {
+        id: "flyrod_action",
+        label: "Action",
+        type: "select",
+        options: ["Slow / full flex", "Medium", "Medium-fast", "Fast"],
+        summary: true,
+      },
+      {
+        id: "flyrod_hand",
+        label: "Hand",
+        type: "select",
+        options: ["Single-hand", "Switch", "Two-hand / Spey"],
+        hint: "Two-handed rods are common on the bigger salmon rivers.",
+      },
+      { id: "flyrod_grip", label: "Grip", type: "select", options: ["Full wells", "Half wells", "Cigar", "Reverse half wells"] },
+    ],
+  },
+
+  fly_reel: {
+    title: "Fly reel details",
+    fields: [
+      {
+        id: "flyreel_weight",
+        label: "Line weight range",
+        type: "text",
+        placeholder: "7–9 wt",
+        summary: true,
+        hint: "Fly reels are sized by the line they hold, not by a 1000–10000 number.",
+      },
+      { id: "flyreel_arbor", label: "Arbor", type: "select", options: ["Standard", "Mid arbor", "Large arbor"], summary: true },
+      { id: "flyreel_drag", label: "Drag", type: "select", options: ["Click and pawl", "Disc", "Sealed disc"], summary: true },
+      { id: "flyreel_hand", label: "Retrieve", type: "select", options: ["Left", "Right", "Convertible"] },
+      { id: "flyreel_spools", label: "Spare spools", type: "number", placeholder: "1" },
+      { id: "flyreel_capacity", label: "Backing capacity", type: "text", placeholder: "150 yd of 20 lb", wide: true },
+    ],
+  },
+
+  fly_line: {
+    title: "Fly line details",
+    fields: [
+      {
+        id: "flyline_taper",
+        label: "Taper",
+        type: "select",
+        options: ["Weight forward (WF)", "Double taper (DT)", "Shooting head", "Level", "Spey / Skagit", "Scandi"],
+        summary: true,
+      },
+      { id: "flyline_weight", label: "Weight", type: "select", options: FLY_LINE_WEIGHTS, summary: true },
+      {
+        id: "flyline_density",
+        label: "Density",
+        type: "select",
+        options: ["Floating", "Intermediate", "Sink tip", "Full sink", "Multi-tip"],
+        summary: true,
+      },
+      { id: "flyline_sinkrate", label: "Sink rate", type: "text", unit: "ips", placeholder: "1.5", hint: "Inches per second. Floating lines leave this blank." },
+      { id: "flyline_head", label: "Head length", type: "text", unit: "ft", placeholder: "38" },
+      { id: "flyline_length", label: "Total length", type: "text", unit: "ft", placeholder: "90" },
+      { id: "flyline_colour", label: "Colour", type: "text", placeholder: "Willow / sand" },
+      { id: "flyline_spooled", label: "On which reel", type: "text", placeholder: "Which reel it's spooled on" },
+    ],
+  },
+
+  backing: {
+    title: "Backing details",
+    fields: [
+      { id: "backing_test", label: "Test", type: "number", unit: "lb", placeholder: "20", summary: true },
+      { id: "backing_length", label: "Length", type: "text", unit: "yd", placeholder: "150", summary: true },
+      { id: "backing_material", label: "Material", type: "select", options: ["Dacron", "Gel-spun"], summary: true },
+      { id: "backing_colour", label: "Colour", type: "text", placeholder: "Orange" },
+    ],
+  },
+
+  leader_tippet: {
+    title: "Leader & tippet details",
+    blurb: "Rule of 11 — 11 minus the X is the diameter in thousandths. Rule of 3 — hook size ÷ 3 is roughly the X.",
+    fields: [
+      { id: "lt_kind", label: "What is it", type: "select", options: ["Tapered leader", "Tippet spool", "Furled leader", "Poly leader", "Straight mono"], summary: true },
+      { id: "lt_x", label: "X rating", type: "select", options: TIPPET_X, summary: true },
+      { id: "lt_test", label: "Test", type: "number", unit: "lb", placeholder: "6", summary: true },
+      { id: "lt_length", label: "Length", type: "text", unit: "ft", placeholder: "9" },
+      { id: "lt_material", label: "Material", type: "select", options: ["Nylon / mono", "Fluorocarbon", "Copolymer", "Furled thread", "Wire"] },
+    ],
+  },
+
+  fly: {
+    title: "Fly details",
+    fields: [
+      { id: "fly_pattern", label: "Pattern", type: "text", placeholder: "Green Machine, Adams, Clouser…", summary: true },
+      {
+        id: "fly_type",
+        label: "Type",
+        type: "select",
+        options: ["Dry", "Wet", "Nymph", "Streamer", "Emerger", "Terrestrial", "Salmon hairwing", "Bomber / waking", "Popper", "Saltwater", "Egg"],
+        summary: true,
+      },
+      { id: "fly_size", label: "Hook size", type: "text", placeholder: "14", summary: true },
+      { id: "fly_colour", label: "Colour", type: "text", placeholder: "Olive / white" },
+      { id: "fly_weighted", label: "Weighted (bead or wire)", type: "toggle" },
+      { id: "fly_barbless", label: "Barbless", type: "toggle", hint: "Required for Atlantic salmon." },
+      { id: "fly_imitates", label: "Imitates", type: "text", placeholder: "Caddis, smelt, crayfish…" },
+      { id: "fly_tied_by", label: "Tied by", type: "text", placeholder: "Shop, or your own vice" },
+    ],
+  },
+
+  fly_accessory: {
+    title: "Accessory details",
+    blurb: "Nippers, forceps, floatant, indicators, a net, the vest it all hangs off.",
+    fields: [
+      { id: "flyacc_kind", label: "What is it", type: "text", placeholder: "Nippers, floatant, indicators…", summary: true },
+      { id: "flyacc_detail", label: "Detail", type: "text", placeholder: "Size, type, anything worth noting", summary: true },
+    ],
+  },
+};
+
+
+/**
+ * Both halves, in one registry.
+ *
+ * Merged rather than kept apart because every consumer — the form, the summary line, the
+ * detail panel, the CSV export — looks a category up without caring which discipline it
+ * came from. The separation users see is enforced by which category *list* each screen
+ * offers and by the `discipline` column, not by having two registries to keep in step.
+ */
+export const TACKLE_SPECS: Record<TackleCategory, CategorySpec> = {
+  ...CONVENTIONAL_SPECS,
+  ...FLY_SPECS,
 };
 
 export type SpecValues = Record<string, string | boolean>;

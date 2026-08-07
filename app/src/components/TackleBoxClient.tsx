@@ -7,6 +7,7 @@ import {
   TACKLE_CATEGORIES,
   TRAY_BRANDS,
   TRAY_SIZE_CLASSES,
+  type Discipline,
   type TackleCategory,
   type TackleItem,
   type TackleTray,
@@ -33,18 +34,44 @@ type SupabaseBrowserClient = ReturnType<typeof createClient>;
 // Quantity at or below this counts as "running low" — worth restocking before a trip.
 const LOW_STOCK_THRESHOLD = 1;
 
+/** The handful of strings that differ between the two boxes. */
+export interface BoxLabels {
+  itemNoun: string;
+  itemNounPlural: string;
+  addLabel: string;
+  storageNoun: string;
+  storageNounPlural: string;
+  csvName: string;
+  namePlaceholder: string;
+}
+
+const DEFAULT_LABELS: BoxLabels = {
+  itemNoun: "Item",
+  itemNounPlural: "items",
+  addLabel: "+ Add Tackle",
+  storageNoun: "Tray",
+  storageNounPlural: "Trays",
+  csvName: "tackle-inventory.csv",
+  namePlaceholder: "e.g. Bucktail jig",
+};
+
 // Both migrations' columns, dropped together if either is missing. Splitting them would
 // mean two fallback attempts to work out which one the database is behind on, for no
 // gain: the answer in both cases is "save everything else and say so".
 const WRITE_FALLBACK_FIELDS = [...TACKLE_SPEC_FIELDS, ...WARRANTY_FIELDS] as const;
 
 async function fetchItems(
-  supabase: SupabaseBrowserClient
+  supabase: SupabaseBrowserClient,
+  discipline: Discipline
 ): Promise<{ items: TackleItem[]; error: string | null }> {
   const [itemsRes, catchesRes] = await Promise.all([
     supabase
       .from("tackle_items")
       .select("*, tackle_item_species(species_slug)")
+      // The separation the user sees is this filter. Everything else about the two boxes
+      // is identical, so if this is ever dropped the fly gear simply appears in the
+      // tackle box — which is exactly the thing the feature exists to prevent.
+      .eq("discipline", discipline)
       .order("created_at", { ascending: false }),
     // Counted in the database rather than by pulling every catch row to the browser
     // and tallying them here. See the tackle_item_catch_counts view.
@@ -70,8 +97,16 @@ async function fetchItems(
   };
 }
 
-async function fetchTrays(supabase: SupabaseBrowserClient): Promise<TackleTray[]> {
-  const { data } = await supabase.from("tackle_trays").select("*").order("position").order("name");
+async function fetchTrays(
+  supabase: SupabaseBrowserClient,
+  discipline: Discipline
+): Promise<TackleTray[]> {
+  const { data } = await supabase
+    .from("tackle_trays")
+    .select("*")
+    .eq("discipline", discipline)
+    .order("position")
+    .order("name");
   return (data as TackleTray[]) ?? [];
 }
 
@@ -121,7 +156,26 @@ function defaultCompartments(size: TraySizeClass | ""): number | null {
   return TRAY_SIZE_CLASSES.find((s) => s.value === size)?.defaultCompartments ?? null;
 }
 
-export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
+/**
+ * Serves both the Tackle Box and the Fly Box.
+ *
+ * The two are entirely separate to use — different screens, different categories, and a
+ * `discipline` column that keeps the records apart — but they are the same machinery
+ * underneath: create, edit, photograph, warranty, storage boxes, species tags, packing,
+ * catch counts. Parameterising was the alternative to a second sixteen-hundred-line copy
+ * that would drift out of step the first time either side was touched.
+ */
+export function TackleBoxClient({
+  species,
+  discipline = "conventional",
+  categories = TACKLE_CATEGORIES,
+  labels = DEFAULT_LABELS,
+}: {
+  species: SpeciesOption[];
+  discipline?: Discipline;
+  categories?: { value: TackleCategory; label: string }[];
+  labels?: BoxLabels;
+}) {
   const supabase = useMemo(() => createClient(), []);
   const [items, setItems] = useState<TackleItem[]>([]);
   const [trays, setTrays] = useState<TackleTray[]>([]);
@@ -146,7 +200,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
 
   async function loadAll() {
     setLoading(true);
-    const [itemsResult, traysResult] = await Promise.all([fetchItems(supabase), fetchTrays(supabase)]);
+    const [itemsResult, traysResult] = await Promise.all([fetchItems(supabase, discipline), fetchTrays(supabase, discipline)]);
     if (itemsResult.error) setError(itemsResult.error);
     else setItems(itemsResult.items);
     setTrays(traysResult);
@@ -156,7 +210,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [itemsResult, traysResult] = await Promise.all([fetchItems(supabase), fetchTrays(supabase)]);
+      const [itemsResult, traysResult] = await Promise.all([fetchItems(supabase, discipline), fetchTrays(supabase, discipline)]);
       if (cancelled) return;
       if (itemsResult.error) setError(itemsResult.error);
       else setItems(itemsResult.items);
@@ -170,7 +224,8 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   }, []);
 
   function startAdd() {
-    setForm(emptyForm);
+    // The first category of *this* box, so a new fly is never filed as a crankbait.
+    setForm({ ...emptyForm, category: categories[0].value });
     setShowForm(true);
   }
 
@@ -236,6 +291,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       .from("tackle_items")
       .update({ packed: false })
       .eq("user_id", user.id)
+      .eq("discipline", discipline)
       .eq("packed", true);
     if (error) setError(error.message);
     else loadAll();
@@ -243,7 +299,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
 
   function exportCSV() {
     downloadCSV(
-      "tackle-inventory.csv",
+      labels.csvName,
       // "Specs" carries the full per-category detail as label: value pairs, since a
       // spreadsheet can't have a different set of columns per row — a rod's action and a
       // reel's gear ratio would otherwise need forty mostly-empty columns to coexist.
@@ -251,7 +307,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       ["Name", "Category", "Brand", "Model", "Summary", "Specs", "Quantity", "Tray", "Location", "Notes"],
       items.map((i) => [
         i.name,
-        TACKLE_CATEGORIES.find((c) => c.value === i.category)?.label ?? i.category,
+        categories.find((c) => c.value === i.category)?.label ?? i.category,
         i.brand ?? "",
         i.model ?? "",
         i.color_size ?? "",
@@ -291,6 +347,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     const summary = summarise(form.category, specs);
     const payload = {
       user_id: user.id,
+      discipline,
       name: form.name.trim(),
       category: form.category,
       brand: form.brand.trim() || null,
@@ -411,6 +468,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     }
 
     const { error } = await supabase.from("tackle_trays").insert({
+      discipline,
       user_id: user.id,
       name,
       brand: trayForm.brand || null,
@@ -810,7 +868,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           >
             All ({items.length})
           </button>
-          {TACKLE_CATEGORIES.map((c) => {
+          {categories.map((c) => {
             const count = items.filter((i) => i.category === c.value).length;
             if (!count) return null;
             return (
@@ -947,7 +1005,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="e.g. Bucktail jig"
+                placeholder={labels.namePlaceholder}
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               />
             </div>
@@ -958,7 +1016,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 onChange={(e) => setForm({ ...form, category: e.target.value as TackleCategory })}
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               >
-                {TACKLE_CATEGORIES.map((c) => (
+                {categories.map((c) => (
                   <option key={c.value} value={c.value}>
                     {c.label}
                   </option>
@@ -1348,7 +1406,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                     >
                       <p className="truncate font-semibold text-brand-dark">{item.name}</p>
                       <p className="truncate text-xs text-muted">
-                        {TACKLE_CATEGORIES.find((c) => c.value === item.category)?.label}
+                        {categories.find((c) => c.value === item.category)?.label}
                         {item.brand ? ` · ${item.brand}` : ""}
                         {item.color_size ? ` · ${item.color_size}` : ""}
                       </p>
@@ -1466,7 +1524,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             <div className="space-y-1.5 text-sm">
               <p>
                 <span className="text-muted">Category:</span>{" "}
-                {TACKLE_CATEGORIES.find((c) => c.value === detailItem.category)?.label}
+                {categories.find((c) => c.value === detailItem.category)?.label}
               </p>
               {(detailItem.brand || detailItem.model) && (
                 <p>
