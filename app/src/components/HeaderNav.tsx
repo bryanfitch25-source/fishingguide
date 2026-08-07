@@ -18,6 +18,7 @@ const LINKS = [
 // The mobile menu has the room, so it lists them.
 const SECONDARY_LINKS = [
   { href: "/depth", label: "Depth Charts" },
+  { href: "/safety", label: "Safety" },
   { href: "/spots", label: "My Spots" },
   { href: "/settings", label: "Settings" },
 ];
