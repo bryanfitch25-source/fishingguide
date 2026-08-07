@@ -1,4 +1,5 @@
 export type TackleCategory =
+  // Conventional tackle.
   | "rod"
   | "reel"
   | "lure"
@@ -7,7 +8,19 @@ export type TackleCategory =
   | "net"
   | "electronics"
   | "apparel"
-  | "other";
+  | "other"
+  // Fly gear. Same table, same record shape, but never shown on the same screen — see
+  // the `discipline` column added by 20260809090000_fly_discipline.sql and lib/fly.ts.
+  | "fly_rod"
+  | "fly_reel"
+  | "fly_line"
+  | "backing"
+  | "leader_tippet"
+  | "fly"
+  | "fly_accessory";
+
+/** Which box an item lives in. Enforced in the database by a check constraint. */
+export type Discipline = "conventional" | "fly";
 
 export const TACKLE_CATEGORIES: { value: TackleCategory; label: string }[] = [
   { value: "rod", label: "Rod" },
@@ -32,6 +45,13 @@ export const CATEGORY_ICON: Record<TackleCategory, string> = {
   electronics: "📟",
   apparel: "🧢",
   other: "📦",
+  fly_rod: "🎣",
+  fly_reel: "🎡",
+  fly_line: "🧵",
+  backing: "🪢",
+  leader_tippet: "➰",
+  fly: "🪶",
+  fly_accessory: "🧰",
 };
 
 export type TrayBrand = "Plano" | "Flambeau" | "Bass Pro / Cabela's" | "Other / Custom";
@@ -109,6 +129,7 @@ export const TRAY_SIZE_CLASSES: {
 export interface TackleTray {
   id: string;
   user_id: string;
+  discipline?: Discipline;
   name: string;
   brand: string | null;
   size_class: TraySizeClass | null;
@@ -158,6 +179,8 @@ export interface TackleItem {
   warranty_provider?: string | null;
   warranty_reference?: string | null;
   warranty_notes?: string | null;
+  /** Which box this belongs to. Optional so the app runs before the migration lands. */
+  discipline?: Discipline;
   species_slugs?: string[];
   catch_count?: number;
 }

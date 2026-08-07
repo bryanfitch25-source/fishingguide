@@ -59,6 +59,17 @@ const SECTIONS = [
     heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-catches",
   },
   {
+    href: "/fly",
+    short: "Fly gear, patterns, tippet and the salmon rules.",
+    emoji: "🪶",
+    title: "Fly Box",
+    description:
+      "Rods, reels, lines, leaders and flies kept separate from conventional tackle — with Maritime patterns, line weights, the tippet chart and what the law requires on salmon water.",
+    border: "hover:border-guide",
+    bg: "bg-guide-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-guide",
+  },
+  {
     href: "/depth",
     short: "Seabed depth, tap for a reading, save offline.",
     emoji: "📉",
@@ -99,16 +110,18 @@ export default async function Home() {
           last one. Below `sm` each entry is a single row instead: icon, name, one line.
           The grid of cards is still the right shape on a wide screen, so it comes back
           at `sm` where there's room for it. */}
-      {/* Six entries, so the columns divide evenly at every breakpoint — 2×3 on a tablet,
-          3×2 on a wide screen. Four in a `lg:grid-cols-4` row left a bare strip of
-          background under the last card; five would have left a worse one, an orphan
-          card in its own row. Six is the first count that fills both. */}
+      {/* Seven now, which divides evenly at neither breakpoint — so the last card is told
+          to span the empty column on a wide screen rather than sit in it alone. On a
+          tablet's two columns the odd one out lands on the left of its own row, which
+          reads as the end of a list rather than as a gap. */}
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-        {SECTIONS.map((s) => (
+        {SECTIONS.map((s, i) => (
           <Link
             key={s.href}
             href={s.href}
-            className={`group card-lift flex items-center gap-3 rounded-2xl border border-border bg-surface p-3 transition hover:shadow-md sm:block sm:p-6 ${s.border}`}
+            className={`group card-lift flex items-center gap-3 rounded-2xl border border-border bg-surface p-3 transition hover:shadow-md sm:block sm:p-6 ${s.border} ${
+              i === SECTIONS.length - 1 ? "lg:col-span-2" : ""
+            }`}
           >
             <div
               className={`inline-flex shrink-0 items-center justify-center rounded-xl p-2.5 text-2xl sm:mb-3 sm:p-3 sm:text-3xl ${s.bg}`}
