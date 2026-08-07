@@ -148,6 +148,16 @@ export interface TackleItem {
    * and runs against a database where the specs migration hasn't been applied.
    */
   specs?: Record<string, string | boolean>;
+  /**
+   * Warranty cover. Optional so the app still compiles and runs against a database where
+   * the warranty migration hasn't been applied.
+   */
+  purchase_date?: string | null;
+  warranty_expires_on?: string | null;
+  warranty_lifetime?: boolean | null;
+  warranty_provider?: string | null;
+  warranty_reference?: string | null;
+  warranty_notes?: string | null;
   species_slugs?: string[];
   catch_count?: number;
 }
