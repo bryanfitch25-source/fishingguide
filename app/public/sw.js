@@ -8,7 +8,15 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v3";
+const CACHE_NAME = "maritime-angler-v4";
+
+// Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
+//
+// Kept out of CACHE_NAME on purpose: the activate step below deletes every cache whose
+// name it doesn't recognise, and a chart someone deliberately downloaded before heading
+// out must not vanish because the app shell version moved on.
+const CHART_CACHE = "maritime-angler-charts-v1";
+
 const NEVER_CACHE_PREFIXES = [
   "/tackle",
   "/catches",
@@ -18,6 +26,13 @@ const NEVER_CACHE_PREFIXES = [
   "/settings",
   "/api/",
 ];
+
+// The one /api/ path exempt from the rule above.
+//
+// Everything else under /api/ is per-user, auth-gated or time-sensitive. Depth tiles are
+// none of those — public government bathymetry of a seabed that does not move — and
+// serving them from cache is the entire point of the download button.
+const CHART_TILE_PREFIX = "/api/depth/tile/";
 
 const PRECACHE_URLS = [
   "/",
@@ -71,25 +86,84 @@ const PRECACHE_URLS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)));
+  // Precached one at a time, tolerating failures, rather than with cache.addAll.
+  //
+  // addAll is atomic: if a single one of these ~40 URLs doesn't come back 200, the whole
+  // promise rejects and the service worker never installs. That is a bad trade for a
+  // precache list of nice-to-haves. It means one slow species page, or one route erroring
+  // because the database is briefly unreachable, costs the app *all* of its offline
+  // support — including serving depth charts the user deliberately downloaded, which are
+  // the one thing here they'd actually be relying on with no signal.
+  //
+  // So: best effort. Whatever fetches, caches; whatever doesn't, is fetched on demand
+  // later. The worker installs either way.
+  //
+  // And time-boxed, because "doesn't fail" turned out not to be enough. A request that
+  // hangs rather than rejects leaves the install pending indefinitely, and a worker stuck
+  // in `installing` never reaches its fetch handler — so downloaded charts would not be
+  // served offline no matter that they were sitting in the cache. Observed exactly that
+  // with the pages slow to answer.
+  //
+  // Twenty seconds is comfortably longer than a warm precache needs and short enough that
+  // a bad connection can't hold the whole feature hostage. Anything unfinished is dropped;
+  // navigations cache themselves opportunistically anyway (see the fetch handler).
+  const precache = caches.open(CACHE_NAME).then((cache) =>
+    Promise.all(
+      PRECACHE_URLS.map((url) =>
+        cache.add(url).catch(() => {
+          /* This page just isn't available offline until it's been visited once. */
+        })
+      )
+    )
+  );
+  const deadline = new Promise((resolve) => setTimeout(resolve, 20000));
+  event.waitUntil(Promise.race([precache, deadline]));
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            // CHART_CACHE is spared. It holds data the user chose to download, sized in
+            // megabytes, often with no way to get it back where they're standing.
+            .filter((k) => k !== CACHE_NAME && k !== CHART_CACHE)
+            .map((k) => caches.delete(k))
+        )
+      )
   );
   self.clients.claim();
 });
 
 function isNeverCached(url) {
   const path = new URL(url).pathname;
+  if (path.startsWith(CHART_TILE_PREFIX)) return false;
   return NEVER_CACHE_PREFIXES.some((p) => path.startsWith(p));
 }
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
+
+  // Depth tiles: cache-first, and never written to opportunistically.
+  //
+  // Cache-first because a tile that's already saved should render instantly and cost
+  // nothing, including on a weak signal at the shore. Write-never because filling this
+  // cache is the download button's job — if merely panning the map wrote tiles here, the
+  // "Saved charts" list would quietly stop describing what is actually stored, and
+  // deleting an area wouldn't reclaim the space it claimed to.
+  if (new URL(request.url).pathname.startsWith(CHART_TILE_PREFIX)) {
+    event.respondWith(
+      caches.open(CHART_CACHE).then((cache) =>
+        cache.match(request).then((cached) => cached || fetch(request))
+      )
+    );
+    return;
+  }
+
   if (isNeverCached(request.url)) return; // let it hit the network untouched
 
   // Static assets: cache-first (they're content-hashed, safe to keep indefinitely).
