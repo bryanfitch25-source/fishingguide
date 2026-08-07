@@ -69,6 +69,7 @@ of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 - `20260806150000_catch_counts_and_index.sql` — **needs applying**: indexes `catches.tackle_item_id` and adds a `tackle_item_catch_counts` view.
 - `20260806160000_upgrades.sql` — **needs applying**: structured regulation seasons, regulation verification status, season-reminder preferences.
 - `20260806120000_appearance_preferences.sql` — **needs applying**: `theme` and `font_pairing` on `angler_settings`, backing the colour and type pickers in Settings. Purely display preferences — the app falls back to the default ground if the columns are missing.
+- `20260807090000_tackle_specs.sql` — **needs applying**: a `specs` jsonb column on `tackle_items` holding the per-category details (rod power and action, reel gear ratio, lure weight and dive depth, line test, and so on) that the category-specific forms collect. Purely additive. Until it's applied the tackle form still saves everything else and tells you the details weren't recorded, rather than failing.
 
 To update content later: edit the JSON in `research/`, run
 `node scripts/generate-seed-sql.mjs` in `app/`, copy the regenerated

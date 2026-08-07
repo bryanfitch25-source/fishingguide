@@ -15,6 +15,15 @@ import {
 import { PhotoUploadField } from "./PhotoUploadField";
 import { MultiPhotoField } from "./MultiPhotoField";
 import { downloadCSV } from "@/lib/csv";
+import {
+  TACKLE_SPEC_FIELDS,
+  cleanSpecs,
+  describe,
+  summarise,
+  type SpecValues,
+} from "@/lib/tackle-specs";
+import { SpecFieldGrid } from "./SpecFields";
+import { writeWithSchemaFallback } from "@/lib/schema-compat";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -65,6 +74,7 @@ interface SpeciesOption {
 
 const NO_TRAY = "none";
 
+
 const emptyForm = {
   id: null as string | null,
   name: "",
@@ -84,6 +94,11 @@ const emptyForm = {
   maintenance_interval_days: "",
   maintenance_notes: "",
   species_slugs: [] as string[],
+  specs: {} as SpecValues,
+  // The pre-specs free-text value, kept so editing an old item doesn't silently discard
+  // what was in "Color / Size" before this existed. Only written back when the category's
+  // own fields produce no summary of their own.
+  legacy_color_size: "",
 };
 
 const emptyTrayForm = {
@@ -170,6 +185,8 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       maintenance_interval_days: item.maintenance_interval_days ? String(item.maintenance_interval_days) : "",
       maintenance_notes: item.maintenance_notes ?? "",
       species_slugs: item.species_slugs ?? [],
+      specs: (item.specs as SpecValues) ?? {},
+      legacy_color_size: item.color_size ?? "",
     });
     setShowForm(true);
   }
@@ -212,13 +229,20 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
   function exportCSV() {
     downloadCSV(
       "tackle-inventory.csv",
-      ["Name", "Category", "Brand", "Model", "Color/Size", "Quantity", "Tray", "Location", "Notes"],
+      // "Specs" carries the full per-category detail as label: value pairs, since a
+      // spreadsheet can't have a different set of columns per row — a rod's action and a
+      // reel's gear ratio would otherwise need forty mostly-empty columns to coexist.
+      // "Summary" stays first because it is what the row shows in the app.
+      ["Name", "Category", "Brand", "Model", "Summary", "Specs", "Quantity", "Tray", "Location", "Notes"],
       items.map((i) => [
         i.name,
         TACKLE_CATEGORIES.find((c) => c.value === i.category)?.label ?? i.category,
         i.brand ?? "",
         i.model ?? "",
         i.color_size ?? "",
+        describe(i.category, i.specs)
+          .map((r) => `${r.label}: ${r.value}`)
+          .join("; "),
         i.quantity,
         trayName(i.tray_id) ?? "",
         i.storage_location ?? "",
@@ -241,13 +265,23 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       return;
     }
 
+    const specs = cleanSpecs(form.specs);
+    // color_size becomes a derived one-liner rather than something typed by hand. It is
+    // what the list rows, tray tiles and CSV already read, so composing it here means none
+    // of them need to change and all of them immediately show better text.
+    //
+    // Falls back to whatever was in the old free-text box when the category's own fields
+    // are all empty — otherwise opening a pre-specs item and pressing Save, without
+    // touching anything, would blank the only description it had.
+    const summary = summarise(form.category, specs);
     const payload = {
       user_id: user.id,
       name: form.name.trim(),
       category: form.category,
       brand: form.brand.trim() || null,
       model: form.model.trim() || null,
-      color_size: form.color_size.trim() || null,
+      color_size: summary || form.legacy_color_size.trim() || null,
+      specs,
       quantity: Math.max(0, parseInt(form.quantity, 10) || 0),
       tray_id: form.tray_id === NO_TRAY ? null : form.tray_id,
       storage_location: form.storage_location.trim() || null,
@@ -263,22 +297,42 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       maintenance_notes: form.maintenance_notes.trim() || null,
     };
 
+    // Through the schema-compat fallback because `specs` arrives with a migration. Vercel
+    // deploys the moment main moves; the migration is a separate manual step. In the window
+    // between, a payload naming `specs` would be rejected outright and adding tackle — a
+    // feature that already worked — would break. This drops the new column and saves the
+    // rest instead, and says so.
     let itemId = form.id;
+    let degraded = false;
     if (itemId) {
-      const { error } = await supabase.from("tackle_items").update(payload).eq("id", itemId);
-      if (error) {
-        setError(error.message);
+      const res = await writeWithSchemaFallback(payload, TACKLE_SPEC_FIELDS, (p) =>
+        supabase.from("tackle_items").update(p).eq("id", itemId as string)
+      );
+      if (res.error) {
+        setError(res.error.message);
         setSaving(false);
         return;
       }
+      degraded = res.degraded;
     } else {
-      const { data, error } = await supabase.from("tackle_items").insert(payload).select("id").single();
-      if (error) {
-        setError(error.message);
+      let insertedId: string | null = null;
+      const res = await writeWithSchemaFallback(payload, TACKLE_SPEC_FIELDS, async (p) => {
+        const { data, error } = await supabase.from("tackle_items").insert(p).select("id").single();
+        if (data) insertedId = data.id;
+        return { error };
+      });
+      if (res.error || !insertedId) {
+        setError(res.error?.message ?? "Couldn't save that item.");
         setSaving(false);
         return;
       }
-      itemId = data.id;
+      itemId = insertedId;
+      degraded = res.degraded;
+    }
+    if (degraded) {
+      setError(
+        "Saved — but the per-category details aren't in the database yet. Run the pending migration to start recording them."
+      );
     }
 
     // Replace species tags
@@ -900,15 +954,6 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Color / Size</label>
-              <input
-                value={form.color_size}
-                onChange={(e) => setForm({ ...form, color_size: e.target.value })}
-                placeholder="e.g. 1/2 oz, chartreuse"
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
-            </div>
-            <div>
               <label className="block text-sm font-medium mb-1">Quantity</label>
               <input
                 type="number"
@@ -996,6 +1041,18 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
               />
             </div>
           </div>
+
+          {/* The part that differs by category. Everything above is true of any item you
+              own — a name, a brand, where it lives, a photo. Everything here is only true
+              of this kind of thing, and asking a landing net for its gear ratio is how the
+              old single form ended up with one box called "Color / Size". */}
+          <SpecFieldGrid
+            category={form.category}
+            specs={form.specs}
+            legacySummary={form.legacy_color_size}
+            onChange={(id, v) => setForm((f) => ({ ...f, specs: { ...f.specs, [id]: v } }))}
+          />
+
           <div>
             <label className="block text-sm font-medium mb-1">Notes</label>
             <textarea
@@ -1361,11 +1418,30 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                   {[detailItem.brand, detailItem.model].filter(Boolean).join(" ")}
                 </p>
               )}
-              {detailItem.color_size && (
-                <p>
-                  <span className="text-muted">Color / Size:</span> {detailItem.color_size}
-                </p>
-              )}
+              {/* Every populated spec, in schema order. The one-line summary is what the
+                  list row shows; here there's room for all of it, so a rod's action and
+                  piece count are visible rather than compressed away. Falls back to the
+                  old free-text field for items saved before the specs existed. */}
+              {(() => {
+                const rows = describe(detailItem.category, detailItem.specs);
+                if (rows.length > 0) {
+                  return (
+                    <dl className="grid grid-cols-2 gap-x-4 gap-y-1">
+                      {rows.map((r) => (
+                        <div key={r.label} className="contents">
+                          <dt className="text-muted">{r.label}</dt>
+                          <dd>{r.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  );
+                }
+                return detailItem.color_size ? (
+                  <p>
+                    <span className="text-muted">Color / Size:</span> {detailItem.color_size}
+                  </p>
+                ) : null;
+              })()}
               <p>
                 <span className="text-muted">Quantity:</span> {detailItem.quantity}
                 {detailItem.quantity <= LOW_STOCK_THRESHOLD && (

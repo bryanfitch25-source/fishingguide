@@ -141,6 +141,13 @@ export interface TackleItem {
   maintenance_notes: string | null;
   created_at: string;
   updated_at: string;
+  /**
+   * Per-category specifications — rod power, reel gear ratio, lure weight and so on.
+   * The shape is defined by lib/tackle-specs.ts rather than here, because the field set
+   * changes with the gear rather than with the schema. Optional so the app still compiles
+   * and runs against a database where the specs migration hasn't been applied.
+   */
+  specs?: Record<string, string | boolean>;
   species_slugs?: string[];
   catch_count?: number;
 }
