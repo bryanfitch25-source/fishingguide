@@ -8,7 +8,7 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v4";
+const CACHE_NAME = "maritime-angler-v5";
 
 // Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
 //
@@ -45,6 +45,18 @@ const PRECACHE_URLS = [
   "/guide/knots",
   "/manifest.json",
   "/icon-192.png",
+
+  // Deliberately cached, and the only conditions-bearing page that is.
+  //
+  // Everything on /safety except one tab is reference that does not change: the Transport
+  // Canada equipment minimums, the cold-water stages, the distress script, the ice
+  // thicknesses, the float plan form. That is precisely the material you want when you
+  // have no signal — which is also when you are most likely to need it.
+  //
+  // The live conditions tab is handled by the page itself: it carries the time it was
+  // rendered and says plainly when what you're looking at is old. That is what makes
+  // caching this page acceptable where caching /tides is not.
+  "/safety",
 
   // The individual guides, not just the indexes that link to them.
   //

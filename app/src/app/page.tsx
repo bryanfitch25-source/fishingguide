@@ -58,6 +58,28 @@ const SECTIONS = [
     bg: "bg-catches-light",
     heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-catches",
   },
+  {
+    href: "/depth",
+    short: "Seabed depth, tap for a reading, save offline.",
+    emoji: "📉",
+    title: "Depth Charts",
+    description:
+      "Seabed depth from the Canadian Hydrographic Service — tap any spot for a reading, and save an area so it still opens with no signal.",
+    border: "hover:border-brand",
+    bg: "bg-brand-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-brand",
+  },
+  {
+    href: "/safety",
+    short: "Cold water, gear, float plan, distress.",
+    emoji: "🦺",
+    title: "Safety",
+    description:
+      "What the water is doing today, what the law says you must carry, a float plan you can send in one tap, and what to say on channel 16.",
+    border: "hover:border-danger",
+    bg: "bg-danger-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-danger",
+  },
 ];
 
 export default async function Home() {
@@ -77,7 +99,11 @@ export default async function Home() {
           last one. Below `sm` each entry is a single row instead: icon, name, one line.
           The grid of cards is still the right shape on a wide screen, so it comes back
           at `sm` where there's room for it. */}
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+      {/* Six entries, so the columns divide evenly at every breakpoint — 2×3 on a tablet,
+          3×2 on a wide screen. Four in a `lg:grid-cols-4` row left a bare strip of
+          background under the last card; five would have left a worse one, an orphan
+          card in its own row. Six is the first count that fills both. */}
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         {SECTIONS.map((s) => (
           <Link
             key={s.href}
