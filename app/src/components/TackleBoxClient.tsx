@@ -23,12 +23,20 @@ import {
   type SpecValues,
 } from "@/lib/tackle-specs";
 import { SpecFieldGrid } from "./SpecFields";
+import { WarrantyFields, EMPTY_WARRANTY, downloadWarrantyIcs } from "./WarrantyFields";
+import { WARRANTY_FIELDS, warrantyLabel, warrantyStatus } from "@/lib/warranty";
+import { localDate } from "@/lib/dates";
 import { writeWithSchemaFallback } from "@/lib/schema-compat";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
 // Quantity at or below this counts as "running low" — worth restocking before a trip.
 const LOW_STOCK_THRESHOLD = 1;
+
+// Both migrations' columns, dropped together if either is missing. Splitting them would
+// mean two fallback attempts to work out which one the database is behind on, for no
+// gain: the answer in both cases is "save everything else and say so".
+const WRITE_FALLBACK_FIELDS = [...TACKLE_SPEC_FIELDS, ...WARRANTY_FIELDS] as const;
 
 async function fetchItems(
   supabase: SupabaseBrowserClient
@@ -95,6 +103,7 @@ const emptyForm = {
   maintenance_notes: "",
   species_slugs: [] as string[],
   specs: {} as SpecValues,
+  ...EMPTY_WARRANTY,
   // The pre-specs free-text value, kept so editing an old item doesn't silently discard
   // what was in "Color / Size" before this existed. Only written back when the category's
   // own fields produce no summary of their own.
@@ -187,6 +196,12 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       species_slugs: item.species_slugs ?? [],
       specs: (item.specs as SpecValues) ?? {},
       legacy_color_size: item.color_size ?? "",
+      purchase_date: item.purchase_date ?? "",
+      warranty_expires_on: item.warranty_expires_on ?? "",
+      warranty_lifetime: item.warranty_lifetime ?? false,
+      warranty_provider: item.warranty_provider ?? "",
+      warranty_reference: item.warranty_reference ?? "",
+      warranty_notes: item.warranty_notes ?? "",
     });
     setShowForm(true);
   }
@@ -282,6 +297,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       model: form.model.trim() || null,
       color_size: summary || form.legacy_color_size.trim() || null,
       specs,
+      purchase_date: form.purchase_date || null,
+      // Mutually exclusive, and enforced in the database too — a lifetime warranty and an
+      // end date are contradictory claims about the same cover.
+      warranty_expires_on: form.warranty_lifetime ? null : form.warranty_expires_on || null,
+      warranty_lifetime: form.warranty_lifetime,
+      warranty_provider: form.warranty_provider.trim() || null,
+      warranty_reference: form.warranty_reference.trim() || null,
+      warranty_notes: form.warranty_notes.trim() || null,
       quantity: Math.max(0, parseInt(form.quantity, 10) || 0),
       tray_id: form.tray_id === NO_TRAY ? null : form.tray_id,
       storage_location: form.storage_location.trim() || null,
@@ -305,7 +328,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
     let itemId = form.id;
     let degraded = false;
     if (itemId) {
-      const res = await writeWithSchemaFallback(payload, TACKLE_SPEC_FIELDS, (p) =>
+      const res = await writeWithSchemaFallback(payload, WRITE_FALLBACK_FIELDS, (p) =>
         supabase.from("tackle_items").update(p).eq("id", itemId as string)
       );
       if (res.error) {
@@ -316,7 +339,7 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
       degraded = res.degraded;
     } else {
       let insertedId: string | null = null;
-      const res = await writeWithSchemaFallback(payload, TACKLE_SPEC_FIELDS, async (p) => {
+      const res = await writeWithSchemaFallback(payload, WRITE_FALLBACK_FIELDS, async (p) => {
         const { data, error } = await supabase.from("tackle_items").insert(p).select("id").single();
         if (data) insertedId = data.id;
         return { error };
@@ -481,9 +504,14 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
 
   // Everything the app already knows needs doing, which until now was only discoverable
   // by scrolling to the bottom of an individual card.
+  const today = localDate();
   const needsAttention = {
     low: items.filter((i) => i.quantity <= LOW_STOCK_THRESHOLD),
     service: items.filter((i) => isMaintenanceDue(i)),
+    // Only the ones you can still act on. An expired warranty belongs on the item's own
+    // card as a fact; putting it here would mean the strip never empties and stops being
+    // read at all.
+    warranty: items.filter((i) => warrantyStatus(i, today) === "expiring"),
   };
 
   interface TrayCell {
@@ -1053,6 +1081,20 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
             onChange={(id, v) => setForm((f) => ({ ...f, specs: { ...f.specs, [id]: v } }))}
           />
 
+          <WarrantyFields
+            values={{
+              purchase_date: form.purchase_date,
+              warranty_expires_on: form.warranty_expires_on,
+              warranty_lifetime: form.warranty_lifetime,
+              warranty_provider: form.warranty_provider,
+              warranty_reference: form.warranty_reference,
+              warranty_notes: form.warranty_notes,
+            }}
+            itemName={form.name}
+            itemId={form.id}
+            onChange={(patch) => setForm((f) => ({ ...f, ...patch }))}
+          />
+
           <div>
             <label className="block text-sm font-medium mb-1">Notes</label>
             <textarea
@@ -1136,7 +1178,10 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
           computed to drive a chip at the bottom of each card, which meant the only way to
           find a reel due for service was to scroll past every reel that wasn't. Hidden
           entirely when there's nothing wrong — a permanent "all good" panel is furniture. */}
-      {!loading && (needsAttention.low.length > 0 || needsAttention.service.length > 0) && (
+      {!loading &&
+        (needsAttention.low.length > 0 ||
+          needsAttention.service.length > 0 ||
+          needsAttention.warranty.length > 0) && (
         <div className="mb-5 rounded-xl border border-danger/40 bg-surface card-lift p-4 no-print">
           <h2 className="mb-2 text-xs font-bold uppercase tracking-wide text-muted">
             Needs attention
@@ -1160,6 +1205,17 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                 <button onClick={() => setDetailItem(i)} className="truncate text-left hover:underline">
                   {i.name}
                 </button>
+              </li>
+            ))}
+            {needsAttention.warranty.map((i) => (
+              <li key={`war-${i.id}`} className="flex items-center gap-2">
+                <span className="shrink-0 rounded-full bg-danger-light px-2 py-0.5 text-[10px] font-semibold text-danger">
+                  Warranty ending
+                </span>
+                <button onClick={() => setDetailItem(i)} className="truncate text-left hover:underline">
+                  {i.name}
+                </button>
+                <span className="shrink-0 text-xs text-muted">{warrantyLabel(i, today)}</span>
               </li>
             ))}
           </ul>
@@ -1473,6 +1529,45 @@ export function TackleBoxClient({ species }: { species: SpeciesOption[] }) {
                   {detailItem.maintenance_interval_days ? ` · every ${detailItem.maintenance_interval_days} days` : ""}
                   {detailItem.maintenance_notes ? ` — ${detailItem.maintenance_notes}` : ""}
                 </p>
+              )}
+              {warrantyLabel(detailItem, today) && (
+                <div className="pt-1">
+                  <p
+                    className={
+                      warrantyStatus(detailItem, today) === "expiring"
+                        ? "text-accent-dark"
+                        : warrantyStatus(detailItem, today) === "expired"
+                          ? "text-danger"
+                          : "text-success"
+                    }
+                  >
+                    🧾 {warrantyLabel(detailItem, today)}
+                    {detailItem.warranty_provider ? ` · ${detailItem.warranty_provider}` : ""}
+                  </p>
+                  {detailItem.warranty_reference && (
+                    <p className="text-muted">Ref: {detailItem.warranty_reference}</p>
+                  )}
+                  {detailItem.warranty_notes && (
+                    <p className="whitespace-pre-wrap text-muted">{detailItem.warranty_notes}</p>
+                  )}
+                  {detailItem.warranty_expires_on && (
+                    <button
+                      onClick={() =>
+                        downloadWarrantyIcs({
+                          itemId: detailItem.id,
+                          itemName: detailItem.name,
+                          expiresOn: detailItem.warranty_expires_on as string,
+                          provider: detailItem.warranty_provider,
+                          reference: detailItem.warranty_reference,
+                          notes: detailItem.warranty_notes,
+                        })
+                      }
+                      className="mt-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium transition hover:border-brand"
+                    >
+                      📅 Add to calendar
+                    </button>
+                  )}
+                </div>
               )}
               {(detailItem.species_slugs?.length ?? 0) > 0 && (
                 <div className="pt-2 flex flex-wrap gap-1">

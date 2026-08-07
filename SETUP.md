@@ -33,7 +33,8 @@ not deliver notifications to an ordinary browser tab. Open the site in Safari, t
 Share → Add to Home Screen, then enable notifications from `/settings`.
 
 The daily cron (`0 12 * * *`, 9am Atlantic) sends licence-expiry reminders, gear
-maintenance reminders, and — if enabled — a tide digest listing today's highs and lows.
+maintenance reminders, warranty-expiry reminders at 30/7/1/0 days, and — if enabled —
+a tide digest listing today's highs and lows.
 Per-tide "high tide in 30 minutes" alerts would need the cron running hourly, which
 Vercel's Hobby plan doesn't allow; the digest is the once-a-day equivalent.
 
@@ -70,6 +71,7 @@ of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 - `20260806160000_upgrades.sql` — **needs applying**: structured regulation seasons, regulation verification status, season-reminder preferences.
 - `20260806120000_appearance_preferences.sql` — **needs applying**: `theme` and `font_pairing` on `angler_settings`, backing the colour and type pickers in Settings. Purely display preferences — the app falls back to the default ground if the columns are missing.
 - `20260807090000_tackle_specs.sql` — **needs applying**: a `specs` jsonb column on `tackle_items` holding the per-category details (rod power and action, reel gear ratio, lure weight and dive depth, line test, and so on) that the category-specific forms collect. Purely additive. Until it's applied the tackle form still saves everything else and tells you the details weren't recorded, rather than failing.
+- `20260808090000_tackle_warranty.sql` — **needs applying**: warranty columns on `tackle_items` (purchase date, expiry, lifetime flag, provider, reference, notes) plus the dedupe field for the daily reminder and a partial index for the cron's expiry query. Purely additive; until it's applied the tackle form saves everything else and says the warranty wasn't recorded.
 
 To update content later: edit the JSON in `research/`, run
 `node scripts/generate-seed-sql.mjs` in `app/`, copy the regenerated

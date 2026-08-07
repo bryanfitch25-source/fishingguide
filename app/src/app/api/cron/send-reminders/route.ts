@@ -6,6 +6,10 @@ import { getWeather } from "@/lib/environment";
 import { goodFishingDay } from "@/lib/goodFishingDay";
 import { formatHeight, isUnitSystem, type UnitSystem } from "@/lib/units";
 import { localDate } from "@/lib/dates";
+// Reused rather than reimplemented: the same function the Tackle Box uses to decide
+// whether to show "ends in 6 days" is the one that decides whether to push it, so the
+// badge and the notification can never disagree about which day it is.
+import { daysUntil as daysUntilLocal, WARRANTY_REMINDER_DAYS } from "@/lib/warranty";
 
 const TIME_ZONE = "America/Moncton";
 
@@ -110,6 +114,49 @@ export async function GET(request: NextRequest) {
       }
     }
     await admin.from("tackle_items").update({ last_maintenance_reminder_sent: today }).eq("id", item.id);
+  }
+
+  // Warranty expiry: the same 30/7/1/0 ladder the licence uses, because it answers the
+  // same question — is there still time to do something about this.
+  //
+  // Deliberately not reminded after expiry. A push saying a warranty lapsed last week is
+  // an accusation, not a reminder; the item's own card carries that fact for whenever you
+  // next look at it.
+  const { data: warrantyItems } = await admin
+    .from("tackle_items")
+    .select("id, user_id, name, warranty_expires_on, last_warranty_reminder_sent")
+    .not("warranty_expires_on", "is", null);
+
+  for (const item of warrantyItems ?? []) {
+    if (item.last_warranty_reminder_sent === today) continue;
+    const days = daysUntilLocal(item.warranty_expires_on, today);
+    if (days === null || !WARRANTY_REMINDER_DAYS.includes(days)) continue;
+
+    const message =
+      days === 0
+        ? `The warranty on ${item.name} ends today.`
+        : `The warranty on ${item.name} ends in ${days} day${days === 1 ? "" : "s"}.`;
+
+    const { data: subs } = await admin
+      .from("push_subscriptions")
+      .select("endpoint, p256dh, auth_key")
+      .eq("user_id", item.user_id);
+
+    for (const sub of subs ?? []) {
+      try {
+        await webpush.sendNotification(
+          { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth_key } },
+          JSON.stringify({ title: "Maritime Angler", body: message, url: "/tackle" })
+        );
+        sent++;
+      } catch {
+        // Same as above — a dead subscription shouldn't fail the whole run.
+      }
+    }
+    await admin
+      .from("tackle_items")
+      .update({ last_warranty_reminder_sent: today })
+      .eq("id", item.id);
   }
 
   // Daily tide digest: today's highs and lows at the station each user has selected.
