@@ -179,6 +179,11 @@ export interface TackleItem {
   warranty_provider?: string | null;
   warranty_reference?: string | null;
   warranty_notes?: string | null;
+  /**
+   * Salt, fresh or both. Null means unsaid rather than unknown-and-guessed — see
+   * lib/water-type.ts. Optional so the app runs before that migration lands.
+   */
+  water_type?: "salt" | "fresh" | "both" | null;
   /** Which box this belongs to. Optional so the app runs before the migration lands. */
   discipline?: Discipline;
   species_slugs?: string[];

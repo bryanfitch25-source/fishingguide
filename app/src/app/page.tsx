@@ -81,6 +81,50 @@ const SECTIONS = [
     heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-brand",
   },
   {
+    href: "/matcher",
+    short: "Which lure or fly, for which fish and water.",
+    emoji: "🎯",
+    title: "What to Throw",
+    description:
+      "Which lures and flies work for which fish, in which water and which province — led by the ones already in your Tackle Box and Fly Box, with the gaps flagged.",
+    border: "hover:border-guide",
+    bg: "bg-guide-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-guide",
+  },
+  {
+    href: "/saltwater",
+    short: "Tides, wharves, and what salt does to gear.",
+    emoji: "🌊",
+    title: "Saltwater",
+    description:
+      "Fishing the salt as its own craft — reading the tide, picking a spot you've never seen, spinning and fly side by side, wharf etiquette, and the ten minutes afterwards that decide how long your tackle lasts.",
+    border: "hover:border-brand",
+    bg: "bg-brand-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-brand",
+  },
+  {
+    href: "/tying",
+    short: "From first thread wrap to Bombers.",
+    emoji: "🪶",
+    title: "Fly Tying",
+    description:
+      "Thirteen lessons in the order the skills actually stack — thread control, four trout flies, deer hair, the Miramichi bugs, saltwater. One checked video each.",
+    border: "hover:border-guide",
+    bg: "bg-guide-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-guide",
+  },
+  {
+    href: "/lures",
+    short: "Pour jigs, build spinners and spoons.",
+    emoji: "🔧",
+    title: "Making Lures",
+    description:
+      "Jig heads from the pot to the paint to the bucktail, then spinners, spinnerbaits and spoons with no heat at all. Safety first, and it isn't a formality.",
+    border: "hover:border-accent",
+    bg: "bg-accent-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-accent",
+  },
+  {
     href: "/safety",
     short: "Cold water, gear, float plan, distress.",
     emoji: "🦺",
@@ -110,17 +154,20 @@ export default async function Home() {
           last one. Below `sm` each entry is a single row instead: icon, name, one line.
           The grid of cards is still the right shape on a wide screen, so it comes back
           at `sm` where there's room for it. */}
-      {/* Seven now, which divides evenly at neither breakpoint — so the last card is told
-          to span the empty column on a wide screen rather than sit in it alone. On a
-          tablet's two columns the odd one out lands on the left of its own row, which
-          reads as the end of a list rather than as a gap. */}
+      {/* The last card widens to two columns only when that makes the `lg` grid come out
+          even, rather than being hardcoded as it was when there were seven sections.
+          Adding a section used to silently leave a hole; now the grid corrects itself.
+
+          At three columns, n cards with one double occupy n+1 slots, so the double helps
+          exactly when n % 3 === 2. (n % 3 === 0 is already square, and n % 3 === 1 can't
+          be squared by a single double at all — it needs another card, not another rule.) */}
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         {SECTIONS.map((s, i) => (
           <Link
             key={s.href}
             href={s.href}
             className={`group card-lift flex items-center gap-3 rounded-2xl border border-border bg-surface p-3 transition hover:shadow-md sm:block sm:p-6 ${s.border} ${
-              i === SECTIONS.length - 1 ? "lg:col-span-2" : ""
+              i === SECTIONS.length - 1 && SECTIONS.length % 3 === 2 ? "lg:col-span-2" : ""
             }`}
           >
             <div

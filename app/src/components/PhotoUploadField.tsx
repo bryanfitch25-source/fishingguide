@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import { uploadPhoto } from "@/lib/photoUpload";
+import { calendarDate } from "@/lib/dates";
 
 export function PhotoUploadField({
   folder,
@@ -10,6 +11,7 @@ export function PhotoUploadField({
   onChange,
   label = "Photo",
   onGpsDetected,
+  onDateDetected,
 }: {
   /** Storage sub-folder under the signed-in user's own prefix, e.g. "tackle" or "catches". */
   folder: string;
@@ -18,6 +20,12 @@ export function PhotoUploadField({
   label?: string;
   /** Called when the uploaded photo's EXIF data includes GPS coordinates. */
   onGpsDetected?: (lat: number, lng: number) => void;
+  /**
+   * Called with the photo's own capture date as YYYY-MM-DD, when it has one.
+   * The caller decides whether to use it — see CatchLogClient, which only takes it while
+   * the date field is still untouched.
+   */
+  onDateDetected?: (date: string) => void;
 }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,13 +35,24 @@ export function PhotoUploadField({
     setError(null);
     setUploading(true);
 
-    if (onGpsDetected) {
+    if (onGpsDetected || onDateDetected) {
       try {
         const exifr = await import("exifr");
-        const gps = await exifr.gps(file);
-        if (gps?.latitude && gps?.longitude) onGpsDetected(gps.latitude, gps.longitude);
+        if (onGpsDetected) {
+          const gps = await exifr.gps(file);
+          if (gps?.latitude && gps?.longitude) onGpsDetected(gps.latitude, gps.longitude);
+        }
+        if (onDateDetected) {
+          const meta = await exifr.parse(file, ["DateTimeOriginal", "CreateDate"]);
+          // DateTimeOriginal is when the shutter fired; CreateDate is a fallback some
+          // cameras and phones write instead. Either beats today's date as a guess.
+          const taken: unknown = meta?.DateTimeOriginal ?? meta?.CreateDate;
+          if (taken instanceof Date && !Number.isNaN(taken.getTime())) {
+            onDateDetected(calendarDate(taken));
+          }
+        }
       } catch {
-        // No/unreadable EXIF data — not an error, just no auto-location this time.
+        // No or unreadable EXIF — not an error, just nothing to prefill from this time.
       }
     }
 

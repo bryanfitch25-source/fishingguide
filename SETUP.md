@@ -24,7 +24,11 @@ it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 - **My Spots** (`/spots`) — every station you've favourited, with its current tide, side by side. Sign-in required.
 - **Tackle Box** (`/tackle`) — your conventional tackle inventory. Sign-in required; only you can see or edit it.
 - **Fly Box** (`/fly`) — fly rods, reels, lines, leaders and flies, kept entirely separate from the Tackle Box, plus Maritime patterns, line weights, the tippet chart, fly knots and the Atlantic salmon rules. Sign-in required.
-- **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. Sign-in required.
+- **What to Throw** (`/matcher`) — which lures and flies work for which fish, in which water and province. Browsable by fish, by lure/fly, or by named water, and it leads with gear already in your boxes. Public; signing in adds the owned-gear badges.
+- **Saltwater** (`/saltwater`) — salt as its own craft: tides, structure, gear for spinning and fly alike, what you'll actually catch, wharf access, and rinsing your gear so it survives. Public.
+- **Fly Tying** (`/tying`) — a 13-lesson course from thread control to Maritime salmon bugs and saltwater patterns, plus a reference. Public.
+- **Making Lures** (`/lures`) — 11 lessons on pouring and dressing jigs and building spinners, spinnerbaits and spoons, safety first. Public.
+- **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. A photo fills in the location from its GPS and the date from its own timestamp, unless you've already set the date yourself. Sign-in required.
 - **Settings** (`/settings`) — tide station, units, angler profile, reminders. Sign-in required.
 
 ### Notifications on iPhone
@@ -74,6 +78,7 @@ of migrations in `app/supabase/migrations/` (run in filename/timestamp order):
 - `20260807090000_tackle_specs.sql` — **needs applying**: a `specs` jsonb column on `tackle_items` holding the per-category details (rod power and action, reel gear ratio, lure weight and dive depth, line test, and so on) that the category-specific forms collect. Purely additive. Until it's applied the tackle form still saves everything else and tells you the details weren't recorded, rather than failing.
 - `20260808090000_tackle_warranty.sql` — **needs applying**: warranty columns on `tackle_items` (purchase date, expiry, lifetime flag, provider, reference, notes) plus the dedupe field for the daily reminder and a partial index for the cron's expiry query. Purely additive; until it's applied the tackle form saves everything else and says the warranty wasn't recorded.
 - `20260809090000_fly_discipline.sql` — **needs applying**: a `discipline` column on `tackle_items` and `tackle_trays` separating fly gear from conventional tackle, and a widened `category` check so the fly categories are accepted. Existing rows default to `conventional`.
+- `20260810090000_tackle_water_type.sql` — **needs applying**: a `water_type` column on `tackle_items` (`salt` / `fresh` / `both`, nullable) with a check constraint and a partial index, backing the water filter on both the Tackle Box and the Fly Box. Purely additive, and deliberately *not* backfilled — null means "not said yet" rather than a guess. Verified against a local Postgres 16: the full migration chain applies in order, invalid values are rejected, and re-running it twice is a no-op.
 
 To update content later: edit the JSON in `research/`, run
 `node scripts/generate-seed-sql.mjs` in `app/`, copy the regenerated

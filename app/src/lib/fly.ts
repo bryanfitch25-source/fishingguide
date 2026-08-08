@@ -118,14 +118,16 @@ export interface TippetRow {
  *
  * Two rules generate most of this and are worth knowing rather than looking up:
  *   Rule of 11 — 11 minus the X number is the diameter in thousandths of an inch. 5X is
- *     0.006".
+ *     0.006". This is definitional rather than approximate: the diameters below are the
+ *     industry standard and every manufacturer holds to them.
  *   Rule of 3  — hook size divided by 3 is roughly the X. A size 16 fly wants about 5X.
  *
- * Breaking strain is the part that does *not* follow a rule reliably. The old "rule of 9"
- * (9 minus X) describes nylon monofilament and no longer describes much else — modern
+ * Breaking strain is the part that does *not* follow a rule reliably, and the part the
+ * chart should be least trusted on. The old "rule of 9" (9 minus X) was written for the
+ * nylon monofilament of its era and now understates most spools by a wide margin — modern
  * copolymers and fluorocarbon in the same diameter test considerably higher, and the
- * figures vary between manufacturers. The pound tests below are typical nylon; read the
- * spool rather than the chart when it matters.
+ * figures vary between manufacturers. The pound tests below are typical of what's sold
+ * today; read the spool rather than the chart when it matters.
  */
 export const TIPPET_CHART: TippetRow[] = [
   { x: "0X", diameterIn: "0.011", approxLb: "~15 lb", hookSizes: "2 – 1/0", typical: "Salmon, big streamers, pike" },
@@ -140,9 +142,9 @@ export const TIPPET_CHART: TippetRow[] = [
 ];
 
 export const TIPPET_RULES = [
-  "Rule of 11 — 11 minus the X is the diameter in thousandths. 5X is 0.006\".",
-  "Rule of 3 — hook size divided by 3 is roughly the X you want. A size 15 fly takes 5X.",
-  "The pound tests are typical nylon only. Fluorocarbon and modern copolymers test higher in the same diameter, and it varies by brand — read the spool.",
+  "Rule of 11 — 11 minus the X is the diameter in thousandths. 5X is 0.006\". This one is exact, not a rule of thumb.",
+  "Rule of 3 — hook size divided by 3 is roughly the X you want. A size 16 fly lands near 5X, a size 12 near 4X. Round to the tippet you actually have.",
+  "The pound tests are typical of modern tippet material and vary by brand and by spool age. The old rule of 9 — 9 minus the X — was written for the nylon of its day and understates most of what's sold now. Read the spool.",
 ];
 
 // ---------------------------------------------------------------------------
@@ -255,12 +257,20 @@ export const SALMON_RULES = [
   {
     rule: "Release everything",
     detail:
-      "The recreational Atlantic salmon fishery is catch-and-release. All salmon must be released, with a limit of two released fish per day.",
+      "The recreational Atlantic salmon fishery is catch-and-release throughout. Every salmon must be released — there is no retention, at any size, anywhere in the region.",
+  },
+  {
+    // Corrected: this used to read "a limit of two released fish per day" everywhere,
+    // which is right only for PEI and for the Miramichi and Restigouche. It understated
+    // the limit on every other open river and in the spring fishery.
+    rule: "The daily limit caps releases — and it isn't one number",
+    detail:
+      "DFO Gulf Region for 2026: New Brunswick is 5 salmon per day during the spring fishery (15 April – 15 May), then 2 per day on the Miramichi and Restigouche and 4 per day on other open rivers. PEI is 2 per day. The Nova Scotia Gulf area is 4 per day. Nova Scotia's Atlantic and Fundy rivers sit under DFO Maritimes Region instead, under its own and generally tighter rules — many of those rivers are not open to salmon angling at all.",
   },
   {
     rule: "A separate licence",
     detail:
-      "Salmon needs its own licence on top of a general angling licence, and some rivers are further restricted by season, by beat, or by daily rod limits.",
+      "Salmon needs its own licence on top of a general angling licence — in Nova Scotia for everyone 16 and over, valid 1 June to 31 October. Some rivers are further restricted by season, by beat, or by daily rod limits.",
   },
   {
     rule: "Guides on some water",
@@ -270,4 +280,4 @@ export const SALMON_RULES = [
 ];
 
 export const SALMON_RULES_CAVEAT =
-  "Summarised from DFO Gulf Region and provincial guidance, and it changes by river and by season — variation orders arrive mid-year. Confirm against the current DFO notice and your provincial angling guide before you fish.";
+  "Summarised from the DFO Gulf Region 2026 recreational salmon notice and provincial guidance. It changes by river and by season, and variation orders arrive mid-year — the numbers above are a starting point for planning, not a defence. Confirm against the current DFO notice and your provincial angling guide before you fish.";

@@ -16,6 +16,30 @@ export function localDate(date: Date = new Date(), timeZone: string = APP_TIME_Z
   return date.toLocaleDateString("en-CA", { timeZone });
 }
 
+/**
+ * The calendar date a Date object *reads as* on the machine, with no zone conversion.
+ *
+ * For EXIF timestamps specifically, and deliberately not `localDate`. An EXIF
+ * DateTimeOriginal is a bare wall-clock string — "2024:07:14 06:30:00", no offset — and
+ * exifr turns it into a Date whose local getters hand those exact numbers back. So the
+ * getters are the answer, and both obvious alternatives are wrong:
+ *
+ *   toISOString().slice(0,10)  shifts for anyone east of UTC. Checked against a real
+ *                              file: a photo stamped 14 July 06:30, read on a device set
+ *                              to Sydney, comes back as the 13th.
+ *   localDate(d)               converts the instant into Atlantic time, re-dating a photo
+ *                              taken elsewhere to whenever that instant was here — which
+ *                              is not what the camera wrote.
+ *
+ * The photo says which day it was taken. That day is the answer wherever you open it.
+ */
+export function calendarDate(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
 /** Local clock time, e.g. "4:02 p.m." */
 export function localTime(date: Date, timeZone: string = APP_TIME_ZONE): string {
   return date.toLocaleTimeString("en-CA", { hour: "numeric", minute: "2-digit", timeZone });

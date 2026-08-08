@@ -10,7 +10,7 @@ import {
   TIPPET_CHART,
   TIPPET_RULES,
 } from "@/lib/fly";
-import { PATTERN_TYPES, TOTAL_PATTERNS, type FlyPattern } from "@/lib/fly-patterns";
+import { PATTERN_TYPES, TOTAL_PATTERNS, TOTAL_STYLES, type FlyPattern } from "@/lib/fly-patterns";
 
 type RefTab = "patterns" | "weights" | "tippet" | "knots" | "rules";
 
@@ -26,11 +26,14 @@ const TABS: { id: RefTab; label: string }[] = [
 // a fly rod, and that the conventional guide has no place for. Kept beside the gear rather
 // than in the Fishing Guide because the two get used together: you look up a tippet size
 // while standing over the box you're picking a fly out of.
-export function FlyReference() {
+export function FlyReference({ initialPattern = "" }: { initialPattern?: string } = {}) {
   const [tab, setTab] = useState<RefTab>("patterns");
   const [quarry, setQuarry] = useState(PATTERN_GROUPS[0].quarry);
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [search, setSearch] = useState("");
+  // Seeded from ?pattern= so a link from the matcher lands on the fly it named rather than
+  // on the top of a list of 99. Plain initial state rather than an effect: it only needs to
+  // be right on arrival, and the search box stays fully editable afterwards.
+  const [search, setSearch] = useState(initialPattern);
   const group = PATTERN_GROUPS.find((g) => g.quarry === quarry) ?? PATTERN_GROUPS[0];
 
   // Search runs across every group rather than within the selected one — with this many
@@ -96,7 +99,7 @@ export function FlyReference() {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={`Search all ${TOTAL_PATTERNS} patterns — name, origin, what it imitates…`}
+            placeholder={`Search all ${TOTAL_PATTERNS} flies — name, origin, what it imitates…`}
             className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
           />
 
@@ -129,23 +132,42 @@ export function FlyReference() {
           <div className="rounded-xl border border-border bg-surface p-3">
             {!search && <p className="text-sm text-muted">{group.blurb}</p>}
             <p className={`text-xs text-muted ${search ? "" : "mt-2"}`}>
-              {results.length} {results.length === 1 ? "pattern" : "patterns"}
+              {results.length} {results.length === 1 ? "fly" : "flies"}
               {search ? " across every group" : ` for ${group.quarry.toLowerCase()}`}
               {typeFilter !== "all" && ` · ${typeFilter.toLowerCase()} only`}
+            </p>
+            {/* The honest framing of what the library is, rather than a count that implies
+                every row is a documented dressing with a named tyer. */}
+            <p className="mt-1.5 text-xs text-muted">
+              {TOTAL_PATTERNS} distinct flies in all — {TOTAL_PATTERNS - TOTAL_STYLES} named
+              patterns, credited to a tyer where that&apos;s documented, and {TOTAL_STYLES}{" "}
+              marked as a style rather than a specific dressing. Ten are listed under more than
+              one quarry because they genuinely belong to both.
             </p>
           </div>
 
           <div className="space-y-2">
             {results.length === 0 && (
               <p className="rounded-xl border border-border bg-surface p-4 text-sm text-muted">
-                Nothing matches. Every fly here is a real, documented pattern — if something you
-                expect is missing it hasn&apos;t been added yet rather than been renamed.
+                Nothing matches. Everything here is either a real named pattern or a style of
+                fly labelled as one — if what you expect is missing it hasn&apos;t been added
+                yet rather than been renamed.
               </p>
             )}
             {results.map(({ pattern: p, quarry: q }) => (
               <div key={`${q}-${p.name}`} className="rounded-xl border border-border bg-surface p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="font-bold text-brand-dark">{p.name}</h3>
+                  <h3 className="font-bold text-brand-dark">
+                    {p.name}
+                    {/* Says plainly when an entry is a kind of fly rather than a specific
+                        dressing, so nobody hunts for a canonical recipe that doesn't
+                        exist. */}
+                    {p.style && (
+                      <span className="ml-2 rounded-full border border-border px-2 py-0.5 align-middle text-[10px] font-medium uppercase tracking-wide text-muted">
+                        a style, not a named pattern
+                      </span>
+                    )}
+                  </h3>
                   <span className="text-xs text-muted">
                     {p.type} · sizes {p.sizes}
                     {search && ` · ${q}`}

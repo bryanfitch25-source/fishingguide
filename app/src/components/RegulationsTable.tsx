@@ -82,7 +82,7 @@ export function RegulationsTable({ regulations }: { regulations: Regulation[] })
               href={reg.source_url}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-block text-xs text-accent underline"
+              className="mt-2 inline-block text-xs text-accent-dark underline"
             >
               Official source ↗
             </a>

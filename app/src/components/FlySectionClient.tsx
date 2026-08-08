@@ -29,10 +29,14 @@ const CATEGORIES = FLY_CATEGORIES.map((c) => ({
 
 export function FlySectionClient({
   species,
+  initialPattern = "",
 }: {
   species: { slug: string; common_name: string }[];
+  initialPattern?: string;
 }) {
-  const [view, setView] = useState<"box" | "reference">("box");
+  // Arriving with ?pattern= means someone followed a link to a specific fly, so open on the
+  // reference rather than making them find the tab first.
+  const [view, setView] = useState<"box" | "reference">(initialPattern ? "reference" : "box");
 
   return (
     <div className="space-y-4">
@@ -66,7 +70,7 @@ export function FlySectionClient({
           labels={FLY_LABELS}
         />
       ) : (
-        <FlyReference />
+        <FlyReference initialPattern={initialPattern} />
       )}
     </div>
   );

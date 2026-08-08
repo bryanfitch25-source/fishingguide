@@ -62,7 +62,7 @@ export default async function LocationGuideDetailPage(props: { params: Promise<{
                     href={spot.map_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs text-accent underline mt-2 inline-block"
+                    className="text-xs text-accent-dark underline mt-2 inline-block"
                   >
                     View map ↗
                   </a>
@@ -92,7 +92,7 @@ export default async function LocationGuideDetailPage(props: { params: Promise<{
               {section.sources.map((src, i) => (
                 <li key={i}>
                   Source:{" "}
-                  <a href={src.url} target="_blank" rel="noreferrer" className="text-accent underline">
+                  <a href={src.url} target="_blank" rel="noreferrer" className="text-accent-dark underline">
                     {src.label}
                   </a>
                 </li>
@@ -110,7 +110,7 @@ export default async function LocationGuideDetailPage(props: { params: Promise<{
           <ul className="text-sm space-y-1.5">
             {guide.location_guide_sources.map((src, i) => (
               <li key={i}>
-                <a href={src.url} target="_blank" rel="noreferrer" className="text-accent underline">
+                <a href={src.url} target="_blank" rel="noreferrer" className="text-accent-dark underline">
                   {src.label}
                 </a>
               </li>

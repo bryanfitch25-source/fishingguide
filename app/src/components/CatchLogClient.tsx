@@ -132,6 +132,11 @@ export function CatchLogClient({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
+  // Whether the angler has set the date themselves. A photo's own timestamp is a better
+  // guess than today, but only a guess — once someone types a date it stands.
+  const [dateTouched, setDateTouched] = useState(false);
+  // The date a photo supplied, kept only so the form can say where it came from.
+  const [dateFromPhoto, setDateFromPhoto] = useState<string | null>(null);
   // One Insights panel, three tabs. There used to be two independent toggles — "Year in
   // Review & Life List" and "Patterns" — that could both be open at once, stacking two
   // full-width analysis panels above the catches they were analysing, and neither of
@@ -198,6 +203,8 @@ export function CatchLogClient({
 
   function startAdd() {
     setForm(emptyForm);
+    setDateTouched(false);
+    setDateFromPhoto(null);
     setShowForm(true);
   }
 
@@ -213,6 +220,8 @@ export function CatchLogClient({
    */
   function startQuickLog() {
     const now = new Date();
+    setDateTouched(false);
+    setDateFromPhoto(null);
     setForm({
       ...emptyForm,
       catch_date: localDate(now),
@@ -236,6 +245,10 @@ export function CatchLogClient({
   }
 
   function startEdit(c: Catch) {
+    // Editing an existing catch: its date is already a decision, so a photo added later
+    // must not quietly move it.
+    setDateTouched(true);
+    setDateFromPhoto(null);
     setForm({
       id: c.id,
       species_slug: c.species_slug ?? "",
@@ -734,7 +747,10 @@ export function CatchLogClient({
                 type="date"
                 required
                 value={form.catch_date}
-                onChange={(e) => setForm({ ...form, catch_date: e.target.value })}
+                onChange={(e) => {
+                  setDateTouched(true);
+                  setForm({ ...form, catch_date: e.target.value });
+                }}
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               />
             </div>
@@ -835,11 +851,22 @@ export function CatchLogClient({
                 value={form.photo_url}
                 onChange={(url) => setForm({ ...form, photo_url: url })}
                 onGpsDetected={(lat, lng) => setForm((f) => ({ ...f, lat, lng }))}
+                onDateDetected={(d) => {
+                  if (dateTouched) return;
+                  setForm((f) => ({ ...f, catch_date: d }));
+                  setDateFromPhoto(d);
+                }}
               />
               <p className="mt-1 text-[11px] text-muted">
                 If the photo has location data, we&apos;ll fill in the spot automatically — the
                 📍 button above still works too.
               </p>
+              {dateFromPhoto && dateFromPhoto === form.catch_date && (
+                <p className="mt-1 text-[11px] text-muted">
+                  Date set to {dateFromPhoto} from the photo&apos;s own timestamp. Change it
+                  above if that&apos;s not right.
+                </p>
+              )}
             </div>
             <div>
               <MultiPhotoField
