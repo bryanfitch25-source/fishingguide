@@ -28,7 +28,7 @@ it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 - **Saltwater** (`/saltwater`) — salt as its own craft: tides, structure, gear for spinning and fly alike, what you'll actually catch, wharf access, and rinsing your gear so it survives. Public.
 - **Fly Tying** (`/tying`) — a 13-lesson course from thread control to Maritime salmon bugs and saltwater patterns, plus a reference. Public.
 - **Making Lures** (`/lures`) — 11 lessons on pouring and dressing jigs and building spinners, spinnerbaits and spoons, safety first. Public.
-- **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. Sign-in required.
+- **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. A photo fills in the location from its GPS and the date from its own timestamp, unless you've already set the date yourself. Sign-in required.
 - **Settings** (`/settings`) — tide station, units, angler profile, reminders. Sign-in required.
 
 ### Notifications on iPhone
