@@ -99,7 +99,7 @@ export function TyingClient() {
 
           <p className="text-sm text-muted">
             Patterns, line weights, the tippet chart and the salmon rules live in the{" "}
-            <Link href="/fly" className="text-accent underline">
+            <Link href="/fly" className="text-accent-dark underline">
               Fly Box
             </Link>
             .

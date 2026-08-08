@@ -88,7 +88,7 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
                   {section.sources.map((src, i) => (
                     <li key={i}>
                       Source:{" "}
-                      <a href={src.url} target="_blank" rel="noreferrer" className="text-accent underline">
+                      <a href={src.url} target="_blank" rel="noreferrer" className="text-accent-dark underline">
                         {src.label}
                       </a>
                     </li>
@@ -121,7 +121,7 @@ export default async function SpeciesDetailPage(props: { params: Promise<{ slug:
               <ul className="text-sm space-y-1.5">
                 {species.species_sources.map((src, i) => (
                   <li key={i}>
-                    <a href={src.url} target="_blank" rel="noreferrer" className="text-accent underline">
+                    <a href={src.url} target="_blank" rel="noreferrer" className="text-accent-dark underline">
                       {src.label}
                     </a>
                   </li>

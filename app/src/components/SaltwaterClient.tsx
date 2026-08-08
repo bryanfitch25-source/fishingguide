@@ -118,7 +118,7 @@ export function SaltwaterClient({
           </div>
           <p className="text-sm text-muted">
             Today&apos;s heights and the 7-day forecast for your station are on{" "}
-            <Link href="/tides" className="text-accent underline">
+            <Link href="/tides" className="text-accent-dark underline">
               Tides
             </Link>
             .
@@ -137,7 +137,7 @@ export function SaltwaterClient({
           ))}
           <p className="text-sm text-muted">
             Named spots for each species live on their guide pages and in{" "}
-            <Link href="/matcher" className="text-accent underline">
+            <Link href="/matcher" className="text-accent-dark underline">
               What to Throw
             </Link>
             , marked as local reports rather than guarantees.
@@ -169,11 +169,11 @@ export function SaltwaterClient({
           </div>
           <p className="text-sm text-muted">
             Tag what you own as salt, fresh or both in your{" "}
-            <Link href="/tackle" className="text-accent underline">
+            <Link href="/tackle" className="text-accent-dark underline">
               Tackle Box
             </Link>{" "}
             and{" "}
-            <Link href="/fly" className="text-accent underline">
+            <Link href="/fly" className="text-accent-dark underline">
               Fly Box
             </Link>{" "}
             and each box gains a water filter — useful when you&apos;re packing at 5am.

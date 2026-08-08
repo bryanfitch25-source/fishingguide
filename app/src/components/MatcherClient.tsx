@@ -251,7 +251,7 @@ export function MatcherClient({ species, owned }: Props) {
               </p>
             )}
             <p className="mt-2 text-xs text-muted">
-              <Link href={`/species/${slug}`} className="text-accent underline">
+              <Link href={`/species/${slug}`} className="text-accent-dark underline">
                 Full {nameOf(slug).toLowerCase()} guide
               </Link>
             </p>
@@ -317,7 +317,7 @@ export function MatcherClient({ species, owned }: Props) {
                     <p className="mt-2 text-xs text-muted">
                       <Link
                         href={`/fly?pattern=${encodeURIComponent(g.patternRef)}`}
-                        className="text-accent underline"
+                        className="text-accent-dark underline"
                       >
                         Full entry for the {g.patternRef} in the Fly Box
                       </Link>
@@ -437,7 +437,7 @@ export function RecCard({ rec, owned }: { rec: Recommendation; owned: OwnedGearI
         <p className="mt-1.5 text-xs">
           <Link
             href={`/fly?pattern=${encodeURIComponent(rec.patternRef)}`}
-            className="text-accent underline"
+            className="text-accent-dark underline"
           >
             How it&apos;s dressed, and who tied it first
           </Link>

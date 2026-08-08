@@ -180,7 +180,7 @@ export function SafetyClient({
           <div className="rounded-xl border border-border bg-surface p-4">
             <p className="text-sm font-semibold text-brand-dark">If it goes wrong</p>
             <p className="mt-1 text-sm">
-              <a href={`tel:${JRCC_HALIFAX.toll.replace(/-/g, "")}`} className="text-accent underline">
+              <a href={`tel:${JRCC_HALIFAX.toll.replace(/-/g, "")}`} className="text-accent-dark underline">
                 {JRCC_HALIFAX.toll}
               </a>{" "}
               — {JRCC_HALIFAX.name}. Covers {JRCC_HALIFAX.covers}. On the water, VHF channel 16 first.

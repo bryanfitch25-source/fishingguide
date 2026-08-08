@@ -80,7 +80,7 @@ export async function WhatToThrow({ speciesSlug, speciesName }: { speciesSlug: s
           </>
         )}
         {recs.length > shown.length && <>{recs.length - shown.length} more, plus filters by water and province, </>}
-        <Link href="/matcher" className="text-accent underline">
+        <Link href="/matcher" className="text-accent-dark underline">
           in What to Throw
         </Link>
         .
