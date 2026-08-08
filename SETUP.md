@@ -19,7 +19,7 @@ it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 
 ## App structure
 
-- **Fishing Guide** (`/guide`) — species, trip guides, regulations, Fish Near Me. Public, no sign-in needed.
+- **Fishing Guide** (`/guide`) — species, trip guides, regulations, Fish Near Me. Public, no sign-in needed. Each species page carries three layers: the sourced regional research (seasons, waters, regulations, with citations), a "How to Actually Catch One" block of applied technique from `lib/species-tactics.ts`, and a "What to Throw" shortlist from the matcher. The three are kept in separate files on purpose, so sourced regional claims never blur into general technique.
 - **Tides** (`/tides`) — current tide and 24-hour curve for your selected station, marine conditions, solunar feeding periods, and a 7-day high/low forecast. Public; signing in lets you choose a station instead of the default.
 - **My Spots** (`/spots`) — every station you've favourited, with its current tide, side by side. Sign-in required.
 - **Tackle Box** (`/tackle`) — your conventional tackle inventory. Sign-in required; only you can see or edit it.
