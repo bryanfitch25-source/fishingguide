@@ -47,7 +47,7 @@ if (argIds) {
   // Pull every videoId out of the lesson libraries, along with the lesson that claims it,
   // so a failure names the lesson to fix rather than a bare eleven-character string.
   targets = [];
-  for (const file of ["src/lib/tying.ts", "src/lib/lure-making.ts"]) {
+  for (const file of ["src/lib/tying.ts", "src/lib/lure-making.ts", "src/lib/skills.ts"]) {
     let src;
     try {
       src = readFileSync(join(appDir, file), "utf8");

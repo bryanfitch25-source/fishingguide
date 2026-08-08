@@ -103,6 +103,17 @@ const SECTIONS = [
     heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-brand",
   },
   {
+    href: "/skills",
+    short: "Cast, read water, hook, play, land.",
+    emoji: "🎓",
+    title: "Skills",
+    description:
+      "The part the other sections assume you already know — casting a spinning rod and a fly rod, reading a river and a lake, drag and hooksets, and the three minutes between the take and the net.",
+    border: "hover:border-brand",
+    bg: "bg-brand-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-brand",
+  },
+  {
     href: "/tying",
     short: "From first thread wrap to Bombers.",
     emoji: "🪶",

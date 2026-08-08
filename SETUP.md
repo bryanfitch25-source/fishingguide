@@ -19,13 +19,14 @@ it into `app/supabase/seed.sql`. To add or edit a species, edit the JSON (see
 
 ## App structure
 
-- **Fishing Guide** (`/guide`) — species, trip guides, regulations, Fish Near Me. Public, no sign-in needed.
+- **Fishing Guide** (`/guide`) — species, trip guides, regulations, Fish Near Me. Public, no sign-in needed. Each species page carries three layers: the sourced regional research (seasons, waters, regulations, with citations), a "How to Actually Catch One" block of applied technique from `lib/species-tactics.ts`, and a "What to Throw" shortlist from the matcher. The three are kept in separate files on purpose, so sourced regional claims never blur into general technique.
 - **Tides** (`/tides`) — current tide and 24-hour curve for your selected station, marine conditions, solunar feeding periods, and a 7-day high/low forecast. Public; signing in lets you choose a station instead of the default.
 - **My Spots** (`/spots`) — every station you've favourited, with its current tide, side by side. Sign-in required.
 - **Tackle Box** (`/tackle`) — your conventional tackle inventory. Sign-in required; only you can see or edit it.
 - **Fly Box** (`/fly`) — fly rods, reels, lines, leaders and flies, kept entirely separate from the Tackle Box, plus Maritime patterns, line weights, the tippet chart, fly knots and the Atlantic salmon rules. Sign-in required.
 - **What to Throw** (`/matcher`) — which lures and flies work for which fish, in which water and province. Browsable by fish, by lure/fly, or by named water, and it leads with gear already in your boxes. Public; signing in adds the owned-gear badges.
 - **Saltwater** (`/saltwater`) — salt as its own craft: tides, structure, gear for spinning and fly alike, what you'll actually catch, wharf access, and rinsing your gear so it survives. Public.
+- **Skills** (`/skills`) — the physical craft the rest of the app assumes: casting a spinning rod and a fly rod, reading rivers and lakes, retrieve cadence and depth control, drag, hooksets, playing and landing, and releasing a fish that lives. 16 lessons, each with a drill. Public.
 - **Fly Tying** (`/tying`) — a 13-lesson course from thread control to Maritime salmon bugs and saltwater patterns, plus a reference. Public.
 - **Making Lures** (`/lures`) — 11 lessons on pouring and dressing jigs and building spinners, spinnerbaits and spoons, safety first. Public.
 - **Catch Log** (`/catches`) — what you caught, where, with what, and the conditions at the time. A photo fills in the location from its GPS and the date from its own timestamp, unless you've already set the date yourself. Sign-in required.
