@@ -10,7 +10,7 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v6";
+const CACHE_NAME = "maritime-angler-v7";
 
 // Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
 //
@@ -48,6 +48,13 @@ const PRECACHE_URLS = [
   "/guide/knots",
   "/manifest.json",
   "/icon-192.png",
+
+  // Cached on the same reasoning as the species pages it indexes: "what do I tie on" is
+  // exactly the question that comes up standing at the water with no signal. Like those
+  // pages it carries owned-gear badges when you're signed in, so a cached copy can show
+  // an inventory a few items out of date — a very different failure from a cached tide
+  // reading, which is why /tides stays excluded and this doesn't.
+  "/matcher",
 
   // Deliberately cached, and the only conditions-bearing page that is.
   //

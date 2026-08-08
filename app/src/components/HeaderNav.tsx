@@ -17,6 +17,7 @@ const LINKS = [
 // narrow laptop, and both of these are reachable from the Tides screen's own header.
 // The mobile menu has the room, so it lists them.
 const SECONDARY_LINKS = [
+  { href: "/matcher", label: "What to Throw" },
   { href: "/fly", label: "Fly Box" },
   { href: "/depth", label: "Depth Charts" },
   { href: "/safety", label: "Safety" },

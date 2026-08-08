@@ -81,6 +81,17 @@ const SECTIONS = [
     heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-brand",
   },
   {
+    href: "/matcher",
+    short: "Which lure or fly, for which fish and water.",
+    emoji: "🎯",
+    title: "What to Throw",
+    description:
+      "Which lures and flies work for which fish, in which water and which province — led by the ones already in your Tackle Box and Fly Box, with the gaps flagged.",
+    border: "hover:border-guide",
+    bg: "bg-guide-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-guide",
+  },
+  {
     href: "/safety",
     short: "Cold water, gear, float plan, distress.",
     emoji: "🦺",
@@ -110,10 +121,10 @@ export default async function Home() {
           last one. Below `sm` each entry is a single row instead: icon, name, one line.
           The grid of cards is still the right shape on a wide screen, so it comes back
           at `sm` where there's room for it. */}
-      {/* Seven now, which divides evenly at neither breakpoint — so the last card is told
-          to span the empty column on a wide screen rather than sit in it alone. On a
-          tablet's two columns the odd one out lands on the left of its own row, which
-          reads as the end of a list rather than as a gap. */}
+      {/* Eight now, which is four clean rows at `sm` and — because the last card still
+          spans two columns — three clean rows at `lg`: 7 single cards plus one double is
+          nine column-slots, exactly three rows of three. The span was added when there
+          were seven and an empty column to fill; it happens to keep working. */}
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         {SECTIONS.map((s, i) => (
           <Link
