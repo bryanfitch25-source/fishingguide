@@ -315,8 +315,11 @@ export function MatcherClient({ species, owned }: Props) {
                   </div>
                   {g.patternRef && (
                     <p className="mt-2 text-xs text-muted">
-                      <Link href="/fly" className="text-accent underline">
-                        Full pattern entry in the Fly Box
+                      <Link
+                        href={`/fly?pattern=${encodeURIComponent(g.patternRef)}`}
+                        className="text-accent underline"
+                      >
+                        Full entry for the {g.patternRef} in the Fly Box
                       </Link>
                     </p>
                   )}
@@ -428,6 +431,17 @@ export function RecCard({ rec, owned }: { rec: Recommendation; owned: OwnedGearI
         </p>
       ) : (
         <p className="mt-2 text-xs text-muted">Not matched to anything in your boxes.</p>
+      )}
+
+      {rec.patternRef && (
+        <p className="mt-1.5 text-xs">
+          <Link
+            href={`/fly?pattern=${encodeURIComponent(rec.patternRef)}`}
+            className="text-accent underline"
+          >
+            How it&apos;s dressed, and who tied it first
+          </Link>
+        </p>
       )}
     </div>
   );

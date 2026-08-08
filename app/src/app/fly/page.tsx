@@ -9,10 +9,18 @@ export const metadata = {
     "Fly gear kept separate from conventional tackle, with Maritime patterns, line weights, the tippet chart, fly knots and the salmon rules.",
 };
 
-export default async function FlyPage() {
+export default async function FlyPage(props: {
+  searchParams: Promise<{ pattern?: string | string[] }>;
+}) {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
-  const species = await getAllSpecies();
+  const [species, params] = await Promise.all([getAllSpecies(), props.searchParams]);
+
+  // ?pattern=Green+Machine opens the reference with that fly searched for. Capped, because
+  // it's user-controllable text that seeds an input — it only ever filters a local array,
+  // but there's no reason to accept a megabyte of it.
+  const raw = Array.isArray(params.pattern) ? params.pattern[0] : params.pattern;
+  const initialPattern = (raw ?? "").slice(0, 80);
 
   return (
     <div className="mx-auto max-w-6xl px-3 sm:px-6 py-4 sm:py-10">
@@ -24,7 +32,10 @@ export default async function FlyPage() {
           alternatives.
         </p>
       </div>
-      <FlySectionClient species={species.map((s) => ({ slug: s.slug, common_name: s.common_name }))} />
+      <FlySectionClient
+        species={species.map((s) => ({ slug: s.slug, common_name: s.common_name }))}
+        initialPattern={initialPattern}
+      />
     </div>
   );
 }

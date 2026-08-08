@@ -8,8 +8,8 @@
 // The lead safety lesson comes first and cannot be skipped in the ordering, because this is
 // the only part of this app where following the instructions badly can poison somebody.
 // Everything in it is standard practice rather than novel advice, and the section says
-// plainly where the line is: if you don't want to handle lead, bismuth and tin alloys pour
-// at similar temperatures and buying finished heads is a perfectly good answer.
+// plainly where the line is: if you don't want to handle lead, tin and bismuth alloys melt
+// lower and buying finished heads is a perfectly good answer.
 //
 // One video per lesson, each checked with scripts/verify-videos.mjs — see lib/tying.ts for
 // why that script exists and what it caught.
@@ -27,7 +27,7 @@ export const CRAFT_STAGES: CraftStageInfo[] = [
     id: "safety",
     title: "Before you melt anything",
     blurb:
-      "Molten metal at 320–350 °C, and lead. Read this one properly — it is the only part of this app where doing it wrong hurts you rather than costing you a fish.",
+      "Molten metal at around 370–400 °C, and lead. Read this one properly — it is the only part of this app where doing it wrong hurts you rather than costing you a fish.",
   },
   {
     id: "jigs",
@@ -95,7 +95,7 @@ export const CRAFT_LESSONS: CraftLesson[] = [
     skill: "Knowing the alternatives before you commit",
     steps: [
       "Buy unpainted jig heads and start at the painting and dressing lessons. You lose nothing that matters and skip the melting entirely.",
-      "Consider tin or bismuth alloys, which pour at similar temperatures and are far less toxic — heavier on the wallet, lighter for the same volume, so sizes differ from a lead equivalent.",
+      "Consider tin or bismuth alloys. Both are far less toxic and melt lower than lead — tin around 232 °C, bismuth around 271 °C, against lead's 327 °C — so the same pot handles them easily. They cost more and are less dense, so a head from the same mould comes out lighter than its lead equivalent; weigh a few rather than trusting the mould's marking.",
       "Spinners, spinnerbaits and spoons involve no melting at all. If you want to make tackle and not deal with any of this, start there instead.",
       "Some jurisdictions restrict lead tackle in specific waters or sizes. It is not a general ban in Canada, but it is worth checking your provincial guide before you make two hundred of something.",
     ],
@@ -109,7 +109,7 @@ export const CRAFT_LESSONS: CraftLesson[] = [
     title: "Pouring a jig head",
     skill: "Clean, complete castings",
     steps: [
-      "Set the pot to roughly 320–350 °C. Too cool gives incomplete, wrinkled heads; far too hot burns off tin and oxidises quickly.",
+      "Set the pot to roughly 370–400 °C (700–750 °F). Pure lead melts at 327 °C, but pouring at the melting point is what gives wrinkled, incomplete heads — you want it comfortably above. Far too hot burns off tin and oxidises quickly.",
       "Flux the melt and skim the dross off the top with a steel spoon into your tin.",
       "Seat a hook in the mould so the eye and shank sit exactly in their recesses — a hook half out of its groove ruins the head and can jam the mould.",
       "Close the mould, hold it firmly, and pour in one steady motion into the sprue until it's slightly proud.",

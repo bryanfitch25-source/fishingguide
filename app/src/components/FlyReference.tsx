@@ -26,11 +26,14 @@ const TABS: { id: RefTab; label: string }[] = [
 // a fly rod, and that the conventional guide has no place for. Kept beside the gear rather
 // than in the Fishing Guide because the two get used together: you look up a tippet size
 // while standing over the box you're picking a fly out of.
-export function FlyReference() {
+export function FlyReference({ initialPattern = "" }: { initialPattern?: string } = {}) {
   const [tab, setTab] = useState<RefTab>("patterns");
   const [quarry, setQuarry] = useState(PATTERN_GROUPS[0].quarry);
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [search, setSearch] = useState("");
+  // Seeded from ?pattern= so a link from the matcher lands on the fly it named rather than
+  // on the top of a list of 99. Plain initial state rather than an effect: it only needs to
+  // be right on arrival, and the search box stays fully editable afterwards.
+  const [search, setSearch] = useState(initialPattern);
   const group = PATTERN_GROUPS.find((g) => g.quarry === quarry) ?? PATTERN_GROUPS[0];
 
   // Search runs across every group rather than within the selected one — with this many
