@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   FLY_KNOTS,
   LINE_WEIGHT_GUIDE,
@@ -10,6 +10,7 @@ import {
   TIPPET_CHART,
   TIPPET_RULES,
 } from "@/lib/fly";
+import { PATTERN_TYPES, TOTAL_PATTERNS, type FlyPattern } from "@/lib/fly-patterns";
 
 type RefTab = "patterns" | "weights" | "tippet" | "knots" | "rules";
 
@@ -28,7 +29,31 @@ const TABS: { id: RefTab; label: string }[] = [
 export function FlyReference() {
   const [tab, setTab] = useState<RefTab>("patterns");
   const [quarry, setQuarry] = useState(PATTERN_GROUPS[0].quarry);
+  const [typeFilter, setTypeFilter] = useState<string>("all");
+  const [search, setSearch] = useState("");
   const group = PATTERN_GROUPS.find((g) => g.quarry === quarry) ?? PATTERN_GROUPS[0];
+
+  // Search runs across every group rather than within the selected one — with this many
+  // patterns, someone typing "smelt" or "Clouser" wants the answer wherever it lives, and
+  // several flies genuinely belong to more than one quarry.
+  const results = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    const rows: { pattern: FlyPattern; quarry: string }[] = [];
+    for (const g of PATTERN_GROUPS) {
+      if (!q && g.quarry !== quarry) continue;
+      for (const p of g.patterns) {
+        if (typeFilter !== "all" && p.type !== typeFilter) continue;
+        if (q) {
+          const hay = [p.name, p.type, p.when, p.note, p.origin ?? "", p.imitates ?? ""]
+            .join(" ")
+            .toLowerCase();
+          if (!hay.includes(q)) continue;
+        }
+        rows.push({ pattern: p, quarry: g.quarry });
+      }
+    }
+    return rows;
+  }, [search, quarry, typeFilter]);
 
   return (
     <div className="space-y-3">
@@ -68,18 +93,73 @@ export function FlyReference() {
               </button>
             ))}
           </div>
-          <p className="text-sm text-muted">{group.blurb}</p>
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={`Search all ${TOTAL_PATTERNS} patterns — name, origin, what it imitates…`}
+            className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+          />
+
+          <div className="flex flex-wrap gap-1.5">
+            <button
+              onClick={() => setTypeFilter("all")}
+              aria-pressed={typeFilter === "all"}
+              className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
+                typeFilter === "all" ? "bg-guide text-on-brand" : "border border-border text-muted hover:border-guide"
+              }`}
+            >
+              All types
+            </button>
+            {PATTERN_TYPES.map((t) => (
+              <button
+                key={t}
+                onClick={() => setTypeFilter(typeFilter === t ? "all" : t)}
+                aria-pressed={typeFilter === t}
+                className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
+                  typeFilter === t ? "bg-guide text-on-brand" : "border border-border text-muted hover:border-guide"
+                }`}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+
+          {/* On a surface rather than loose on the page — the app's backgrounds are
+              photographs, and small muted type directly on one is barely readable. */}
+          <div className="rounded-xl border border-border bg-surface p-3">
+            {!search && <p className="text-sm text-muted">{group.blurb}</p>}
+            <p className={`text-xs text-muted ${search ? "" : "mt-2"}`}>
+              {results.length} {results.length === 1 ? "pattern" : "patterns"}
+              {search ? " across every group" : ` for ${group.quarry.toLowerCase()}`}
+              {typeFilter !== "all" && ` · ${typeFilter.toLowerCase()} only`}
+            </p>
+          </div>
+
           <div className="space-y-2">
-            {group.patterns.map((p) => (
-              <div key={p.name} className="rounded-xl border border-border bg-surface p-4">
+            {results.length === 0 && (
+              <p className="rounded-xl border border-border bg-surface p-4 text-sm text-muted">
+                Nothing matches. Every fly here is a real, documented pattern — if something you
+                expect is missing it hasn&apos;t been added yet rather than been renamed.
+              </p>
+            )}
+            {results.map(({ pattern: p, quarry: q }) => (
+              <div key={`${q}-${p.name}`} className="rounded-xl border border-border bg-surface p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 className="font-bold text-brand-dark">{p.name}</h3>
                   <span className="text-xs text-muted">
                     {p.type} · sizes {p.sizes}
+                    {search && ` · ${q}`}
                   </span>
                 </div>
                 <p className="mt-0.5 text-sm font-medium text-accent-dark">{p.when}</p>
                 <p className="mt-1 text-sm">{p.note}</p>
+                {(p.origin || p.imitates) && (
+                  <p className="mt-1.5 text-xs text-muted">
+                    {p.imitates && <>Imitates {p.imitates.toLowerCase()}</>}
+                    {p.imitates && p.origin && " · "}
+                    {p.origin && <>{p.origin}</>}
+                  </p>
+                )}
               </div>
             ))}
           </div>
