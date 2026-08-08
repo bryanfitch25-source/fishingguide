@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-// Shared renderer for both courses.
+// Shared renderer for the courses.
 //
-// Fly tying and lure making have the same shape — ordered stages, numbered lessons, steps,
-// materials, a pitfall and one video — so they share a component rather than two
-// near-identical ones drifting apart. The lesson type is structural rather than imported
-// from either library, which keeps this ignorant of both.
+// Fly tying, lure making and skills all have the same shape — ordered stages, numbered
+// lessons, steps, an optional drill, a pitfall and one video — so they share a component
+// rather than three near-identical ones drifting apart. The lesson type is structural
+// rather than imported from any of them, which keeps this ignorant of all three.
 
 export interface LessonStage {
   id: string;
@@ -22,6 +22,8 @@ export interface Lesson {
   skill: string;
   steps: string[];
   materials?: string[];
+  /** Something to go and practise. Reading a lesson isn't the same as owning the skill. */
+  drill?: string;
   watchOut: string;
   videoId?: string;
   videoTitle?: string;
@@ -127,6 +129,15 @@ export function LessonList({ stages, lessons, warning, creditNote, accent = "gui
                       <li key={s}>{s}</li>
                     ))}
                   </ol>
+
+                  {l.drill && (
+                    <div className="mt-3 rounded-lg border border-brand bg-brand-light p-3">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+                        Go and practise
+                      </p>
+                      <p className="mt-0.5 text-sm">{l.drill}</p>
+                    </div>
+                  )}
 
                   <div className="mt-3 rounded-lg border border-accent bg-accent-light p-3">
                     <p className="text-xs font-semibold uppercase tracking-wide text-accent-dark">
