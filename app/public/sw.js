@@ -10,7 +10,7 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v7";
+const CACHE_NAME = "maritime-angler-v9";
 
 // Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
 //
@@ -55,6 +55,17 @@ const PRECACHE_URLS = [
   // an inventory a few items out of date — a very different failure from a cached tide
   // reading, which is why /tides stays excluded and this doesn't.
   "/matcher",
+
+  // Public reference with no per-user content at all, so it caches cleanly. Also the
+  // page most worth having with no signal: tide windows and wharf etiquette are read
+  // standing on the wharf.
+  "/saltwater",
+
+  // Both courses are static reference with no per-user content. Worth having offline
+  // for the obvious reason: people tie flies and pour jigs in sheds and basements, which
+  // is exactly where the signal isn't.
+  "/tying",
+  "/lures",
 
   // Deliberately cached, and the only conditions-bearing page that is.
   //

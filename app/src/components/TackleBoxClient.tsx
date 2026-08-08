@@ -26,6 +26,16 @@ import {
 import { SpecFieldGrid } from "./SpecFields";
 import { WarrantyFields, EMPTY_WARRANTY, downloadWarrantyIcs } from "./WarrantyFields";
 import { WARRANTY_FIELDS, warrantyLabel, warrantyStatus } from "@/lib/warranty";
+import {
+  SALT_CARE_NOTE,
+  WATER_TYPES,
+  WATER_TYPE_FIELDS,
+  WATER_TYPE_ICON,
+  WATER_TYPE_LABEL,
+  WATER_TYPE_UNSET_NOTE,
+  usableIn,
+  type WaterType,
+} from "@/lib/water-type";
 import { localDate } from "@/lib/dates";
 import { writeWithSchemaFallback } from "@/lib/schema-compat";
 
@@ -58,7 +68,7 @@ const DEFAULT_LABELS: BoxLabels = {
 // Both migrations' columns, dropped together if either is missing. Splitting them would
 // mean two fallback attempts to work out which one the database is behind on, for no
 // gain: the answer in both cases is "save everything else and say so".
-const WRITE_FALLBACK_FIELDS = [...TACKLE_SPEC_FIELDS, ...WARRANTY_FIELDS] as const;
+const WRITE_FALLBACK_FIELDS = [...TACKLE_SPEC_FIELDS, ...WARRANTY_FIELDS, ...WATER_TYPE_FIELDS] as const;
 
 async function fetchItems(
   supabase: SupabaseBrowserClient,
@@ -138,6 +148,7 @@ const emptyForm = {
   maintenance_notes: "",
   species_slugs: [] as string[],
   specs: {} as SpecValues,
+  water_type: "" as WaterType | "",
   ...EMPTY_WARRANTY,
   // The pre-specs free-text value, kept so editing an old item doesn't silently discard
   // what was in "Color / Size" before this existed. Only written back when the category's
@@ -182,6 +193,7 @@ export function TackleBoxClient({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<TackleCategory | "all">("all");
+  const [waterFilter, setWaterFilter] = useState<WaterType | "all">("all");
   const [trayFilter, setTrayFilter] = useState<string | "all">("all");
   const [lowStockOnly, setLowStockOnly] = useState(false);
   const [sortBy, setSortBy] = useState<"recent" | "productive" | "name">("recent");
@@ -250,6 +262,7 @@ export function TackleBoxClient({
       maintenance_notes: item.maintenance_notes ?? "",
       species_slugs: item.species_slugs ?? [],
       specs: (item.specs as SpecValues) ?? {},
+      water_type: (item.water_type as WaterType | null) ?? "",
       legacy_color_size: item.color_size ?? "",
       purchase_date: item.purchase_date ?? "",
       warranty_expires_on: item.warranty_expires_on ?? "",
@@ -304,10 +317,11 @@ export function TackleBoxClient({
       // spreadsheet can't have a different set of columns per row — a rod's action and a
       // reel's gear ratio would otherwise need forty mostly-empty columns to coexist.
       // "Summary" stays first because it is what the row shows in the app.
-      ["Name", "Category", "Brand", "Model", "Summary", "Specs", "Quantity", "Tray", "Location", "Notes"],
+      ["Name", "Category", "Water", "Brand", "Model", "Summary", "Specs", "Quantity", "Tray", "Location", "Notes"],
       items.map((i) => [
         i.name,
         categories.find((c) => c.value === i.category)?.label ?? i.category,
+        i.water_type ? WATER_TYPE_LABEL[i.water_type] : "",
         i.brand ?? "",
         i.model ?? "",
         i.color_size ?? "",
@@ -354,6 +368,7 @@ export function TackleBoxClient({
       model: form.model.trim() || null,
       color_size: summary || form.legacy_color_size.trim() || null,
       specs,
+      water_type: form.water_type || null,
       purchase_date: form.purchase_date || null,
       // Mutually exclusive, and enforced in the database too — a lifetime warranty and an
       // end date are contradictory claims about the same cover.
@@ -530,6 +545,7 @@ export function TackleBoxClient({
   const filtered = items
     .filter((i) => {
       if (categoryFilter !== "all" && i.category !== categoryFilter) return false;
+      if (waterFilter !== "all" && !usableIn(i.water_type, waterFilter)) return false;
       if (lowStockOnly && i.quantity > LOW_STOCK_THRESHOLD) return false;
       if (trayFilter === "all") return true;
       if (trayFilter === NO_TRAY) return !i.tray_id;
@@ -858,6 +874,45 @@ export function TackleBoxClient({
         )}
       </div>
 
+      {/* Water filter, on its own row above the category chips.
+          It answers a different question — "what can I take to salt" rather than "show me
+          the reels" — and the two combine, so folding them into one strip would read as a
+          single list where only one can be on at a time. Hidden entirely until something
+          is tagged, so it doesn't advertise an empty feature. */}
+      {items.some((i) => i.water_type) && (
+        <div className="mb-2 flex flex-wrap items-center gap-2 no-print">
+          <span className="text-sm font-medium text-muted">Water</span>
+          <button
+            onClick={() => setWaterFilter("all")}
+            className={`rounded-full px-3 py-1.5 text-sm font-medium border transition ${
+              waterFilter === "all" ? "bg-brand text-white border-brand" : "border-border hover:border-brand"
+            }`}
+          >
+            Any
+          </button>
+          {(["salt", "fresh"] as const).map((w) => {
+            const count = items.filter((i) => usableIn(i.water_type, w)).length;
+            return (
+              <button
+                key={w}
+                onClick={() => setWaterFilter(waterFilter === w ? "all" : w)}
+                className={`rounded-full px-3 py-1.5 text-sm font-medium border transition ${
+                  waterFilter === w ? "bg-brand text-white border-brand" : "border-border hover:border-brand"
+                }`}
+              >
+                {WATER_TYPE_ICON[w]} {WATER_TYPE_LABEL[w]} ({count})
+              </button>
+            );
+          })}
+        </div>
+      )}
+      {waterFilter !== "all" && items.some((i) => !i.water_type) && (
+        <p className="mb-2 text-xs text-muted no-print">
+          {items.filter((i) => !i.water_type).length} untagged and not shown.{" "}
+          {WATER_TYPE_UNSET_NOTE}
+        </p>
+      )}
+
       <div className="flex flex-wrap items-center justify-between gap-3 mb-3 no-print">
         <div className="flex flex-wrap gap-2">
           <button
@@ -1048,6 +1103,29 @@ export function TackleBoxClient({
                 onChange={(e) => setForm({ ...form, quantity: e.target.value })}
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Water</label>
+              <select
+                value={form.water_type}
+                onChange={(e) => setForm({ ...form, water_type: e.target.value as WaterType | "" })}
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              >
+                {/* Blank, and selected by default. Leaving it unsaid is a legitimate
+                    answer, and pre-selecting one would put a claim on the record that
+                    nobody actually made. */}
+                <option value="">— not said —</option>
+                {WATER_TYPES.map((w) => (
+                  <option key={w.value} value={w.value}>
+                    {w.label}
+                  </option>
+                ))}
+              </select>
+              {form.water_type && (
+                <p className="mt-1 text-xs text-muted">
+                  {WATER_TYPES.find((w) => w.value === form.water_type)?.hint}
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Tray</label>
@@ -1586,6 +1664,14 @@ export function TackleBoxClient({
                   {detailItem.last_serviced_on ? ` ${detailItem.last_serviced_on}` : ""}
                   {detailItem.maintenance_interval_days ? ` · every ${detailItem.maintenance_interval_days} days` : ""}
                   {detailItem.maintenance_notes ? ` — ${detailItem.maintenance_notes}` : ""}
+                </p>
+              )}
+              {detailItem.water_type && (
+                <p>
+                  {WATER_TYPE_ICON[detailItem.water_type]} {WATER_TYPE_LABEL[detailItem.water_type]}
+                  {detailItem.water_type !== "fresh" && (
+                    <span className="text-muted"> · {SALT_CARE_NOTE}</span>
+                  )}
                 </p>
               )}
               {warrantyLabel(detailItem, today) && (

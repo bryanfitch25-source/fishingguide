@@ -18,6 +18,9 @@ const LINKS = [
 // The mobile menu has the room, so it lists them.
 const SECONDARY_LINKS = [
   { href: "/matcher", label: "What to Throw" },
+  { href: "/saltwater", label: "Saltwater" },
+  { href: "/tying", label: "Fly Tying" },
+  { href: "/lures", label: "Making Lures" },
   { href: "/fly", label: "Fly Box" },
   { href: "/depth", label: "Depth Charts" },
   { href: "/safety", label: "Safety" },
