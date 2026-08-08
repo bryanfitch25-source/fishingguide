@@ -70,6 +70,17 @@ const SECTIONS = [
     heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-guide",
   },
   {
+    href: "/fly-fishing",
+    short: "The whole sport, taught from scratch.",
+    emoji: "🎣",
+    title: "Learn Fly Fishing",
+    description:
+      "A full course: gear and rigging, casting, what the fish is eating, dry fly, nymph and swung fly, Atlantic salmon, stillwater, and getting one back in the water alive.",
+    border: "hover:border-guide",
+    bg: "bg-guide-light",
+    heading: "text-base sm:text-xl font-bold text-foreground mb-0 sm:mb-2 group-hover:text-guide",
+  },
+  {
     href: "/depth",
     short: "Seabed depth, tap for a reading, save offline.",
     emoji: "📉",

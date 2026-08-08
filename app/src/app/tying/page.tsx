@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TyingClient } from "@/components/TyingClient";
 
 export const metadata = {
@@ -15,6 +16,13 @@ export default function TyingPage() {
           Thirteen lessons in the order the skills actually stack — thread control, four trout
           flies, deer hair, the Miramichi bugs, and saltwater. Each one names the trap that
           catches people at that stage, and links one video worth watching.
+        </p>
+        <p className="mt-2 max-w-2xl text-sm text-muted">
+          This is how to make them.{" "}
+          <Link href="/fly-fishing" className="text-accent-dark underline">
+            Learn Fly Fishing
+          </Link>{" "}
+          is how to fish them.
         </p>
       </div>
       <TyingClient />

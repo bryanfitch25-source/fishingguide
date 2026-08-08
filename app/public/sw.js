@@ -10,7 +10,7 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v10";
+const CACHE_NAME = "maritime-angler-v11";
 
 // Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
 //
@@ -61,12 +61,14 @@ const PRECACHE_URLS = [
   // standing on the wharf.
   "/saltwater",
 
-  // The three courses are static reference with no per-user content. Worth having offline
+  // The four courses are static reference with no per-user content. Worth having offline
   // for the obvious reason: people tie flies and pour jigs in sheds and basements, and
-  // practise casting on a field — all places the signal isn't.
+  // practise casting on a field — all places the signal isn't. /fly-fishing earns it twice
+  // over, since the hatch reference and the fault table get read standing in a river.
   "/tying",
   "/lures",
   "/skills",
+  "/fly-fishing",
 
   // Deliberately cached, and the only conditions-bearing page that is.
   //

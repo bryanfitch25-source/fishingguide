@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SkillsClient } from "@/components/SkillsClient";
 
 export const metadata = {
@@ -15,6 +16,13 @@ export default function SkillsPage() {
           The rest of this app answers what and where. This one answers how — casting,
           reading water, making a lure look alive, and the three minutes between the take and
           the net. Sixteen lessons, each with a drill you can actually go and do.
+        </p>
+        <p className="mt-2 max-w-2xl text-sm text-muted">
+          Three of these cover fly casting. If fly gear is what you&apos;re here for,{" "}
+          <Link href="/fly-fishing" className="text-accent-dark underline">
+            Learn Fly Fishing
+          </Link>{" "}
+          takes it a great deal further.
         </p>
       </div>
       <SkillsClient />

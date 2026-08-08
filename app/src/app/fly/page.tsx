@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/supabase-server";
 import { getAllSpecies } from "@/lib/data";
@@ -30,6 +31,13 @@ export default async function FlyPage(props: {
           Rods, reels, lines, leaders and flies — kept entirely apart from the Tackle Box, because
           on Maritime salmon water the two aren&apos;t interchangeable and aren&apos;t even legal
           alternatives.
+        </p>
+        <p className="mt-2 max-w-2xl text-sm text-muted">
+          This is your gear and the reference tables. If you want to be taught the sport itself,{" "}
+          <Link href="/fly-fishing" className="text-accent-dark underline">
+            Learn Fly Fishing
+          </Link>{" "}
+          is the course.
         </p>
       </div>
       <FlySectionClient

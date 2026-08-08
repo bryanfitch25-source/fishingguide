@@ -113,6 +113,104 @@ else {
   if (!t.includes("water temperature, roughly")) fail("temperature bands missing");
 }
 
+// ---- /fly-fishing -----------------------------------------------------------
+// Same shape as /skills — a LessonList behind stage tabs — plus three reference views.
+await page.goto(`${BASE}/fly-fishing`, { waitUntil: "networkidle", timeout: 45000 });
+
+const flyStageTabs = page.locator('[role="tablist"][aria-label="Course stages"] button[role="tab"]');
+const flyStageCount = await flyStageTabs.count();
+if (flyStageCount === 0) fail("no stage tabs on /fly-fishing");
+
+let flyLessons = 0;
+let flyDrills = 0;
+let flyVideos = 0;
+let flyNoVideo = 0;
+
+for (let s = 0; s < flyStageCount; s++) {
+  const stageName = (await flyStageTabs.nth(s).innerText()).trim();
+  await flyStageTabs.nth(s).click();
+  await page.waitForTimeout(200);
+
+  const cards = page.locator("div.space-y-2 > div.rounded-xl");
+  const n = await cards.count();
+  if (n === 0) {
+    fail(`fly-fishing / ${stageName}: no lessons rendered`);
+    continue;
+  }
+
+  for (let i = 0; i < n; i++) {
+    const card = cards.nth(i);
+    const btn = card.locator("button[aria-expanded]").first();
+    const title = (await btn.innerText()).split("\n").slice(0, 2).join(" — ").replace(/\s+/g, " ").trim();
+    if ((await btn.getAttribute("aria-expanded")) !== "true") {
+      await btn.click();
+      await page.waitForTimeout(120);
+    }
+    const body = card.locator("div.border-t").first();
+    if ((await body.count()) === 0) {
+      fail(`fly-fishing / ${stageName} / ${title}: opened but rendered no body`);
+      continue;
+    }
+    const text = (await body.innerText()).toLowerCase();
+    if ((await body.locator("ol > li").count()) < 3) fail(`fly-fishing / ${title}: fewer than 3 steps`);
+    if (!text.includes("where it goes wrong")) fail(`fly-fishing / ${title}: no pitfall block`);
+    if (text.includes("go and practise")) flyDrills++;
+    else fail(`fly-fishing / ${title}: no drill`);
+    if ((await body.locator("a[href*='youtube.com/watch']").count()) > 0) flyVideos++;
+    else if (text.includes("no video on this one")) flyNoVideo++;
+    else fail(`fly-fishing / ${title}: neither a video nor the note explaining its absence`);
+    flyLessons++;
+  }
+}
+
+// The three reference views behind the top-level tabs.
+const flyViews = page.locator('[role="tablist"][aria-label="Fly fishing"] button[role="tab"]');
+if ((await flyViews.count()) !== 4) fail(`expected 4 view tabs on /fly-fishing, found ${await flyViews.count()}`);
+
+await flyViews.nth(1).click(); // What they eat
+await page.waitForTimeout(250);
+// Scoped to the group cards, not `button[aria-expanded]` globally — the nav hamburger
+// carries aria-expanded too, and clicking it opens a menu that covers the page.
+const bugCards = page.locator("div.space-y-2 > div.rounded-xl");
+const bugCount = await bugCards.count();
+if (bugCount < 6) fail(`fewer than 6 insect groups on the bugs view (found ${bugCount})`);
+for (let i = 0; i < bugCount; i++) {
+  const b = bugCards.nth(i).locator("button[aria-expanded]").first();
+  if ((await b.getAttribute("aria-expanded")) !== "true") await b.click();
+  await page.waitForTimeout(100);
+  const body = bugCards.nth(i).locator("div.border-t").first();
+  if ((await body.count()) === 0) fail(`insect group ${i + 1}: opened but rendered no body`);
+}
+const bugsText = (await page.locator("body").innerText()).toLowerCase();
+for (const need of ["reading the rise", "sampling the river", "the seasonal sequence", "how to spot it"]) {
+  if (!bugsText.includes(need)) fail(`bugs view missing "${need}"`);
+}
+if (!bugsText.includes("sequence, not a calendar")) fail("bugs view is missing the hatch caveat");
+
+await flyViews.nth(2).click(); // What's going wrong
+await page.waitForTimeout(250);
+const faultRows = await page.locator("table tbody tr").count();
+if (faultRows < 8) fail(`fly fault table has only ${faultRows} row(s)`);
+
+await flyViews.nth(3).click(); // Glossary
+await page.waitForTimeout(250);
+const search = page.locator("#glossary-search");
+if ((await search.count()) === 0) fail("glossary has no search box");
+else {
+  const before = await page.locator("dl > div").count();
+  await search.fill("tippet");
+  await page.waitForTimeout(250);
+  const after = await page.locator("dl > div").count();
+  if (after === 0) fail("glossary search for 'tippet' matched nothing");
+  if (after >= before) fail("glossary search did not narrow the list");
+  await search.fill("zzzznotaterm");
+  await page.waitForTimeout(250);
+  if (!(await page.locator("body").innerText()).toLowerCase().includes("nothing matches")) {
+    fail("glossary shows no empty state for a term that doesn't exist");
+  }
+  await search.fill("");
+}
+
 // ---- per-species tactics ----------------------------------------------------
 const SPECIES = (process.env.SPECIES ?? "striped-bass,brook-trout,atlantic-mackerel").split(",");
 for (const slug of SPECIES) {
@@ -143,8 +241,10 @@ for (const slug of SPECIES) {
 await browser.close();
 
 console.log(`${BASE}`);
-console.log(`${lessonsSeen} lessons opened across ${stageCount} stages`);
+console.log(`/skills: ${lessonsSeen} lessons opened across ${stageCount} stages`);
 console.log(`  ${drills} with a drill, ${videos} with a video, ${noVideoNotes} saying none was found`);
+console.log(`/fly-fishing: ${flyLessons} lessons opened across ${flyStageCount} stages`);
+console.log(`  ${flyDrills} with a drill, ${flyVideos} with a video, ${flyNoVideo} saying none was found`);
 console.log(`${SPECIES.length} species pages checked for the tactics block`);
 if (consoleErrors.length) {
   console.log(`\n${consoleErrors.length} console error(s):`);
