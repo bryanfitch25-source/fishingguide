@@ -36,6 +36,9 @@ const PROVINCES: Province[] = ["NB", "NS", "PEI"];
 interface Props {
   species: { slug: string; common_name: string }[];
   owned: OwnedGearItem[];
+  /** Seeded from ?method= / ?water= so the home screen's lenses survive the tap through. */
+  initialMethod?: Method;
+  initialWater?: WaterType;
 }
 
 function Chip({
@@ -62,13 +65,13 @@ function Chip({
   );
 }
 
-export function MatcherClient({ species, owned }: Props) {
+export function MatcherClient({ species, owned, initialMethod, initialWater }: Props) {
   const [tab, setTab] = useState<Tab>("species");
   // Striped bass by default rather than whatever sorts first: it's the fish most people
   // opening this app are going out for, and it has the fullest set of entries.
   const [slug, setSlug] = useState("striped-bass");
-  const [method, setMethod] = useState<Method | "all">("all");
-  const [water, setWater] = useState<WaterType | "all">("all");
+  const [method, setMethod] = useState<Method | "all">(initialMethod ?? "all");
+  const [water, setWater] = useState<WaterType | "all">(initialWater ?? "all");
   const [province, setProvince] = useState<Province | "all">("all");
   const [ownedOnly, setOwnedOnly] = useState(false);
   const [gearSearch, setGearSearch] = useState("");
