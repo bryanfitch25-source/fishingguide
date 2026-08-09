@@ -10,7 +10,7 @@
 // in a way a cached species guide isn't — a stale "rising, 1.6 m" looks exactly like a
 // live one. Better to fail visibly than to show yesterday's water as though it were now.
 
-const CACHE_NAME = "maritime-angler-v11";
+const CACHE_NAME = "maritime-angler-v12";
 
 // Downloaded depth charts. Written by the page (see lib/chart-storage.ts), read here.
 //
@@ -60,6 +60,11 @@ const PRECACHE_URLS = [
   // page most worth having with no signal: tide windows and wharf etiquette are read
   // standing on the wharf.
   "/saltwater",
+
+  // Same reasoning, more so. A beach is where the signal is worst, the safety material
+  // matters most, and "which way do I swim out of a rip" is not a thing to be looking up
+  // on a loading spinner.
+  "/surf",
 
   // The four courses are static reference with no per-user content. Worth having offline
   // for the obvious reason: people tie flies and pour jigs in sheds and basements, and

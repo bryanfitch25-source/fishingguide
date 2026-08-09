@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAllSpecies } from "@/lib/data";
 import { SaltwaterClient } from "@/components/SaltwaterClient";
 
@@ -19,6 +20,13 @@ export default async function SaltwaterPage() {
           fish move rather than hold, most access belongs to somebody else, and the water
           quietly destroys your gear between trips. Spinning and fly together, because on a
           wharf they&apos;re solving the same problem.
+        </p>
+        <p className="mt-2 max-w-2xl text-sm text-muted">
+          This is written from a wharf. A beach is a different problem —{" "}
+          <Link href="/surf" className="text-accent-dark underline">
+            Surf Fishing
+          </Link>{" "}
+          covers reading bars and cuts, and the hazards that come with them.
         </p>
       </div>
       <SaltwaterClient

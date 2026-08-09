@@ -10,6 +10,7 @@
 //
 // Chromium can't tunnel this sandbox's egress proxy, so BASE must be a local `next start`.
 
+import { readFileSync } from "node:fs";
 import { chromium } from "playwright-core";
 
 const BASE = process.env.BASE ?? "http://127.0.0.1:3313";
@@ -50,8 +51,42 @@ if (allHrefs.length < 20) fail(`only ${allHrefs.length} destinations visible`);
 // --- lenses dim, never hide ------------------------------------------------
 const waterGroup = page.locator('[role="group"][aria-label="Where"] button');
 const methodGroup = page.locator('[role="group"][aria-label="How"] button');
-if ((await waterGroup.count()) !== 3) fail(`Where has ${await waterGroup.count()} options, expected 3`);
-if ((await methodGroup.count()) !== 3) fail(`How has ${await methodGroup.count()} options, expected 3`);
+
+// Counted against what home-nav.ts actually declares rather than a hardcoded number, so
+// adding a mode doesn't fail this for the wrong reason. The property worth asserting is
+// that a mode still behind `comingSoon` does NOT render — that flag is the only thing
+// keeping an unbuilt section out of the UI.
+const navSrc = readFileSync(new URL("../src/lib/home-nav.ts", import.meta.url), "utf8");
+const modesIn = (name) => {
+  const block = navSrc.match(new RegExp(`export const ${name}[\\s\\S]*?\\n\\];`));
+  if (!block) return { shown: [], hidden: [] };
+  const rows = [...block[0].matchAll(/\{ id: "([a-z]+)", label: "([^"]+)"(, comingSoon: true)? \}/g)];
+  return {
+    shown: rows.filter((r) => !r[3]).map((r) => r[2]),
+    hidden: rows.filter((r) => r[3]).map((r) => r[2]),
+  };
+};
+const waterModes = modesIn("WATER_MODES");
+const methodModes = modesIn("METHOD_MODES");
+
+if ((await waterGroup.count()) !== waterModes.shown.length) {
+  fail(`Where has ${await waterGroup.count()} options, expected ${waterModes.shown.length}`);
+}
+if ((await methodGroup.count()) !== methodModes.shown.length) {
+  fail(`How has ${await methodGroup.count()} options, expected ${methodModes.shown.length}`);
+}
+for (const label of [...waterModes.shown, ...methodModes.shown]) {
+  const inWater = waterModes.shown.includes(label);
+  const group = inWater ? waterGroup : methodGroup;
+  if ((await group.filter({ hasText: new RegExp(`^${label}$`) }).count()) !== 1) {
+    fail(`${inWater ? "Where" : "How"} is missing the "${label}" option`);
+  }
+}
+for (const label of [...waterModes.hidden, ...methodModes.hidden]) {
+  if ((await page.getByRole("button", { name: label, exact: true }).count()) > 0) {
+    fail(`"${label}" is flagged comingSoon but is rendered as a choice`);
+  }
+}
 
 const countDimmed = async () =>
   await page.locator('section li a[class*="opacity-45"]').count();
@@ -83,6 +118,32 @@ if (dimmedHref) {
   if (![200, 307, 308].includes(res.status())) {
     fail(`a dimmed destination (${dimmedHref}) returns ${res.status()}`);
   }
+}
+
+// Surf is its own water, not a synonym for salt: it must reach /surf and dim a different
+// set from freshwater.
+await page.goto(BASE, { waitUntil: "domcontentloaded" });
+await waterGroup.filter({ hasText: /^Surf$/ }).first().click();
+await methodGroup.filter({ hasText: /^Both$/ }).first().click();
+await page.waitForTimeout(250);
+const surfLink = page.locator('section li a[href="/surf"]');
+if ((await surfLink.count()) !== 1) fail("/surf is not reachable from the home screen");
+if ((await surfLink.first().getAttribute("class"))?.includes("opacity-45")) {
+  fail("/surf is dimmed while the Surf lens is active");
+}
+// Surf is a narrowing of salt, so it legitimately dims nothing — everything tagged for
+// salt also matches surf. What it must do instead is promote: the surf-tagged items rank
+// above the universal ones inside their group. That's the tier-0 rule in home-nav.ts, and
+// it's the reason the lens isn't a no-op.
+const learnFirst = await page
+  .locator("section")
+  .filter({ hasText: "Learn" })
+  .first()
+  .locator("li a")
+  .first()
+  .getAttribute("href");
+if (learnFirst !== "/saltwater" && learnFirst !== "/surf") {
+  fail(`under the Surf lens the Learn group leads with ${learnFirst}, not a surf-relevant section`);
 }
 
 // The matcher gets the lenses handed to it; freshwater deliberately passes no water.

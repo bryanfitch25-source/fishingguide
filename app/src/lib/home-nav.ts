@@ -27,11 +27,14 @@
 //
 // SURF FISHING
 //
-// Planned, and the model is ready for it: WaterMode includes "surf" and items can carry
-// a "surf" tag. It is deliberately not rendered as a choice yet, because a mode that
-// filters nothing new would promise content the app doesn't have. Switching it on is
-// flipping `comingSoon` on the WATER_MODES entry once there's surf-specific material to
-// point at — the tagging and the filtering already work.
+// Live as of /surf. It's a third water rather than a flavour of salt because a beach and
+// a wharf share a tide and almost nothing else: no structure to stand on, fish in a
+// narrow moving band, distance as a real constraint, and a hazard profile that needs its
+// own section. Surf-tagged items are the ones where that difference actually matters.
+//
+// The ModeOption.comingSoon flag stays in the type. It cost nothing, it kept the option
+// out of the UI while the content didn't exist, and the next mode to be sketched before
+// it's built will want the same treatment.
 
 export type WaterMode = "all" | "salt" | "fresh" | "surf";
 export type MethodMode = "all" | "fly" | "spin";
@@ -47,7 +50,7 @@ export const WATER_MODES: ModeOption<WaterMode>[] = [
   { id: "all", label: "Both" },
   { id: "salt", label: "Saltwater" },
   { id: "fresh", label: "Freshwater" },
-  { id: "surf", label: "Surf", comingSoon: true },
+  { id: "surf", label: "Surf" },
 ];
 
 export const METHOD_MODES: ModeOption<MethodMode>[] = [
@@ -205,6 +208,13 @@ export const NAV_GROUPS: NavGroup[] = [
         water: ["salt", "surf"],
       },
       {
+        href: "/surf",
+        title: "Surf Fishing",
+        blurb: "Reading a beach: bars, troughs and cuts, timing the tide, and the hazards a wharf doesn't have.",
+        water: ["surf"],
+        badge: "New",
+      },
+      {
         href: "/tying",
         title: "Fly Tying",
         blurb: "Thirteen lessons from the first thread wrap to Bombers.",
@@ -261,12 +271,36 @@ export function matchesLenses(item: NavItem, water: WaterMode, method: MethodMod
   return true;
 }
 
-/** Matching items first, original order preserved within each half. */
+/**
+ * Three tiers, not two.
+ *
+ * Binary match/no-match made the Surf lens a no-op, and the reason is structural: surf is
+ * a narrowing of salt rather than an alternative to it, so everything tagged for salt
+ * also matches surf and nothing gets dimmed. A lens that changes nothing is worse than no
+ * lens, because the user presses it and concludes the feature is broken.
+ *
+ * So relevance is ranked:
+ *
+ *   0  specifically about this — carries a tag for an active lens and matches it
+ *   1  universal — untagged, relevant whatever you picked
+ *   2  other — tagged, and the tag says this isn't it
+ *
+ * Tier 0 floats to the top of its group, which is what makes Surf promote Surf Fishing
+ * and Saltwater above the rest of Learn even though it dims nothing. Tier 2 is what the
+ * UI dims. Original order is preserved within each tier.
+ */
+export function relevanceRank(item: NavItem, water: WaterMode, method: MethodMode): 0 | 1 | 2 {
+  if (!matchesLenses(item, water, method)) return 2;
+  const specificWater = water !== "all" && item.water !== undefined;
+  const specificMethod = method !== "all" && item.method !== undefined;
+  return specificWater || specificMethod ? 0 : 1;
+}
+
 export function sortByRelevance(items: NavItem[], water: WaterMode, method: MethodMode): NavItem[] {
-  const yes: NavItem[] = [];
-  const no: NavItem[] = [];
-  for (const i of items) (matchesLenses(i, water, method) ? yes : no).push(i);
-  return [...yes, ...no];
+  return items
+    .map((item, i) => ({ item, i, rank: relevanceRank(item, water, method) }))
+    .sort((a, b) => a.rank - b.rank || a.i - b.i)
+    .map((e) => e.item);
 }
 
 /**

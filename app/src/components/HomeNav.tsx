@@ -8,6 +8,7 @@ import {
   WATER_MODES,
   matcherHref,
   matchesLenses,
+  relevanceRank,
   sortByRelevance,
   type MethodMode,
   type NavGroup,
@@ -56,9 +57,9 @@ export function HomeNav() {
     });
 
   const lensed = water !== "all" || method !== "all";
-  const dimmedCount = NAV_GROUPS.flatMap((g) => g.items).filter(
-    (i) => !matchesLenses(i, water, method)
-  ).length;
+  const all = NAV_GROUPS.flatMap((g) => g.items);
+  const dimmedCount = all.filter((i) => !matchesLenses(i, water, method)).length;
+  const promotedCount = all.filter((i) => relevanceRank(i, water, method) === 0).length;
 
   return (
     <div className="space-y-4">
@@ -83,10 +84,16 @@ export function HomeNav() {
             <>
               Sorted for {water !== "all" ? WATER_MODES.find((m) => m.id === water)?.label.toLowerCase() : "any water"}
               {method !== "all" ? ` and ${METHOD_MODES.find((m) => m.id === method)?.label.toLowerCase()}` : ""}.{" "}
+              {promotedCount > 0 && (
+                <>
+                  {promotedCount} {promotedCount === 1 ? "section moves" : "sections move"} to the
+                  top of their group.{" "}
+                </>
+              )}
               {dimmedCount > 0 && (
                 <>
-                  {dimmedCount} {dimmedCount === 1 ? "section is" : "sections are"} dimmed as less
-                  relevant — still there, still one tap away.
+                  {dimmedCount} {dimmedCount === 1 ? "is" : "are"} dimmed as less relevant — still
+                  there, still one tap away.
                 </>
               )}
             </>

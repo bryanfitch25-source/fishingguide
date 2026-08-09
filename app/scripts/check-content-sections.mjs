@@ -1,10 +1,12 @@
-// Post-deploy browser check of /skills and the per-species tactics block.
+// Browser check of the content sections whose bodies render only on click.
 //
-// Run against the deployed site:   node scripts/prod-sweep-skills.mjs
-// Run against a local `next start`: BASE=http://127.0.0.1:3311 node scripts/prod-sweep-skills.mjs
+// Covers /skills, /fly-fishing, /surf and the per-species tactics block.
 //
-// Both features are client components whose bodies render only when opened, so an HTTP
-// fetch proves the route exists and nothing more. This drives the real page: every stage,
+// Run against the deployed site:   node scripts/check-content-sections.mjs
+// Run against a local `next start`: BASE=http://127.0.0.1:3311 node scripts/check-content-sections.mjs
+//
+// All of these are client components whose bodies render only when opened, so an HTTP
+// fetch proves the route exists and nothing more. This drives the real pages: every stage,
 // every lesson in it, asserting each has steps, a pitfall, and either a video link or the
 // explicit note saying none was found — the whole point of that note being that a missing
 // video should read as "none found", not "forgot one".
@@ -211,6 +213,44 @@ else {
   await search.fill("");
 }
 
+// ---- /surf ------------------------------------------------------------------
+// Tabbed rather than a lesson list: every topic must render something, and the safety tab
+// has to carry both the rip-current warning and an actionable response for each hazard.
+await page.goto(`${BASE}/surf`, { waitUntil: "networkidle", timeout: 45000 });
+
+const surfTabs = page.locator('[role="tablist"][aria-label="Surf topics"] button[role="tab"]');
+const surfTabCount = await surfTabs.count();
+if (surfTabCount < 6) fail(`only ${surfTabCount} surf topics`);
+
+for (let i = 0; i < surfTabCount; i++) {
+  const name = (await surfTabs.nth(i).innerText()).trim();
+  await surfTabs.nth(i).click();
+  await page.waitForTimeout(200);
+  const body = (await page.locator("main, body").first().innerText()).toLowerCase();
+  if (body.length < 600) fail(`surf tab "${name}" renders almost nothing`);
+  if (!body.includes("named beaches are deliberately absent")) {
+    fail(`surf tab "${name}" lost the caveat`);
+  }
+}
+
+// The safety tab specifically.
+await surfTabs.filter({ hasText: "Staying alive" }).first().click();
+await page.waitForTimeout(250);
+const safety = (await page.locator("body").innerText()).toLowerCase();
+for (const need of ["rip current", "swim parallel", "wading belt", "cut off", "what to do"]) {
+  if (!safety.includes(need)) fail(`surf safety tab missing "${need}"`);
+}
+
+// Targets link to real species pages, and the province filter narrows.
+await surfTabs.filter({ hasText: "What you'll meet" }).first().click();
+await page.waitForTimeout(250);
+const before = await page.locator('a[href^="/species/"]').count();
+if (before === 0) fail("no species links on the surf targets tab");
+await page.locator('button[aria-pressed]').filter({ hasText: /^NS$/ }).first().click();
+await page.waitForTimeout(250);
+const after = await page.locator('a[href^="/species/"]').count();
+if (after > before) fail("filtering surf targets to NS increased the count");
+
 // ---- per-species tactics ----------------------------------------------------
 const SPECIES = (process.env.SPECIES ?? "striped-bass,brook-trout,atlantic-mackerel").split(",");
 for (const slug of SPECIES) {
@@ -245,6 +285,7 @@ console.log(`/skills: ${lessonsSeen} lessons opened across ${stageCount} stages`
 console.log(`  ${drills} with a drill, ${videos} with a video, ${noVideoNotes} saying none was found`);
 console.log(`/fly-fishing: ${flyLessons} lessons opened across ${flyStageCount} stages`);
 console.log(`  ${flyDrills} with a drill, ${flyVideos} with a video, ${flyNoVideo} saying none was found`);
+console.log(`/surf: ${surfTabCount} topics, all rendering, safety and targets checked`);
 console.log(`${SPECIES.length} species pages checked for the tactics block`);
 if (consoleErrors.length) {
   console.log(`\n${consoleErrors.length} console error(s):`);
