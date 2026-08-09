@@ -9,6 +9,7 @@ import { UnitsToggle } from "@/components/UnitsToggle";
 import { AppearancePicker } from "@/components/AppearancePicker";
 import { AnglerProfileForm } from "@/components/AnglerProfileForm";
 import { RemindersPanel } from "@/components/RemindersPanel";
+import { DataPortabilityPanel } from "@/components/DataPortabilityPanel";
 
 export const metadata = {
   title: "Settings — Maritime Angler",
@@ -33,7 +34,8 @@ export default async function SettingsPage() {
       <header className="mb-4 sm:mb-8 scene-panel rounded-2xl p-4 sm:p-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-dark mb-1 sm:mb-2">Settings</h1>
         <p className="text-muted max-w-2xl">
-          Your tide station, units, profile and reminders.
+          Your tide station, units, profile, reminders — and a complete copy of your data
+          that can be read back in.
         </p>
       </header>
 
@@ -71,6 +73,8 @@ export default async function SettingsPage() {
         />
 
         <RemindersPanel />
+
+        <DataPortabilityPanel />
       </div>
     </div>
   );
