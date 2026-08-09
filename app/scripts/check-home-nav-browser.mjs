@@ -1,12 +1,15 @@
-// Drives the home screen in a browser: the two lenses, persistence, and reachability.
+// Drives the home screen in a browser: closed-by-default groups, the two lenses,
+// persistence, and reachability.
 //
 // Run: BASE=http://127.0.0.1:3313 node scripts/check-home-nav-browser.mjs   (from `app/`)
 //
 // validate-home-nav.mjs proves the data is sound. This proves the page built from it
-// behaves: that the lenses dim rather than hide, that a dimmed link is still clickable,
-// that the choice survives a reload, and that every destination on the screen actually
-// resolves. The last one is the point — the whole risk of collapsing fourteen cards into
-// five groups is a destination going missing, and a 200 on / says nothing about that.
+// behaves: that groups start closed and stay unmounted (not just visually hidden) until
+// opened, that the lenses dim rather than hide, that a dimmed link is still clickable,
+// that both kinds of state survive a reload, and that every destination on the screen
+// actually resolves. The last one is the point — the whole risk of collapsing fourteen
+// cards into five closed groups is a destination going missing, and a 200 on / says
+// nothing about that.
 //
 // Chromium can't tunnel this sandbox's egress proxy, so BASE must be a local `next start`.
 
@@ -30,23 +33,42 @@ page.on("pageerror", (e) => consoleErrors.push(`pageerror: ${e.message}`));
 
 await page.goto(BASE, { waitUntil: "networkidle", timeout: 45000 });
 
-// --- groups ----------------------------------------------------------------
 const groups = page.locator("section:has(> button[aria-expanded])");
 const groupCount = await groups.count();
 if (groupCount < 4 || groupCount > 6) fail(`${groupCount} groups on screen — expected 4-6`);
 
-// Every group starts open, so every destination is visible without interaction.
-for (let i = 0; i < groupCount; i++) {
-  if ((await groups.nth(i).locator("button[aria-expanded]").first().getAttribute("aria-expanded")) !== "true") {
-    fail(`group ${i + 1} is collapsed on first load`);
-  }
-}
-
 const linkHrefs = async () =>
   (await page.locator("section li a").evaluateAll((els) => els.map((e) => e.getAttribute("href")))) ?? [];
 
+async function openAllGroups() {
+  const n = await groups.count();
+  for (let i = 0; i < n; i++) {
+    const toggle = groups.nth(i).locator("button[aria-expanded]").first();
+    if ((await toggle.getAttribute("aria-expanded")) !== "true") await toggle.click();
+  }
+  await page.waitForTimeout(150);
+}
+
+// --- every group starts closed, and closed means unmounted -----------------
+for (let i = 0; i < groupCount; i++) {
+  if ((await groups.nth(i).locator("button[aria-expanded]").first().getAttribute("aria-expanded")) !== "false") {
+    fail(`group ${i + 1} is open on first load — every menu is meant to start closed`);
+  }
+}
+const hrefsBeforeOpening = await linkHrefs();
+if (hrefsBeforeOpening.length !== 0) {
+  fail(
+    `${hrefsBeforeOpening.length} destination link(s) are reachable in the DOM before any group is opened — closed should mean unmounted, not just visually hidden`
+  );
+}
+
+// From here on, groups are open so the destination-reachability and lens checks — which
+// predate the closed-by-default change and are still the right checks — can run exactly
+// as before.
+await openAllGroups();
+
 const allHrefs = await linkHrefs();
-if (allHrefs.length < 20) fail(`only ${allHrefs.length} destinations visible`);
+if (allHrefs.length < 20) fail(`only ${allHrefs.length} destinations visible with every group open`);
 
 // --- lenses dim, never hide ------------------------------------------------
 const waterGroup = page.locator('[role="group"][aria-label="Where"] button');
@@ -121,8 +143,9 @@ if (dimmedHref) {
 }
 
 // Surf is its own water, not a synonym for salt: it must reach /surf and dim a different
-// set from freshwater.
+// set from freshwater. Fresh navigation, so groups are closed again — open them back up.
 await page.goto(BASE, { waitUntil: "domcontentloaded" });
+await openAllGroups();
 await waterGroup.filter({ hasText: /^Surf$/ }).first().click();
 await methodGroup.filter({ hasText: /^Both$/ }).first().click();
 await page.waitForTimeout(250);
@@ -148,6 +171,7 @@ if (learnFirst !== "/saltwater" && learnFirst !== "/surf") {
 
 // The matcher gets the lenses handed to it; freshwater deliberately passes no water.
 await page.goto(BASE, { waitUntil: "domcontentloaded" });
+await openAllGroups();
 await waterGroup.filter({ hasText: "Saltwater" }).first().click();
 await methodGroup.filter({ hasText: "Fly" }).first().click();
 await page.waitForTimeout(250);
@@ -193,13 +217,26 @@ await expectSoon(
   "method lens did not survive a reload"
 );
 
-// Collapsing survives too.
+// Group open/closed state persists too, in both directions. All groups were opened above
+// in this same browser session, so this reload should land with everything still open —
+// proving "opened" survives, the meaningful direction now that closed is the default.
+await expectSoon(
+  () =>
+    ![...document.querySelectorAll("section > button[aria-expanded]")].some(
+      (b) => b.getAttribute("aria-expanded") === "false"
+    ),
+  null,
+  "a group that was opened did not stay open across a reload"
+);
+
+// Now prove the reverse: closing one and reloading keeps it closed, rather than the
+// close simply not having been written yet.
 const firstToggle = groups.first().locator("button[aria-expanded]").first();
 await firstToggle.click();
 await expectSoon(
   () => JSON.parse(localStorage.getItem("ma-home-lenses") ?? "{}").closed?.length === 1,
   null,
-  "collapsing a group did not reach storage"
+  "closing a group did not reach storage"
 );
 await page.reload({ waitUntil: "domcontentloaded" });
 await expectSoon(
@@ -209,13 +246,12 @@ await expectSoon(
       ?.querySelector("button[aria-expanded]")
       ?.getAttribute("aria-expanded") === "false",
   null,
-  "a collapsed group did not stay collapsed across a reload"
+  "a closed group did not stay closed across a reload"
 );
-await groups.first().locator("button[aria-expanded]").first().click();
-await page.waitForTimeout(150);
 
 // --- every destination resolves --------------------------------------------
 await page.goto(BASE, { waitUntil: "domcontentloaded" });
+await openAllGroups();
 const finalHrefs = [...new Set((await linkHrefs()).map((h) => h.split("?")[0]))];
 const bad = [];
 for (const href of finalHrefs) {
@@ -224,7 +260,9 @@ for (const href of finalHrefs) {
 }
 if (bad.length) fail(`destinations that don't resolve: ${bad.join(", ")}`);
 
-// --- mobile ----------------------------------------------------------------
+// --- mobile ------------------------------------------------------------------
+// Closed by default is exactly what keeps this short — a fresh mobile visitor sees five
+// headings, not five headings' worth of expanded content.
 const mobile = await browser.newPage({ viewport: { width: 375, height: 812 } });
 await mobile.goto(BASE, { waitUntil: "domcontentloaded" });
 const overflow = await mobile.evaluate(() => ({
@@ -234,14 +272,15 @@ const overflow = await mobile.evaluate(() => ({
 if (overflow.scroll > overflow.client + 1) {
   fail(`home scrolls horizontally at 375px (${overflow.scroll} > ${overflow.client})`);
 }
-const mobileHeight = await mobile.evaluate(() => document.body.scrollHeight);
+const closedHeight = await mobile.evaluate(() => document.body.scrollHeight);
 await mobile.close();
 
 await browser.close();
 
-console.log(`${groupCount} groups, ${finalHrefs.length} destinations, all resolving`);
+console.log(`${groupCount} groups, all closed and unmounted on first load`);
+console.log(`${finalHrefs.length} destinations reachable once opened, all resolving`);
 console.log(`freshwater + fly dims ${dimmed} of them and hides none`);
-console.log(`home page is ${mobileHeight}px tall at 375px wide`);
+console.log(`home page is ${closedHeight}px tall at 375px wide with everything closed`);
 if (consoleErrors.length) {
   console.log(`\n${consoleErrors.length} console error(s):`);
   for (const e of consoleErrors.slice(0, 10)) console.log(`  ! ${e}`);

@@ -18,6 +18,7 @@
 import {
   LENS_STORAGE_KEY,
   METHOD_MODES,
+  NAV_GROUPS,
   WATER_MODES,
   type MethodMode,
   type WaterMode,
@@ -29,7 +30,15 @@ export interface Lenses {
   closed: string[];
 }
 
-export const DEFAULT_LENSES: Lenses = { water: "all", method: "all", closed: [] };
+// Every group starts closed — `closed` is the set of collapsed ids, so the default is
+// every id NAV_GROUPS declares, not an empty list. A first-time visitor sees five plain
+// headings and opens only the ones they came for, rather than being handed all five
+// expanded and everything they didn't ask for scrolling past.
+export const DEFAULT_LENSES: Lenses = {
+  water: "all",
+  method: "all",
+  closed: NAV_GROUPS.map((g) => g.id),
+};
 
 const SERVER_SNAPSHOT = JSON.stringify(DEFAULT_LENSES);
 

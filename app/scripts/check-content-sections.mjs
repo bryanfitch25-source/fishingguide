@@ -70,6 +70,14 @@ for (let s = 0; s < stageCount; s++) {
     continue;
   }
 
+  // Every menu starts closed. Checked before the loop below opens each one to inspect it.
+  for (let i = 0; i < n; i++) {
+    if ((await cards.nth(i).locator("button[aria-expanded]").first().getAttribute("aria-expanded")) === "true") {
+      fail(`${stageName}: a lesson is open on arrival at this stage — nothing should pre-open`);
+      break;
+    }
+  }
+
   for (let i = 0; i < n; i++) {
     const card = cards.nth(i);
     const btn = card.locator("button[aria-expanded]").first();
@@ -177,6 +185,11 @@ const bugCards = page.locator("div.space-y-2 > div.rounded-xl");
 const bugCount = await bugCards.count();
 if (bugCount < 6) fail(`fewer than 6 insect groups on the bugs view (found ${bugCount})`);
 for (let i = 0; i < bugCount; i++) {
+  if ((await bugCards.nth(i).locator("button[aria-expanded]").first().getAttribute("aria-expanded")) === "true") {
+    fail(`an insect group is open on arrival at the bugs view — nothing should pre-open`);
+  }
+}
+for (let i = 0; i < bugCount; i++) {
   const b = bugCards.nth(i).locator("button[aria-expanded]").first();
   if ((await b.getAttribute("aria-expanded")) !== "true") await b.click();
   await page.waitForTimeout(100);
@@ -241,12 +254,13 @@ for (const need of ["rip current", "swim parallel", "wading belt", "cut off", "w
   if (!safety.includes(need)) fail(`surf safety tab missing "${need}"`);
 }
 
-// Targets link to real species pages, and the province filter narrows.
+// Targets link to real species pages, and the province filter (a select, not a chip
+// row — converted so this one dimension didn't need its own bubble row) narrows them.
 await surfTabs.filter({ hasText: "What you'll meet" }).first().click();
 await page.waitForTimeout(250);
 const before = await page.locator('a[href^="/species/"]').count();
 if (before === 0) fail("no species links on the surf targets tab");
-await page.locator('button[aria-pressed]').filter({ hasText: /^NS$/ }).first().click();
+await page.getByLabel("Province").selectOption("NS");
 await page.waitForTimeout(250);
 const after = await page.locator('a[href^="/species/"]').count();
 if (after > before) fail("filtering surf targets to NS increased the count");

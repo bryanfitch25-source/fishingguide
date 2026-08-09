@@ -38,6 +38,7 @@ import {
 } from "@/lib/water-type";
 import { localDate } from "@/lib/dates";
 import { writeWithSchemaFallback } from "@/lib/schema-compat";
+import { FilterSelect } from "@/components/FilterDisclosure";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -1011,37 +1012,24 @@ export function TackleBoxClient({
         </div>
       )}
 
+      {/* A button row here doesn't scale: trays are user-created and unbounded, unlike the
+          fixed category list above. A select holds any number of trays in one compact
+          line instead of wrapping into more rows the more trays someone adds. */}
       {trays.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6 no-print">
-          <button
-            onClick={() => setTrayFilter("all")}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
-              trayFilter === "all" ? "bg-tackle text-white border-tackle" : "border-border hover:border-tackle"
-            }`}
-          >
-            All Trays
-          </button>
-          {trays.map((tray) => (
-            <button
-              key={tray.id}
-              onClick={() => setTrayFilter(tray.id)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
-                trayFilter === tray.id ? "bg-tackle text-white border-tackle" : "border-border hover:border-tackle"
-              }`}
-            >
-              🗂️ {tray.name} ({items.filter((i) => i.tray_id === tray.id).length})
-            </button>
-          ))}
-          {untrayedCount > 0 && (
-            <button
-              onClick={() => setTrayFilter(NO_TRAY)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium border transition ${
-                trayFilter === NO_TRAY ? "bg-tackle text-white border-tackle" : "border-border hover:border-tackle"
-              }`}
-            >
-              No Tray ({untrayedCount})
-            </button>
-          )}
+        <div className="mb-6 max-w-xs no-print">
+          <FilterSelect
+            label="Tray"
+            value={trayFilter}
+            onChange={setTrayFilter}
+            options={[
+              { value: "all", label: `All trays (${items.length})` },
+              ...trays.map((tray) => ({
+                value: tray.id,
+                label: `🗂️ ${tray.name} (${items.filter((i) => i.tray_id === tray.id).length})`,
+              })),
+              ...(untrayedCount > 0 ? [{ value: NO_TRAY, label: `No tray (${untrayedCount})` }] : []),
+            ]}
+          />
         </div>
       )}
 

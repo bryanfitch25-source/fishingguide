@@ -34,16 +34,19 @@ const ACCENT: Record<NavGroup["accent"], { bg: string; text: string; border: str
 };
 
 export function HomeNav() {
-  // Every group starts open. The complaint was that things were hard to find, and an
-  // accordion that hides four of five groups on arrival trades one findability problem
-  // for another. Collapsing is there for people who want it, and it's remembered.
+  // Every group starts closed. Nothing opens until it's chosen — see DEFAULT_LENSES in
+  // lib/lens-store, which is the set of group ids collapsed on arrival, not an empty set.
+  // A first-time visitor sees five plain headings and picks one; opening is remembered
+  // per group after that.
   //
   // The remembered state lives in localStorage, which the server cannot read, so the
-  // first paint is always the default and hydration corrects it. That means a returning
-  // visitor with a collapsed group sees it open for a frame. Accepted rather than fixed:
-  // the alternative is a cookie read during SSR — which is what ThemeScript does, because
-  // a flash of the wrong theme is worth blocking paint over and a briefly-open section
-  // is not.
+  // first paint is always the default-closed state and hydration corrects it for anyone
+  // who has since opened something. That means a returning visitor with an open group
+  // sees it closed for a frame, not the other way around — the safe default and the SSR
+  // default are now the same state, so only a customised one causes the brief mismatch.
+  // Accepted rather than fixed: the alternative is a cookie read during SSR, which is
+  // what ThemeScript does because a flash of the wrong theme is worth blocking paint
+  // over and a briefly-closed section is not.
   const raw = useSyncExternalStore(subscribeLenses, getLensSnapshot, getLensServerSnapshot);
   const { water, method, closed } = useMemo(() => parseLenses(raw), [raw]);
 

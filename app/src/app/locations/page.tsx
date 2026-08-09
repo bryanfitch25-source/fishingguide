@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getAllLocationGuides } from "@/lib/data";
-import { ProvinceBadge } from "@/components/Badges";
 import { LocationsMapLoader } from "@/components/LocationsMapLoader";
 
 export const metadata = {
@@ -42,12 +41,10 @@ export default async function LocationsIndexPage() {
             href={`/locations/${loc.slug}`}
             className="group block rounded-xl border border-border bg-surface card-lift p-5 shadow-sm transition hover:shadow-md hover:border-brand"
           >
-            <div className="flex items-start justify-between gap-2 mb-1">
-              <h2 className="text-lg font-bold text-brand-dark group-hover:text-brand">
-                {loc.title}
-              </h2>
-              <ProvinceBadge province={loc.province} />
-            </div>
+            {/* No province badge — the title already ends in the province. */}
+            <h2 className="text-lg font-bold text-brand-dark group-hover:text-brand mb-1">
+              {loc.title}
+            </h2>
             {loc.region_name && <p className="text-sm text-muted">{loc.region_name}</p>}
           </Link>
         ))}

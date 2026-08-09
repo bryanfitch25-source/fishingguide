@@ -19,7 +19,7 @@ export function SkillsClient() {
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Skills" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Skills" className="scroll-tabs gap-2">
         {(
           [
             ["course", "The lessons"],

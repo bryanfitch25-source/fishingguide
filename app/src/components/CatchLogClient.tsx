@@ -713,7 +713,7 @@ export function CatchLogClient({
 
       {insightsOpen && (
         <div className="mb-6 rounded-xl border border-border bg-surface card-lift p-5 no-print">
-          <div role="tablist" aria-label="Insights" className="mb-4 flex flex-wrap gap-2">
+          <div role="tablist" aria-label="Insights" className="scroll-tabs mb-4 gap-2">
             {(
               [
                 ["review", `📅 ${thisYear} in Review`],

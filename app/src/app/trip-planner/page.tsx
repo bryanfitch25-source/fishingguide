@@ -6,7 +6,6 @@ import { EnvironmentPanel } from "@/components/EnvironmentPanel";
 import { TripPlannerControls } from "@/components/TripPlannerControls";
 import { TripChecklist } from "@/components/TripChecklist";
 import { PrintButton } from "@/components/PrintButton";
-import { ProvinceBadge } from "@/components/Badges";
 import type { TackleItem } from "@/types/tackle";
 
 export const metadata = {
@@ -67,9 +66,7 @@ export default async function TripPlannerPage(props: { searchParams: Promise<{ l
         <div className="space-y-8">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="mb-1">
-                <ProvinceBadge province={guide.province} />
-              </div>
+              {/* No province badge — the title already ends in the province. */}
               <h2 className="text-2xl font-bold text-brand-dark">{guide.title}</h2>
               {guide.region_name && <p className="text-muted">{guide.region_name}</p>}
             </div>

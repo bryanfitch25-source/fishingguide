@@ -1,0 +1,64 @@
+{
+  "slug": "pei-north-shore",
+  "title": "The North Shore, PEI",
+  "province": "PEI",
+  "region_name": "Prince Edward Island National Park — Cavendish, Brackley, Stanhope & Dalvay",
+  "lat": 46.415714,
+  "lng": -63.073203,
+  "intro_md": "This is the other side of the Island from the Launching/Boughton Bay guide elsewhere in this app. That guide is calm estuary and tidal-river water on PEI's south and east shore; this is the open Gulf of St. Lawrence side — real surf, real beaches, and a different set of questions. Most of the accessible North Shore sits inside Prince Edward Island National Park: Cavendish Beach, Brackley Beach, Stanhope Beach and Dalvay Beach run more or less continuously along the coast, with North Rustico Harbour and the Malpeque Bay area picking up outside the park's western edge.\n\nIf you're new to reading a beach rather than a wharf, the general skills — bars, troughs, cuts, rip currents — are covered in the Surf Fishing section of this app; this guide is the North Shore specifics on top of that, not a repeat of it.\n\n**A genuine access question worth resolving before you go, not after.** Fishing is listed as a permitted activity in PEI National Park, and Parks Canada's own species page documents striped bass in the park's coastal waters — but Tourism PEI's own published local Q&As are not fully consistent with each other on whether tidal fishing is expected mainly outside the park or is fine on its beaches too. The honest answer is that this app could not fully resolve the contradiction from the sources checked. If it matters to your trip, call Parks Canada PEI directly (902-672-6350) before you go, rather than assuming either way.\n\n**Regulations overview.** No provincial or federal licence is needed to fish tidal water anywhere on PEI, inside or outside the park — the same DFO Gulf Region rules used in the Launching guide apply here too. A PEI angling licence is needed only for freshwater species upstream of tidal influence. Standard Parks Canada admission applies to enter the park itself (free under the Canada Strong Pass for part of the 2026 season) — there's no separate fee for beach or fishing access beyond that. Piping plover nesting closures are real, current, and change through the season: several specific North Shore beach sections were closed in 2026 (see below), and next year's closures won't fall on the same dates or necessarily the same stretches.",
+  "sections": [
+    {
+      "heading": "Striped Bass",
+      "species_slug": "striped-bass",
+      "body_md": "Present on the North Shore, not just PEI's south/east side — DFO Gulf Region's own material describes the southern Gulf striped bass population dispersing along southern Gulf coastal waters after spawning on the Miramichi each spring, and Parks Canada's own fish list for PEI National Park includes striped bass among the park's documented coastal species. Local knowledge (Tourism PEI's Ask an Islander series) specifically points to the National Park's rocky beach stretches near Cavendish and North Rustico for shore fly and lure fishing, May through October, best worked on an incoming tide with paddletails or topwater plugs in the evening as the tide falls.\n\n**Regulation (2026, DFO Gulf Region, same rules as the rest of this province)**: tidal waters open April 15–October 31, 4 fish daily bag and possession limit, retained within a 50–65 cm slot. Barbless hooks mandatory; gear caps at five lines/six hooks per line in tidal water.",
+      "sources": [
+        { "label": "DFO Gulf Region — Striped Bass Recreational Fishery 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
+        { "label": "Parks Canada — PEI National Park, Fish Species", "url": "https://parks.canada.ca/pn-np/pe/pei-ipe/nature/faune-wildlife/poissons-fish" },
+        { "label": "Tourism PEI — Ask an Islander, shore fly/lure striped bass beaches", "url": "https://www.tourismpei.com/askanislander/questions/what-beaches-would-be-suggested-for-shore-fly-or-lure-fishing-for-striped" }
+      ]
+    },
+    {
+      "heading": "Groundfish — the 50-metre rule that reaches the beach",
+      "species_slug": "atlantic-cod",
+      "body_md": "DFO's Gulf Region recreational groundfish rule explicitly covers water \"within 50 metres of the coastline... adjacent to the Province of Prince Edward Island\" — in other words, it reaches a beach caster directly, not just boats. The general season runs April 15–October 1 with a 5-groundfish daily aggregate limit and no cod or white hake retention outside a short window each summer; that window is set annually by variation order and worth checking before you go rather than assumed from a prior year. Outside the retention window, cod and white hake caught from the beach must go back.",
+      "sources": [
+        { "label": "DFO Gulf Region — Recreational Groundfish Fishery, Southern Gulf of St. Lawrence", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" }
+      ]
+    },
+    {
+      "heading": "Mackerel",
+      "species_slug": "atlantic-mackerel",
+      "body_md": "Fished from wharves and breakwaters rather than open beach — North Rustico Harbour, just outside the park's western edge, is the area's charter-fishing departure point and a reasonable bet for mackerel from the dock. **Regulation (2026, DFO Gulf Region, Mackerel Fishing Area 16)**: season April 1–December 31, 20 fish daily and possession limit, no minimum size, one line/three hooks per line in tidal water.",
+      "sources": [
+        { "label": "DFO Gulf Region — Mackerel", "url": "https://www.glf.dfo-mpo.gc.ca/en/node/316" }
+      ]
+    },
+    {
+      "heading": "Sea-run brook trout",
+      "species_slug": "brook-trout",
+      "body_md": "A genuine North Shore fishery, worth trying if you've never fished the salt right at a river mouth: sea-run brook trout stage in the shallow water immediately around river and brook mouths draining into the Gulf, and the Wheatley River — a North Shore tributary near Rustico — carries its own reduced local season and bag limit set by a watershed group in cooperation with the province. A PEI angling licence is required once you're fishing water upstream of tidal influence; the salt immediately at a river mouth generally isn't licensed as tidal water the way striped bass water is, so check which side of that line you're standing on.",
+      "sources": [
+        { "label": "Wheatley River Improvement Group — fishing regulations", "url": "https://wheatleyriver.ca/fishing-regulations/" }
+      ]
+    }
+  ],
+  "spots": [
+    { "name": "Cavendish Beach", "description": "Inside PEI National Park; a rocky stretch specifically recommended locally for shore fly and lure striped bass fishing.", "map_url": "https://www.google.com/maps?q=46.415714,-63.073203" },
+    { "name": "Brackley Beach", "description": "4020 Brackley Point Road, PEI National Park — accessible beach with boardwalk and parking; fills up 11am–3pm in peak season so early or late is both more comfortable and better fishing.", "map_url": "https://www.google.com/maps/search/?api=1&query=Brackley+Beach+PEI+National+Park" },
+    { "name": "Stanhope Beach", "description": "One of the park's most accessible beaches, with a full boardwalk complex.", "map_url": "https://www.google.com/maps/search/?api=1&query=Stanhope+Beach+PEI" },
+    { "name": "North Rustico Harbour", "description": "Just outside the park's western boundary — working harbour, charter departure point, and a good bet for wharf mackerel rather than beach casting.", "map_url": "https://www.google.com/maps/search/?api=1&query=North+Rustico+Harbour+PEI" },
+    { "name": "Cabot Beach Provincial Park, New London Bay / Malpeque Bay", "description": "West of the National Park proper, overlooking New London Bay — a calmer alternative if the open Gulf side is blown out.", "map_url": "https://www.google.com/maps/search/?api=1&query=Cabot+Beach+Provincial+Park+PEI" }
+  ],
+  "sources": [
+    { "label": "DFO Gulf Region — Striped Bass Recreational Fishery 2026", "url": "https://www.glf.dfo-mpo.gc.ca/en/striped-bass-recreational-fishery-southern-gulf-st-lawrence-2026" },
+    { "label": "DFO Gulf Region — Recreational Groundfish Fishery", "url": "https://www.glf.dfo-mpo.gc.ca/en/recreational-groundfish-fishery-southern-gulf-st-lawrence-0" },
+    { "label": "DFO Gulf Region — Mackerel", "url": "https://www.glf.dfo-mpo.gc.ca/en/node/316" },
+    { "label": "Parks Canada — PEI National Park, Fishing", "url": "https://parks.canada.ca/pn-np/pe/pei-ipe/activ/peche-fishing" },
+    { "label": "Parks Canada — PEI National Park, Fish Species", "url": "https://parks.canada.ca/pn-np/pe/pei-ipe/nature/faune-wildlife/poissons-fish" },
+    { "label": "Parks Canada — PEI National Park, current closures (piping plover)", "url": "https://parks.canada.ca/pn-np/pe/pei-ipe/securite-safety/fermetures-closures" },
+    { "label": "Parks Canada — PEI National Park fees", "url": "https://parks.canada.ca/pn-np/pe/pei-ipe/visit/tarifs-fees" },
+    { "label": "Tourism PEI — Ask an Islander, shore fly/lure striped bass beaches", "url": "https://www.tourismpei.com/askanislander/questions/what-beaches-would-be-suggested-for-shore-fly-or-lure-fishing-for-striped" },
+    { "label": "CHS Tide Station — Rustico (01915)", "url": "https://www.tides.gc.ca/en/stations/01915" },
+    { "label": "CHS Tide Station — Malpeque (01905)", "url": "https://www.tides.gc.ca/en/stations/01905" }
+  ]
+}

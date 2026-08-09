@@ -34,7 +34,7 @@ export function FlyCourseClient() {
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Fly fishing" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Fly fishing" className="scroll-tabs gap-2">
         {VIEWS.map((v) => (
           <button
             key={v.id}
@@ -91,11 +91,11 @@ function CourseView() {
   );
 }
 
-// Insects, rise forms and the seasonal sequence. Groups are collapsed by default: the full
-// life cycle of six groups at once is a wall of text, and someone checking what a caddis
-// pupa does wants one of them.
+// Insects, rise forms and the seasonal sequence. Groups start fully closed: the full life
+// cycle of six groups at once is a wall of text, and someone checking what a caddis pupa
+// does opens that one group rather than being handed mayfly first by default.
 function BugsView() {
-  const [open, setOpen] = useState<string | null>(INSECT_GROUPS[0]?.slug ?? null);
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
     <div className="space-y-4">
