@@ -61,7 +61,7 @@ export function FlyReference({ initialPattern = "" }: { initialPattern?: string 
 
   return (
     <div className="space-y-3">
-      <div role="tablist" aria-label="Fly reference" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Fly reference" className="scroll-tabs gap-2">
         {TABS.map((t) => (
           <button
             key={t.id}

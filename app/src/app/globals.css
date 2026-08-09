@@ -339,6 +339,35 @@ body {
   box-shadow: var(--card-shadow);
 }
 
+/* Every tab/topic/stage row in the app (role="tablist") used flex-wrap, which is fine on
+   a wide screen and a wall on a phone — a course with 12 stages wrapped into six rows of
+   pills before any content was visible, stacked below the view tabs doing the same thing.
+   A phone user swipes a row; they don't want to scroll past it first.
+
+   This turns any such row into a single horizontally-scrollable strip instead: content
+   still fits in the same visual language (rounded pills), it just scrolls sideways rather
+   than wrapping down. -webkit-overflow-scrolling gives it momentum on iOS; the three
+   scrollbar rules hide the bar itself across Firefox, older WebKit and modern WebKit/Blink
+   respectively, since a visible scrollbar under a row of pills reads as a bug, not a hint. */
+.scroll-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-tabs::-webkit-scrollbar {
+  display: none;
+}
+/* Flex items shrink by default, which would squeeze pill text onto two lines before the
+   row ever scrolls. Fixing that per-button across eleven components isn't worth it when
+   the row itself can guarantee it for whatever's inside. */
+.scroll-tabs > * {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 /* Print-friendly output for the Catch Log, Tackle Box, and Trip Planner — hides chrome
    (nav, buttons, forms, the scenic background) and prints clean black-on-white content.
    Anything meant only for print carries data-print-only; anything hidden when printing

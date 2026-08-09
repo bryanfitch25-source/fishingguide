@@ -120,7 +120,7 @@ export function SafetyClient({
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Safety" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Safety" className="scroll-tabs gap-2">
         {TABS.map((t) => (
           <button
             key={t.id}

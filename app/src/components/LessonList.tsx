@@ -63,7 +63,7 @@ export function LessonList({ stages, lessons, warning, creditNote, accent = "gui
         </div>
       )}
 
-      <div role="tablist" aria-label="Course stages" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Course stages" className="scroll-tabs gap-2">
         {stages.map((s) => (
           <button
             key={s.id}

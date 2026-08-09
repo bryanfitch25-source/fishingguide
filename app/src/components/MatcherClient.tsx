@@ -115,7 +115,7 @@ export function MatcherClient({ species, owned, initialMethod, initialWater }: P
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Matcher views" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Matcher views" className="scroll-tabs gap-2">
         {TABS.map((t) => (
           <button
             key={t.id}

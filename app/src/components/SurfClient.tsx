@@ -55,7 +55,7 @@ export function SurfClient({ species }: { species: { slug: string; common_name: 
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Surf topics" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Surf topics" className="scroll-tabs gap-2">
         {SURF_SECTIONS.map((s) => (
           <button
             key={s.id}

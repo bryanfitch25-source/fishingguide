@@ -20,7 +20,7 @@ export function TyingClient() {
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Fly tying" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Fly tying" className="scroll-tabs gap-2">
         {(
           [
             ["course", "The course"],

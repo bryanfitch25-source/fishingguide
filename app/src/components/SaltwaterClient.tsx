@@ -49,7 +49,7 @@ export function SaltwaterClient({
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Saltwater topics" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Saltwater topics" className="scroll-tabs gap-2">
         {SALT_SECTIONS.map((s) => (
           <button
             key={s.id}

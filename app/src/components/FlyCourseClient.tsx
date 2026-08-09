@@ -34,7 +34,7 @@ export function FlyCourseClient() {
 
   return (
     <div className="space-y-4">
-      <div role="tablist" aria-label="Fly fishing" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Fly fishing" className="scroll-tabs gap-2">
         {VIEWS.map((v) => (
           <button
             key={v.id}
