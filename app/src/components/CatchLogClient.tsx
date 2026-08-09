@@ -1,7 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { createClient } from "@/lib/supabase-browser";
+import {
+  PENDING_PHOTO_NOTE,
+  enqueueCatch,
+  flushQueue,
+  getQueueServerSnapshot,
+  getQueueSnapshot,
+  looksOffline,
+  removePending,
+  subscribeQueue,
+} from "@/lib/offline-queue";
 import type { Catch } from "@/types/tackle";
 import { PhotoUploadField } from "./PhotoUploadField";
 import { MultiPhotoField } from "./MultiPhotoField";
@@ -154,6 +164,48 @@ export function CatchLogClient({
     () => typeof window !== "undefined" && !!(window.SpeechRecognition || window.webkitSpeechRecognition)
   );
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+
+  // The queue owns its own state; this reads it rather than mirroring it. Two copies of
+  // the same list is how a flush finishes and the badge keeps showing the old count.
+  const { items: pending, syncing } = useSyncExternalStore(
+    subscribeQueue,
+    getQueueSnapshot,
+    getQueueServerSnapshot
+  );
+
+  // One place that writes a catch, so the queue flush and the form submit can't drift.
+  const sendCatch = useCallback(
+    (p: Record<string, unknown>) =>
+      writeWithSchemaFallback(p, CATCH_MIGRATION_FIELDS, (safe) =>
+        supabase.from("catches").insert(safe)
+      ),
+    [supabase]
+  );
+
+  const flush = useCallback(
+    async (announce: boolean) => {
+      const result = await flushQueue(sendCatch);
+      if (result.sent > 0) {
+        showToast(`${result.sent} ${result.sent === 1 ? "catch" : "catches"} uploaded.`);
+        loadAll();
+      } else if (announce && result.failed) {
+        showToast("Still no connection — they're safe on this device.");
+      }
+    },
+    // loadAll and showToast are stable for the life of the component.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [sendCatch]
+  );
+
+  useEffect(() => {
+    // Coming back online is the only signal the browser gives us, and it's the moment to
+    // retry. Mount matters too: the tab may have been closed while offline, so a queue
+    // can outlive the session that created it.
+    const onOnline = () => flush(false);
+    window.addEventListener("online", onOnline);
+    void flush(false);
+    return () => window.removeEventListener("online", onOnline);
+  }, [flush]);
 
   async function loadAll() {
     setLoading(true);
@@ -390,12 +442,41 @@ export function CatchLogClient({
 
     setSaving(false);
     if (error) {
+      // A new catch that failed for want of a signal goes in the queue rather than being
+      // lost. Only new ones: an edit needs the row it's editing, and an edit lost to a
+      // dead zone costs a retype rather than the fish.
+      //
+      // The looksOffline check is what keeps this honest. Queueing every failure would
+      // hide real rejections — a constraint violation or an expired session would sit in
+      // the queue retrying forever while the user believed it was saved.
+      if (!form.id && looksOffline(error)) {
+        try {
+          await enqueueCatch(payload, {
+            species: speciesName(form.species_slug || null),
+            date: form.catch_date,
+            location: form.location.trim() || null,
+          });
+          setShowForm(false);
+          setForm(emptyForm);
+          showToast("No signal — saved on this device. It'll upload by itself.");
+          return;
+        } catch {
+          // IndexedDB unavailable. Fall through and report the original error, which is
+          // the truth: this catch was not saved anywhere.
+        }
+      }
       setError(error.message);
       return;
     }
     setShowForm(false);
     showToast(degraded ? MIGRATION_PENDING_NOTICE : form.id ? "Catch updated." : "Catch logged.");
     loadAll();
+  }
+
+  async function discardPending(localId: string) {
+    if (!confirm("Discard this catch? It hasn't been uploaded, so this can't be undone.")) return;
+    await removePending(localId);
+    showToast("Discarded.");
   }
 
   const speciesName = (slug: string | null) =>
@@ -702,6 +783,63 @@ export function CatchLogClient({
       )}
 
       {error && <p className="mb-4 rounded bg-danger-light px-3 py-2 text-sm text-danger">{error}</p>}
+
+      {/* Queued catches sit above the log rather than mixed into it. They have no server
+          id, no photo and no conditions snapshot, so rendering them as ordinary cards
+          would imply a completeness they don't have — and burying them in a date-sorted
+          list is exactly how someone fails to notice a catch never uploaded. */}
+      {pending.length > 0 && (
+        <div className="mb-6 rounded-xl border border-accent bg-accent-light p-4 no-print">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="font-bold text-accent-dark">
+              {pending.length} {pending.length === 1 ? "catch" : "catches"} waiting to upload
+            </p>
+            <button
+              type="button"
+              onClick={() => flush(true)}
+              disabled={syncing}
+              className="rounded-lg border border-accent-dark px-3 py-1.5 text-sm font-medium text-accent-dark transition hover:bg-surface disabled:opacity-50"
+            >
+              {syncing ? "Trying…" : "Try now"}
+            </button>
+          </div>
+          <p className="mt-1 text-sm">
+            Saved on this device. They&apos;ll upload on their own once you have a signal —
+            you don&apos;t need to do anything.
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {pending.map((p) => (
+              <li
+                key={p.localId}
+                className="flex flex-wrap items-baseline justify-between gap-2 rounded-lg bg-surface px-3 py-2 text-sm"
+              >
+                <span>
+                  <span className="font-semibold">{p.label.species ?? "Unnamed catch"}</span>
+                  <span className="text-muted">
+                    {" "}
+                    · {p.label.date}
+                    {p.label.location ? ` · ${p.label.location}` : ""}
+                  </span>
+                  {p.attempts > 0 && (
+                    <span className="block text-xs text-muted">
+                      {p.attempts} failed {p.attempts === 1 ? "attempt" : "attempts"}
+                      {p.lastError ? ` — ${p.lastError}` : ""}
+                    </span>
+                  )}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => discardPending(p.localId)}
+                  className="text-xs font-medium text-danger underline"
+                >
+                  Discard
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-xs text-muted">{PENDING_PHOTO_NOTE}</p>
+        </div>
+      )}
 
       {showForm && (
         <form
