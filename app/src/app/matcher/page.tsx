@@ -13,8 +13,25 @@ export const metadata = {
 // without the badges.
 export const dynamic = "force-dynamic";
 
-export default async function MatcherPage() {
-  const [species, owned] = await Promise.all([getAllSpecies(), getOwnedGear()]);
+// Accepts ?method= and ?water= so the home screen's lenses survive the tap through, on the
+// same precedent as /fly?pattern=. Both are validated against the real unions rather than
+// passed on trust — they're user-controllable text seeding a filter, and an unrecognised
+// value should mean "no filter", not an empty result set nobody can explain.
+export default async function MatcherPage(props: {
+  searchParams: Promise<{ method?: string | string[]; water?: string | string[] }>;
+}) {
+  const [species, owned, params] = await Promise.all([
+    getAllSpecies(),
+    getOwnedGear(),
+    props.searchParams,
+  ]);
+
+  const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
+  const m = first(params.method);
+  const w = first(params.water);
+  const initialMethod = m === "spin" || m === "fly" || m === "bait" ? m : undefined;
+  const initialWater =
+    w === "salt" || w === "estuary" || w === "river" || w === "lake" ? w : undefined;
 
   return (
     <div className="mx-auto max-w-4xl px-3 sm:px-6 py-4 sm:py-10">
@@ -29,6 +46,8 @@ export default async function MatcherPage() {
       <MatcherClient
         species={species.map((s) => ({ slug: s.slug, common_name: s.common_name }))}
         owned={owned}
+        initialMethod={initialMethod}
+        initialWater={initialWater}
       />
     </div>
   );
