@@ -18,6 +18,7 @@ import {
   type Recommendation,
   type WaterType,
 } from "@/lib/matcher";
+import { FilterDisclosure, FilterSelect } from "@/components/FilterDisclosure";
 import type { OwnedGearItem } from "@/lib/owned";
 import type { Province } from "@/types/content";
 
@@ -39,30 +40,6 @@ interface Props {
   /** Seeded from ?method= / ?water= so the home screen's lenses survive the tap through. */
   initialMethod?: Method;
   initialWater?: WaterType;
-}
-
-function Chip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      aria-pressed={active}
-      className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
-        active
-          ? "bg-guide text-on-brand"
-          : "border border-border bg-surface text-muted hover:border-guide"
-      }`}
-    >
-      {children}
-    </button>
-  );
 }
 
 export function MatcherClient({ species, owned, initialMethod, initialWater }: Props) {
@@ -156,45 +133,41 @@ export function MatcherClient({ species, owned, initialMethod, initialWater }: P
         ))}
       </div>
 
-      {/* Filters. Hidden on the waters tab, where only the province one applies. */}
-      <div className="rounded-xl border border-border bg-surface p-3 space-y-2.5">
+      {/* One disclosure instead of three stacked bubble rows. Method and water are
+          hidden on the waters tab, where only province applies — same condition as
+          before, just no longer rendered open by default. */}
+      <FilterDisclosure activeCount={[method !== "all", water !== "all", province !== "all", ownedOnly].filter(Boolean).length}>
         {tab !== "waters" && (
-          <>
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className="mr-1 text-xs font-semibold text-muted">Method</span>
-              <Chip active={method === "all"} onClick={() => setMethod("all")}>
-                Any
-              </Chip>
-              {METHODS.map((m) => (
-                <Chip key={m} active={method === m} onClick={() => setMethod(method === m ? "all" : m)}>
-                  {METHOD_LABEL[m]}
-                </Chip>
-              ))}
-            </div>
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className="mr-1 text-xs font-semibold text-muted">Water</span>
-              <Chip active={water === "all"} onClick={() => setWater("all")}>
-                Any
-              </Chip>
-              {WATERS.map((w) => (
-                <Chip key={w} active={water === w} onClick={() => setWater(water === w ? "all" : w)}>
-                  {WATER_LABEL[w]}
-                </Chip>
-              ))}
-            </div>
-          </>
+          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+            <FilterSelect
+              label="Method"
+              value={method}
+              onChange={setMethod}
+              options={[
+                { value: "all" as const, label: "Any method" },
+                ...METHODS.map((m) => ({ value: m, label: METHOD_LABEL[m] })),
+              ]}
+            />
+            <FilterSelect
+              label="Water"
+              value={water}
+              onChange={setWater}
+              options={[
+                { value: "all" as const, label: "Any water" },
+                ...WATERS.map((w) => ({ value: w, label: WATER_LABEL[w] })),
+              ]}
+            />
+          </div>
         )}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="mr-1 text-xs font-semibold text-muted">Province</span>
-          <Chip active={province === "all"} onClick={() => setProvince("all")}>
-            All
-          </Chip>
-          {PROVINCES.map((p) => (
-            <Chip key={p} active={province === p} onClick={() => setProvince(province === p ? "all" : p)}>
-              {p}
-            </Chip>
-          ))}
-        </div>
+        <FilterSelect
+          label="Province"
+          value={province}
+          onChange={setProvince}
+          options={[
+            { value: "all" as const, label: "All provinces" },
+            ...PROVINCES.map((p) => ({ value: p, label: p })),
+          ]}
+        />
         {tab !== "waters" && owned.length > 0 && (
           <label className="flex cursor-pointer items-center gap-2 pt-0.5 text-xs font-medium text-muted">
             <input
@@ -206,7 +179,7 @@ export function MatcherClient({ species, owned, initialMethod, initialWater }: P
             Only show what I already own
           </label>
         )}
-      </div>
+      </FilterDisclosure>
 
       {tab === "species" && (
         <div className="space-y-3">

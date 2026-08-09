@@ -1,0 +1,67 @@
+{
+  "slug": "halifax-south-shore-ns",
+  "title": "Halifax Harbour to the South Shore, NS",
+  "province": "NS",
+  "region_name": "Halifax Harbour, Eastern Passage & Cow Bay, and the South Shore toward Chester, Mahone Bay and Lunenburg",
+  "lat": 44.65914,
+  "lng": -63.583386,
+  "intro_md": "This is a different coast from the Northumberland Strait guides elsewhere in this app. Halifax Harbour opens directly onto the Atlantic, the water is colder and deeper close to shore, and the regulatory office is different too — Nova Scotia's Atlantic coast and Bay of Fundy fall under DFO **Maritimes** Region, headquartered in Dartmouth, not the Gulf Region that governs New Brunswick and PEI's Northumberland Strait side. Bag limits and size slots genuinely differ between the two regions for shared species like striped bass, so don't assume a number from the NB or PEI guides carries over here.\n\nThe stretch covered here runs from downtown Halifax and the Northwest Arm, out past Eastern Passage and Cow Bay at the harbour mouth, and down the South Shore toward Chester, Mahone Bay and Lunenburg. It's bookended by one real, sourced regulatory landmark worth knowing about: **Hartlen Point**, the headland at the harbour entrance, is the literal dividing line DFO uses between two different groundfish management zones — the water from Halifax Harbour and everything west of it (including the whole South Shore) gets a longer season and a bigger daily bag limit than the water immediately east of Hartlen Point around Eastern Passage and Cow Bay.\n\n**Regulations overview.** No provincial licence is needed to fish tidal or salt water in Nova Scotia — a General Fishing Licence is only required for freshwater species other than salmon. DFO Maritimes' own recreational fisheries rules apply directly. See each species' own guide for full current limits; DFO's live Orders Registry and shellfish closure map are the authoritative sources for anything that's changed since this was written.",
+  "sections": [
+    {
+      "heading": "Atlantic Mackerel",
+      "species_slug": "atlantic-mackerel",
+      "body_md": "**The best-documented shore fish on this coast.** Anglers fish mackerel right off the Halifax waterfront near Pier 21, using Sabiki rigs worked slowly through the water column — a technique regularly shared among the anglers who fish there. Dingle Park on the Northwest Arm, the Bedford Basin shoreline, and Graves Island Provincial Park near Chester on the South Shore are also named mackerel spots. The run pushes close to shore roughly May through September, then the fish move on.\n\n**Regulation (2026, DFO Maritimes)**: 20 fish daily and possession limit. As of 2025, there is no minimum size — new measures instead target reducing dead discards of small fish rather than banning their retention outright, so don't assume an old \"26.8 cm minimum\" figure still applies; it doesn't. Gear caps at one line, three hooks per line. Tidal waters open April 1–December 31. No licence required.",
+      "sources": [
+        { "label": "DFO Maritimes Region — Pelagic Species (mackerel)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/pelag-eng.html" },
+        { "label": "CBC News — Lure of urban fishing draws anglers to Halifax waterfront", "url": "https://www.cbc.ca/news/canada/nova-scotia/lure-of-urban-fishing-draws-anglers-to-halifax-waterfront-1.6964114" }
+      ]
+    },
+    {
+      "heading": "Striped Bass",
+      "species_slug": "striped-bass",
+      "body_md": "**A different population from the Gulf-coast fish covered in the NB and PEI guides.** The Bay of Fundy striped bass management unit — which includes this stretch of Nova Scotia's Atlantic coast — was designated Endangered by COSEWIC in 2012. It historically spawned in three rivers, including Nova Scotia's own Annapolis and Shubenacadie, but DFO now confirms only the Shubenacadie still supports spawning. The recreational fishery for this population remains open, but given its status, treat every fish here as worth returning carefully rather than as a given.\n\n**Regulation (DFO Maritimes, distinct from the Gulf Region rules used elsewhere in this app)**: 1 fish daily bag and possession limit, retained only within a 68–150 cm slot (nose to tail) — both much tighter than the Gulf-coast rule. Tidal waters open year-round, with a closure April 1–June 30 on the Annapolis River specifically. Applies along \"the inland and coastal waters of Nova Scotia... along the Atlantic coast and the waters of the Bay of Fundy, to the New Brunswick border\" — this entire guide area.\n\nShore reports specific to this exact stretch are thin — the Northwest Arm turns up occasional bass — so treat striped bass here as present but not a reliably documented shore pattern the way mackerel is.",
+      "sources": [
+        { "label": "DFO Maritimes Region — Diadromous Species (striped bass)", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" },
+        { "label": "Nova Scotia Anglers' Handbook 2026 (PDF)", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+        { "label": "DFO — Bay of Fundy Striped Bass Recovery Potential Assessment", "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/364418.pdf" }
+      ]
+    },
+    {
+      "heading": "Pollock, Cod and Winter Flounder — the Hartlen Point split",
+      "species_slug": "pollock",
+      "body_md": "DFO Maritimes splits this whole guide area into two groundfish zones at Hartlen Point, the headland at the harbour mouth near Eastern Passage — and the two zones run genuinely different seasons.\n\n**Zone 1 — Halifax Harbour and west, including the whole South Shore toward Chester, Mahone Bay and Lunenburg**: open February 1–December 31, 10 groundfish daily in total (a mixed bag covering cod, dogfish, flounder, haddock, pollock and others). Cod specifically can only be retained from the third Saturday in June to Labour Day, up to 5 as part of that 10-fish total.\n\n**Zone 2 — Hartlen Point east to Cape North, including Eastern Passage and Cow Bay**: a much shorter season, open only from the third Saturday in June to Labour Day, 5 groundfish total.\n\nHalibut, and both northern and spotted wolffish, cannot be retained anywhere on this coast, year-round. Handline/angling gear only; no licence required either zone. Winter flounder is covered under the same mixed groundfish limit rather than its own separate number — Lunenburg Harbour is named locally as a flounder spot, though that's colour rather than a DFO-documented claim.",
+      "sources": [
+        { "label": "DFO Maritimes Region — Groundfish", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" }
+      ]
+    },
+    {
+      "heading": "Cunner",
+      "species_slug": "cunner",
+      "body_md": "A common, easy incidental catch around any piling, wharf or breakwater on this coast — Point Pleasant Park, the Halifax waterfront generally, and Hartlen Point are all named spots. DFO's Maritimes groundfish page doesn't list cunner among its named species, so no confirmed bag limit was found for this stretch; treat it as unregulated pending direct confirmation from DFO Maritimes rather than assuming either a specific number or no limit at all.",
+      "sources": [
+        { "label": "DFO Maritimes Region — Groundfish", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" }
+      ]
+    }
+  ],
+  "spots": [
+    { "name": "Halifax waterfront near Pier 21", "description": "The best-documented shore spot on this coast — mackerel on Sabiki rigs through the summer, right off the boardwalk.", "map_url": "https://www.google.com/maps/search/?api=1&query=Pier+21+Halifax" },
+    { "name": "Dingle Park / Sir Sandford Fleming Park, Northwest Arm", "description": "Western shore of the Northwest Arm; a named fishing spot with occasional striped bass reported alongside the mackerel.", "map_url": "https://www.google.com/maps/search/?api=1&query=Sir+Sandford+Fleming+Park+Halifax" },
+    { "name": "MacCormacks Beach Provincial Park, Eastern Passage", "description": "Boardwalk with trail connectors onto the beach where people fish; adjacent to the historic Fisherman's Cove public wharf. Falls in the shorter-season Zone 2 for groundfish.", "map_url": "https://www.google.com/maps/search/?api=1&query=MacCormacks+Beach+Provincial+Park" },
+    { "name": "Hartlen Point", "description": "The headland at the harbour mouth — not just a landmark, the actual DFO boundary between the two groundfish zones described above.", "map_url": "https://www.google.com/maps/search/?api=1&query=Hartlen+Point+Nova+Scotia" },
+    { "name": "Graves Island Provincial Park, near Chester", "description": "Rocky shoreline on the South Shore, noted for mackerel; the shore itself is difficult to cast from cleanly, so a kayak or small boat helps here.", "map_url": "https://www.google.com/maps/search/?api=1&query=Graves+Island+Provincial+Park" },
+    { "name": "Mahone Bay public fishing dock", "description": "A dock built specifically for fishing beside the Mahone Bay Civic Marina breakwater, added in 2025 — the single most concretely fishing-purposed structure found on the South Shore.", "map_url": "https://www.google.com/maps/search/?api=1&query=Mahone+Bay+Civic+Marina" }
+  ],
+  "sources": [
+    { "label": "DFO Maritimes Region — Recreational Fisheries Index", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/index-eng.html" },
+    { "label": "DFO Maritimes Region — Diadromous Species", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/diadrom-eng.html" },
+    { "label": "DFO Maritimes Region — Pelagic Species", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/pelag-eng.html" },
+    { "label": "DFO Maritimes Region — Groundfish", "url": "https://www.dfo-mpo.gc.ca/fisheries-peches/recreational-recreative/maritimes/groundfish-poisson-fond-eng.html" },
+    { "label": "DFO — Live Shellfish Closure Map", "url": "https://www.dfo-mpo.gc.ca/shellfish-mollusques/cssp-map-eng.htm" },
+    { "label": "DFO Maritimes — Orders Registry (live closures)", "url": "http://www.inter.dfo-mpo.gc.ca/Maritimes/Orders-Registry" },
+    { "label": "Government of Nova Scotia — General Fishing Licence", "url": "https://www.novascotia.ca/apply-general-fishing-licence-sportfishing" },
+    { "label": "Nova Scotia Anglers' Handbook 2026 (PDF)", "url": "https://www.novascotia.ca/sites/default/files/documents/1-2412/anglers-handbook-en.pdf" },
+    { "label": "CHS Tide Station — Halifax (00490)", "url": "https://www.tides.gc.ca/en/stations/00490" },
+    { "label": "CBC News — Lure of urban fishing draws anglers to Halifax waterfront", "url": "https://www.cbc.ca/news/canada/nova-scotia/lure-of-urban-fishing-draws-anglers-to-halifax-waterfront-1.6964114" },
+    { "label": "Chester (Nova Scotia) — Wharves and Floats", "url": "https://chester.ca/transportation/wharves-and-floats" }
+  ]
+}

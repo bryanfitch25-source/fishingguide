@@ -11,6 +11,7 @@ import {
   TIPPET_RULES,
 } from "@/lib/fly";
 import { PATTERN_TYPES, TOTAL_PATTERNS, TOTAL_STYLES, type FlyPattern } from "@/lib/fly-patterns";
+import { FilterDisclosure, FilterSelect } from "@/components/FilterDisclosure";
 
 type RefTab = "patterns" | "weights" | "tippet" | "knots" | "rules";
 
@@ -80,22 +81,6 @@ export function FlyReference({ initialPattern = "" }: { initialPattern?: string 
 
       {tab === "patterns" && (
         <div className="space-y-3">
-          <div className="flex flex-wrap gap-2">
-            {PATTERN_GROUPS.map((g) => (
-              <button
-                key={g.quarry}
-                onClick={() => setQuarry(g.quarry)}
-                aria-pressed={quarry === g.quarry}
-                className={`rounded-lg px-3 py-1.5 text-sm transition ${
-                  quarry === g.quarry
-                    ? "bg-guide-light font-semibold text-guide"
-                    : "border border-border text-muted hover:border-guide"
-                }`}
-              >
-                {g.quarry}
-              </button>
-            ))}
-          </div>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -103,29 +88,27 @@ export function FlyReference({ initialPattern = "" }: { initialPattern?: string 
             className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
           />
 
-          <div className="flex flex-wrap gap-1.5">
-            <button
-              onClick={() => setTypeFilter("all")}
-              aria-pressed={typeFilter === "all"}
-              className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
-                typeFilter === "all" ? "bg-guide text-on-brand" : "border border-border text-muted hover:border-guide"
-              }`}
-            >
-              All types
-            </button>
-            {PATTERN_TYPES.map((t) => (
-              <button
-                key={t}
-                onClick={() => setTypeFilter(typeFilter === t ? "all" : t)}
-                aria-pressed={typeFilter === t}
-                className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
-                  typeFilter === t ? "bg-guide text-on-brand" : "border border-border text-muted hover:border-guide"
-                }`}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
+          {/* Quarry and type used to be two more rows of pill buttons sitting permanently
+              under the search box. One disclosure, closed by default, with a badge for
+              "a type filter is narrowing this" — quarry itself always has a value so it
+              doesn't count toward the badge. */}
+          <FilterDisclosure activeCount={typeFilter !== "all" ? 1 : 0}>
+            <FilterSelect
+              label="Quarry"
+              value={quarry}
+              onChange={setQuarry}
+              options={PATTERN_GROUPS.map((g) => ({ value: g.quarry, label: g.quarry }))}
+            />
+            <FilterSelect
+              label="Fly type"
+              value={typeFilter}
+              onChange={setTypeFilter}
+              options={[
+                { value: "all", label: "All types" },
+                ...PATTERN_TYPES.map((t) => ({ value: t, label: t })),
+              ]}
+            />
+          </FilterDisclosure>
 
           {/* On a surface rather than loose on the page — the app's backgrounds are
               photographs, and small muted type directly on one is barely readable. */}

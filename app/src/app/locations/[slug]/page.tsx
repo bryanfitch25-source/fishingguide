@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLocationGuideBySlug, getAllLocationGuides } from "@/lib/data";
-import { ProvinceBadge } from "@/components/Badges";
 import { GuideMarkdown } from "@/components/GuideMarkdown";
 import { EnvironmentPanel } from "@/components/EnvironmentPanel";
 
@@ -29,9 +28,8 @@ export default async function LocationGuideDetailPage(props: { params: Promise<{
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
       <div className="mb-8">
-        <div className="mb-2">
-          <ProvinceBadge province={guide.province} />
-        </div>
+        {/* No province badge here — every trip guide title already ends in the province
+            (e.g. "…, NB"), so a pill repeating it added a bubble with no new information. */}
         <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-dark">{guide.title}</h1>
         {guide.region_name && <p className="text-muted mt-1">{guide.region_name}</p>}
         {guide.intro_md && (

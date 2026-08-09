@@ -19,6 +19,7 @@ import {
   SURF_TIDE_WINDOWS,
   type SurfTopic,
 } from "@/lib/surf";
+import { FilterSelect } from "@/components/FilterDisclosure";
 import type { Province } from "@/types/content";
 
 const PROVINCES: Province[] = ["NB", "NS", "PEI"];
@@ -216,19 +217,16 @@ export function SurfClient({ species }: { species: { slug: string; common_name: 
 
       {tab === "targets" && (
         <div className="space-y-3">
-          <div className="flex flex-wrap gap-1.5">
-            <Chip active={province === "all"} onClick={() => setProvince("all")}>
-              All
-            </Chip>
-            {PROVINCES.map((p) => (
-              <Chip
-                key={p}
-                active={province === p}
-                onClick={() => setProvince(province === p ? "all" : p)}
-              >
-                {p}
-              </Chip>
-            ))}
+          <div className="max-w-xs">
+            <FilterSelect
+              label="Province"
+              value={province}
+              onChange={setProvince}
+              options={[
+                { value: "all" as const, label: "All provinces" },
+                ...PROVINCES.map((p) => ({ value: p, label: p })),
+              ]}
+            />
           </div>
 
           <div className="space-y-2">
@@ -310,29 +308,5 @@ export function SurfClient({ species }: { species: { slug: string; common_name: 
         {SURF_CAVEAT}
       </p>
     </div>
-  );
-}
-
-function Chip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      aria-pressed={active}
-      className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
-        active
-          ? "bg-brand text-on-brand"
-          : "border border-border bg-surface text-muted hover:border-brand"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

@@ -41,10 +41,11 @@ interface Props {
 
 export function LessonList({ stages, lessons, warning, creditNote, accent = "guide" }: Props) {
   const [stage, setStage] = useState(stages[0]?.id ?? "");
-  // Lessons open one at a time by default. A course page where everything is expanded is a
-  // wall; one where nothing is is a table of contents. Tracking the open lesson rather than
-  // using <details> lets the first lesson of each stage start open.
-  const [open, setOpen] = useState<number | null>(lessons[0]?.n ?? null);
+  // Lessons open one at a time. Nothing is pre-opened — arriving at a stage shows a plain
+  // list of titles, and picking a lesson is a deliberate choice rather than something
+  // decided for you. Tracking the open lesson rather than using <details> still lets at
+  // most one be open per stage, which keeps a long course from turning into a wall.
+  const [open, setOpen] = useState<number | null>(null);
 
   const shown = lessons.filter((l) => l.stage === stage);
   const current = stages.find((s) => s.id === stage);
@@ -70,7 +71,7 @@ export function LessonList({ stages, lessons, warning, creditNote, accent = "gui
             aria-selected={stage === s.id}
             onClick={() => {
               setStage(s.id);
-              setOpen(lessons.find((l) => l.stage === s.id)?.n ?? null);
+              setOpen(null);
             }}
             className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition ${
               stage === s.id ? chip : `border border-border bg-surface text-muted ${hover}`

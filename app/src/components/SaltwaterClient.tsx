@@ -17,6 +17,7 @@ import {
   type SaltTopic,
 } from "@/lib/saltwater";
 import { SALT_CARE_NOTE } from "@/lib/water-type";
+import { FilterSelect } from "@/components/FilterDisclosure";
 import type { Province } from "@/types/content";
 
 const PROVINCES: Province[] = ["NB", "NS", "PEI"];
@@ -183,33 +184,16 @@ export function SaltwaterClient({
 
       {tab === "targets" && (
         <div className="space-y-3">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs font-semibold text-muted">Province</span>
-            <button
-              onClick={() => setProvince("all")}
-              aria-pressed={province === "all"}
-              className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
-                province === "all"
-                  ? "bg-brand text-on-brand"
-                  : "border border-border bg-surface text-muted hover:border-brand"
-              }`}
-            >
-              All
-            </button>
-            {PROVINCES.map((p) => (
-              <button
-                key={p}
-                onClick={() => setProvince(province === p ? "all" : p)}
-                aria-pressed={province === p}
-                className={`rounded-full px-2.5 py-1 text-xs font-medium transition ${
-                  province === p
-                    ? "bg-brand text-on-brand"
-                    : "border border-border bg-surface text-muted hover:border-brand"
-                }`}
-              >
-                {p}
-              </button>
-            ))}
+          <div className="max-w-xs">
+            <FilterSelect
+              label="Province"
+              value={province}
+              onChange={setProvince}
+              options={[
+                { value: "all" as const, label: "All provinces" },
+                ...PROVINCES.map((p) => ({ value: p, label: p })),
+              ]}
+            />
           </div>
           <p className="text-xs text-muted">
             Ordered by how likely you are to actually catch one, not by prestige. A saltwater
