@@ -21,6 +21,7 @@ import { LocationsMapLoader } from "./LocationsMapLoader";
 import { CatchInsights } from "./CatchInsights";
 import { CatchCard } from "./CatchCard";
 import { localDate } from "@/lib/dates";
+import { formatTripDates } from "@/lib/trip-dates";
 import {
   cmToLengthInput,
   formatHeight,
@@ -66,20 +67,32 @@ interface TackleOption {
   name: string;
 }
 
+interface TripOption {
+  id: string;
+  name: string;
+  trip_date: string | null;
+  trip_end_date: string | null;
+}
+
 function today() {
   return localDate();
 }
 
 async function fetchAll(
   supabase: SupabaseBrowserClient
-): Promise<{ catches: Catch[]; tackle: TackleOption[]; error: string | null }> {
-  const [catchesRes, tackleRes] = await Promise.all([
+): Promise<{ catches: Catch[]; tackle: TackleOption[]; trips: TripOption[]; error: string | null }> {
+  const [catchesRes, tackleRes, tripsRes] = await Promise.all([
     supabase.from("catches").select("*").order("catch_date", { ascending: false }),
     supabase.from("tackle_items").select("id, name").order("name"),
+    supabase
+      .from("trips")
+      .select("id, name, trip_date, trip_end_date")
+      .order("trip_date", { ascending: false, nullsFirst: false }),
   ]);
   return {
     catches: catchesRes.error ? [] : (catchesRes.data as unknown as Catch[]),
     tackle: (tackleRes.data as TackleOption[]) ?? [],
+    trips: (tripsRes.data as TripOption[]) ?? [],
     error: catchesRes.error?.message ?? null,
   };
 }
@@ -90,6 +103,7 @@ const emptyForm = {
   catch_date: today(),
   location: "",
   tackle_item_id: "",
+  trip_id: "",
   length_desc: "",
   weight_desc: "",
   length_value: "", // entered in the display unit; converted to cm on save
@@ -139,6 +153,7 @@ export function CatchLogClient({
   const supabase = useMemo(() => createClient(), []);
   const [catches, setCatches] = useState<Catch[]>([]);
   const [tackle, setTackle] = useState<TackleOption[]>([]);
+  const [trips, setTrips] = useState<TripOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
@@ -213,6 +228,7 @@ export function CatchLogClient({
     if (result.error) setError(result.error);
     setCatches(result.catches);
     setTackle(result.tackle);
+    setTrips(result.trips);
     setLoading(false);
   }
 
@@ -224,6 +240,7 @@ export function CatchLogClient({
       if (result.error) setError(result.error);
       setCatches(result.catches);
       setTackle(result.tackle);
+      setTrips(result.trips);
       setLoading(false);
     })();
     return () => {
@@ -307,6 +324,7 @@ export function CatchLogClient({
       catch_date: c.catch_date,
       location: c.location ?? "",
       tackle_item_id: c.tackle_item_id ?? "",
+      trip_id: c.trip_id ?? "",
       length_desc: c.length_desc ?? "",
       weight_desc: c.weight_desc ?? "",
       // Numeric values are stored metric; show them in whichever units are selected.
@@ -409,6 +427,7 @@ export function CatchLogClient({
       catch_date: form.catch_date,
       location: form.location.trim() || null,
       tackle_item_id: form.tackle_item_id || null,
+      trip_id: form.trip_id || null,
       length_desc: form.length_desc.trim() || null,
       weight_desc: form.weight_desc.trim() || null,
       length_cm: Number.isFinite(lengthNumber) ? lengthInputToCm(lengthNumber, units) : null,
@@ -942,6 +961,23 @@ export function CatchLogClient({
                 ))}
               </select>
             </div>
+            {trips.length > 0 && (
+              <div>
+                <label className="block text-sm font-medium mb-1">Trip</label>
+                <select
+                  value={form.trip_id}
+                  onChange={(e) => setForm({ ...form, trip_id: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                >
+                  <option value="">— Not part of a trip —</option>
+                  {trips.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.name} — {formatTripDates(t)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
             <div>
               <label className="block text-sm font-medium mb-1">
                 Length ({lengthUnitLabel(units)})

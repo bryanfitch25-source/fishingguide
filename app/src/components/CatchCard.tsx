@@ -72,8 +72,9 @@ export function CatchCard({
   tackleName: (id: string | null) => string | null;
   isPersonalBest: boolean;
   units: UnitSystem;
-  onEdit: () => void;
-  onDelete: () => void;
+  /** Omit both to render read-only — used where a catch is shown outside the Catch Log itself. */
+  onEdit?: () => void;
+  onDelete?: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const moon = moonPhase(c.catch_date);
@@ -200,12 +201,16 @@ export function CatchCard({
           {c.notes && <p className="mt-2 border-t border-border pt-2">{c.notes}</p>}
 
           <div className="mt-3 flex items-center gap-4 text-sm no-print">
-            <button onClick={onEdit} className="font-medium text-brand hover:underline">
-              Edit
-            </button>
-            <button onClick={onDelete} className="font-medium text-danger hover:underline">
-              Delete
-            </button>
+            {onEdit && (
+              <button onClick={onEdit} className="font-medium text-brand hover:underline">
+                Edit
+              </button>
+            )}
+            {onDelete && (
+              <button onClick={onDelete} className="font-medium text-danger hover:underline">
+                Delete
+              </button>
+            )}
             {c.lat !== null && c.lng !== null && (
               <a
                 href={`https://www.openstreetmap.org/?mlat=${c.lat}&mlon=${c.lng}#map=14/${c.lat}/${c.lng}`}
