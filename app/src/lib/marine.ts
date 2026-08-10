@@ -15,7 +15,7 @@ const MARINE_URL = (lat: number, lng: number) =>
 
 const HOURLY_URL = (lat: number, lng: number) =>
   `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}` +
-  `&hourly=temperature_2m,weather_code&forecast_days=7&timezone=UTC`;
+  `&hourly=temperature_2m,weather_code,wind_speed_10m&forecast_days=7&timezone=UTC`;
 
 export interface MarineConditions {
   waveHeightM: number | null;
@@ -76,6 +76,7 @@ export interface HourlyPoint {
   hourKey: string;
   temperatureC: number | null;
   emoji: string;
+  windKmh: number | null;
 }
 
 // WMO weather interpretation codes, collapsed to a glyph. Open-Meteo returns the raw
@@ -107,13 +108,19 @@ export async function getHourlyForecast(
     const res = await fetch(HOURLY_URL(lat, lng), { next: { revalidate: 1800 } });
     if (!res.ok) return null;
     const json: {
-      hourly?: { time?: string[]; temperature_2m?: (number | null)[]; weather_code?: (number | null)[] };
+      hourly?: {
+        time?: string[];
+        temperature_2m?: (number | null)[];
+        weather_code?: (number | null)[];
+        wind_speed_10m?: (number | null)[];
+      };
     } = await res.json();
 
     const times = json.hourly?.time;
     if (!Array.isArray(times)) return null;
     const temps = json.hourly?.temperature_2m ?? [];
     const codes = json.hourly?.weather_code ?? [];
+    const winds = json.hourly?.wind_speed_10m ?? [];
 
     const map = new Map<string, HourlyPoint>();
     times.forEach((t, i) => {
@@ -123,6 +130,7 @@ export async function getHourlyForecast(
         hourKey,
         temperatureC: temps[i] ?? null,
         emoji: weatherEmoji(codes[i]),
+        windKmh: winds[i] ?? null,
       });
     });
     return map;
@@ -138,4 +146,46 @@ export function hourlyAt(
 ): HourlyPoint | null {
   if (!hourly) return null;
   return hourly.get(new Date(isoTime).toISOString().slice(0, 13)) ?? null;
+}
+
+export interface DailyForecast {
+  minTempC: number | null;
+  maxTempC: number | null;
+  maxWindKmh: number | null;
+  /** The icon closest to local midday — the single most representative hour for a
+      day-at-a-glance summary, same reasoning a weather app uses for its daily icon. */
+  emoji: string;
+}
+
+/**
+ * Rolls the hourly map up into one day, in a given timezone — the hourly forecast is
+ * keyed by UTC hour, which doesn't line up with a "day" for anyone west of Greenwich.
+ */
+export function dailyForecastSummary(
+  hourly: Map<string, HourlyPoint> | null,
+  dateStr: string,
+  timeZone = "America/Moncton"
+): DailyForecast | null {
+  if (!hourly) return null;
+
+  const localHour = (hourKey: string) =>
+    parseInt(new Date(`${hourKey}:00:00Z`).toLocaleString("en-CA", { timeZone, hour: "2-digit", hour12: false }), 10);
+  const localDay = (hourKey: string) =>
+    new Date(`${hourKey}:00:00Z`).toLocaleDateString("en-CA", { timeZone });
+
+  const points = [...hourly.values()].filter((p) => localDay(p.hourKey) === dateStr);
+  if (points.length === 0) return null;
+
+  const temps = points.map((p) => p.temperatureC).filter((t): t is number => t !== null);
+  const winds = points.map((p) => p.windKmh).filter((w): w is number => w !== null);
+  const midday = points.reduce((best, p) =>
+    Math.abs(localHour(p.hourKey) - 13) < Math.abs(localHour(best.hourKey) - 13) ? p : best
+  );
+
+  return {
+    minTempC: temps.length ? Math.min(...temps) : null,
+    maxTempC: temps.length ? Math.max(...temps) : null,
+    maxWindKmh: winds.length ? Math.max(...winds) : null,
+    emoji: midday.emoji,
+  };
 }
