@@ -44,7 +44,18 @@ async function fetchTideStations(): Promise<TideStation[]> {
   return res.json();
 }
 
-export async function getTideForecast(lat: number, lng: number): Promise<NearestTideStation | null> {
+/**
+ * Tide predictions near a point, for the three days starting at `around` (default now).
+ *
+ * Unlike weather, tides are astronomical rather than measured — IWLS publishes
+ * predictions arbitrarily far ahead, so a trip planned weeks out can still get a real
+ * tide forecast for its actual date rather than today's.
+ */
+export async function getTideForecast(
+  lat: number,
+  lng: number,
+  around: Date = new Date()
+): Promise<NearestTideStation | null> {
   try {
     const stations = await fetchTideStations();
     const operating = stations.filter((s) => s.operating);
@@ -62,8 +73,8 @@ export async function getTideForecast(lat: number, lng: number): Promise<Nearest
     // Beyond ~150km the nearest station isn't representative of local tides anymore.
     if (best > 150) return null;
 
-    const from = new Date().toISOString();
-    const to = new Date(Date.now() + 3 * 86400000).toISOString();
+    const from = around.toISOString();
+    const to = new Date(around.getTime() + 3 * 86400000).toISOString();
     const res = await fetch(TIDE_DATA_URL(nearest.id, from, to), { next: { revalidate: 1800 } });
     if (!res.ok) return null;
     const data: { eventDate: string; value: number }[] = await res.json();
