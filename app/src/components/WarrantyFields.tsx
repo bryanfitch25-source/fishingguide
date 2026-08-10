@@ -74,12 +74,15 @@ export function WarrantyFields({
   itemName,
   itemId,
   onChange,
+  bare = false,
 }: {
   values: WarrantyFormValues;
   itemName: string;
   /** Null while the item is still being created — the calendar button needs a saved id. */
   itemId: string | null;
   onChange: (patch: Partial<WarrantyFormValues>) => void;
+  /** Skips the outer border — for a caller (FormSection) that already provides one. */
+  bare?: boolean;
 }) {
   const [term, setTerm] = useState<number | "">("");
   const today = localDate();
@@ -106,7 +109,7 @@ export function WarrantyFields({
   }
 
   return (
-    <div className="rounded-lg border border-border p-3">
+    <div className={bare ? undefined : "rounded-lg border border-border p-3"}>
       <p className="text-sm font-semibold">🧾 Warranty</p>
       <p className="mt-0.5 text-xs text-muted">
         Optional, and it works on anything — a reel, a fishfinder, a pair of waders. Fill in an

@@ -17,6 +17,7 @@ import { PhotoUploadField } from "./PhotoUploadField";
 import { MultiPhotoField } from "./MultiPhotoField";
 import { downloadCSV } from "@/lib/csv";
 import {
+  TACKLE_SPECS,
   TACKLE_SPEC_FIELDS,
   cleanSpecs,
   describe,
@@ -39,6 +40,7 @@ import {
 import { localDate } from "@/lib/dates";
 import { writeWithSchemaFallback } from "@/lib/schema-compat";
 import { FilterSelect } from "@/components/FilterDisclosure";
+import { FormSection } from "@/components/FormSection";
 
 type SupabaseBrowserClient = ReturnType<typeof createClient>;
 
@@ -691,6 +693,28 @@ export function TackleBoxClient({
     return number ? `${sizeName} (${number})` : sizeName;
   }
 
+  // Badge counts for the form's collapsed sections — see FormSection. Name and
+  // category are the only fields any item needs, so they're the only ones left outside
+  // a section; everything else is grouped by what it's about and stays closed until
+  // there's a reason to open it, with a number on the header for anyone editing an item
+  // that already has something set in a section they haven't opened yet.
+  const detailsFilledCount = [form.brand, form.model, form.water_type].filter(Boolean).length;
+  const storageFilledCount =
+    (form.tray_id !== NO_TRAY ? 1 : 0) + (form.storage_location ? 1 : 0);
+  const photosFilledCount = (form.photo_url ? 1 : 0) + (form.extra_photo_urls.length > 0 ? 1 : 0);
+  const specsFilledCount = Object.keys(cleanSpecs(form.specs)).length;
+  const warrantyFilledCount =
+    (form.purchase_date ? 1 : 0) +
+    (form.warranty_expires_on ? 1 : 0) +
+    (form.warranty_lifetime ? 1 : 0) +
+    (form.warranty_provider ? 1 : 0) +
+    (form.warranty_reference ? 1 : 0) +
+    (form.warranty_notes ? 1 : 0) +
+    (form.last_serviced_on ? 1 : 0) +
+    (form.maintenance_interval_days ? 1 : 0) +
+    (form.maintenance_notes ? 1 : 0);
+  const notesFilledCount = (form.notes ? 1 : 0) + form.species_slugs.length;
+
   return (
     <div>
       {/* Trays management */}
@@ -1041,6 +1065,11 @@ export function TackleBoxClient({
           className="mb-8 rounded-xl border border-border bg-surface card-lift p-5 space-y-4 no-print"
         >
           <h2 className="font-bold text-brand-dark">{form.id ? "Edit Item" : "New Item"}</h2>
+
+          {/* Name and category are the only fields any item needs — everything else
+              varies by what the item is, so it's grouped into sections below that start
+              closed. A badge on a closed section's header shows how much is already in
+              there, for an item you're editing rather than adding. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Name *</label>
@@ -1066,219 +1095,244 @@ export function TackleBoxClient({
                 ))}
               </select>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Brand</label>
-              <input
-                value={form.brand}
-                onChange={(e) => setForm({ ...form, brand: e.target.value })}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
+          </div>
+
+          <FormSection label="Brand, quantity & water" filledCount={detailsFilledCount}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Brand</label>
+                <input
+                  value={form.brand}
+                  onChange={(e) => setForm({ ...form, brand: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Model</label>
+                <input
+                  value={form.model}
+                  onChange={(e) => setForm({ ...form, model: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Quantity</label>
+                <input
+                  type="number"
+                  min={0}
+                  value={form.quantity}
+                  onChange={(e) => setForm({ ...form, quantity: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Water</label>
+                <select
+                  value={form.water_type}
+                  onChange={(e) => setForm({ ...form, water_type: e.target.value as WaterType | "" })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                >
+                  {/* Blank, and selected by default. Leaving it unsaid is a legitimate
+                      answer, and pre-selecting one would put a claim on the record that
+                      nobody actually made. */}
+                  <option value="">— not said —</option>
+                  {WATER_TYPES.map((w) => (
+                    <option key={w.value} value={w.value}>
+                      {w.label}
+                    </option>
+                  ))}
+                </select>
+                {form.water_type && (
+                  <p className="mt-1 text-xs text-muted">
+                    {WATER_TYPES.find((w) => w.value === form.water_type)?.hint}
+                  </p>
+                )}
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Model</label>
-              <input
-                value={form.model}
-                onChange={(e) => setForm({ ...form, model: e.target.value })}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Quantity</label>
-              <input
-                type="number"
-                min={0}
-                value={form.quantity}
-                onChange={(e) => setForm({ ...form, quantity: e.target.value })}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Water</label>
-              <select
-                value={form.water_type}
-                onChange={(e) => setForm({ ...form, water_type: e.target.value as WaterType | "" })}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              >
-                {/* Blank, and selected by default. Leaving it unsaid is a legitimate
-                    answer, and pre-selecting one would put a claim on the record that
-                    nobody actually made. */}
-                <option value="">— not said —</option>
-                {WATER_TYPES.map((w) => (
-                  <option key={w.value} value={w.value}>
-                    {w.label}
-                  </option>
-                ))}
-              </select>
-              {form.water_type && (
-                <p className="mt-1 text-xs text-muted">
-                  {WATER_TYPES.find((w) => w.value === form.water_type)?.hint}
-                </p>
-              )}
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Tray</label>
-              <select
-                value={form.tray_id}
-                onChange={(e) => setForm({ ...form, tray_id: e.target.value })}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              >
-                <option value={NO_TRAY}>— No tray —</option>
-                {trays.map((t) => (
-                  <option key={t.id} value={t.id}>
-                    {t.name}
-                  </option>
-                ))}
-              </select>
-              {trays.length === 0 && (
-                <p className="mt-1 text-xs text-muted">
-                  No trays yet — use the Trays panel above to add one.
-                </p>
-              )}
-            </div>
-            {form.tray_id !== NO_TRAY && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Slots this item takes</label>
-                  <input
-                    type="number"
-                    min={1}
-                    value={form.slot_span}
-                    onChange={(e) => setForm({ ...form, slot_span: e.target.value, slot_index: "" })}
-                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Position in tray</label>
-                  <select
-                    value={form.slot_index}
-                    onChange={(e) => setForm({ ...form, slot_index: e.target.value })}
-                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                  >
-                    <option value="">Auto (next free slot)</option>
-                    {availableSlotStarts(form.tray_id, Math.max(1, parseInt(form.slot_span, 10) || 1), form.id).map(
-                      (start) => {
+          </FormSection>
+
+          <FormSection label="Storage" filledCount={storageFilledCount}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Tray</label>
+                <select
+                  value={form.tray_id}
+                  onChange={(e) => setForm({ ...form, tray_id: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                >
+                  <option value={NO_TRAY}>— No tray —</option>
+                  {trays.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.name}
+                    </option>
+                  ))}
+                </select>
+                {trays.length === 0 && (
+                  <p className="mt-1 text-xs text-muted">
+                    No trays yet — use the Trays panel above to add one.
+                  </p>
+                )}
+              </div>
+              {form.tray_id !== NO_TRAY && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Slots this item takes</label>
+                    <input
+                      type="number"
+                      min={1}
+                      value={form.slot_span}
+                      onChange={(e) => setForm({ ...form, slot_span: e.target.value, slot_index: "" })}
+                      className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Position in tray</label>
+                    <select
+                      value={form.slot_index}
+                      onChange={(e) => setForm({ ...form, slot_index: e.target.value })}
+                      className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                    >
+                      <option value="">Auto (next free slot)</option>
+                      {availableSlotStarts(
+                        form.tray_id,
+                        Math.max(1, parseInt(form.slot_span, 10) || 1),
+                        form.id
+                      ).map((start) => {
                         const span = Math.max(1, parseInt(form.slot_span, 10) || 1);
                         return (
                           <option key={start} value={start}>
                             {span > 1 ? `Slots ${start + 1}–${start + span}` : `Slot ${start + 1}`}
                           </option>
                         );
-                      }
-                    )}
-                  </select>
-                </div>
-              </>
-            )}
-            <div>
-              <label className="block text-sm font-medium mb-1">Location Notes</label>
-              <input
-                value={form.storage_location}
-                onChange={(e) => setForm({ ...form, storage_location: e.target.value })}
-                placeholder="e.g. Top-left compartment"
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
+                      })}
+                    </select>
+                  </div>
+                </>
+              )}
+              <div>
+                <label className="block text-sm font-medium mb-1">Location Notes</label>
+                <input
+                  value={form.storage_location}
+                  onChange={(e) => setForm({ ...form, storage_location: e.target.value })}
+                  placeholder="e.g. Top-left compartment"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                />
+              </div>
             </div>
-            <div>
+          </FormSection>
+
+          <FormSection label="Photos" filledCount={photosFilledCount}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <PhotoUploadField
                 folder="tackle"
                 value={form.photo_url}
                 onChange={(url) => setForm({ ...form, photo_url: url })}
               />
-            </div>
-            <div>
               <MultiPhotoField
                 folder="tackle"
                 values={form.extra_photo_urls}
                 onChange={(urls) => setForm({ ...form, extra_photo_urls: urls })}
               />
             </div>
-          </div>
+          </FormSection>
 
           {/* The part that differs by category. Everything above is true of any item you
-              own — a name, a brand, where it lives, a photo. Everything here is only true
-              of this kind of thing, and asking a landing net for its gear ratio is how the
-              old single form ended up with one box called "Color / Size". */}
-          <SpecFieldGrid
-            category={form.category}
-            specs={form.specs}
-            legacySummary={form.legacy_color_size}
-            onChange={(id, v) => setForm((f) => ({ ...f, specs: { ...f.specs, [id]: v } }))}
-          />
-
-          <WarrantyFields
-            values={{
-              purchase_date: form.purchase_date,
-              warranty_expires_on: form.warranty_expires_on,
-              warranty_lifetime: form.warranty_lifetime,
-              warranty_provider: form.warranty_provider,
-              warranty_reference: form.warranty_reference,
-              warranty_notes: form.warranty_notes,
-            }}
-            itemName={form.name}
-            itemId={form.id}
-            onChange={(patch) => setForm((f) => ({ ...f, ...patch }))}
-          />
-
-          <div>
-            <label className="block text-sm font-medium mb-1">Notes</label>
-            <textarea
-              value={form.notes}
-              onChange={(e) => setForm({ ...form, notes: e.target.value })}
-              rows={2}
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              own — a name, a brand, where it lives, a photo. This is only true of this
+              kind of thing, and asking a landing net for its gear ratio is how the old
+              single form ended up with one box called "Color / Size". */}
+          <FormSection label={TACKLE_SPECS[form.category].title} filledCount={specsFilledCount}>
+            {TACKLE_SPECS[form.category].blurb && (
+              <p className="text-xs text-muted">{TACKLE_SPECS[form.category].blurb}</p>
+            )}
+            <SpecFieldGrid
+              bare
+              category={form.category}
+              specs={form.specs}
+              legacySummary={form.legacy_color_size}
+              onChange={(id, v) => setForm((f) => ({ ...f, specs: { ...f.specs, [id]: v } }))}
             />
-          </div>
-          <div className="rounded-lg border border-border p-3">
-            <p className="text-sm font-semibold mb-2">🛠️ Maintenance</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <label className="block text-xs font-medium mb-1">Last serviced</label>
-                <input
-                  type="date"
-                  value={form.last_serviced_on}
-                  onChange={(e) => setForm({ ...form, last_serviced_on: e.target.value })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">Remind every (days)</label>
-                <input
-                  type="number"
-                  min={1}
-                  value={form.maintenance_interval_days}
-                  onChange={(e) => setForm({ ...form, maintenance_interval_days: e.target.value })}
-                  placeholder="e.g. 180"
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">Maintenance notes</label>
-                <input
-                  value={form.maintenance_notes}
-                  onChange={(e) => setForm({ ...form, maintenance_notes: e.target.value })}
-                  placeholder="e.g. Re-line, oil reel"
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Good for these species (optional — shows up as owned gear on their guide page)
-            </label>
-            <div className="max-h-40 overflow-y-auto rounded-lg border border-border p-3 grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-              {species.map((s) => (
-                <label key={s.slug} className="flex items-center gap-1.5 text-sm">
+          </FormSection>
+
+          <FormSection label="Warranty & maintenance" filledCount={warrantyFilledCount}>
+            <WarrantyFields
+              bare
+              values={{
+                purchase_date: form.purchase_date,
+                warranty_expires_on: form.warranty_expires_on,
+                warranty_lifetime: form.warranty_lifetime,
+                warranty_provider: form.warranty_provider,
+                warranty_reference: form.warranty_reference,
+                warranty_notes: form.warranty_notes,
+              }}
+              itemName={form.name}
+              itemId={form.id}
+              onChange={(patch) => setForm((f) => ({ ...f, ...patch }))}
+            />
+            <div className="border-t border-border pt-3">
+              <p className="text-sm font-semibold mb-2">🛠️ Maintenance</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-xs font-medium mb-1">Last serviced</label>
                   <input
-                    type="checkbox"
-                    checked={form.species_slugs.includes(s.slug)}
-                    onChange={() => toggleSpecies(s.slug)}
+                    type="date"
+                    value={form.last_serviced_on}
+                    onChange={(e) => setForm({ ...form, last_serviced_on: e.target.value })}
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
                   />
-                  {s.common_name}
-                </label>
-              ))}
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Remind every (days)</label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={form.maintenance_interval_days}
+                    onChange={(e) => setForm({ ...form, maintenance_interval_days: e.target.value })}
+                    placeholder="e.g. 180"
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Maintenance notes</label>
+                  <input
+                    value={form.maintenance_notes}
+                    onChange={(e) => setForm({ ...form, maintenance_notes: e.target.value })}
+                    placeholder="e.g. Re-line, oil reel"
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+          </FormSection>
+
+          <FormSection label="Notes & species" filledCount={notesFilledCount}>
+            <div>
+              <label className="block text-sm font-medium mb-1">Notes</label>
+              <textarea
+                value={form.notes}
+                onChange={(e) => setForm({ ...form, notes: e.target.value })}
+                rows={2}
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Good for these species (optional — shows up as owned gear on their guide page)
+              </label>
+              <div className="max-h-40 overflow-y-auto rounded-lg border border-border p-3 grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                {species.map((s) => (
+                  <label key={s.slug} className="flex items-center gap-1.5 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={form.species_slugs.includes(s.slug)}
+                      onChange={() => toggleSpecies(s.slug)}
+                    />
+                    {s.common_name}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </FormSection>
+
           <div className="flex gap-3">
             <button
               type="submit"

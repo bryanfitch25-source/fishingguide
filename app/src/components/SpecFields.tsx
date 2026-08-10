@@ -86,21 +86,23 @@ export function SpecFieldGrid({
   specs,
   legacySummary,
   onChange,
+  bare = false,
 }: {
   category: TackleCategory;
   specs: SpecValues;
   /** Free text from before these fields existed, so an old item's description is visible. */
   legacySummary?: string;
   onChange: (id: string, value: string | boolean) => void;
+  /** Skips the outer border and the title/blurb — for a caller (FormSection) that
+      already supplies both, so the category name doesn't appear as a heading twice. */
+  bare?: boolean;
 }) {
   const spec = TACKLE_SPECS[category];
   const preview = summarise(category, cleanSpecs(specs));
 
-  return (
-    <div className="rounded-lg border border-border p-3">
-      <p className="text-sm font-semibold">{spec.title}</p>
-      {spec.blurb && <p className="mt-0.5 text-xs text-muted">{spec.blurb}</p>}
-      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+  const body = (
+    <>
+      <div className={bare ? "grid grid-cols-1 gap-3 sm:grid-cols-2" : "mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2"}>
         {fieldsFor(category).map((field) => (
           <SpecInput
             key={field.id}
@@ -121,6 +123,16 @@ export function SpecFieldGrid({
           before these fields existed. Fill any of them in and that takes over.
         </p>
       )}
+    </>
+  );
+
+  if (bare) return body;
+
+  return (
+    <div className="rounded-lg border border-border p-3">
+      <p className="text-sm font-semibold">{spec.title}</p>
+      {spec.blurb && <p className="mt-0.5 text-xs text-muted">{spec.blurb}</p>}
+      {body}
     </div>
   );
 }
