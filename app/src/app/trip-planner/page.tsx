@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { getAllLocationGuides, getAllSpecies } from "@/lib/data";
 import { getCurrentUser, createClient } from "@/lib/supabase-server";
-import { getTrips, splitTrips } from "@/lib/trips";
+import { getTrips } from "@/lib/trips";
+import { splitTrips } from "@/lib/trip-dates";
 import { TripPlannerHome } from "@/components/TripPlannerHome";
 import type { FavouriteStation } from "@/types/tackle";
 

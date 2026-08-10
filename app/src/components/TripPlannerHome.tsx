@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { TripForm } from "@/components/TripForm";
 import { SpeciesTripStart } from "@/components/SpeciesTripStart";
+import { formatTripDates } from "@/lib/trip-dates";
 import type { FavouriteStation } from "@/types/tackle";
 import type { LocationGuide, Species } from "@/types/content";
 import type { Trip } from "@/types/trips";
@@ -19,7 +20,7 @@ function TripRow({ trip }: { trip: Trip }) {
     >
       <div className="flex items-baseline justify-between gap-3">
         <span className="font-semibold text-brand-dark">{trip.name}</span>
-        <span className="text-sm text-muted whitespace-nowrap">{trip.trip_date ?? "Not scheduled"}</span>
+        <span className="text-sm text-muted whitespace-nowrap">{formatTripDates(trip)}</span>
       </div>
       {(trip.place_name || trip.target_species.length > 0) && (
         <p className="mt-1 text-sm text-muted">

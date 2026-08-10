@@ -9,6 +9,7 @@ import { TripChecklist } from "@/components/TripChecklist";
 import { TripShareControl } from "@/components/TripShareControl";
 import { PrintButton } from "@/components/PrintButton";
 import { SEASONALITY, isInSeason } from "@/lib/seasonality";
+import { formatTripDates } from "@/lib/trip-dates";
 import type { FavouriteStation, TackleItem } from "@/types/tackle";
 import type { LocationGuide, Species } from "@/types/content";
 import type { Trip } from "@/types/trips";
@@ -89,7 +90,7 @@ export function TripDetailClient({
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-dark">{trip.name}</h1>
           <p className="text-muted">
-            {trip.trip_date ?? "Not scheduled"}
+            {formatTripDates(trip)}
             {trip.place_name && ` · ${trip.place_name}`}
             {trip.province && ` (${trip.province})`}
           </p>
