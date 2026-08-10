@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getAllLocationGuides, getAllSpecies } from "@/lib/data";
 import { getCurrentUser, createClient } from "@/lib/supabase-server";
-import { getTrips } from "@/lib/trips";
+import { getTrips, getSharedWithMe } from "@/lib/trips";
 import { splitTrips } from "@/lib/trip-dates";
 import { TripPlannerHome } from "@/components/TripPlannerHome";
 import type { FavouriteStation } from "@/types/tackle";
@@ -17,8 +17,9 @@ export default async function TripPlannerPage() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
-  const [trips, guides, species, supabase] = await Promise.all([
+  const [trips, sharedWithMe, guides, species, supabase] = await Promise.all([
     getTrips(),
+    getSharedWithMe(),
     getAllLocationGuides(),
     getAllSpecies(),
     createClient(),
@@ -38,7 +39,14 @@ export default async function TripPlannerPage() {
         </p>
       </div>
 
-      <TripPlannerHome upcoming={upcoming} past={past} guides={guides} species={species} favourites={favourites} />
+      <TripPlannerHome
+        upcoming={upcoming}
+        past={past}
+        sharedWithMe={sharedWithMe}
+        guides={guides}
+        species={species}
+        favourites={favourites}
+      />
     </div>
   );
 }

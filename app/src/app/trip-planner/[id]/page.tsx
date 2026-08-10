@@ -8,6 +8,7 @@ import { isUnitSystem } from "@/lib/units";
 import { parseLocalDate } from "@/lib/dates";
 import { TripConditionsPanel } from "@/components/TripConditionsPanel";
 import { TripDetailClient } from "@/components/TripDetailClient";
+import { SharedTripView } from "@/components/SharedTripView";
 import type { Catch, FavouriteStation, TackleItem } from "@/types/tackle";
 import type { Species } from "@/types/content";
 
@@ -30,12 +31,32 @@ export default async function TripDetailPage(props: { params: Promise<{ id: stri
     );
   }
 
-  const [guides, species, supabase] = await Promise.all([getAllLocationGuides(), getAllSpecies(), createClient()]);
-  const [{ data: settingsData }, { data: favouritesData }] = await Promise.all([
-    supabase.from("angler_settings").select("units").maybeSingle(),
+  const [species, supabase] = await Promise.all([getAllSpecies(), createClient()]);
+  const { data: settingsRow } = await supabase.from("angler_settings").select("units").maybeSingle();
+  const units = isUnitSystem(settingsRow?.units) ? settingsRow.units : "metric";
+
+  // getTrip now also returns a trip someone else shared with this user (Phase E's RLS
+  // policy) — RLS itself would refuse them anything but a read, but the UI shouldn't
+  // even offer edit/delete/share controls that could only ever fail. That view is a
+  // separate, much lighter render: no guides, no checklist, no catches.
+  if (trip.user_id !== user.id) {
+    return (
+      <div className="mx-auto max-w-4xl px-3 sm:px-6 py-4 sm:py-10 space-y-8">
+        <Link href="/trip-planner" className="text-sm text-accent hover:underline">
+          ← All trips
+        </Link>
+        <div className="rounded-xl border border-accent bg-accent-light p-3 text-sm text-accent-dark">
+          Shared with you — read-only.
+        </div>
+        <SharedTripView trip={trip} species={species} units={units} />
+      </div>
+    );
+  }
+
+  const [guides, { data: favouritesData }] = await Promise.all([
+    getAllLocationGuides(),
     supabase.from("favourite_stations").select("*").order("position"),
   ]);
-  const units = isUnitSystem(settingsData?.units) ? settingsData.units : "metric";
   const favourites = (favouritesData as FavouriteStation[]) ?? [];
 
   const month = trip.trip_date ? parseLocalDate(trip.trip_date).getMonth() + 1 : new Date().getMonth() + 1;

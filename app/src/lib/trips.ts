@@ -39,6 +39,26 @@ export async function getSharedTrip(token: string): Promise<Trip | null> {
   return rows[0] ?? null;
 }
 
+/**
+ * Trips someone else has invited the signed-in user to (Phase E, invite_to_trip) — the
+ * embedded `trips(*)` relies on trip_shares.trip_id's foreign key, and each half is
+ * independently scoped by its own RLS policy: trip_shares to rows where the caller is
+ * the invited user, trips to rows a trip_shares row of theirs points at.
+ */
+export async function getSharedWithMe(): Promise<Trip[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("trip_shares")
+    .select("trips(*)")
+    .order("created_at", { ascending: false });
+  if (error) {
+    console.error("getSharedWithMe error", error);
+    return [];
+  }
+  const rows = (data as unknown as { trips: Trip | null }[]) ?? [];
+  return rows.map((r) => r.trips).filter((t): t is Trip => !!t);
+}
+
 // Pure date helpers (splitTrips, tripDateRange, formatTripDates, daysUntil,
 // hasLiveConditions) live in ./trip-dates instead of here — that module has no
 // Supabase import, so client components can use them without pulling next/headers
