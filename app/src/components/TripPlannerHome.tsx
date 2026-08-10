@@ -36,12 +36,15 @@ function TripRow({ trip }: { trip: Trip }) {
 export function TripPlannerHome({
   upcoming,
   past,
+  sharedWithMe,
   guides,
   species,
   favourites,
 }: {
   upcoming: Trip[];
   past: Trip[];
+  /** Trips someone else invited this account to — read-only, see Phase E. */
+  sharedWithMe: Trip[];
   guides: LocationGuide[];
   species: Species[];
   favourites: FavouriteStation[];
@@ -122,6 +125,17 @@ export function TripPlannerHome({
           <h2 className="text-lg font-bold text-brand-dark border-b border-border pb-2 mb-3">Past</h2>
           <div className="space-y-3">
             {past.map((t) => (
+              <TripRow key={t.id} trip={t} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {sharedWithMe.length > 0 && (
+        <section>
+          <h2 className="text-lg font-bold text-brand-dark border-b border-border pb-2 mb-3">Shared With You</h2>
+          <div className="space-y-3">
+            {sharedWithMe.map((t) => (
               <TripRow key={t.id} trip={t} />
             ))}
           </div>

@@ -26,3 +26,13 @@ export interface Trip {
 
 /** The subset a create/edit form actually collects — everything else is server-assigned. */
 export type TripInput = Omit<Trip, "id" | "user_id" | "created_at" | "updated_at" | "share_token">;
+
+/** One invited account's access to a trip — see invite_to_trip() in the Phase E migration. */
+export interface TripShare {
+  id: string;
+  trip_id: string;
+  invited_user_id: string;
+  /** Snapshotted at invite time, not a live join to auth.users. */
+  invited_email: string;
+  created_at: string;
+}
