@@ -1,5 +1,5 @@
 import { getTideForecast, getWeather } from "@/lib/environment";
-import { getMarineConditions } from "@/lib/marine";
+import { getMarineConditions, getHourlyForecast, dailyForecastSummary } from "@/lib/marine";
 import { sunTimes, formatTime } from "@/lib/sun";
 import { moonPhase } from "@/lib/moonphase";
 import { solunarDay } from "@/lib/solunar";
@@ -23,15 +23,22 @@ const SEVERITY_TONE: Record<Assessment["severity"], "falling" | "today" | "neutr
   info: "neutral",
 };
 
+/** Open-Meteo's hourly endpoint returns days 0–6 from today (forecast_days=7). */
+const FORECAST_HORIZON_DAYS = 6;
+
 /**
  * Conditions for one trip, on its own date.
  *
- * Split deliberately along what's actually knowable: tide predictions, sun/moon and
- * solunar periods are astronomical, computable for any date, so they show regardless of
- * how far out the trip is. Live weather, sea temperature and the safety assessments
- * built from them (lib/safety-assessment.ts) are "right now" readings with no forecast
- * behind them here — see hasLiveConditions — so those only render for a trip that's
- * today. A future-dated trip gets a plain note instead of stale or fabricated numbers.
+ * Split into three tiers by what's actually knowable that far out. Tide predictions,
+ * sun/moon and solunar periods are astronomical, computable for any date, so they show
+ * regardless of how far out the trip is. Live weather, sea temperature and the safety
+ * assessments built from them (lib/safety-assessment.ts) are "right now" readings with
+ * no forecast behind them — see hasLiveConditions — so those only render for a trip
+ * that's today. In between, a trip within the next week gets an actual forecast
+ * (temperature range, wind, a representative icon) from Open-Meteo's hourly endpoint —
+ * clearly labelled as a forecast rather than "conditions right now," and without the
+ * safety cards, which need live sea state this doesn't provide. Past six days out, none
+ * of that exists yet and the trip gets a plain note instead of a fabricated number.
  */
 export async function TripConditionsPanel({
   lat,
@@ -48,12 +55,16 @@ export async function TripConditionsPanel({
   const targetDate = tripDate ? parseLocalDate(tripDate) : new Date();
   const dayStart = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
   const nowMs = new Date().getTime();
+  const tripDaysOut = daysUntil(tripDate);
+  const forecastAvailable = !isLive && tripDaysOut !== null && tripDaysOut <= FORECAST_HORIZON_DAYS;
 
-  const [tide, weather, marine] = await Promise.all([
+  const [tide, weather, marine, hourly] = await Promise.all([
     getTideForecast(lat, lng, targetDate),
     isLive ? getWeather(lat, lng) : Promise.resolve(null),
     isLive ? getMarineConditions(lat, lng) : Promise.resolve(null),
+    forecastAvailable ? getHourlyForecast(lat, lng) : Promise.resolve(null),
   ]);
+  const forecast = forecastAvailable && tripDate ? dailyForecastSummary(hourly, tripDate) : null;
 
   const sun = sunTimes(targetDate, lat, lng);
   const moon = moonPhase(tripDate ?? localDate());
@@ -133,12 +144,32 @@ export async function TripConditionsPanel({
             <p className="mt-3 text-xs text-muted border-t border-border pt-2">{gfd.reasons.join(" · ")}</p>
           )}
         </AccentCard>
+      ) : forecast ? (
+        <AccentCard tone="neutral" title={`Forecast — ${tripDaysOut} day${tripDaysOut === 1 ? "" : "s"} out`}>
+          <p className="text-sm">
+            <span className="text-lg align-middle">{forecast.emoji}</span>{" "}
+            {forecast.maxTempC !== null && forecast.minTempC !== null ? (
+              <span className="font-semibold">
+                {Math.round(forecast.maxTempC)}° / {Math.round(forecast.minTempC)}°C
+              </span>
+            ) : (
+              <span className="text-muted">Temperature unavailable</span>
+            )}
+            {forecast.maxWindKmh !== null && (
+              <span className="text-muted"> · wind up to {Math.round(forecast.maxWindKmh)} km/h</span>
+            )}
+          </p>
+          <p className="mt-2 text-xs text-muted">
+            A forecast, not a live reading — sea temperature, wave height and the safety
+            cards below will show once your trip is today.
+          </p>
+        </AccentCard>
       ) : (
         <AccentCard tone="neutral" title="Conditions">
           <p className="text-sm text-muted">
-            Live weather and sea conditions will show here once your trip is today — it&apos;s{" "}
-            {daysUntil(tripDate)} day{daysUntil(tripDate) === 1 ? "" : "s"} out for now. Tide,
-            sun, moon and solunar below are accurate for {tripDate}.
+            No forecast reaches this far out yet — it&apos;s {tripDaysOut} days out. Tide, sun,
+            moon and solunar below are accurate for {tripDate}; check back within a week of
+            your trip for weather.
           </p>
         </AccentCard>
       )}
