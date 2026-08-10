@@ -14,9 +14,13 @@ export interface Trip {
   location_guide_slug: string | null;
   target_species: string[];
   notes: string | null;
+  /** Whether to push a reminder the morning of trip_date. Meaningless without a date. */
+  reminder_enabled: boolean;
+  /** Set once the trip is shared — a public, read-only link at /trip-planner/shared/[token]. */
+  share_token: string | null;
   created_at: string;
   updated_at: string;
 }
 
 /** The subset a create/edit form actually collects — everything else is server-assigned. */
-export type TripInput = Omit<Trip, "id" | "user_id" | "created_at" | "updated_at">;
+export type TripInput = Omit<Trip, "id" | "user_id" | "created_at" | "updated_at" | "share_token">;

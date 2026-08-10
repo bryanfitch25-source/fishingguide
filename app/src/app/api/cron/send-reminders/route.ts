@@ -238,5 +238,39 @@ export async function GET(request: NextRequest) {
       .eq("user_id", row.user_id);
   }
 
+  // Trip-day reminder: one push the morning of a saved trip's date, same "already sent
+  // today" guard as everything above. Unlike the ladder-based reminders this only ever
+  // fires once per trip — a trip has exactly one date to be reminded about, not a
+  // recurring due date — so trip_date = today is the whole condition.
+  const { data: dueTrips } = await admin
+    .from("trips")
+    .select("id, user_id, name, place_name, last_trip_reminder_sent")
+    .eq("trip_date", today)
+    .eq("reminder_enabled", true);
+
+  for (const trip of dueTrips ?? []) {
+    if (trip.last_trip_reminder_sent === today) continue;
+
+    const { data: subs } = await admin
+      .from("push_subscriptions")
+      .select("endpoint, p256dh, auth_key")
+      .eq("user_id", trip.user_id);
+
+    const message = trip.place_name ? `${trip.name} — ${trip.place_name}, today.` : `${trip.name} is today.`;
+
+    for (const sub of subs ?? []) {
+      try {
+        await webpush.sendNotification(
+          { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth_key } },
+          JSON.stringify({ title: "Maritime Angler", body: message, url: `/trip-planner/${trip.id}` })
+        );
+        sent++;
+      } catch {
+        // Dead subscription — same as above, not worth failing the run.
+      }
+    }
+    await admin.from("trips").update({ last_trip_reminder_sent: today }).eq("id", trip.id);
+  }
+
   return NextResponse.json({ ok: true, sent });
 }
