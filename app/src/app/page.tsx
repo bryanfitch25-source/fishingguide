@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { RecentActivity } from "@/components/RecentActivity";
 import { HomeNav } from "@/components/HomeNav";
 
@@ -7,7 +8,12 @@ export const metadata = {
 };
 
 // RecentActivity reads the auth session cookie, so this route can't be fully static —
-// same trade-off already accepted on the species detail pages.
+// same trade-off already accepted on the species detail pages. It's wrapped in Suspense
+// below so that auth check and its two DB queries don't hold up everything else: without
+// a boundary, Next waits for every async component in the tree before sending any HTML,
+// so a signed-in visitor was blocked on Supabase round-trips before seeing a nav that
+// doesn't depend on them at all. With the boundary, the shell streams immediately and
+// Recent Activity slots in above it once it resolves.
 export const dynamic = "force-dynamic";
 
 // The page is a launcher. It used to be fourteen equally-weighted cards, which is not a
@@ -17,14 +23,9 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   return (
     <div className="mx-auto max-w-6xl px-3 sm:px-6 py-4 sm:py-12">
-      <div className="mb-4 sm:mb-8 scene-panel card-lift rounded-2xl p-4 sm:p-8">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-dark">Maritime Angler</h1>
-        <p className="mt-1 sm:mt-3 max-w-2xl text-sm sm:text-lg text-muted">
-          Tides, species guides, tackle and catches for NB, NS &amp; PEI.
-        </p>
-      </div>
-
-      <RecentActivity />
+      <Suspense fallback={null}>
+        <RecentActivity />
+      </Suspense>
 
       <HomeNav />
     </div>
