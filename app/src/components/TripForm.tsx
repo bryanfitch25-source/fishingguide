@@ -44,6 +44,7 @@ export function TripForm({
     initial?.target_species ?? prefillTargetSpecies ?? []
   );
   const [notes, setNotes] = useState(initial?.notes ?? "");
+  const [reminderEnabled, setReminderEnabled] = useState(initial?.reminder_enabled ?? true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -75,6 +76,7 @@ export function TripForm({
       location_guide_slug: location?.location_guide_slug ?? null,
       target_species: targetSpecies,
       notes: notes.trim() || null,
+      reminder_enabled: reminderEnabled,
     };
 
     const result = initial
@@ -114,6 +116,16 @@ export function TripForm({
           Leave blank if it isn&apos;t scheduled yet. Live weather only shows once your trip
           date is today — tide, sun and solunar work for any date.
         </p>
+        {date && (
+          <label className="mt-2 flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={reminderEnabled}
+              onChange={(e) => setReminderEnabled(e.target.checked)}
+            />
+            Remind me the morning of
+          </label>
+        )}
       </div>
 
       <div>

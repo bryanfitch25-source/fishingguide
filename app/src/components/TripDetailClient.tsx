@@ -6,6 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 import { TripForm } from "@/components/TripForm";
 import { TripChecklist } from "@/components/TripChecklist";
+import { TripShareControl } from "@/components/TripShareControl";
 import { PrintButton } from "@/components/PrintButton";
 import { SEASONALITY, isInSeason } from "@/lib/seasonality";
 import type { FavouriteStation, TackleItem } from "@/types/tackle";
@@ -111,6 +112,10 @@ export function TripDetailClient({
             {deleting ? "Deleting…" : "Delete"}
           </button>
         </div>
+      </div>
+
+      <div className="no-print">
+        <TripShareControl trip={trip} onChange={(patch) => setTrip((t) => ({ ...t, ...patch }))} />
       </div>
 
       {deleteError && <p className="no-print text-sm text-danger">{deleteError}</p>}

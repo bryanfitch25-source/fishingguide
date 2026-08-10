@@ -24,6 +24,23 @@ export async function getTrip(id: string): Promise<Trip | null> {
 }
 
 /**
+ * The read-only side of sharing — works with no session at all. get_shared_trip is a
+ * SECURITY DEFINER function granted to `anon` (see the migration), so this bypasses the
+ * owner-only RLS policy on trips deliberately, but only for the one row whose token
+ * matches exactly; there's no way to reach any other trip through it.
+ */
+export async function getSharedTrip(token: string): Promise<Trip | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("get_shared_trip", { p_token: token });
+  if (error) {
+    console.error("getSharedTrip error", error);
+    return null;
+  }
+  const rows = (data as Trip[] | null) ?? [];
+  return rows[0] ?? null;
+}
+
+/**
  * Undated trips count as upcoming — they're still ahead of you, just not scheduled yet —
  * and today's own date counts as upcoming rather than past, since the trip hasn't
  * happened yet when you're looking at the list that morning.
