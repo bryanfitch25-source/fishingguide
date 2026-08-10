@@ -86,7 +86,13 @@ export default async function TripDetailPage(props: { params: Promise<{ id: stri
 
   const conditions =
     trip.lat !== null && trip.lng !== null ? (
-      <TripConditionsPanel lat={trip.lat} lng={trip.lng} tripDate={trip.trip_date} units={units} />
+      <TripConditionsPanel
+        lat={trip.lat}
+        lng={trip.lng}
+        tripDate={trip.trip_date}
+        tripEndDate={trip.trip_end_date}
+        units={units}
+      />
     ) : (
       <p className="text-sm text-muted">No location set for this trip yet — edit it to add one.</p>
     );

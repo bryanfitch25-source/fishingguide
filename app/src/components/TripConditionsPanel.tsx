@@ -11,7 +11,7 @@ import {
   assessConditions,
   type Assessment,
 } from "@/lib/safety-assessment";
-import { hasLiveConditions, daysUntil } from "@/lib/trips";
+import { hasLiveConditions, daysUntil, tripDateRange } from "@/lib/trip-dates";
 import { localDate, parseLocalDate } from "@/lib/dates";
 import { formatHeight, type UnitSystem } from "@/lib/units";
 import { SolunarCard } from "@/components/SolunarCard";
@@ -40,7 +40,7 @@ const FORECAST_HORIZON_DAYS = 6;
  * safety cards, which need live sea state this doesn't provide. Past six days out, none
  * of that exists yet and the trip gets a plain note instead of a fabricated number.
  */
-export async function TripConditionsPanel({
+async function DayConditions({
   lat,
   lng,
   tripDate,
@@ -225,6 +225,45 @@ export async function TripConditionsPanel({
         Informal indicators only, not validated models — conditions can change fast on the
         water. Always check the marine forecast and fish safely.
       </p>
+    </div>
+  );
+}
+
+/**
+ * Conditions for a trip, which may span several days. A single-day (or undated) trip
+ * renders exactly as before; a multi-day trip gets one DayConditions section per day in
+ * its range, each under its own date heading, so a 3-day trip shows what to expect each
+ * day rather than only its first.
+ */
+export async function TripConditionsPanel({
+  lat,
+  lng,
+  tripDate,
+  tripEndDate = null,
+  units = "metric",
+}: {
+  lat: number;
+  lng: number;
+  tripDate: string | null;
+  tripEndDate?: string | null;
+  units?: UnitSystem;
+}) {
+  const dates = tripDateRange({ trip_date: tripDate, trip_end_date: tripEndDate });
+
+  if (dates.length <= 1) {
+    return <DayConditions lat={lat} lng={lng} tripDate={tripDate} units={units} />;
+  }
+
+  return (
+    <div className="space-y-6">
+      {dates.map((d) => (
+        <div key={d}>
+          <h3 className="text-sm font-bold text-brand-dark mb-2">
+            {parseLocalDate(d).toLocaleDateString("en-CA", { weekday: "long", month: "short", day: "numeric" })}
+          </h3>
+          <DayConditions lat={lat} lng={lng} tripDate={d} units={units} />
+        </div>
+      ))}
     </div>
   );
 }

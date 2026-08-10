@@ -4,8 +4,10 @@ export interface Trip {
   id: string;
   user_id: string;
   name: string;
-  /** ISO date (YYYY-MM-DD), or null for a trip that isn't scheduled yet. */
+  /** ISO date (YYYY-MM-DD), or null for a trip that isn't scheduled yet. Also the start date for a multi-day trip. */
   trip_date: string | null;
+  /** Null for a single-day trip (or one with no trip_date at all); otherwise the last day, inclusive. */
+  trip_end_date: string | null;
   lat: number | null;
   lng: number | null;
   place_name: string | null;

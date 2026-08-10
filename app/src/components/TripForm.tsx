@@ -29,6 +29,7 @@ export function TripForm({
   const supabase = useMemo(() => createClient(), []);
   const [name, setName] = useState(initial?.name ?? "");
   const [date, setDate] = useState(initial?.trip_date ?? "");
+  const [endDate, setEndDate] = useState(initial?.trip_end_date ?? "");
   const [location, setLocation] = useState<TripLocation | null>(
     initial && initial.lat !== null && initial.lng !== null
       ? {
@@ -69,6 +70,7 @@ export function TripForm({
     const payload = {
       name: name.trim() || "Untitled trip",
       trip_date: date || null,
+      trip_end_date: date && endDate ? endDate : null,
       lat: location?.lat ?? null,
       lng: location?.lng ?? null,
       place_name: location?.place_name ?? null,
@@ -109,13 +111,29 @@ export function TripForm({
         <input
           type="date"
           value={date}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => {
+            const v = e.target.value;
+            setDate(v);
+            if (!v || (endDate && endDate < v)) setEndDate("");
+          }}
           className="w-full max-w-xs rounded-lg border border-border bg-background px-3 py-2 text-sm"
         />
         <p className="mt-1 text-xs text-muted">
           Leave blank if it isn&apos;t scheduled yet. Live weather only shows once your trip
           date is today — tide, sun and solunar work for any date.
         </p>
+        {date && (
+          <div className="mt-2">
+            <label className="block text-xs text-muted mb-1">End date (optional, for multi-day trips)</label>
+            <input
+              type="date"
+              min={date}
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="w-full max-w-xs rounded-lg border border-border bg-background px-3 py-2 text-sm"
+            />
+          </div>
+        )}
         {date && (
           <label className="mt-2 flex items-center gap-2 text-sm">
             <input

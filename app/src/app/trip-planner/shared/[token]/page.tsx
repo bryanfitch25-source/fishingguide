@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllSpecies } from "@/lib/data";
 import { getSharedTrip } from "@/lib/trips";
+import { formatTripDates } from "@/lib/trip-dates";
 import { isInSeason, SEASONALITY } from "@/lib/seasonality";
 import { parseLocalDate } from "@/lib/dates";
 import { TripConditionsPanel } from "@/components/TripConditionsPanel";
@@ -65,7 +66,7 @@ export default async function SharedTripPage(props: { params: Promise<{ token: s
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-dark">{trip.name}</h1>
         <p className="text-muted">
-          {trip.trip_date ?? "Not scheduled"}
+          {formatTripDates(trip)}
           {trip.place_name && ` · ${trip.place_name}`}
           {trip.province && ` (${trip.province})`}
         </p>
@@ -78,7 +79,12 @@ export default async function SharedTripPage(props: { params: Promise<{ token: s
       <section>
         <h2 className="text-lg font-bold text-brand-dark border-b border-border pb-2 mb-3">Conditions</h2>
         {trip.lat !== null && trip.lng !== null ? (
-          <TripConditionsPanel lat={trip.lat} lng={trip.lng} tripDate={trip.trip_date} />
+          <TripConditionsPanel
+            lat={trip.lat}
+            lng={trip.lng}
+            tripDate={trip.trip_date}
+            tripEndDate={trip.trip_end_date}
+          />
         ) : (
           <p className="text-sm text-muted">No location set for this trip.</p>
         )}
