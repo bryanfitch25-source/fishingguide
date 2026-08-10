@@ -17,7 +17,7 @@ export function BackgroundScene() {
   const scene = sceneFor(pathname);
 
   return (
-    <div className="scene-bg" style={{ backgroundImage: `url(/backgrounds/${scene}.jpg)` }} aria-hidden>
+    <div className="scene-bg" style={{ backgroundImage: `url(/backgrounds/${scene}.webp)` }} aria-hidden>
       <div className="scene-overlay" />
     </div>
   );

@@ -1,7 +1,7 @@
 // Fetches freely-licensed, bright DAYTIME outdoor/fishing/sunset photos from Wikimedia
 // Commons for use as page background scenery. Explicitly excludes night/dusk/astro shots —
 // the brief is "never night, always light and bright." Writes:
-//   app/public/backgrounds/<key>.jpg
+//   app/public/backgrounds/<key>.webp
 //   app/public/backgrounds/_credits.json
 //
 // Usage: node scripts/fetch-backgrounds.mjs [--force]
@@ -25,8 +25,15 @@ const BLOCKED_LICENSES = ["non-commercial", "nc-", "-nc", "nd-", "-nd", "fair us
 const NIGHT_TERMS =
   /\b(night|nighttime|nocturnal|dusk|twilight|moon|moonlit|moonlight|stars|starry|astrophotography|dark sky|milky way|silhouette against|lantern|campfire|bonfire|fire at)\b/i;
 
-const MAX_WIDTH = 2400;
-const JPEG_QUALITY = 80;
+// These are fixed, full-viewport backgrounds sitting behind a blurred, opaque overlay
+// (see .scene-bg / .scene-overlay in globals.css) — cropped by `background-size: cover`
+// on every screen, never shown at native resolution. 2400px @ JPEG q80 was a desktop-print
+// weight (350-600KB each) for something nobody ever sees un-cropped or un-blurred; 1600px
+// WebP at this quality is visually indistinguishable behind the overlay and roughly a
+// third the bytes, which matters on first load since these are fetched outside of
+// next/image, with no responsive srcset.
+const MAX_WIDTH = 1600;
+const WEBP_QUALITY = 65;
 
 function stripHtml(s) {
   if (!s) return null;
@@ -123,7 +130,7 @@ async function downloadAndOptimize(candidate, destPath) {
     // Brighten and lightly desaturate slightly toward pastel so the fixed overlay
     // (see globals.css) can sit on top and keep body text readable everywhere.
     .modulate({ brightness: 1.05 })
-    .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+    .webp({ quality: WEBP_QUALITY })
     .toFile(destPath);
 }
 
@@ -154,7 +161,7 @@ async function main() {
 
   for (const target of TARGETS) {
     if (onlyKeys.length && !onlyKeys.includes(target.key)) continue;
-    const destPath = path.join(imageDir, `${target.key}.jpg`);
+    const destPath = path.join(imageDir, `${target.key}.webp`);
     if (!force && existsSync(destPath)) {
       console.log(`${target.key}: already have it, skipping`);
       continue;
