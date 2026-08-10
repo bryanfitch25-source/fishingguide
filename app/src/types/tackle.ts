@@ -246,6 +246,9 @@ export interface AnglerSettings {
   tide_digest_enabled: boolean;
   last_tide_digest_sent: string | null;
 
+  season_reminders_enabled: boolean;
+  last_season_reminder_sent: string | null;
+
   angler_name: string | null;
   favourite_species_slug: string | null;
   favourite_lure: string | null;

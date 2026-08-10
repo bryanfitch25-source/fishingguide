@@ -16,6 +16,8 @@ export function RemindersPanel() {
   const supabase = useMemo(() => createClient(), []);
   const [licenseExpiry, setLicenseExpiry] = useState("");
   const [tideDigest, setTideDigest] = useState(false);
+  const [seasonReminders, setSeasonReminders] = useState(false);
+  const [favouriteSpecies, setFavouriteSpecies] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [pushEnabled, setPushEnabled] = useState(false);
   const [pushSupported] = useState(
@@ -27,10 +29,12 @@ export function RemindersPanel() {
     (async () => {
       const { data } = await supabase
         .from("angler_settings")
-        .select("license_expiry, tide_digest_enabled")
+        .select("license_expiry, tide_digest_enabled, season_reminders_enabled, favourite_species_slug")
         .maybeSingle();
       if (data?.license_expiry) setLicenseExpiry(data.license_expiry);
       if (data?.tide_digest_enabled) setTideDigest(true);
+      if (data?.season_reminders_enabled) setSeasonReminders(true);
+      setFavouriteSpecies(data?.favourite_species_slug ?? null);
 
       // getRegistration() resolves immediately (unlike `.ready`, which never resolves
       // at all if no service worker is registered — true in dev, where PWARegister
@@ -76,6 +80,25 @@ export function RemindersPanel() {
       .upsert({ user_id: user.id, tide_digest_enabled: next }, { onConflict: "user_id" });
     if (error) {
       setTideDigest(!next);
+      setMessage(`Couldn't save that: ${error.message}`);
+    }
+  }
+
+  async function toggleSeasonReminders() {
+    const next = !seasonReminders;
+    setSeasonReminders(next); // optimistic — a switch should move when you tap it
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      setSeasonReminders(!next);
+      return;
+    }
+    const { error } = await supabase
+      .from("angler_settings")
+      .upsert({ user_id: user.id, season_reminders_enabled: next }, { onConflict: "user_id" });
+    if (error) {
+      setSeasonReminders(!next);
       setMessage(`Couldn't save that: ${error.message}`);
     }
   }
@@ -163,6 +186,24 @@ export function RemindersPanel() {
           <span className="font-medium">Daily tide digest</span>
           <span className="block text-xs text-muted">
             Each morning, today&apos;s high and low tides for your selected station.
+          </span>
+        </span>
+      </label>
+
+      <label className="mb-3 flex items-start gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={seasonReminders}
+          onChange={toggleSeasonReminders}
+          disabled={!favouriteSpecies}
+          className="mt-0.5 h-4 w-4 accent-[var(--color-brand)] disabled:opacity-60"
+        />
+        <span>
+          <span className="font-medium">Season opens</span>
+          <span className="block text-xs text-muted">
+            {favouriteSpecies
+              ? "A push the day your favourite species' season opens."
+              : "Pick a favourite species above first — that's what this watches."}
           </span>
         </span>
       </label>

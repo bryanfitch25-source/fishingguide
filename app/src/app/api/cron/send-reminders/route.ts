@@ -5,7 +5,10 @@ import { getTideEvents } from "@/lib/tides";
 import { getWeather } from "@/lib/environment";
 import { goodFishingDay } from "@/lib/goodFishingDay";
 import { formatHeight, isUnitSystem, type UnitSystem } from "@/lib/units";
-import { localDate } from "@/lib/dates";
+import { localDate, parseLocalDate } from "@/lib/dates";
+import { getAllSpecies } from "@/lib/data";
+import { isInSeason } from "@/lib/seasonality";
+import { guessProvince } from "@/lib/geo";
 // Reused rather than reimplemented: the same function the Tackle Box uses to decide
 // whether to show "ends in 6 days" is the one that decides whether to push it, so the
 // badge and the notification can never disagree about which day it is.
@@ -270,6 +273,65 @@ export async function GET(request: NextRequest) {
       }
     }
     await admin.from("trips").update({ last_trip_reminder_sent: today }).eq("id", trip.id);
+  }
+
+  // Season-opens reminder: fires once, on the calendar day a user's favourite species'
+  // editorial season (lib/seasonality.ts) turns from closed to open. SEASONALITY is
+  // month-granular, not day-granular, so "opens today" is only meaningful on the 1st of
+  // that month — checking it on any other day would keep matching for the whole month.
+  // Closing isn't reminded: nobody needs a push telling them a season is over.
+  if (today.slice(8, 10) === "01") {
+    const { data: seasonUsers } = await admin
+      .from("angler_settings")
+      .select("user_id, favourite_species_slug, tide_station_lat, tide_station_lng, last_season_reminder_sent")
+      .eq("season_reminders_enabled", true)
+      .not("favourite_species_slug", "is", null)
+      .not("tide_station_lat", "is", null)
+      .not("tide_station_lng", "is", null);
+
+    if (seasonUsers && seasonUsers.length > 0) {
+      const species = await getAllSpecies();
+      const month = parseLocalDate(today).getMonth() + 1;
+      const prevMonth = month === 1 ? 12 : month - 1;
+
+      for (const row of seasonUsers) {
+        if (row.last_season_reminder_sent === today) continue;
+
+        const sp = species.find((s) => s.slug === row.favourite_species_slug);
+        if (!sp) continue;
+
+        const province = guessProvince(row.tide_station_lat, row.tide_station_lng);
+        if (province.outOfRegion || !sp.provinces.includes(province.province)) continue;
+
+        const opensToday = isInSeason(sp.slug, month) && !isInSeason(sp.slug, prevMonth);
+        if (!opensToday) continue;
+
+        const { data: subs } = await admin
+          .from("push_subscriptions")
+          .select("endpoint, p256dh, auth_key")
+          .eq("user_id", row.user_id);
+
+        for (const sub of subs ?? []) {
+          try {
+            await webpush.sendNotification(
+              { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth_key } },
+              JSON.stringify({
+                title: "Maritime Angler",
+                body: `${sp.common_name} season opens today.`,
+                url: `/species/${sp.slug}`,
+              })
+            );
+            sent++;
+          } catch {
+            // Dead subscription — same as above, not worth failing the run.
+          }
+        }
+        await admin
+          .from("angler_settings")
+          .update({ last_season_reminder_sent: today })
+          .eq("user_id", row.user_id);
+      }
+    }
   }
 
   return NextResponse.json({ ok: true, sent });
