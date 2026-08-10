@@ -197,6 +197,8 @@ export interface Catch {
   catch_date: string;
   location: string | null;
   tackle_item_id: string | null;
+  /** Set when logged as part of a saved trip (see types/trips.ts). Null for a catch with no trip. */
+  trip_id: string | null;
   length_desc: string | null;
   weight_desc: string | null;
   kept: boolean;

@@ -8,7 +8,7 @@ import { isUnitSystem } from "@/lib/units";
 import { parseLocalDate } from "@/lib/dates";
 import { TripConditionsPanel } from "@/components/TripConditionsPanel";
 import { TripDetailClient } from "@/components/TripDetailClient";
-import type { FavouriteStation, TackleItem } from "@/types/tackle";
+import type { Catch, FavouriteStation, TackleItem } from "@/types/tackle";
 import type { Species } from "@/types/content";
 
 export default async function TripDetailPage(props: { params: Promise<{ id: string }> }) {
@@ -84,6 +84,21 @@ export default async function TripDetailPage(props: { params: Promise<{ id: stri
     .filter((slug) => !coveredSlugs.has(slug))
     .map((slug) => ({ slug, name: species.find((s) => s.slug === slug)?.common_name ?? slug }));
 
+  const { data: catchRows } = await supabase
+    .from("catches")
+    .select("*")
+    .eq("trip_id", trip.id)
+    .order("catch_date", { ascending: false });
+  const tripCatches = (catchRows as Catch[]) ?? [];
+
+  // Only the tackle names this trip's catches actually reference, not the whole box.
+  const tackleIds = [...new Set(tripCatches.map((c) => c.tackle_item_id).filter((id): id is string => !!id))];
+  const tackleNames: Record<string, string> = {};
+  if (tackleIds.length > 0) {
+    const { data: tackleRows } = await supabase.from("tackle_items").select("id, name").in("id", tackleIds);
+    for (const t of (tackleRows as { id: string; name: string }[] | null) ?? []) tackleNames[t.id] = t.name;
+  }
+
   const conditions =
     trip.lat !== null && trip.lng !== null ? (
       <TripConditionsPanel
@@ -108,6 +123,9 @@ export default async function TripDetailPage(props: { params: Promise<{ id: stri
         suggestFor={suggestFor}
         targetSpeciesObjs={targetSpeciesObjs}
         otherInSeason={otherInSeason}
+        tripCatches={tripCatches}
+        tackleNames={tackleNames}
+        units={units}
       >
         {conditions}
       </TripDetailClient>

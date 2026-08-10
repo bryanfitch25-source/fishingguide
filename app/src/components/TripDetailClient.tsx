@@ -8,9 +8,11 @@ import { TripForm } from "@/components/TripForm";
 import { TripChecklist } from "@/components/TripChecklist";
 import { TripShareControl } from "@/components/TripShareControl";
 import { PrintButton } from "@/components/PrintButton";
+import { CatchCard } from "@/components/CatchCard";
 import { SEASONALITY, isInSeason } from "@/lib/seasonality";
 import { formatTripDates } from "@/lib/trip-dates";
-import type { FavouriteStation, TackleItem } from "@/types/tackle";
+import type { UnitSystem } from "@/lib/units";
+import type { Catch, FavouriteStation, TackleItem } from "@/types/tackle";
 import type { LocationGuide, Species } from "@/types/content";
 import type { Trip } from "@/types/trips";
 
@@ -23,6 +25,9 @@ export function TripDetailClient({
   suggestFor,
   targetSpeciesObjs,
   otherInSeason,
+  tripCatches,
+  tackleNames,
+  units,
   children,
 }: {
   trip: Trip;
@@ -33,6 +38,10 @@ export function TripDetailClient({
   suggestFor: { slug: string; name: string }[];
   targetSpeciesObjs: Species[];
   otherInSeason: Species[];
+  /** Catches logged against this trip — read-only here; managed from the Catch Log. */
+  tripCatches: Catch[];
+  tackleNames: Record<string, string>;
+  units: UnitSystem;
   /** The server-rendered TripConditionsPanel (or a "no location" note) for this trip. */
   children: ReactNode;
 }) {
@@ -129,6 +138,33 @@ export function TripDetailClient({
         <h2 className="text-lg font-bold text-brand-dark border-b border-border pb-2 mb-3">Conditions</h2>
         {children}
       </section>
+
+      {tripCatches.length > 0 && (
+        <section>
+          <h2 className="text-lg font-bold text-brand-dark border-b border-border pb-2 mb-3">
+            Catches From This Trip ({tripCatches.length})
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {tripCatches.map((c) => (
+              <CatchCard
+                key={c.id}
+                c={c}
+                speciesName={(slug) => (slug ? species.find((s) => s.slug === slug)?.common_name ?? slug : null)}
+                tackleName={(id) => (id ? tackleNames[id] ?? null : null)}
+                isPersonalBest={false}
+                units={units}
+              />
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-muted no-print">
+            Edit or delete a catch from the{" "}
+            <Link href="/catches" className="text-accent hover:underline">
+              Catch Log
+            </Link>
+            .
+          </p>
+        </section>
+      )}
 
       {targetSpeciesObjs.length > 0 && (
         <section>
